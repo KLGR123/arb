@@ -1,0 +1,333 @@
+{
+  "schema_version": "mm-fixture-v1",
+  "provenance": "Hand-authored synthetic L2 and taker intents; no recorded market data; illustrative rates checked 2026-10-30.",
+  "market": {
+    "id": "synthetic-crypto",
+    "category": "crypto",
+    "tick_size": 0.01,
+    "min_order_size": 1.0,
+    "fee_rate": 0.07,
+    "rebate_fraction": 0.2,
+    "reward_min_size": 10.0,
+    "reward_max_spread": 0.05,
+    "reward_daily_pool": 100.0
+  },
+  "end_ms": 1767312010000,
+  "books": [
+    {
+      "timestamp_ms": 1767311990000,
+      "bids": [
+        {
+          "price": 0.49,
+          "size": 5.0
+        },
+        {
+          "price": 0.48,
+          "size": 15.0
+        }
+      ],
+      "asks": [
+        {
+          "price": 0.51,
+          "size": 5.0
+        },
+        {
+          "price": 0.52,
+          "size": 15.0
+        }
+      ],
+      "competitor_score": 100.0
+    },
+    {
+      "timestamp_ms": 1767311992000,
+      "bids": [
+        {
+          "price": 0.49,
+          "size": 5.0
+        },
+        {
+          "price": 0.48,
+          "size": 15.0
+        }
+      ],
+      "asks": [
+        {
+          "price": 0.51,
+          "size": 5.0
+        },
+        {
+          "price": 0.52,
+          "size": 15.0
+        }
+      ],
+      "competitor_score": 100.0
+    },
+    {
+      "timestamp_ms": 1767311994000,
+      "bids": [
+        {
+          "price": 0.48,
+          "size": 5.0
+        },
+        {
+          "price": 0.47,
+          "size": 15.0
+        }
+      ],
+      "asks": [
+        {
+          "price": 0.5,
+          "size": 5.0
+        },
+        {
+          "price": 0.51,
+          "size": 15.0
+        }
+      ],
+      "competitor_score": 100.0
+    },
+    {
+      "timestamp_ms": 1767311996000,
+      "bids": [
+        {
+          "price": 0.47,
+          "size": 5.0
+        },
+        {
+          "price": 0.46,
+          "size": 15.0
+        }
+      ],
+      "asks": [
+        {
+          "price": 0.49,
+          "size": 5.0
+        },
+        {
+          "price": 0.5,
+          "size": 15.0
+        }
+      ],
+      "competitor_score": 100.0
+    },
+    {
+      "timestamp_ms": 1767311998000,
+      "bids": [
+        {
+          "price": 0.47,
+          "size": 5.0
+        },
+        {
+          "price": 0.46,
+          "size": 15.0
+        }
+      ],
+      "asks": [
+        {
+          "price": 0.49,
+          "size": 5.0
+        },
+        {
+          "price": 0.5,
+          "size": 15.0
+        }
+      ],
+      "competitor_score": 100.0
+    },
+    {
+      "timestamp_ms": 1767312000000,
+      "bids": [
+        {
+          "price": 0.49,
+          "size": 5.0
+        },
+        {
+          "price": 0.48,
+          "size": 15.0
+        }
+      ],
+      "asks": [
+        {
+          "price": 0.51,
+          "size": 5.0
+        },
+        {
+          "price": 0.52,
+          "size": 15.0
+        }
+      ],
+      "competitor_score": 100.0
+    },
+    {
+      "timestamp_ms": 1767312002000,
+      "bids": [
+        {
+          "price": 0.5,
+          "size": 5.0
+        },
+        {
+          "price": 0.49,
+          "size": 15.0
+        }
+      ],
+      "asks": [
+        {
+          "price": 0.52,
+          "size": 5.0
+        },
+        {
+          "price": 0.53,
+          "size": 15.0
+        }
+      ],
+      "competitor_score": 100.0
+    },
+    {
+      "timestamp_ms": 1767312004000,
+      "bids": [
+        {
+          "price": 0.51,
+          "size": 5.0
+        },
+        {
+          "price": 0.5,
+          "size": 15.0
+        }
+      ],
+      "asks": [
+        {
+          "price": 0.53,
+          "size": 5.0
+        },
+        {
+          "price": 0.54,
+          "size": 15.0
+        }
+      ],
+      "competitor_score": 100.0
+    },
+    {
+      "timestamp_ms": 1767312006000,
+      "bids": [
+        {
+          "price": 0.5,
+          "size": 5.0
+        },
+        {
+          "price": 0.49,
+          "size": 15.0
+        }
+      ],
+      "asks": [
+        {
+          "price": 0.52,
+          "size": 5.0
+        },
+        {
+          "price": 0.53,
+          "size": 15.0
+        }
+      ],
+      "competitor_score": 100.0
+    },
+    {
+      "timestamp_ms": 1767312008000,
+      "bids": [
+        {
+          "price": 0.49,
+          "size": 5.0
+        },
+        {
+          "price": 0.48,
+          "size": 15.0
+        }
+      ],
+      "asks": [
+        {
+          "price": 0.51,
+          "size": 5.0
+        },
+        {
+          "price": 0.52,
+          "size": 15.0
+        }
+      ],
+      "competitor_score": 100.0
+    },
+    {
+      "timestamp_ms": 1767312010000,
+      "bids": [
+        {
+          "price": 0.48,
+          "size": 5.0
+        },
+        {
+          "price": 0.47,
+          "size": 15.0
+        }
+      ],
+      "asks": [
+        {
+          "price": 0.5,
+          "size": 5.0
+        },
+        {
+          "price": 0.51,
+          "size": 15.0
+        }
+      ],
+      "competitor_score": 100.0
+    }
+  ],
+  "takers": [
+    {
+      "timestamp_ms": 1767311990500,
+      "side": "sell",
+      "limit_price": 0.2,
+      "size": 35.0
+    },
+    {
+      "timestamp_ms": 1767311992500,
+      "side": "buy",
+      "limit_price": 0.8,
+      "size": 35.0
+    },
+    {
+      "timestamp_ms": 1767311994500,
+      "side": "sell",
+      "limit_price": 0.2,
+      "size": 35.0
+    },
+    {
+      "timestamp_ms": 1767311996500,
+      "side": "buy",
+      "limit_price": 0.8,
+      "size": 35.0
+    },
+    {
+      "timestamp_ms": 1767311998500,
+      "side": "sell",
+      "limit_price": 0.2,
+      "size": 35.0
+    },
+    {
+      "timestamp_ms": 1767312000500,
+      "side": "buy",
+      "limit_price": 0.8,
+      "size": 35.0
+    },
+    {
+      "timestamp_ms": 1767312002500,
+      "side": "sell",
+      "limit_price": 0.2,
+      "size": 35.0
+    },
+    {
+      "timestamp_ms": 1767312004500,
+      "side": "buy",
+      "limit_price": 0.8,
+      "size": 35.0
+    }
+  ],
+  "settlement_price": 1
+}
