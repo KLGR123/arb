@@ -28,6 +28,7 @@
 - [Polymarket 协议与 SDK 迁移评估](polymarket-protocol-v2.md)：CLOB / Protocol / Data V2 时间线、模块影响与后续验收清单
 - `docs/mm-backtest.md`：离线做市、L2 排队近似、返佣/奖励、PnL 分解与逆向选择统计
 - `docs/negrisk-scanner.md`：只读 negRisk 扫描、逐档深度、费用、JSON v1 合约与真实扫描验证边界
+- `docs/crypto-updown-pricing.md`：60 个已结算五分钟盘的 CEX TWAP 代理、公允概率、费用与延迟研究
 
 ## 规则
 
