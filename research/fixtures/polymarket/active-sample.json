@@ -1,0 +1,14 @@
+{
+  "observed_on": "2026-10-30 Asia/Shanghai",
+  "source": "https://gamma-api.polymarket.com/markets?limit=5",
+  "transport": "browser public read; NAS direct HTTPS timed out",
+  "kind": "manual factual projection, not raw HTTP recording",
+  "selection": "First default-order page, limit=5; all five observed active=true, closed=false. Convenience sample, strongly biased to older politics markets; no population inference.",
+  "markets": [
+    {"id": "559651", "slug": "xi-jinping-out-before-2027", "version": "v1", "active": true, "closed": false, "updatedAt": "2026-10-29T15:54:45.892886Z"},
+    {"id": "559652", "slug": "will-gavin-newsom-win-the-2028-democratic-presidential-nomination-568", "version": "v1", "active": true, "closed": false, "updatedAt": "2026-10-29T15:54:45.892886Z"},
+    {"id": "559653", "slug": "will-alexandria-ocasio-cortez-win-the-2028-democratic-presidential-nomination-653", "version": "v1", "active": true, "closed": false, "updatedAt": "2026-10-29T15:54:45.892886Z"},
+    {"id": "559654", "slug": "will-pete-buttigieg-win-the-2028-democratic-presidential-nomination-687", "version": "v1", "active": true, "closed": false, "updatedAt": "2026-10-29T15:54:45.892886Z"},
+    {"id": "559655", "slug": "will-josh-shapiro-win-the-2028-democratic-presidential-nomination-977", "version": "v1", "active": true, "closed": false, "updatedAt": "2026-10-29T15:54:45.892886Z"}
+  ]
+}

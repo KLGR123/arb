@@ -17,6 +17,11 @@ dependencies = [
   "uvicorn>=0.34,<1",
 ]
 
+[project.optional-dependencies]
+# The 1.231.0 adapter imports this V2 SDK even on its data-only path.
+# This is NOT the archived py-clob-client package. No client is constructed.
+polymarket-validation = ["py-clob-client-v2==1.0.2"]
+
 [dependency-groups]
 dev = ["pytest>=8,<10", "httpx>=0.28,<1"]
 
