@@ -17,7 +17,7 @@ function Foundation() {
           <span className="flex size-8 items-center justify-center rounded-md bg-primary text-primary-foreground"><ChartCandlestick size={19} /></span>
           arb<span className="ml-2 text-xs font-normal tracking-widest text-muted-foreground">RESEARCH</span>
         </a>
-        <div className="flex items-center gap-3"><Button asChild variant="ghost" size="sm"><Link to="/backtest">回测工作台</Link></Button><Badge variant="outline" className="gap-2"><span className="size-1.5 rounded-full bg-primary" />离线示例</Badge></div>
+        <div className="flex flex-wrap items-center justify-end gap-1 sm:gap-3"><Button asChild variant="ghost" size="sm"><Link to="/polymarket">Polymarket 看板</Link></Button><Button asChild variant="ghost" size="sm"><Link to="/backtest">回测工作台</Link></Button><Badge variant="outline" className="hidden gap-2 sm:inline-flex"><span className="size-1.5 rounded-full bg-primary" />离线示例</Badge></div>
       </header>
       <main className="py-12 sm:py-16">
         <p className="mb-4 font-mono text-xs tracking-[0.2em] text-primary">FOUNDATION / 001</p>
