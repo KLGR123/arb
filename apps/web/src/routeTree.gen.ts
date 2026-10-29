@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BacktestRouteImport } from './routes/backtest'
+import { Route as PolymarketRouteImport } from './routes/polymarket'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,31 +23,40 @@ const BacktestRoute = BacktestRouteImport.update({
   path: '/backtest',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PolymarketRoute = PolymarketRouteImport.update({
+  id: '/polymarket',
+  path: '/polymarket',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/backtest': typeof BacktestRoute
+  '/polymarket': typeof PolymarketRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/backtest': typeof BacktestRoute
+  '/polymarket': typeof PolymarketRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/backtest': typeof BacktestRoute
+  '/polymarket': typeof PolymarketRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/backtest'
+  fullPaths: '/' | '/backtest' | '/polymarket'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/backtest'
-  id: '__root__' | '/' | '/backtest'
+  to: '/' | '/backtest' | '/polymarket'
+  id: '__root__' | '/' | '/backtest' | '/polymarket'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BacktestRoute: typeof BacktestRoute
+  PolymarketRoute: typeof PolymarketRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +75,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BacktestRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/polymarket': {
+      id: '/polymarket'
+      path: '/polymarket'
+      fullPath: '/polymarket'
+      preLoaderRoute: typeof PolymarketRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BacktestRoute: BacktestRoute,
+  PolymarketRoute: PolymarketRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
