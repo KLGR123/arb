@@ -20,6 +20,7 @@
 - `docs/compliance.md`：只读红线、交易拒绝开关、地区检测、审计与统一 guard 接入
 - `docs/polymarket-dashboard.md`：Polymarket 三视图、合成 fixture、前端契约与后端对齐假设
 - `docs/polymarket-data.md`：Polymarket 元数据、价格与结算同步、Parquet/DuckDB、只读 API 与 CLI
+- `docs/orderbook-recorder.md`：只读 CLOB market 录制、JSONL 原始事件、历史 L2 重建、缺口报告与 NAS 运行
 - `docs/backtest-ui.md`：回测页 MVP、演示 Dataset、浏览器 preset 与 ARB-4 adapter 边界
 - `docs/backtest-replay.md`：Vela 录制 run 回放、标注、共轴净值、阶段隔离与 fixture 复录
 - `docs/backtest-api.md`：双引擎异步 API、冻结 Dataset、费用滑点、持久队列与 ARB-5 回放事件
