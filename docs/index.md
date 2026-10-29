@@ -15,6 +15,10 @@
 
 - `docs/runbooks/commit-policy.md`：何时 `commit-ready` / `merge-ready`、Conventional Commits、staging 卫生
 
+## 产品
+
+- `docs/backtest-ui.md`：回测页 MVP、演示 Dataset、浏览器 preset 与 ARB-4 adapter 边界
+
 ## 规则
 
 1. 当前产品与启动说明以根目录 `README.md` 为准。
