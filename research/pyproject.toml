@@ -21,6 +21,7 @@ dependencies = [
   "httpx[socks]>=0.28.1,<0.29",
   "pydantic>=2.11,<3",
   "websockets>=15,<16",
+  "python-socks[asyncio]>=2.7,<3",
 ]
 
 [project.optional-dependencies]

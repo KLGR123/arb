@@ -36,12 +36,14 @@ async def record(args):
     loop.add_signal_handler(signal.SIGTERM, task.cancel)
     assets, geo = await resolve_assets(args.token, args.market)
     recorder = Recorder(args.output, assets, snapshot_seconds=args.snapshot_seconds)
-    recorder.metrics["geoblock_allowed"] = 1
+    recorder.metrics["public_read_only"] = 1
+    recorder.metrics["geoblock_blocked"] = int(geo["blocked"])
     await run_guarded(recorder, duration=args.duration)
     missing = set(assets) - recorder.seeded_assets
     if missing:
         raise ValueError(f"incomplete recording: no full book for {len(missing)} selected token(s)")
-    print(json.dumps({"geoblock": geo, "assets_ids": assets, "metrics": dict(recorder.metrics)}))
+    print(json.dumps({"geoblock": geo, "access_mode": "public_read_only", "trading_allowed": False,
+                      "assets_ids": assets, "metrics": dict(recorder.metrics)}))
 
 
 def main(argv=None):
@@ -87,7 +89,10 @@ def main(argv=None):
     except asyncio.CancelledError:
         return 143
     except Exception as exc:
-        print(f"{type(exc).__name__}: {exc}", file=sys.stderr)
+        # Proxy libraries may include the private route in exception messages.
+        detail = "recording failed; check public network/configuration and capture completeness" \
+            if args.command == "record" else str(exc)
+        print(f"{type(exc).__name__}: {detail}", file=sys.stderr)
         return 1
     return 0
 

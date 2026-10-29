@@ -3,6 +3,7 @@
 import asyncio
 import copy
 import json
+from pathlib import Path
 
 import pytest
 
@@ -17,6 +18,12 @@ BOOK = {"event_type": "book", "asset_id": "123", "market": MARKET, "timestamp": 
 DELTA = {"event_type": "price_change", "market": MARKET, "timestamp": "1001",
          "price_changes": [{"asset_id": "123", "price": "0.50", "size": "20", "side": "BUY",
                             "hash": "book-b", "best_bid": "0.50", "best_ask": "0.60"}]}
+
+
+@pytest.fixture(autouse=True)
+def isolate_private_network_configuration(monkeypatch):
+    # Tests must never use the runtime's real private route, including local WS peers.
+    monkeypatch.delenv("ARB_POLYMARKET_PROXY", raising=False)
 
 
 def write_fixture(root):
@@ -331,7 +338,7 @@ def test_cli_empty_capture_is_failure(tmp_path, monkeypatch, capsys):
     monkeypatch.setattr(module, "resolve_assets", allowed)
     monkeypatch.setattr(module, "run_guarded", empty)
     assert cli.main(["record", "--token", "123", "--output", str(tmp_path), "--duration", ".005"]) == 1
-    assert "no full book" in capsys.readouterr().err
+    assert "capture completeness" in capsys.readouterr().err
 
 
 def test_http_retry_and_geo_guard_without_network(monkeypatch):
@@ -377,13 +384,13 @@ def test_http_retry_and_geo_guard_without_network(monkeypatch):
 
     monkeypatch.setattr(module, "GEO_CLIENT", GeoblockClient(
         fetch=lambda timeout: {"blocked": True, "country": "US", "region": "VA"}))
-    with pytest.raises(ValueError, match="geoblock denied"):
-        asyncio.run(module.resolve_assets(["123"], []))
+    assets, geo = asyncio.run(module.resolve_assets(["123"], []))
+    assert assets == ["123"] and geo["blocked"] is True
 
     monkeypatch.setattr(module, "GEO_CLIENT", GeoblockClient(
         fetch=lambda timeout: {"blocked": False, "country": "US", "region": "VA"}))
-    with pytest.raises(ValueError, match="geoblock denied"):
-        asyncio.run(module.resolve_assets(["123"], []))
+    assets, geo = asyncio.run(module.resolve_assets(["123"], []))
+    assert assets == ["123"] and geo["country"] == "US"
 
     monkeypatch.setattr(module, "GEO_CLIENT", GeoblockClient(
         fetch=lambda timeout: {"blocked": False}, sleep=lambda delay: None))
@@ -406,6 +413,63 @@ def test_recorder_uses_shared_compliance_budget(monkeypatch):
     assert calls == ["global", "global"]
 
 
+def test_explicit_proxy_reaches_http_and_ws_without_global_environment(tmp_path, monkeypatch):
+    import httpx
+    from arb_research.compliance import GeoblockClient
+    from arb_research.orderbook import recorder as module
+
+    route = "socks5h://fixture-user:fixture-password@fixture.invalid:1080"
+    monkeypatch.setenv("ARB_POLYMARKET_PROXY", route)
+    monkeypatch.setenv("HTTPS_PROXY", "http://ignored.invalid:1234")
+    options = []
+    original = httpx.AsyncClient
+
+    def client(**kwargs):
+        options.append(kwargs)
+        # No HTTP requests are made for an explicit token list.
+        return original(trust_env=False)
+
+    monkeypatch.setattr(httpx, "AsyncClient", client)
+    monkeypatch.setattr(module, "GEO_CLIENT", GeoblockClient(
+        fetch=lambda timeout: {"blocked": True, "country": "US", "region": "VA"}))
+    assert asyncio.run(module.resolve_assets(["123"], []))[1]["blocked"] is True
+    assert options[0]["proxy"] == route and options[0]["trust_env"] is False
+    connector = Connector([FakeSocket([json.dumps(BOOK)])])
+    asyncio.run(Recorder(tmp_path, ["123"]).run(duration=.01, connect=connector))
+    assert connector.calls[0][1]["proxy"] == route
+    assert route not in "".join(p.read_text() for p in tmp_path.rglob("*.json*"))
+
+
+def test_private_proxy_errors_are_not_printed(tmp_path, monkeypatch, capsys):
+    from arb_research.orderbook import __main__ as cli
+    from arb_research.orderbook import recorder as module
+
+    private = "socks5h://fixture-secret@fixture.invalid:1080"
+
+    async def failure(*args):
+        raise RuntimeError(private)
+
+    monkeypatch.setattr(module, "resolve_assets", failure)
+    assert cli.main(["record", "--token", "123", "--output", str(tmp_path)]) == 1
+    assert private not in capsys.readouterr().err
+
+
+def test_public_geoblock_does_not_enable_trading(tmp_path, monkeypatch):
+    from arb_research.compliance import (ComplianceDenied, ComplianceGuard,
+                                         ComplianceSettings, GeoblockClient)
+    from arb_research.orderbook import recorder as module
+
+    geo = GeoblockClient(fetch=lambda timeout: {"blocked": True, "country": "US", "region": "VA"})
+    monkeypatch.setattr(module, "GEO_CLIENT", geo)
+    assert asyncio.run(module.resolve_assets(["123"], []))[0] == ["123"]
+    for enabled in (False, True):
+        guard = ComplianceGuard(ComplianceSettings(enabled, str(tmp_path / "audit.sqlite3")), geoblock=geo)
+        with pytest.raises(ComplianceDenied) as denied:
+            guard.require("order", caller="test.public_recorder")
+        assert denied.value.decision["allowed"] is False
+        assert denied.value.decision["reason"] == "geoblocked"
+
+
 def test_cli_offline(tmp_path, capsys):
     from arb_research.orderbook.__main__ import main
 
@@ -415,3 +479,59 @@ def test_cli_offline(tmp_path, capsys):
     assert main(["gaps", str(tmp_path)]) == 0
     assert json.loads(capsys.readouterr().out)["counts"] == {}
     assert main(["replay", str(tmp_path), "--token", "999"]) == 1
+
+
+def test_real_recording_rebuilds_deltas_to_authoritative_books():
+    from decimal import Decimal
+    import hashlib
+
+    root = Path(__file__).parent / "fixtures/orderbook-live"
+    capture = json.loads((root / "capture.json").read_text())
+    for relative, expected in capture["sha256"].items():
+        assert hashlib.sha256((root / relative).read_bytes()).hexdigest() == expected
+    rows = list(records(root))
+    assert len(rows) == 1000
+    deltas_seen, anchors = set(), 0
+
+    def numeric_depth(levels, reverse):
+        return sorted([(Decimal(r["price"]), Decimal(r["size"])) for r in levels
+                       if Decimal(r["size"])], reverse=reverse)
+
+    for row in rows:
+        event = row["payload"]
+        if event["event_type"] == "price_change":
+            deltas_seen.update(c["asset_id"] for c in event["price_changes"])
+        elif event["event_type"] == "book" and event["asset_id"] in deltas_seen:
+            # Compare the pre-snapshot delta-built depth with the SERVER's next
+            # full book, not a state produced after applying that snapshot.
+            prior = replay(root, row["received_ns"] - 1)["books"][event["asset_id"]]
+            assert prior["available"]
+            assert numeric_depth(prior["bids"], True) == numeric_depth(event["bids"], True)
+            assert numeric_depth(prior["asks"], False) == numeric_depth(event["asks"], False)
+            anchors += 1
+    assert anchors >= 2
+    final = replay(root, capture["last_market_received_ns"])
+    assert len(final["books"]) == 2 and all(b["available"] for b in final["books"].values())
+    assert not final["gaps"]
+    assert capture["snapshot_rows"] == 18
+    assert capture["pings"] == capture["pongs"] == 4
+
+
+def test_proxy_failures_reconnect_without_logging_route(tmp_path, monkeypatch, caplog):
+    from python_socks import ProxyError
+
+    route = "socks5h://fixture-private@fixture.invalid:1080"
+    monkeypatch.setenv("ARB_POLYMARKET_PROXY", route)
+
+    class Failure:
+        async def __aenter__(self):
+            raise ProxyError("unreachable " + route)
+
+        async def __aexit__(self, *args):
+            return False
+
+    recorder = Recorder(tmp_path, ["123"])
+    asyncio.run(recorder.run(duration=.01, connect=lambda *a, **kw: Failure()))
+    assert recorder.metrics["reconnects"] == 1
+    assert route not in caplog.text
+    assert route not in "".join(p.read_text() for p in tmp_path.rglob("*.json*"))

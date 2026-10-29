@@ -26,10 +26,17 @@ uv run --locked python -m arb_research.orderbook record \
 SIGINT / SIGTERM 会落盘、写停止事件并关闭连接。程序不会自动安装系统服务。
 有限时长内任一选定 token 未收到有效完整 book，CLI 会以非零状态退出，避免空录制被误认为成功。
 
-每次录制通过共享 `arb_research.compliance.GeoblockClient` 检查实际出口（进程内缓存 60 秒）。
-若地区受限、US/VA、返回不完整或检查失败，录制失败退出。
-不接受代理参数，HTTP `trust_env=False`，WebSocket `proxy=None`，不通过 VPN/代理切换出口。
-无法确认出口时仍可离线重放已有文件；不得通过禁用 guard 获取演示。
+每次录制通过 main 的 `arb_research.compliance.GeoblockClient` 检查公共数据访问出口
+（进程内缓存 60 秒）；仅注入公共 HTTP fetch，复用严格解析、退避和共享预算。
+返回不完整或检查失败时录制退出。`blocked=true` / US/VA 是交易限制信息，按用户授权可继续
+访问公开只读行情；该结果保留在 CLI 输出与指标中，不能解释为交易许可。
+main 的交易 guard 和默认拒绝路径保持原样，读行情不会改变交易开关。
+
+用户授权的公共数据路由由 NAS secret / runtime custom_env 的 `ARB_POLYMARKET_PROXY` 注入，
+只支持 socks5h。HTTP 显式传 `proxy` 并设置 `trust_env=False`；WS 显式传相同的 `proxy`。
+未配置时直连，不读取全局 HTTP(S)_PROXY / ALL_PROXY，不写全局代理环境变量。
+该配置仅进入固定公共 geoblock / Gamma / market WS 客户端，不进入交易 guard 或其他研究服务。
+不要打印、提交或将配置值放入命令行参数；录制器不持久化该值，CLI 也不回显可能含它的底层异常。
 
 使用官方当前文档列出的原始 market WebSocket 协议，适配 V2 后的盘口格式。
 统一 `polymarket-client` SDK 优先用于常规 API；本模块选用直接 WebSocket，是为了保留原始
@@ -170,6 +177,32 @@ available_books，以及磁盘空闲容量。不要仅用市场无成交判断�
 10 秒 PING/PONG、四种事件字段；统一 SDK 见
 [Python SDK](https://docs.polymarket.com/getting-started/python)。
 
-离线测试通过生产 writer 录制受控协议帧，再验证历史 L2、重连、缺口和文件完整性。
-这些 fixture 是明确合成的，不能替代真实 NAS 数据演示。真实录制结果及运行环境是否通过，
-以 PR 的验证记录为准；受出口或 geoblock 阻碍时不得标记真实验收已完成。
+离线测试通过生产 writer 录制受控协议帧，再验证历史 L2、重连、缺口和文件完整性；
+另有真实公开 market 录制 fixture，路径及复现结果见下节。两者均可离线运行，测试不访问外网。
+真实录制只证明该样本覆盖的时段，不代替后续 7 天观察。
+
+## 真实公开行情样本
+
+`research/tests/fixtures/orderbook-live/` 保存未经改写的真实 events、周期 snapshots、
+最终 metrics，以及 `capture.json` 中的时间范围、文件 SHA-256 和运行摘要。
+样本来自活跃的 “Will Benjamin Netanyahu be the next Prime Minister of Israel?” 市场，
+订阅两个 outcome token；UTC 2026-10-29 16:45:06–16:45:52，设定录制 45 秒（另含连接关闭时间）。
+
+- 1,000 条日志：12 条 book、980 条 price_change、5 条 last_trade_price、3 条生命周期事件。
+- 18 条周期/退出快照；PING/PONG 各 4 次；未观察到缺口；最后市场事件时两个盘口均可重建。
+- 样本期间没有 tick_size_change；该类型由受控离线 fixture 验证。
+- geoblock 返回 `blocked=true`；独立调用未修改的共享交易 guard，仍以 `geoblocked` 拒绝。
+- 包含元数据约 0.86 MiB。样本不含代理配置或认证信息；不是连续 7 天运行证明。
+
+从 `research/` 离线复现：
+
+```bash
+uv run --locked python -m arb_research.orderbook replay tests/fixtures/orderbook-live \
+  --at-ns 1793292351352410678
+uv run --locked python -m arb_research.orderbook gaps tests/fixtures/orderbook-live
+uv run --locked python -m pytest -q tests/test_orderbook.py
+```
+
+真实 fixture 测试将完整 book **到达之前**的增量重建结果，与下一条服务端权威 book 的所有
+价位和数量比较，避免仅验证“加载快照后等于自身”。另外验证原始文件校验和、两个盘口、
+心跳和快照数量。`gaps` 返回空列表只代表本样本未观察到支持检测的异常。

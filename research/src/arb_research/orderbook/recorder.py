@@ -1,4 +1,4 @@
-"""Public market channel only: fixed endpoints, no credentials or proxy support."""
+"""Public market channel only: fixed endpoints and explicit public-data transport."""
 
 import asyncio
 from collections import Counter
@@ -11,13 +11,14 @@ import sys
 import time
 
 from ..compliance import GeoblockClient, PUBLIC_API_BUDGET
-from .core import EVENTS, Rebuilder, canonical
+from .core import Rebuilder, canonical
+from .public import fetch_public_geoblock, public_proxy
 from .storage import Journal
 
 
 WS_URL = "wss://ws-subscriptions-clob.polymarket.com/ws/market"
 LOG = logging.getLogger(__name__)
-GEO_CLIENT = GeoblockClient()
+GEO_CLIENT = GeoblockClient(fetch=fetch_public_geoblock)
 
 
 class ResyncRequired(Exception):
@@ -30,9 +31,11 @@ class NetworkFailure(Exception):
 
 async def network(operation):
     """Classify OSError only at socket operations; disk failures must propagate."""
+    from python_socks import ProxyError
+
     try:
         return await operation
-    except OSError as exc:
+    except (OSError, ProxyError) as exc:
         raise NetworkFailure(type(exc).__name__) from exc
 
 
@@ -100,15 +103,14 @@ async def public_get(client, url, params=None, budget=NETWORK_BUDGET):
 async def resolve_assets(tokens, markets):
     import httpx
 
-    # Reuse ARB-6's validated, cached, fail-closed direct geoblock client.
+    # Reuse ARB-6 validation/cache; a trading restriction doesn't deny public data.
     result = await asyncio.to_thread(GEO_CLIENT.check)
     geo = {key: getattr(result, key) for key in ("blocked", "country", "region")}
     if result.error:
         raise ValueError(f"geoblock unavailable: {result.error}; recording blocked")
-    if geo["blocked"] or geo["country"].upper() == "US" or geo["region"].upper() == "VA":
-        raise ValueError("geoblock denied this exit; recording blocked (no proxy fallback)")
-    # Explicitly ignore HTTP(S)_PROXY/ALL_PROXY and disallow redirects.
-    async with httpx.AsyncClient(trust_env=False, timeout=10, follow_redirects=False) as client:
+    # The configured route applies only to these fixed public endpoints.
+    async with httpx.AsyncClient(proxy=public_proxy(), trust_env=False, timeout=10,
+                                 follow_redirects=False) as client:
         assets = set(tokens)
         for market in markets:
             rows = await public_get(client, "https://gamma-api.polymarket.com/markets",
@@ -136,6 +138,7 @@ class Recorder:
         self.metrics = Counter()
         self.last_received_ns = 0
         self.seeded_assets = set()
+        self.proxy = public_proxy()
 
     def now(self):
         # Wall clock adjustments must not regress the receive-order journal.
@@ -250,8 +253,8 @@ class Recorder:
                 try:
                     await self.budget.take()
                     started = time.monotonic()
-                    # A fixed public endpoint, never user/authenticated streams or proxies.
-                    async with open_market(connect, proxy=None,
+                    # Explicit proxy selection; never use ambient HTTP(S)_PROXY.
+                    async with open_market(connect, proxy=self.proxy,
                                            open_timeout=min(10, max(.01, deadline - started)),
                                            close_timeout=2, max_size=16 * 1024 * 1024,
                                            ping_interval=None) as ws:

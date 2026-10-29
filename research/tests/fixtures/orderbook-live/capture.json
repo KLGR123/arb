@@ -1,0 +1,42 @@
+{
+  "source": "wss://ws-subscriptions-clob.polymarket.com/ws/market",
+  "market": "0x7586a96520578acaaaa4ea84a2582f197f84255da1f3392a7aa300386c187b37",
+  "question": "Will Benjamin Netanyahu be the next Prime Minister of Israel?",
+  "assets_ids": [
+    "20006732765674855733524007935991362439352594042415161039767275461950712817548",
+    "54533569528927082430133047556849600511985191158927477533124630301934489498530"
+  ],
+  "requested_duration_seconds": 45,
+  "first_received_ns": 1793292306388339008,
+  "last_received_ns": 1793292352764014041,
+  "last_market_received_ns": 1793292351352410678,
+  "start_utc": "2026-10-29T16:45:06.388339+00:00",
+  "end_utc": "2026-10-29T16:45:52.764014+00:00",
+  "event_counts": {
+    "started": 1,
+    "connected": 1,
+    "book": 12,
+    "price_change": 980,
+    "last_trade_price": 5,
+    "stopped": 1
+  },
+  "geoblock": {
+    "blocked": true,
+    "country": "US",
+    "region": "CA"
+  },
+  "trading_guard": {
+    "allowed": false,
+    "reason": "geoblocked"
+  },
+  "pings": 4,
+  "pongs": 4,
+  "observed_gaps": [],
+  "snapshot_rows": 18,
+  "sha256": {
+    "date=2026-10-29/market=0x7586a96520578acaaaa4ea84a2582f197f84255da1f3392a7aa300386c187b37/events.2c5fd3632ff7451490d211484d5e029a.jsonl": "a9393d91ce355df2b871249595393ae3a53e16946eeeebcec714f81383750e49",
+    "date=2026-10-29/market=0x7586a96520578acaaaa4ea84a2582f197f84255da1f3392a7aa300386c187b37/snapshots.2c5fd3632ff7451490d211484d5e029a.jsonl": "feddf32f828d82a2390aa2be833b6b59ab49bb5b890b637cd98cc21c7b0ca218",
+    "date=2026-10-29/market=_control/events.2c5fd3632ff7451490d211484d5e029a.jsonl": "03b50d318372ab666174c732cb8effe81fd3e4e00a46b9d0fa383dda6ffe8a35",
+    "metrics.json": "a0327e8aa54a9e368150309caac2c34c8add88eb82b628ab175790bd78759257"
+  }
+}
