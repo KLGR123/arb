@@ -1,0 +1,4 @@
+{
+  "clear": {"blocked": false, "country": "ES", "region": "MD", "ip": "203.0.113.1"},
+  "blocked": {"blocked": true, "country": "US", "region": "VA", "ip": "203.0.113.2"}
+}
