@@ -156,7 +156,7 @@ function Backtest() {
         </div>
         <Badge variant="outline" className="gap-2">
           <span className="size-1.5 rounded-full bg-primary" />
-          离线回测 · UI MVP
+          离线回测 · 回放 / 标注
         </Badge>
       </header>
       <main className="py-7 sm:py-9">
@@ -398,10 +398,10 @@ function Backtest() {
                 <div>
                   <CardTitle className="text-sm">价格与策略</CardTitle>
                   <p className="mt-1.5 font-mono text-[10px] text-muted-foreground">
-                    {dataset.name.toUpperCase()} / UTC
+                    RECORDED SYNTHETIC · 1H / UTC
                   </p>
                 </div>
-                <Badge variant="secondary">1H · 空态</Badge>
+                <Badge variant="secondary">1H · 回放</Badge>
               </CardHeader>
               <CardContent className="p-0">
                 <BacktestChart />
@@ -422,10 +422,9 @@ function Backtest() {
             <div className="flex gap-3 rounded-lg border border-dashed p-5">
               <FlaskConical className="mt-0.5 size-5 shrink-0 text-primary" />
               <div>
-                <p className="text-sm font-medium">先配置，再验证。</p>
+                <p className="text-sm font-medium">回看一次完整的引擎运行。</p>
                 <p className="mt-2 text-xs leading-6 text-muted-foreground">
-                  本页使用已发布的演示快照目录和本地 stub。创建 run
-                  只生成唯一编号，不执行引擎。净值、指标和成交将在接入回测服务后呈现。
+                  主图加载 ARB-4 双引擎录制结果，独立于左侧配置。切换录制阶段可比较同一 run 的草稿和最终结果。左侧创建 stub run 仅记录配置，不会重新计算或替换这份录制。
                 </p>
               </div>
             </div>
@@ -434,7 +433,7 @@ function Backtest() {
             <Card className="gap-0 py-0">
               <CardHeader className="border-b px-5 py-4">
                 <CardTitle className="flex items-center justify-between text-sm">
-                  运行结果
+                  配置记录
                   <Badge variant="outline">{run ? 'STUB' : '未运行'}</Badge>
                 </CardTitle>
               </CardHeader>
@@ -483,7 +482,7 @@ function Backtest() {
             <Card className="gap-0 py-0">
               <CardHeader className="border-b px-5 py-4">
                 <CardTitle className="text-sm">
-                  净值曲线{' '}
+                  配置运行净值{' '}
                   <span className="ml-2 font-mono text-[10px] font-normal text-muted-foreground">
                     EQUITY
                   </span>
@@ -507,7 +506,7 @@ function Backtest() {
             </Card>
             <Card className="gap-0 overflow-hidden py-0">
               <CardHeader className="border-b px-5 py-4">
-                <CardTitle className="text-sm">模拟成交</CardTitle>
+                <CardTitle className="text-sm">配置运行成交</CardTitle>
               </CardHeader>
               <CardContent className="p-0">
                 <table className="w-full text-left text-[11px]">

@@ -14,7 +14,7 @@ uv run --locked python -m arb_research.worker
 uv run --locked python -m arb_research.worker --once
 ```
 
-默认数据库是当前目录的 .state/backtests.sqlite3；API 与 worker 都可用 ARB_BACKTEST_DB 指定同一个绝对路径。worker 也支持 --db。此服务尚未做身份认证、租户隔离、托管部署或远程开放；保持 loopback。TanStack 的 /backtest 页面仍使用原 UI stub，本票不改布局或接入行为；真实请求发向研究服务的 8000 端口。
+默认数据库是当前目录的 .state/backtests.sqlite3；API 与 worker 都可用 ARB_BACKTEST_DB 指定同一个绝对路径。worker 也支持 --db。此服务尚未做身份认证、租户隔离、托管部署或远程开放；保持 loopback。TanStack 的 /backtest 配置表单仍使用 UI stub；主图消费本服务完整 run 的录制文件，见 [回放说明](backtest-replay.md)。HTTP 创建请求发向研究服务的 8000 端口。
 
 ## Dataset 绑定
 

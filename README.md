@@ -1,6 +1,6 @@
 # arb
 
-crypto / Polymarket 研究产品的最小地基。目前提供 TanStack Start SSR 示例页、独立回测页 MVP、shadcn/ui 与 beUI 组件和 Vela 图容器，以及 Python 双引擎异步回测 API。API 可在已发布的离线合成快照上运行 VectorBT / NautilusTrader；回测页目前仍生成本地 stub，尚未接入 API。没有真实行情、实盘下单服务或密钥配置。
+crypto / Polymarket 研究产品的最小地基。目前提供 TanStack Start SSR 示例页、独立回测页 MVP、shadcn/ui 与 beUI 组件和 Vela 图容器，以及 Python 双引擎异步回测 API。API 可在已发布的离线合成快照上运行 VectorBT / NautilusTrader；回测页默认回放 ARB-4 的完整双引擎录制结果，配置表单仍生成本地 stub。没有真实行情、实盘下单服务或密钥配置。
 
 ## 目录约定
 
@@ -9,7 +9,7 @@ apps/web/                  TanStack Start + React + TypeScript
   src/routes/              文件路由（__root.tsx 为文档壳，index.tsx 为示例页）
   src/components/ui/       shadcn CLI 生成的源码，可直接修改
   src/components/          产品组件，含浏览器端 Vela 包装
-  src/features/backtest/   回测专属配置、演示目录、本地 stub 与空态图表
+  src/features/backtest/   回测专属配置、本地 stub、完整录制结果与 Vela 回放
   src/lib/                 前端工具和固定合成数据
 research/                  独立 Python 项目及 uv.lock
   src/arb_research/         双引擎、冻结 fixture、API、SQLite 队列与 worker
@@ -29,7 +29,7 @@ npm run dev
 
 页面展示 shadcn Button / Badge / Card 和 `@luxalgo/vela` 合成小时 K 线，按钮可切换 48/96 根数据。数据时间从 2026-01-01 UTC 开始，数值不代表任何真实资产。页面不会请求行情服务，Vela 通过客户端动态导入避免 SSR 访问 DOM；切换数据和卸载时销毁图表实例。Vela™ 可见署名保留。
 
-从首页进入 `/backtest`：配置已发布的演示 Dataset、fast / realistic 引擎、均线参数、费用、滑点与 UTC 区间，创建并显示唯一 `stub-` run id。桌面三栏，手机纵向布局。preset 通过“保存预设 / 加载预设”存于当前浏览器，保存覆盖一个槽位。数据与结果均为 UI stub，未接真实回测 API。状态隔离、校验和 ARB-4 适配说明见 [回测页说明](docs/backtest-ui.md)。
+从首页进入 `/backtest`：配置已发布的演示 Dataset、fast / realistic 引擎、均线参数、费用、滑点与 UTC 区间，创建并显示唯一 `stub-` run id。桌面三栏，手机纵向布局。preset 通过“保存预设 / 加载预设”存于当前浏览器，保存覆盖一个槽位。主图独立加载 ARB-4 的完整录制 run（336 根合成小时线），支持 fast / realistic 阶段、逐根、1× / 4× / 16×、拖动回放进度及净值共轴联动。成交和持仓来自真实离线引擎执行；止损止盈为分析参考线，不参与撮合。配置表单尚未接实时 API，不会修改录制结果。详见 [回放说明](docs/backtest-replay.md)。状态隔离、校验和 ARB-4 适配说明见 [回测页说明](docs/backtest-ui.md)。
 
 ```bash
 npm run build       # 生成 apps/web/dist/{client,server}
