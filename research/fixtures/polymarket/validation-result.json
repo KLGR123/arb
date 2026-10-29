@@ -1,0 +1,152 @@
+{
+  "version": "1.231.0",
+  "sdk_dependency": {
+    "py-clob-client-v2": "1.0.2"
+  },
+  "api": {
+    "from_event_slug": "(slug: 'str', token_index: 'int' = 0, http_client: 'nautilus_pyo3.HttpClient | None' = None, sanitize_info: 'bool' = False) -> 'list[PolymarketDataLoader]'",
+    "load_trades": "(self, start: 'pd.Timestamp | None' = None, end: 'pd.Timestamp | None' = None) -> 'list[TradeTick]'",
+    "fee_model": "(maker_rebates_enabled: 'bool' = True, config: 'PolymarketFeeModelConfig | None' = None) -> 'None'"
+  },
+  "protocol_fixture_admission": {
+    "None": "BinaryOption",
+    "v1": "BinaryOption",
+    "v2": "BinaryOption"
+  },
+  "resolution_metadata": {
+    "closed": true,
+    "tokens": [
+      {
+        "outcome": "Yes",
+        "winner": false
+      },
+      {
+        "outcome": "No",
+        "winner": true
+      }
+    ]
+  },
+  "instrument_info_has_winner": false,
+  "instrument_info_terminal_prices": [
+    0,
+    1
+  ],
+  "fee_checks": {
+    "grid": [
+      {
+        "quantity": "100",
+        "price": "0.01",
+        "reference_half_up": "0.06930",
+        "actual": "0.0693",
+        "matches": true
+      },
+      {
+        "quantity": "100",
+        "price": "0.30",
+        "reference_half_up": "1.47000",
+        "actual": "1.47",
+        "matches": true
+      },
+      {
+        "quantity": "100",
+        "price": "0.50",
+        "reference_half_up": "1.75000",
+        "actual": "1.75",
+        "matches": true
+      },
+      {
+        "quantity": "100",
+        "price": "0.70",
+        "reference_half_up": "1.47000",
+        "actual": "1.47",
+        "matches": true
+      },
+      {
+        "quantity": "100",
+        "price": "0.99",
+        "reference_half_up": "0.06930",
+        "actual": "0.0693",
+        "matches": true
+      },
+      {
+        "quantity": "0.002",
+        "price": "0.5",
+        "reference_half_up": "0.00004",
+        "actual": "0.00003",
+        "matches": false
+      }
+    ],
+    "maker_rebates_disabled": "0.000000 pUSD"
+  },
+  "fee_enabled_replay": {
+    "ticks": 4,
+    "orders": 2,
+    "fills": [
+      {
+        "price": "0.300",
+        "commission": "0.147000 pUSD"
+      },
+      {
+        "price": "0.500",
+        "commission": "0.175000 pUSD"
+      }
+    ],
+    "total_commission": "0.322",
+    "final_cash": "1001.678000 pUSD",
+    "data_kind": "synthetic trades on upstream settled metadata"
+  },
+  "fee_free_replay": {
+    "ticks": 4,
+    "orders": 2,
+    "fills": [
+      {
+        "price": "0.300",
+        "commission": "0.000000 pUSD"
+      },
+      {
+        "price": "0.500",
+        "commission": "0.000000 pUSD"
+      }
+    ],
+    "total_commission": "0",
+    "final_cash": "1002.000000 pUSD",
+    "data_kind": "synthetic trades on upstream settled metadata"
+  },
+  "fixture_dispatches": [
+    [
+      "https://gamma-api.polymarket.com/events",
+      {
+        "slug": "arb-validation-synthetic-event"
+      }
+    ],
+    [
+      "https://clob.polymarket.com/markets/0x8ccc3f4951ff02c1d34b87988752b4444ad17228732780a6cf22afefe8478bb6",
+      null
+    ],
+    [
+      "https://data-api.polymarket.com/trades",
+      {
+        "market": "0x8ccc3f4951ff02c1d34b87988752b4444ad17228732780a6cf22afefe8478bb6",
+        "limit": 10000,
+        "offset": 0
+      }
+    ]
+  ],
+  "active_sample": {
+    "active_unique_markets": 5,
+    "counts": {
+      "v1": 5,
+      "v2": 0,
+      "unknown": 0
+    },
+    "shares": {
+      "v1": 1.0,
+      "v2": 0.0,
+      "unknown": 0.0
+    }
+  },
+  "real_settled_v1_history": {
+    "status": "not_validated",
+    "reason": "Native loader uses retired Data API /trades; no live legacy calls allowed. NAS public HTTPS timed out. Settled source fixture has no protocol version; synthetic replay is not historical validation."
+  }
+}

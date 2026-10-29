@@ -20,6 +20,7 @@
 - `docs/backtest-ui.md`：回测页 MVP、演示 Dataset、浏览器 preset 与 ARB-4 adapter 边界
 - `docs/backtest-replay.md`：Vela 录制 run 回放、标注、共轴净值、阶段隔离与 fixture 复录
 - `docs/backtest-api.md`：双引擎异步 API、冻结 Dataset、费用滑点、持久队列与 ARB-5 回放事件
+- `docs/nautilus-polymarket-validation.md`：1.231.0 Polymarket 适配器、离线机制验证、历史接口失败点与协议抽样
 
 ## 规则
 
