@@ -1,0 +1,51 @@
+{
+  "schema_version": "resolution-whales.raw.v1",
+  "provenance": "Synthetic contract fixture; not empirical evidence",
+  "samples": [
+    {
+      "observed_at": "2026-10-28T12:00:00Z",
+      "market": {
+        "market_id": "m1", "condition_id": "c1", "category": "politics",
+        "question": "Synthetic event", "rules": "Resolve by credible consensus at https://example.org",
+        "tokens": [{"token_id": "y", "outcome_index": 0}, {"token_id": "n", "outcome_index": 1}]
+      },
+      "resolution": {"condition_id": "c1", "status": "disputed", "was_disputed": true,
+        "extended_review": false, "new_version_q": false,
+        "last_update_timestamp": "2026-10-28T10:00:00Z", "resolved_at": null, "payouts": null},
+      "holders": [
+        {"token_id": "y", "holders": [{"proxy_wallet": "0xA", "amount": 60}, {"proxy_wallet": "0xB", "amount": 20}]},
+        {"token_id": "n", "holders": [{"proxy_wallet": "0xa", "amount": 20}]}
+      ],
+      "holders_walk_exhausted": false,
+      "trades_walk_exhausted": true,
+      "trades": [
+        {"proxy_wallet": "0xa", "condition_id": "c1", "token_id": "y", "outcome_index": 0,
+          "side": "BUY", "size": 2000, "price": 0.5, "timestamp": 1793185200, "transaction_hash": "tx1"},
+        {"proxy_wallet": "0xb", "condition_id": "c1", "token_id": "n", "outcome_index": 1,
+          "side": "SELL", "size": 2000, "price": 0.5, "timestamp": 1793187000, "transaction_hash": "tx2"}
+      ],
+      "prices": {"y": [
+        {"timestamp": 1793181600, "price": 0.2, "resolution_seconds": 300},
+        {"timestamp": 1793185200, "price": 0.8, "resolution_seconds": 300}
+      ]}
+    },
+    {
+      "observed_at": "2026-10-29T12:00:00Z",
+      "market": {
+        "market_id": "m1", "condition_id": "c1", "category": "politics",
+        "question": "Synthetic event", "rules": "Resolve by credible consensus at https://example.org",
+        "tokens": [{"token_id": "y", "outcome_index": 0}, {"token_id": "n", "outcome_index": 1}]
+      },
+      "resolution": {"condition_id": "c1", "status": "resolved", "was_disputed": true,
+        "extended_review": false, "new_version_q": false,
+        "last_update_timestamp": "2026-10-29T10:00:00Z", "resolved_at": "2026-10-29T10:00:00Z", "payouts": [0.5, 0.5]},
+      "holders": [], "holders_walk_exhausted": true,
+      "trades": [], "trades_walk_exhausted": true,
+      "prices": {"y": [
+        {"timestamp": 1793181600, "price": 0.2, "resolution_seconds": 300},
+        {"timestamp": 1793185200, "price": 0.8, "resolution_seconds": 300},
+        {"timestamp": 1793268000, "price": 0.5, "resolution_seconds": 0}
+      ]}
+    }
+  ]
+}
