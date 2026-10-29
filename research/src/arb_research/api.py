@@ -7,15 +7,21 @@ from fastapi import FastAPI, HTTPException, Query, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 
+from .compliance import ComplianceGuard
 from .contracts import CreateBacktest
 from .datasets import catalog, snapshot
 from .store import Store
 
 
-def create_app(db_path: str | None = None) -> FastAPI:
+def create_app(db_path: str | None = None, *, compliance: ComplianceGuard | None = None) -> FastAPI:
     app = FastAPI(title="arb offline backtests", version="1.0.0")
     store = Store(db_path or os.environ.get("ARB_BACKTEST_DB", ".state/backtests.sqlite3"))
     app.state.store = store
+    app.state.compliance = compliance or ComplianceGuard()
+
+    @app.get("/compliance/status")
+    def compliance_status():
+        return app.state.compliance.status()
 
     @app.exception_handler(RequestValidationError)
     async def invalid(_request: Request, exc: RequestValidationError):
