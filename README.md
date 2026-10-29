@@ -81,6 +81,17 @@ API 文档位于 http://127.0.0.1:8000/docs。POST /backtests 入队并返回 ru
 
 每个成功 smoke 输出一行 JSON；异常会让命令以非零状态退出。安装需要下载依赖，之后 smoke 不联网、不下载数据、不读密钥。所有交易密钥与交易配置只放 NAS secret，不放仓库或前端环境变量。
 
+## negRisk 只读扫描
+
+研究侧提供 CLI + JSON/Markdown 纸面机会报告，包含组内 YES 价差、NO→YES、二元 YES+NO 再平衡、费用和逐档深度约束，不含任何交易路径：
+
+```bash
+research/.venv/bin/python -m arb_research.negrisk_cli \
+  --fixture research/tests/fixtures/negrisk-contract.json
+```
+
+该命令使用合成示例，不联网。真实扫描命令、成本配置、JSON v1 合约与当前网络验证限制见 [negRisk 扫描器](docs/negrisk-scanner.md)。
+
 ## 验证
 
 ```bash

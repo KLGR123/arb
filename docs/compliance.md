@@ -51,6 +51,8 @@ def unavailable_cancel_entry():
 
 `GET /compliance/status` 返回 `mode=read_only`、开关、固定为 false 的 `trading_allowed` / `allowlist_configured`，以及地区检测结果。不触发交易、不更改配置。首次读取或缓存过期会执行只读检测；仅调用状态接口不会创建审计记录。应用可用 `create_app(compliance=guard)` 注入 guard；独立策略默认使用进程单例 `get_guard()`。
 
+ARB-10 的 [negRisk 只读扫描器](negrisk-scanner.md) 复用上述 guard，但仅在自己的实例上注入公共读客户端作为 geoblock fetch。按用户明确授权，该客户端显式读取 `ARB_POLYMARKET_PROXY`；不设全局代理、不记录配置值，不修改这里的默认直连实现或任何拒绝规则。代理仅用于已限定的公共读接口，受阻结果照常记录，`trading_allowed` 仍为 false。
+
 ## 审计与运维
 
 每次 `require`（包括缓存命中）向 SQLite `compliance_audit` 表提交一条记录：UTC 时间、调用方、动作、拒绝原因、开关、地区结果与缓存状态。默认文件 `.state/compliance.sqlite3`，可通过 NAS 环境变量 `ARB_COMPLIANCE_AUDIT_DB` 指定；该目录已被 git 忽略。SQLite 提交后再抛拒绝异常，支持并发调用与进程重启后的追加。
