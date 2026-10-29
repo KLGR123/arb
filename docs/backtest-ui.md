@@ -10,7 +10,7 @@
 
 快线/慢线需为 1–1000 的整数且快线小于慢线；费用、滑点为 0–10000 bps；资金需大于 0 且不超过 1 万亿；日期必须有效并落在快照覆盖范围内。无效配置不能保存或运行。载入损坏、旧版本或无效 Dataset 的 preset 不改变现有配置。
 
-Vela 使用 `data: []`、`live: false`，并注入固定返回空数组的离线 feed（0.9 版默认 feed 会将空数组视为待解析的 provider 请求）。仅在浏览器挂载后动态导入，卸载时销毁实例，没有行情 provider。表单在客户端接管后启用，避免 SSR 控件在事件绑定前接受操作。图表只是空态，不暗示已经加载所选 Dataset。结果显示 `—`，不会把未计算的收益或成交数展示成零。
+Vela 主图现由 ARB-5 提供独立的录制 run 回放、成交与持仓标注及共轴净值，见 [回放说明](backtest-replay.md)。录制结果不受配置表单和 stub run 影响。表单在客户端接管后启用，避免 SSR 控件在事件绑定前接受操作。右栏仍是配置运行的 stub 结果占位；录制结果在主图内展示。
 
 ## ARB-4 适配入口
 
@@ -35,7 +35,7 @@ Vela 使用 `data: []`、`live: false`，并注入固定返回空数组的离线
 
 stub 响应为 `{ run_id, status: "queued", source: "ui_stub", as_of, request, metrics: {}, equity: [], fills: [] }`。`queued` 仅对应未来创建接口的确认形状；UI 明确显示“配置已记录，未执行”，没有真实排队任务。`as_of` 是 stub 创建时刻，不是行情新鲜度。
 
-真实接入需将此 adapter 改为 `POST /backtests`，随后通过 `GET /backtests/:id` 读取状态和结果，并替换为服务端已发布 Dataset 目录。fast 草稿和 realistic 结果应按服务端同一 `run_id` 的阶段/来源增量消费。不要在 UI 另生成第二个服务端 run；也不要把演示 id 自动发送给生产服务。Vela 回放、标注与倍速由 ARB-5 接入。
+真实接入需将此 adapter 改为 `POST /backtests`，随后通过 `GET /backtests/:id` 读取状态和结果，并替换为服务端已发布 Dataset 目录。fast 草稿和 realistic 结果应按服务端同一 `run_id` 的阶段/来源增量消费。不要在 UI 另生成第二个服务端 run；也不要把演示 id 自动发送给生产服务。Vela 回放现消费 ARB-4 完整结果的录制文件；没有连接正在运行的 HTTP job。
 
 ## 验证
 
