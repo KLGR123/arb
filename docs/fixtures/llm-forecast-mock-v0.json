@@ -1,0 +1,670 @@
+{
+  "config": {
+    "bankroll": 100,
+    "bootstrap": 2000,
+    "cap": 0.1,
+    "dataset_sha256": "b2bff835c7f8963f48308e18551cb5c2dc118ebfd1ed3f0a38297bd15048fe3d",
+    "fee_bps": 20,
+    "kelly_fraction": 0.25,
+    "min_markets": 50,
+    "models": [
+      "mock-a",
+      "mock-b"
+    ],
+    "samples_per_model": 2,
+    "seed": 11
+  },
+  "excluded": [],
+  "metrics": {
+    "bootstrap": {
+      "resamples": 2000,
+      "seed": 11,
+      "unit": "paired_market"
+    },
+    "brier": 0.181823367974819,
+    "brier_advantage": -0.0033477328056023157,
+    "brier_advantage_ci95": [
+      -0.012285485908344215,
+      0.007509748481175307
+    ],
+    "calibration": [
+      {
+        "count": 0,
+        "lower": 0.0,
+        "mean_p": null,
+        "observed_frequency": null,
+        "upper": 0.1
+      },
+      {
+        "count": 7,
+        "lower": 0.1,
+        "mean_p": 0.17070127755840486,
+        "observed_frequency": 0.14285714285714285,
+        "upper": 0.2
+      },
+      {
+        "count": 15,
+        "lower": 0.2,
+        "mean_p": 0.2539438606013858,
+        "observed_frequency": 0.2,
+        "upper": 0.3
+      },
+      {
+        "count": 5,
+        "lower": 0.3,
+        "mean_p": 0.33935487072903764,
+        "observed_frequency": 0.6,
+        "upper": 0.4
+      },
+      {
+        "count": 6,
+        "lower": 0.4,
+        "mean_p": 0.4502977159509513,
+        "observed_frequency": 0.3333333333333333,
+        "upper": 0.5
+      },
+      {
+        "count": 6,
+        "lower": 0.5,
+        "mean_p": 0.5390746226915298,
+        "observed_frequency": 0.3333333333333333,
+        "upper": 0.6
+      },
+      {
+        "count": 4,
+        "lower": 0.6,
+        "mean_p": 0.657307183382266,
+        "observed_frequency": 0.75,
+        "upper": 0.7
+      },
+      {
+        "count": 7,
+        "lower": 0.7,
+        "mean_p": 0.7428170770847903,
+        "observed_frequency": 1,
+        "upper": 0.8
+      },
+      {
+        "count": 10,
+        "lower": 0.8,
+        "mean_p": 0.8470003368724378,
+        "observed_frequency": 0.8,
+        "upper": 0.9
+      },
+      {
+        "count": 0,
+        "lower": 0.9,
+        "mean_p": null,
+        "observed_frequency": null,
+        "upper": 1.0
+      }
+    ],
+    "log_loss": 0.5474678047444606,
+    "market_brier": 0.17847563516921666,
+    "market_log_loss": 0.548169529585366,
+    "n": 60,
+    "paper": {
+      "allocation": "independent fixed budgets; no compounding",
+      "budget_per_market": 100,
+      "currency": "pUSD\u2248USD",
+      "fee_bps_on_entry_notional": 20,
+      "fractional_kelly": {
+        "collateral": 87.09408944609515,
+        "fees": 0.17418817889219032,
+        "net_pnl": 34.536938686685396
+      },
+      "kelly_cap": 0.1,
+      "kelly_fraction": 0.25,
+      "proper": {
+        "collateral": 106.05940330884339,
+        "fees": 0.21211880661768678,
+        "net_pnl": -4.327955823095589
+      },
+      "total_budget": 6000
+    }
+  },
+  "mode": "mock",
+  "rows": [
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-000",
+      "p": 0.47623967950818374,
+      "q": 0.457142,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 0
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-001",
+      "p": 0.8412515040576755,
+      "q": 0.88179,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 1
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-002",
+      "p": 0.5387276460965074,
+      "q": 0.507057,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 0
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-003",
+      "p": 0.2934200884394094,
+      "q": 0.216194,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 0
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-004",
+      "p": 0.5968284307547633,
+      "q": 0.616894,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 0
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-005",
+      "p": 0.206460357479618,
+      "q": 0.134711,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 0
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-006",
+      "p": 0.21878213383991352,
+      "q": 0.131603,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 0
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-007",
+      "p": 0.6761196187774107,
+      "q": 0.674095,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 1
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-008",
+      "p": 0.8608095727801693,
+      "q": 0.933974,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 0
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-009",
+      "p": 0.6023234504487561,
+      "q": 0.63853,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 1
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-010",
+      "p": 0.2640418944277024,
+      "q": 0.191745,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 1
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-011",
+      "p": 0.5098940563047161,
+      "q": 0.525543,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 1
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-012",
+      "p": 0.25651213210844914,
+      "q": 0.221187,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 0
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-013",
+      "p": 0.17434338501032598,
+      "q": 0.077074,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 0
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-014",
+      "p": 0.41782736163654727,
+      "q": 0.446478,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 0
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-015",
+      "p": 0.5124928358740571,
+      "q": 0.517212,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 0
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-016",
+      "p": 0.48207029815844793,
+      "q": 0.499796,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 0
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-017",
+      "p": 0.44053008698038476,
+      "q": 0.461597,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 1
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-018",
+      "p": 0.852991473424889,
+      "q": 0.947891,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 0
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-019",
+      "p": 0.7239555820781264,
+      "q": 0.806194,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 1
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-020",
+      "p": 0.35925250315466145,
+      "q": 0.333749,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 1
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-021",
+      "p": 0.3042764850849171,
+      "q": 0.310136,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 1
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-022",
+      "p": 0.663030544368338,
+      "q": 0.739659,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 1
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-023",
+      "p": 0.7581775225752261,
+      "q": 0.811925,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 1
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-024",
+      "p": 0.8640183726700756,
+      "q": 0.912238,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 1
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-025",
+      "p": 0.10545449152122721,
+      "q": 0.05049,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 0
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-026",
+      "p": 0.8281706358844061,
+      "q": 0.869245,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 1
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-027",
+      "p": 0.8669597430044171,
+      "q": 0.932323,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 1
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-028",
+      "p": 0.160304011998594,
+      "q": 0.115735,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 0
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-029",
+      "p": 0.7092726208961632,
+      "q": 0.75066,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 1
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-030",
+      "p": 0.19847529965850824,
+      "q": 0.12843,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 0
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-031",
+      "p": 0.853849861585366,
+      "q": 0.917669,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 1
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-032",
+      "p": 0.2379593409709594,
+      "q": 0.156193,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 0
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-033",
+      "p": 0.16978177893924412,
+      "q": 0.140942,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 1
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-034",
+      "p": 0.7356264009747973,
+      "q": 0.767319,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 1
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-035",
+      "p": 0.5386903736073237,
+      "q": 0.553366,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 1
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-036",
+      "p": 0.27908431048669585,
+      "q": 0.221616,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 0
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-037",
+      "p": 0.19620899702814043,
+      "q": 0.16787,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 0
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-038",
+      "p": 0.22374152121124397,
+      "q": 0.154857,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 0
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-039",
+      "p": 0.2746456426280597,
+      "q": 0.241579,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 0
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-040",
+      "p": 0.824970500657657,
+      "q": 0.923836,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 1
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-041",
+      "p": 0.36269533101264156,
+      "q": 0.323731,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 0
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-042",
+      "p": 0.2863508622905072,
+      "q": 0.239639,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 0
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-043",
+      "p": 0.7694258802026759,
+      "q": 0.818939,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 1
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-044",
+      "p": 0.19034097875279407,
+      "q": 0.140299,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 0
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-045",
+      "p": 0.2847411024102927,
+      "q": 0.241919,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 0
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-046",
+      "p": 0.7063861077062072,
+      "q": 0.745421,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 1
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-047",
+      "p": 0.3460607587060953,
+      "q": 0.316692,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 1
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-048",
+      "p": 0.209894850093536,
+      "q": 0.131105,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 0
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-049",
+      "p": 0.3244892756868728,
+      "q": 0.268712,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 0
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-050",
+      "p": 0.4312132644262286,
+      "q": 0.384534,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 0
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-051",
+      "p": 0.861828172185741,
+      "q": 0.913221,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 1
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-052",
+      "p": 0.5378143935118114,
+      "q": 0.567114,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 0
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-053",
+      "p": 0.22383961288869741,
+      "q": 0.214545,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 1
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-054",
+      "p": 0.8151535324739815,
+      "q": 0.867581,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 1
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-055",
+      "p": 0.29609354564734525,
+      "q": 0.274549,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 1
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-056",
+      "p": 0.6877551199345593,
+      "q": 0.715482,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 0
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-057",
+      "p": 0.2535905140983569,
+      "q": 0.226931,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 0
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-058",
+      "p": 0.7968754251603356,
+      "q": 0.843971,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 1
+    },
+    {
+      "forecast_at": "2026-05-02T12:00:00Z",
+      "market_id": "synthetic-059",
+      "p": 0.45390560499591553,
+      "q": 0.429312,
+      "quote_at": "2026-05-02T11:00:00Z",
+      "samples": 4,
+      "y": 1
+    }
+  ],
+  "schema_version": 1
+}

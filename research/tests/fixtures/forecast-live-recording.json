@@ -1,0 +1,810 @@
+{
+  "history": {
+    "market_id": "6351426",
+    "pages": [
+      {
+        "data": [
+          {
+            "price": 0.745,
+            "resolution_seconds": 600,
+            "timestamp": 1793206200
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793206800
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793207400
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793208000
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793208600
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793209200
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793209800
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793210400
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793211000
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793211600
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793212200
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793212800
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793213400
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793214000
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793214600
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793215200
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793215800
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793216400
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793217000
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793217600
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793218200
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793218800
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793219400
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793220000
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793220600
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793221200
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793221800
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793222400
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793223000
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793223600
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793224200
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793224800
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793225400
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793226000
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793226600
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793227200
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793227800
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793228400
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793229000
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793229600
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793230200
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793230800
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793231400
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793232000
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793232600
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793233200
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793233800
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793234400
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793235000
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793235600
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793236200
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793236800
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793237400
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793238000
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793238600
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793239200
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793239800
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793240400
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793241000
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793241600
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793242200
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793242800
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793243400
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793244000
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793244600
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793245200
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793245800
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793246400
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793247000
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793247600
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793248200
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793248800
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793249400
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793250000
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793250600
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793251200
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793251800
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793252400
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793253000
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793253600
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793254200
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793254800
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793255400
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793256000
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793256600
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793257200
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793257800
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793258400
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793259000
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793259600
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793260200
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793260800
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793261400
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793262000
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793262600
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793263200
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793263800
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793264400
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793265000
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793265600
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793266200
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793266800
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793267400
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793268000
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793268600
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793269200
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793269800
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793270400
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793271000
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793271600
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793272200
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793272800
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793273400
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793274000
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793274600
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793275200
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793275800
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793276400
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793277000
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793277600
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793278200
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793278800
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793279400
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793280000
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793280600
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793281200
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793281800
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793282400
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793283000
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793283600
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793284200
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793284800
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793285400
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793286000
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793286600
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793287200
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793287800
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793288400
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793289000
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793289600
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793290200
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793290800
+          },
+          {
+            "price": 0.505,
+            "resolution_seconds": 600,
+            "timestamp": 1793291400
+          },
+          {
+            "price": 0.245,
+            "resolution_seconds": 0,
+            "timestamp": 1793292932
+          }
+        ],
+        "pagination": {
+          "has_more": false,
+          "limit": 10000,
+          "next_cursor": null,
+          "offset": 0
+        }
+      }
+    ],
+    "retrieved_at": "2026-10-29T16:55:33.389664+00:00",
+    "yes_token_id": "112437174702024639883861569047911504617796105777661679101929946837591882954228"
+  },
+  "market": {
+    "cluster_id": "2026-10-29T17:00:00Z",
+    "condition_id": "0x3f82b77e815956394fefae1fb9b42612bcf36c99f685be3bf8c84ec9d79b1dfb",
+    "created_at": "2026-10-28T16:52:32.099909Z",
+    "end_at": "2026-10-29T17:00:00Z",
+    "evidence": [],
+    "forecast_at": "2026-10-29T16:47:43.453195+00:00",
+    "id": "6351426",
+    "metadata_snapshots": [
+      {
+        "available_at": "2026-10-29T16:47:42.874620+00:00",
+        "captured_at": "2026-10-29T16:47:42.874620+00:00",
+        "question": "XRP Up or Down - October 29, 12:45PM-1:00PM ET",
+        "rules": "YES denotes Up; NO denotes Down.\nThis market will resolve to \"Up\" if the time-weighted average price (TWAP) of XRP, generated by Chainlink, of the time range specified in the title is greater than or equal to the price at the beginning of that range. Otherwise, it will resolve to \"Down\".\nThe resolution source for this market is information from Chainlink, specifically the XRP/USD TWAP data stream available at https://data.chain.link/streams/xrp-usd-twap-60s-streams.\nPlease note that this market is about the price according to the TWAP Chainlink data stream for the asset pair XRP/USD, not according to any other sources or spot markets."
+      }
+    ],
+    "outcomes": [
+      "Up",
+      "Down"
+    ],
+    "prices": [
+      {
+        "available_at": "2026-10-29T16:47:43.453195+00:00",
+        "kind": "trade",
+        "p": 0.55,
+        "provenance": "Data V2 as_of while open and before scheduled expiry",
+        "retrieved_at": "2026-10-29T16:47:43.453195+00:00",
+        "timestamp": "2026-10-29T16:47:42+00:00"
+      }
+    ],
+    "quote_receipt": {
+      "data": [
+        {
+          "price": 0.55,
+          "resolution_seconds": 0,
+          "timestamp": 1793292462
+        }
+      ],
+      "pagination": {
+        "has_more": false,
+        "limit": 10000,
+        "next_cursor": null,
+        "offset": 0
+      }
+    },
+    "slug": "xrp-updown-15m-1793292300",
+    "snapshot_closed": false,
+    "source": "polymarket-prospective-v2",
+    "target_outcome": "Up",
+    "yes_token_id": "112437174702024639883861569047911504617796105777661679101929946837591882954228"
+  },
+  "recorded_at": "2026-10-29T16:48:06.167089+00:00",
+  "resolution_receipt": {
+    "condition_id": "0x3f82b77e815956394fefae1fb9b42612bcf36c99f685be3bf8c84ec9d79b1dfb",
+    "extended_review": false,
+    "last_update_timestamp": "2026-10-29T17:01:20Z",
+    "log_index": "1220",
+    "new_version_q": false,
+    "payouts": [
+      0,
+      1000000
+    ],
+    "resolution_source": "reported",
+    "resolved_at": "2026-10-29T17:01:20Z",
+    "resolved_block": 96391934,
+    "status": "resolved",
+    "transaction_hash": "0x2b83f94c225f1b19c0759dd7c50627ce63fa9a4b7f51d48fd166b2a011deb446",
+    "was_disputed": false
+  },
+  "resolution_retrieved_at": "2026-10-29T17:03:39.358932+00:00",
+  "source": "live approved public GET recording; not synthetic"
+}
