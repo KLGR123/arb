@@ -1,6 +1,8 @@
-"""Fixed public GET endpoints only. No SDK, account, or trading capability."""
+"""Forecast adapter over ARB-7 public GET transport; no trading capability."""
 
 import json
+import math
+import os
 import sqlite3
 import time
 import urllib.error
@@ -43,26 +45,51 @@ class TokenBucket:
             self.sleep((1 - tokens) / 5)
 
 
-class NoRedirect(urllib.request.HTTPRedirectHandler):
-    def redirect_request(self, *args, **kwargs):
-        raise ValueError("Public collector does not follow redirects")
-
-
 class PublicClient:
     ROUTES = {
         "markets": "https://gamma-api.polymarket.com/markets",
         "resolutions": "https://data-api.polymarket.com/v2/resolutions",
         "prices": "https://data-api.polymarket.com/v2/prices-history",
+        "geoblock": "https://polymarket.com/api/geoblock",
     }
 
     def __init__(self, *, bucket=None, opener=None, sleep=time.sleep):
         self.bucket = bucket or TokenBucket()
-        # Never inherit HTTP(S)_PROXY or system proxy settings.
-        self.opener = opener or urllib.request.build_opener(urllib.request.ProxyHandler({}), NoRedirect())
+        self.backend = None
+        self.opener = opener
+        if opener is None:
+            # ARB-7 owns the allowlist, explicit proxy, common limiter, retries,
+            # SDK boundary and compliance guard. Never inherit global proxies.
+            from ..polymarket.client import PublicDataClient
+            try:
+                self.backend = PublicDataClient(proxy=os.environ.get("ARB_POLYMARKET_PROXY"), sleep=sleep)
+            except Exception:
+                raise ValueError("Public data client configuration failed") from None
         self.sleep = sleep
 
+    def compliance_status(self):
+        from ..compliance import ComplianceGuard, GeoblockClient
+        if self.backend is not None:
+            result = self.backend.guard.status()
+        else:
+            guard = ComplianceGuard(geoblock=GeoblockClient(fetch=lambda timeout: self.get("geoblock")))
+            result = guard.status()
+        if result["trading_allowed"]:
+            raise RuntimeError("Forecast workflow must remain read-only")
+        return result
+
     def get(self, route, **params):
-        url = self.ROUTES[route] + "?" + urllib.parse.urlencode(params)
+        endpoint = self.ROUTES[route]
+        if self.backend is not None:
+            self.bucket.acquire()
+            if route == "geoblock":
+                return self.compliance_status()["geoblock"]
+            parsed = urllib.parse.urlsplit(endpoint)
+            try:
+                return self.backend.get(parsed.hostname, parsed.path, params)
+            except Exception as exc:
+                raise RuntimeError(f"Public {route} request failed ({type(exc).__name__})") from None
+        url = endpoint + "?" + urllib.parse.urlencode(params, doseq=True)
         for attempt in range(4):
             self.bucket.acquire()
             try:
@@ -92,6 +119,20 @@ def array(value):
     return json.loads(value) if isinstance(value, str) else value
 
 
+def binary_truth(payouts):
+    """CTF numerators may use base units; only a one-sided payout is binary."""
+    if not isinstance(payouts, list) or len(payouts) != 2:
+        raise ValueError("Require two payout numerators")
+    if any(isinstance(v, bool) or not isinstance(v, (int, float))
+           or not math.isfinite(v) or v < 0 for v in payouts):
+        raise ValueError("Invalid payout numerator")
+    if payouts[0] > 0 and payouts[1] == 0:
+        return 1
+    if payouts[1] > 0 and payouts[0] == 0:
+        return 0
+    raise ValueError("Void or fractional payout")
+
+
 def normalize(gamma, resolution, prices, retrieved_at):
     """Keep post-resolution truth separate from candidate historical inputs."""
     labels, tokens = array(gamma["outcomes"]), array(gamma["clobTokenIds"])
@@ -100,8 +141,9 @@ def normalize(gamma, resolution, prices, retrieved_at):
         raise ValueError("Only ordered YES/NO markets are supported")
     if resolution["condition_id"].lower() != gamma["conditionId"].lower():
         raise ValueError("Resolution does not match market")
-    if resolution["status"].upper() != "RESOLVED" or payouts not in ([1, 0], [0, 1]):
+    if resolution["status"].upper() != "RESOLVED":
         raise ValueError("Require settled, binary, nonvoid payout")
+    y = binary_truth(payouts)
     resolved_at = resolution["resolved_at"]
     timestamp(resolved_at)
     history = []
@@ -120,7 +162,7 @@ def normalize(gamma, resolution, prices, retrieved_at):
     return {"id": str(gamma["id"]), "source": "polymarket-public-v2",
             "condition_id": gamma["conditionId"], "yes_token_id": tokens[0],
             "created_at": gamma["createdAt"], "resolved_at": resolved_at,
-            "y": int(payouts[0]), "retrieved_at": retrieved_at,
+            "y": y, "retrieved_at": retrieved_at,
             "metadata_snapshots": [{"question": gamma["question"], "rules": gamma["description"],
                                     "available_at": retrieved_at, "captured_at": retrieved_at}],
             "prices": history, "evidence": [],

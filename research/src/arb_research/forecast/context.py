@@ -33,8 +33,12 @@ def build_context(market: dict, *, max_quote_age_seconds: int = 86400) -> dict:
     t = timestamp(market["forecast_at"])
     if max_quote_age_seconds < 0:
         raise ValueError("Quote age must be nonnegative")
-    if not timestamp(market["created_at"]) <= t < timestamp(market["resolved_at"]):
+    ends = [timestamp(market[k]) for k in ("resolved_at", "end_at") if market.get(k)]
+    end = min(ends) if ends else None
+    if not end or not timestamp(market["created_at"]) <= t < end:
         raise ValueError("Forecast must be after creation and before settlement")
+    if not market.get("resolved_at") and market.get("snapshot_closed") is not False:
+        raise ValueError("Pending market requires an observed open-market snapshot")
     # A modern metadata fetch is NOT an archive of what the rules said at t.
     snapshots = [s for s in market["metadata_snapshots"]
                  if timestamp(s["available_at"]) <= t
@@ -58,12 +62,15 @@ def build_context(market: dict, *, max_quote_age_seconds: int = 86400) -> dict:
                 for e in market.get("evidence", [])
                 if timestamp(e["published_at"]) <= t and timestamp(e["captured_at"]) <= t]
     # Never forward arbitrary market keys, final outcomes, current prices or rules.
-    return {
+    context = {
         "forecast_at": market["forecast_at"],
         "question": metadata["question"], "rules": metadata["rules"],
         "metadata_captured_at": metadata["captured_at"],
         "market_price": q, "quote_at": quote["timestamp"], "evidence": evidence,
     }
+    if "target_outcome" in market:
+        context["target_outcome"] = market["target_outcome"]
+    return context
 
 
 def prompt_for(context: dict) -> str:

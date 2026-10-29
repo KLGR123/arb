@@ -1,152 +1,104 @@
 # LLM 预测离线评估 v0
 
-ARB-11 的离线评估管线已用 **60 道合成二元题 + mock 预测器**跑通。
-结果不能证明 LLM 预测能力、Polymarket 市场优势或可交易收益。真实市场 / 模型评估仍阻塞。
+已完成 **56 道真实 Polymarket 二元市场、112 次本地 Codex 预测**的前瞻存档与结算后离线评估。所有输出均早于题目结束，未向模型提供结算答案。
 
-## 本次结果
+**本批模型逐题输出 p=q，与输入的市场基准完全相同，没有额外预测信号。** Brier 优势为 0；proper / 分数 Kelly 均不建仓，扣费后纸面 PnL 均为 0。这个结果不能证明 LLM 的一般预测能力或可交易优势。
 
-固定 seed=11；两种 mock 模型 `mock-a` / `mock-b`，各采样 2 次，算术平均得到每题一个 p；共 240 条预测。
-题目与结果由 `arb_research.forecast.demo.cohort` 确定性生成，q 是合成报价。
+## 真实结果
 
-| 指标 | mock / 合成题结果 |
+| 指标 | gpt-6.1-terra / 真实题 |
 | --- | ---: |
-| 题数 | 60 |
-| Brier | 0.181823368 |
-| 同时点市场基准 Brier | 0.178475635 |
-| Log loss（自然对数） | 0.547467805 |
-| 同时点市场基准 Log loss | 0.548169530 |
-| Brier 优势（市场损失 − 模型损失） | −0.003347733 |
-| 95% 配对 bootstrap 区间 | [−0.012285486, 0.007509748] |
-| proper betting 扣费后 PnL | −4.327956 pUSD |
-| 1/4 Kelly 扣费后 PnL | +34.536939 pUSD |
+| 已结算市场数 | 56 |
+| 模型 Brier | 0.240393304 |
+| 冻结时点市场基准 Brier | 0.240393304 |
+| 模型 Log loss（自然对数） | 0.673170327 |
+| 市场基准 Log loss | 0.673170327 |
+| Brier 优势（市场损失 − 模型损失） | 0.000000000 |
+| 95% 到期分块 bootstrap 区间 | [0.000000000, 0.000000000] |
+| proper betting 扣费后 PnL | 0.000000 pUSD |
+| 1/4 Kelly 扣费后 PnL | 0.000000 pUSD |
 
-优势为正才表示比市场好；本例区间包含 0。JSON 保存逐题 p/q/y、报价时点、配置、校准点和排除原因。
+优势为正才表示优于基准。本批每题 p=q，因此配对误差逐题相消；[0,0] 是这个恒等关系的退化区间，不能解释为一般能力的精确置信度。56 题只有 5 个到期组，跨组窗口仍重叠，区间仅作本队列的探索性描述。
 
-![Synthetic mock calibration](fixtures/llm-forecast-mock-calibration-v0.png)
+![Real prospective calibration](fixtures/llm-forecast-real-calibration-v0.png)
 
-曲线按 p 分成 10 个等宽桶，横轴是桶内平均预测，纵轴是实际 YES 频率；空桶为 null，不画为零。
-样本量小，图用于核验流程。
+按 p 分成 10 个等宽桶，空桶为 null。两次采样在所有 56 题上均相同，不能当成 112 个独立样本。
 
-## 重放
+## 队列与时间截断
 
-从仓库根目录执行（Python 3.12；核心模块只用标准库，不需要模型凭据、引擎或外网）：
+2026-10-29 UTC，先存档开放市场、再预测、最后关联结算。这样无需把今天获取的已结算条款伪装为历史档案。预先固定 BTC / ETH / SOL / XRP / DOGE / BNB / ZEC / HYPE 的 5m、15m Up/Down 合约，按结束时间及 ID 排序，选出 56 题（每币 7 题；40 道 5m、16 道 15m），未按结果或模型优势筛题。
 
-```bash
-PYTHONPATH=research/src python3.12 -m unittest discover -s research/tests -p test_forecast.py -v
-PYTHONPATH=research/src python3.12 -m arb_research.forecast demo \
-  --output docs/fixtures/llm-forecast-mock-v0.json \
-  --db .state/forecasts.sqlite3 --count 60 --seed 11 --samples 2 --bootstrap 2000
-```
+- 元数据与报价存档：16:47:41–16:48:06 UTC；预设结束余量 10–45 分钟。
+- 模型实际调用：16:52:06–16:59:11 UTC；每题 2 次，4 个并发工作线程，112 成功、0 失败。
+- 题目结束：17:00、17:05、17:10、17:15、17:20 UTC；最短输出余量 360.714 秒。
+- `forecast_at=t` 是每题报价检索完成时间。问题、条款、报价、证据的可用 / 捕获时间都必须 ≤t；本批没有外部新闻证据。
+- YES 明确映射到 token 0 的 **Up**，NO 为 Down。问题、规则、目标标签、t、q、报价时间构成提示词白名单；不传市场任意字段、结算结果、事后历史序列或事后条款。
+- 调用前和输出后均检查 `end_at`；关联答案时再要求输出早于 `min(end_at,resolved_at)`，不利用链上结算延迟。
 
-JSON 不含运行 ID 或系统当前时间，同版本代码、参数和 Python 下可逐字节重现。
-运行 ID、实际检索 / 预测时间在被 gitignore 的 SQLite 中。
-生成校准图使用研究环境中的 Matplotlib（VectorBT 的依赖）：
+q 是 Data V2 `as_of` 在 t 时可见的最新成交观测，**不是输出时可执行盘口**。报价年龄最小 / 中位 / 最大为 0.632 / 16.334 / 5,298.093 秒，4 题超过 5 分钟；预设陈旧上限为 24 小时。预测相对冻结 t 有 276–665 秒延迟。这些报价和延迟限制了纸面收益的现实意义，本批不模拟延迟成交、盘口深度、滑点或真实历史费率。
 
-```bash
-cd research
-uv run python scripts/plot_forecast.py ../docs/fixtures/llm-forecast-mock-v0.json \
-  ../docs/fixtures/llm-forecast-mock-calibration-v0.png
-```
+[Data V2 价格文档](https://docs.polymarket.com/api-reference/markets/get-a-tokens-price-history)区分 `as_of` 与区间序列。开放、未来到期市场的 `as_of` 原始观测可能带 `resolution_seconds=0`，本批保留原始回执及开放状态；已结算历史序列中的零分辨率结算点不得当作历史报价。另保存 56 个 token 的 8,144 个历史点，仅供审计，不补入原始模型上下文。
 
-现有研究环境可运行全部 `research/tests`；新增测试不访问外网。
-接口测试 fixture 是依据当前官方文档整理的合成契约数据，**不是实网录制**；实网录制验证待网络恢复后补齐。
+[Data V2 结算接口](https://docs.polymarket.com/api-reference/markets/get-resolution-state)按 condition 匹配 RESOLVED、真实 `resolved_at` 及 payout。抽样 Gamma 元数据标记为 v1 存量合约，本实验通过 Data API V2 读取历史 token，不验证 V2 执行机制。实网回执为 `[1000000,0]` / `[0,1000000]` 这样的基单位 numerator；只有恰好一项正支付才接受为二元结果，不假定数值一定等于 1；分摊、作废及缺失结算均排除。原始回执保留交易哈希、区块和更新时间。
 
-本次验证：完整 `PYTHONPATH=research/src python -m pytest research/tests -q` 为 **44 passed，11 subtests passed**，7 条已有依赖弃用警告；其中新增 19 项离线测试。
-独立只读审查通过，并独立重算确认保存的 JSON 与指标一致；第二个 SQLite 运行的 JSON 逐字节重放一致。
+## 模型与审计
 
-## 只读题库采集
+按用户授权调用 NAS 已配置的 `codex exec --model gpt-6.1-terra`，reasoning effort 为 `low`；无需另设 OpenAI API key。官方模型页列出的[知识截止时间为 2026-06-01](https://developers.openai.com/api/docs/models/gpt-6.1-terra)，早于所有题目。
 
-```bash
-PYTHONPATH=research/src python3.12 -m arb_research.forecast collect \
-  --output .state/settled-candidates.json --count 50 --max-pages 10
-```
+每次在仅含响应 schema 的临时目录非交互运行，使用 read-only / ephemeral 模式，禁用 shell、web、image、code mode、多 agent、skills 与 memories，并拒绝继承 MCP / hooks / profiles。只接受完整 JSONL 完成事件中的数值 p；工具事件、超时、非零退出或非法概率均拒绝，失败只记异常类型。超时会清理并等待该次调用的进程组。
 
-只访问以下固定 GET 接口，无 SDK 依赖、签名、账户、下单或资金接口：
+每次预测单独写入 SQLite `forecast_predictions`，保存 model/sample、完整 prompt/context、SHA-256、实际检索 / 开始 / 完成时间、训练截止时间和概率。JSON 导出保留同样的预测证据；归档哈希、逐市场哈希、prompt hash、sample/model 以及结算回执在离线重放中再校验。汇总 CLI usage：651,412 input tokens（其中 443,520 cached）、1,939 output tokens；这是 CLI 用量记录，不是账单金额。
 
-- [Gamma markets](https://docs.polymarket.com/api-reference/markets/list-markets)：问题、条款、创建时间、YES/NO token 映射。
-- [Data V2 resolutions](https://docs.polymarket.com/api-reference/markets/get-resolution-state)：核验 condition、RESOLVED 状态与 [1,0]/[0,1] payout。排除未结算和分摊 / 作废题，不以 endDate 当结算时间。
-- [Data V2 price history](https://docs.polymarket.com/api-reference/markets/get-a-tokens-price-history)：按 YES token 分页保留历史价格；显式排除 `resolution_seconds=0` 的结算点。该点可能被 API 放在早于真实结算时间的桶边界，不能只过滤时间戳。
+已 rebase 到包含 ARB-7 的 main，共用 `polymarket.PublicDataClient` 的公共 GET 边界、allowlist、统一限流、重试及 compliance guard；首批快照在该合入前经等价固定 GET 路由录制，结算关联在共用数据层完成。仅为本任务公共 GET 客户端显式读取 `ARB_POLYMARKET_PROXY`，HTTPX `trust_env=False`，禁用重定向；不设置全局 HTTP(S)_PROXY，不输出或存储代理值。复用 main 的 `arb_research.compliance`：实际 geoblock 为 blocked=true，trading_allowed=false，交易拒绝保持生效。NAS 用户共享 SQLite 令牌桶 5 req/s、burst 2，并复用通用 API budget；429 / 指定 5xx / 网络错误最多 4 次尝试，遵守有界退避及 Retry-After。没有签名或订单调用。
 
-所有客户端共享同一个 NAS 用户 SQLite 令牌桶：5 req/s、burst 2，低于通用 9,000 req/10s。
-429 / 指定 5xx / 网络失败最多尝试 4 次，指数退避；数字 Retry-After 至多等待 30 秒，更长则失败退出。
-禁用环境 / 系统代理及重定向，403 不重试，不绕过地区限制。
-后续数据层接入只需替换此采集边界，不影响评估器。
+## 离线重放
 
-采集结果属于**候选题库**，默认不可直接历史评估：当前获取的条款快照带当前 `captured_at`，不会伪造为创建时间。
-必须补充独立存档的预测时点前元数据及证据，并为每题指定 `forecast_at`。price 的 `available_at` 暂以交易时间为假设，JSON 明示这个假设；正式实验还需核验档案来源及数据修订风险。
-不足 50 道合格题会失败并落库排除记录，不会悄悄缩小样本后宣称通过。
-
-## 时间截断与审计
-
-输入格式见 `demo.py` / 单元测试。每题有 `id/source/created_at/forecast_at/resolved_at/y`，以及：
-
-- `metadata_snapshots`：question/rules/available_at/captured_at；两种时间都必须 ≤ t。
-- `prices`：timestamp/available_at/p/kind；仅取 t 之前最后一笔 `kind=trade`，最多陈旧 24 小时，要求 0 < q < 1。
-- `evidence`：id/text/source/published_at/captured_at；发布日期和存档捕获时间都必须 ≤ t。
-
-模型只接收显式白名单中的问题、条款、时间、q 与证据，不接收市场原记录、结算结果、事后条款、当前价格或事后证据。
-在 t 前创建、t 后结算才允许评估。所有时间必须含时区，统一比较 UTC。
-这防止上下文泄漏；模型自身的训练知识也可能泄漏，真实预测器必须声明不晚于 t 的训练截止时间。
-截止日期由调用方提供，代码无法证明其真实性；正式运行应固定模型版本、保留供应商证明并使用截止后的事件。
-
-`forecast_runs` 保存配置、题库 SHA-256 和最终结果；`forecast_predictions` 每次成功或失败调用单独落库：run、market、model、sample、完整 prompt、证据上下文、上下文 SHA-256、实际检索 / 预测时间、训练截止时间及概率。
-失败只保存异常类型，不保存可能含认证信息的 provider 错误正文。整个 run 不输出部分成功样本的指标。
-
-## 多模型接口
-
-`Predictor.predict(prompt, sample=...) -> {"p": number}` 是注入边界，模型只能读取白名单 prompt。
-同模型不同采样与不同模型等权平均；NaN、无穷、字符串、布尔和区间外概率被拒绝。
-默认 CLI 仅用 mock；**没有自动读取本机通用凭据或发起付费调用的适配器**。
-
-已有授权模型的离线结果可通过 `RecordedPredictor` 回放：
+离线评分不访问网络、不调用模型，也不需要凭据，只需 Python 3.12 标准库。单测与绘图使用已安装依赖的研究环境。从仓库根目录运行：
 
 ```bash
-PYTHONPATH=research/src python3.12 -m arb_research.forecast evaluate \
-  --input .state/archived-markets.json --predictions .state/model-responses.json \
-  --output .state/model-results.json --db .state/forecasts.sqlite3
+PYTHONPATH=research/src python3.12 -m arb_research.forecast score \
+  --input docs/fixtures/llm-forecast-real-settled-v0.json \
+  --predictions docs/fixtures/llm-forecast-real-predictions-v0.json \
+  --output .state/real-replayed.json
+cmp .state/real-replayed.json docs/fixtures/llm-forecast-real-v0.json
+PYTHONPATH=research/src research/.venv/bin/python -m unittest discover -s research/tests -p 'test_forecast*.py'
 ```
 
-`--predictions` 为 JSON 数组，每项是：
+图表从保存的校准点重建：
 
-```json
-[{"model":"provider/frozen-model", "training_cutoff":"2026-01-01T00:00:00Z",
-  "records":[{"prompt_sha256":"sha256-of-canonical-json-encoded-prompt-string",
-              "sample":0,"p":0.6}]}]
+```bash
+research/.venv/bin/python research/scripts/plot_forecast.py \
+  docs/fixtures/llm-forecast-real-v0.json docs/fixtures/llm-forecast-real-calibration-v0.png
 ```
 
-哈希必须等于 `digest(prompt_for(build_context(market)))`，每个模型必须具备每题所有 sample；不匹配即失败。
-离线回放的实际时间标记为回放检索 / 计算时间，不代表 provider 原始调用时间。
-向真实 provider 获取结果和记录原始调用证据的工作留待授权；也可注入受控的 `Predictor` 实现。
+实录文件位于 `docs/fixtures/`：`llm-forecast-real-archive-v0.json` 为不含答案的快照；`-predictions-` 为逐次模型记录；`-settled-` 为结算关联；`-history-` 为独立历史回执；`llm-forecast-real-v0.json` 为逐题 p/q/y、指标、配置、校准与排除记录。`research/tests/fixtures/forecast-live-recording.json` 是同次公共 API 真实录制；另保留旧合成契约 fixture，CI 不打外网。
 
-## 指标与纸面下注定义
+新实验需按环境安装 `uv sync --extra polymarket-validation`，明确执行以下命令；**score 离线重放不会重新发起预测**：
 
-每个市场仅一个预测时点；每题等权。Brier = mean((p−y)²)，Log loss 使用自然对数，将 p 限制到 [1e−15, 1−1e−15] 仅用于对数计算。
-对每题差值 (q−y)²−(p−y)² 做 2,000 次等大小有放回配对 bootstrap，取 2.5% / 97.5% 插值分位数。
-多次模型采样不作为额外市场样本；拒绝重复市场 ID。v0 假设市场相互独立，相关事件族会使此 CI 偏窄；正式题库应去除关联题或改用事件族 block bootstrap。
+```bash
+PYTHONPATH=research/src research/.venv/bin/python -m arb_research.forecast archive-open \
+  --output .state/new-open.json --count 56 --min-minutes 15 --max-minutes 45
+PYTHONPATH=research/src research/.venv/bin/python -m arb_research.forecast predict-open \
+  --input .state/new-open.json --output .state/new-predictions.json --samples 2 --workers 4
+# join 只刷新结算；score 需至少 50 道完整题，其他题可保留 pending。
+PYTHONPATH=research/src research/.venv/bin/python -m arb_research.forecast join \
+  --input .state/new-open.json --predictions .state/new-predictions.json --output .state/new-settled.json
+PYTHONPATH=research/src research/.venv/bin/python -m arb_research.forecast history \
+  --input .state/new-open.json --output .state/new-history.json
+PYTHONPATH=research/src research/.venv/bin/python -m arb_research.forecast score \
+  --input .state/new-settled.json --predictions .state/new-predictions.json --output .state/new-results.json
+```
 
-每题独立分配 B=100 pUSD≈USD 风险预算，60 题合计 6,000；无复利、无共享现金复用。
-proper betting 的带方向 YES 份额为 `B*s`，`s=2(p−q)`。负数通过以 `1−q` 买 NO 进行纸面等价，不建裸空头。
-PnL = `B*s*(y−q) − fee`，fee = 20 bps × 实际买入 YES/NO 的成本；完整预留成本及费用，预算不足时限制份额。
+## 指标与纸面下注
 
-分数 Kelly 先选正优势方向，以 `a=q`（YES）或 `a=1−q`（NO）为买价：
-`f = min(0.10, 0.25*abs(p−q)/(1−a))`，份额绝对值为 `B*f/(a*(1+fee_rate))`。
-这里 f 是含费用的预算占比，按未扣费的 Kelly 比例缩小后再预留费用，不是费用最优化解。
-两种方案均在结算持有至到期；没有盘口、滑点、深度或历史真实费率验证。JSON 报告的是上述显式费率假设下的纸面 PnL。
+每市场一个冻结 t，多个样本算术平均；每题等权。Brier=mean((p−y)²)，Log loss 使用自然对数，仅对数计算将 p 截至 [1e−15,1−1e−15]。同题差值 `(q−y)²−(p−y)²` 保持配对，按到期组整体有放回抽取 2,000 次（seed=11），取 2.5% / 97.5% 插值分位数。多次采样不扩充题数。
 
-## 当前阻塞与所需授权
+每题独立 B=100 pUSD≈USD 风险预算，共 5,600，无复利或共享现金复用。proper betting 方向 YES 份额为 `B*s`，`s=2(p−q)`；负方向等价于以 `1−q` 买 NO，并预留完整成本与费用。`PnL=B*s*(y−q)−fee`，fee 为入场成本的 20 bps，预算不足时限制份额。
 
-2026-10-30（Asia/Shanghai）本运行未注入 OpenAI / Anthropic / Gemini / DeepSeek key，也未发现任务专属 arb secret 目录；未读取其他服务凭据。
-NAS 直连 Gamma 与 Data API 先超时，执行环境外的同路只读复测返回连接拒绝。未使用代理或 VPN；尚无成功实网响应，不能判断为 geoblock。
+分数 Kelly 取有优势方向买价 a（YES 为 q、NO 为 1−q），`f=min(0.10,0.25*abs(p−q)/(1−a))`，带方向份额绝对值为 `B*f/(a*(1+fee_rate))`。f 是含费用预算占比，不是费用最优化 Kelly。两者均持有到结算；p=q 时份额及费用都为 0。
 
-恢复真实实验需要：
+## 合成基准与验证
 
-1. NAS 到上述只读 API 的正常直连，以及至少 50 题可验证的 t 前问题 / 条款 / 证据档案。
-2. provider 建议 OpenAI，仅文本推理权限；在 NAS secret 注入任务专属 key，或提供已授权的模型离线结果。禁止在评论、代码或 JSON 中提供 key。
-3. 确认模型版本及训练截止时间符合题目时点，再实现并验证该 provider 的受控调用适配器。
+旧的 60 道合成题、两种 mock 模型各采样两次（240 条预测）仍保留在 `llm-forecast-mock-v0.json`，只用于流程回归，不混入真实结果。可用 `forecast demo --count 60 --seed 11 --samples 2 --bootstrap 2000` 重建；其 Brier 为 0.181823368，优势 −0.003347733，CI [−0.012285486,0.007509748]。
 
-计划调用量：60 题 × 2 模型 × 每模型 2 次 = **240 次**。以每次输入 2,000 tokens、输出 200 tokens 估算，两个模型各 120 次。
-作为预算例，官方当前 [GPT-6.1 Sol](https://developers.openai.com/api/docs/models/gpt-6.1-sol) 输入 / 输出为 $2/$10 每百万 tokens，[GPT-6.1 Terra](https://developers.openai.com/api/docs/models/gpt-6.1-terra) 为 $1/$5；合计约 **$1.08**。
-预算建议上限 **US$5**（重试与推理 tokens 会改变费用，运行前需固定输出限制和调用预算）；这不是本次费用，本次模型调用为 0。
-两者训练截止时间不同，正式题库 t 应晚于所选模型的官方截止日期，并另行核对账户与地区可用性。
-
-本票按缺授权分支保持 `blocked`，不声称完整真实评估已通过；PR 用于审查已有离线实现，不自行合并。
+最新 main 上完整研究测试：`PYTHONPATH=research/src research/.venv/bin/python -m pytest research/tests -q` 为 **233 passed，44 subtests passed**，15 条依赖弃用警告。真实评分 JSON 离线重放逐字节一致；mock JSON 也逐字节一致。独立只读审查核验了全量时间边界、prompt/context/归档哈希、token 映射、逐次调用记录及结算指标。

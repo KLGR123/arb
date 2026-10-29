@@ -1,4 +1,4 @@
-"""python -m arb_research.forecast {demo,collect,evaluate}."""
+"""Offline replay plus explicit public archive/local inference commands."""
 
 import argparse
 import json
@@ -33,7 +33,45 @@ def main():
     cmd.add_argument("--output", type=Path, required=True)
     cmd.add_argument("--count", type=int, default=50)
     cmd.add_argument("--max-pages", type=int, default=10)
+    for name in ("archive-open", "predict-open", "join", "score", "history"):
+        cmd = sub.add_parser(name)
+        cmd.add_argument("--output", type=Path, required=True)
+        if name == "archive-open":
+            cmd.add_argument("--count", type=int, default=56)
+            cmd.add_argument("--min-minutes", type=int, default=15)
+            cmd.add_argument("--max-minutes", type=int, default=45)
+        else:
+            cmd.add_argument("--input", type=Path, required=True)
+        if name in ("join", "score"):
+            cmd.add_argument("--predictions", type=Path, required=True)
+        if name == "predict-open":
+            cmd.add_argument("--codex", default="codex")
+            cmd.add_argument("--effort", choices=("low", "medium", "high"), default="low")
+            cmd.add_argument("--samples", type=int, default=2)
+            cmd.add_argument("--workers", type=int, default=4)
+            cmd.add_argument("--db", type=Path, default=Path(".state/forecasts.sqlite3"))
     args = parser.parse_args()
+    if args.command in ("archive-open", "predict-open", "join", "score", "history"):
+        from .prospective import archive_open, predict_archive, join_settlements, score_joined, archive_history
+        if args.command == "archive-open":
+            result = archive_open(PublicClient(), args.output, count=args.count,
+                                  min_minutes=args.min_minutes, max_minutes=args.max_minutes)
+        elif args.command == "predict-open":
+            from .codex import CodexPredictor
+            result = predict_archive(json.loads(args.input.read_text()),
+                                     CodexPredictor(args.codex, effort=args.effort), AuditStore(args.db),
+                                     args.output, samples=args.samples, workers=args.workers)
+        elif args.command == "history":
+            result = archive_history(PublicClient(), json.loads(args.input.read_text()), args.output)
+        elif args.command == "join":
+            result = join_settlements(PublicClient(), json.loads(args.input.read_text()),
+                                      json.loads(args.predictions.read_text()), args.output)
+        else:
+            result = score_joined(json.loads(args.input.read_text()), json.loads(args.predictions.read_text()))
+        args.output.parent.mkdir(parents=True, exist_ok=True)
+        args.output.write_text(json.dumps(result, indent=2, sort_keys=True, allow_nan=False) + "\n")
+        print(canonical({"command": args.command, "output": str(args.output)}))
+        return
     if args.command == "collect":
         result = collect(PublicClient(), count=args.count, max_pages=args.max_pages)
     else:

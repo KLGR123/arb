@@ -22,7 +22,8 @@ def main():
     ax.plot([b["mean_p"] for b in bins], [b["observed_frequency"] for b in bins],
             marker="o", label=f"{result['mode']} (n={result['metrics']['n']})")
     ax.set(xlim=(0, 1), ylim=(0, 1), xlabel="Mean forecast probability",
-           ylabel="Observed YES frequency", title="Synthetic mock calibration")
+           ylabel="Observed YES frequency", title=("Prospective real-market calibration" if result["mode"] == "prospective_model"
+                  else "Synthetic mock calibration"))
     ax.legend()
     args.output.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(args.output, dpi=160)

@@ -68,7 +68,12 @@ def evaluate(rows: list[dict], *, bootstrap=2000, seed=11, fee_bps=20,
     deltas = [q - p for q, p in zip(market_brier, model_brier)]
     rng = random.Random(seed)
     # Resample paired errors, not independently sampled model and market scores.
-    draws = sorted(mean(rng.choices(deltas, k=len(rows))) for _ in range(bootstrap))
+    groups = {}
+    for row, delta in zip(rows, deltas):
+        groups.setdefault(row.get("cluster_id", row["market_id"]), []).append(delta)
+    keys = list(groups)
+    draws = sorted(mean(d for key in rng.choices(keys, k=len(keys)) for d in groups[key])
+                   for _ in range(bootstrap))
     calibration = []
     for i in range(10):
         members = [r for r in rows if min(int(r["p"] * 10), 9) == i]
@@ -84,7 +89,9 @@ def evaluate(rows: list[dict], *, bootstrap=2000, seed=11, fee_bps=20,
         "market_log_loss": mean(loss(r["q"], r["y"]) for r in rows),
         "brier_advantage": mean(deltas),
         "brier_advantage_ci95": [quantile(draws, 0.025), quantile(draws, 0.975)],
-        "bootstrap": {"resamples": bootstrap, "seed": seed, "unit": "paired_market"},
+        "bootstrap": {"resamples": bootstrap, "seed": seed,
+                      "unit": "expiry_block" if any("cluster_id" in r for r in rows) else "paired_market",
+                      **({"clusters": len(keys)} if any("cluster_id" in r for r in rows) else {})},
         "calibration": calibration,
         "paper": {
             "currency": "pUSD≈USD", "budget_per_market": bankroll,
