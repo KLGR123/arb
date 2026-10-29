@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
+import { buttonVariants } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 
 export const Route = createFileRoute('/')({ component: Home })
@@ -21,8 +21,8 @@ function Home() {
       <h1 className="max-w-3xl text-4xl leading-tight font-semibold tracking-tight sm:text-6xl">从一个清晰的起点，<br /><span className="text-muted-foreground">构建下一步。</span></h1>
       <p className="mt-6 max-w-xl text-base leading-8 text-muted-foreground">路由、服务端渲染和 UI 组件已经就位。这里是 arb 的开发起点，业务功能将从这里逐步展开。</p>
       <div className="mt-9 flex flex-wrap gap-3">
-        <Button render={<Link to="/example" />} nativeButton={false}>查看组件示例 <span aria-hidden="true">↗</span></Button>
-        <Button variant="outline" render={<a href="https://github.com/KLGR123/arb" />} nativeButton={false}>打开仓库</Button>
+        <Link to="/example" className={buttonVariants()}>查看组件示例 <span aria-hidden="true">↗</span></Link>
+        <a href="https://github.com/KLGR123/arb" className={buttonVariants({ variant: 'outline' })}>打开仓库</a>
       </div>
       <div className="mt-20 grid gap-4 md:grid-cols-3">
         {foundations.map((item) => (
