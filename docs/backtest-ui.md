@@ -16,7 +16,7 @@ Vela 使用 `data: []`、`live: false`，并注入固定返回空数组的离线
 
 `createStubRun` 是本地 adapter，**没有 HTTP 请求、队列或引擎执行**。每次点击生成 `stub-<UUID>`，记录提交时的配置快照。后续编辑不修改旧 run；界面会提示需要重新创建。切换引擎同样生成独立 run；本票不模拟 fast → realistic 的阶段升级。
 
-与 ARB-4 已知要求对应：创建返回 `run_id`，结果模型预留 `metrics`、`equity`、`fills`，同时保留 `source` 与 `as_of`。当前 ARB-4 尚未提供已合入的字段 schema，下面是 UI adapter 的字段约定；接入时只需在此边界映射真实 wire schema，不应直接把 stub 当 API 实现。
+与 ARB-4 要求对应：创建返回 `run_id`，结果模型预留 `metrics`、`equity`、`fills`，同时保留 `source` 与 `as_of`。ARB-4 服务现已沿用下面的请求字段，响应、阶段增量和运行方式见 [回测 API](backtest-api.md)；接入时需在此边界映射真实响应，不应直接把 stub 当 API 实现。
 
 ```json
 {

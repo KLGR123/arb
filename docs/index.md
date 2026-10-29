@@ -18,6 +18,7 @@
 ## 产品
 
 - `docs/backtest-ui.md`：回测页 MVP、演示 Dataset、浏览器 preset 与 ARB-4 adapter 边界
+- `docs/backtest-api.md`：双引擎异步 API、冻结 Dataset、费用滑点、持久队列与 ARB-5 回放事件
 
 ## 规则
 

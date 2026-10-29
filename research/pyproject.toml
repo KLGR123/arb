@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "arb-research"
 version = "0.1.0"
-description = "Offline dependency smoke for arb's two research engines"
+description = "Offline dual-engine backtest API and durable jobs"
 requires-python = ">=3.12,<3.13"
 dependencies = [
   "vectorbt==0.28.5",
@@ -13,7 +13,12 @@ dependencies = [
   "pandas>=2.2.3,<3",
   # VectorBT 0.28's built-in themes still use scattermapbox (removed in Plotly 7).
   "plotly>=5.24.1,<7",
+  "fastapi>=0.115,<1",
+  "uvicorn>=0.34,<1",
 ]
+
+[dependency-groups]
+dev = ["pytest>=8,<10", "httpx>=0.28,<1"]
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/arb_research"]

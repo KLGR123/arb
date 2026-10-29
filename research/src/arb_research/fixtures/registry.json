@@ -1,0 +1,32 @@
+[
+  {
+    "id": "demo-synthetic-1h-v1",
+    "status": "published",
+    "frozen": true,
+    "source": "arb synthetic fixture v1 (not market data)",
+    "as_of": "2026-02-01T00:00:00Z",
+    "start": "2026-01-01T00:00:00Z",
+    "end": "2026-01-31T23:59:59Z",
+    "bar_count": 744,
+    "interval": "1h",
+    "symbol": "SYNTH/USD",
+    "currency": "USD",
+    "file": "demo-synthetic-1h-v1.json",
+    "sha256": "51055f0887008024e70535d146f816a6f379b959b5d4334da7cb55566f1d533c"
+  },
+  {
+    "id": "demo-synthetic-1h-v2",
+    "status": "published",
+    "frozen": true,
+    "source": "arb synthetic fixture v1 (not market data)",
+    "as_of": "2026-02-01T00:00:00Z",
+    "start": "2026-01-01T00:00:00Z",
+    "end": "2026-01-14T23:59:59Z",
+    "bar_count": 336,
+    "interval": "1h",
+    "symbol": "SYNTH/USD",
+    "currency": "USD",
+    "file": "demo-synthetic-1h-v2.json",
+    "sha256": "1473b0248f7678bea1138689666c248388d428abfd7ca0131a82b2ea0e5cef93"
+  }
+]
