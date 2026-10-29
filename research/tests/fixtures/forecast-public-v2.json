@@ -1,0 +1,20 @@
+{
+  "provenance": "Synthetic contract fixture based on official Gamma and Data V2 schemas, checked 2026-10-30; not a live-market recording.",
+  "gamma": {
+    "id": "contract-1", "conditionId": "condition-1", "closed": true,
+    "umaResolutionStatus": "resolved", "createdAt": "2026-05-01T00:00:00Z",
+    "question": "Will the contract fixture resolve YES?", "description": "Synthetic test only.",
+    "outcomes": "[\"Yes\", \"No\"]", "clobTokenIds": "[\"101\", \"102\"]"
+  },
+  "resolutions": {"data": [{
+    "condition_id": "condition-1", "status": "RESOLVED", "payouts": [1, 0],
+    "resolved_at": "2026-05-03T00:00:00Z"
+  }]},
+  "prices": {
+    "data": [
+      {"price": 0.45, "timestamp": 1777719600, "resolution_seconds": 43200},
+      {"price": 1, "timestamp": 1777719601, "resolution_seconds": 0}
+    ],
+    "pagination": {"has_more": false, "next_cursor": null}
+  }
+}
