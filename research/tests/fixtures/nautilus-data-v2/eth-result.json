@@ -1,0 +1,39 @@
+{
+  "nautilus_version": "1.231.0",
+  "mode": "offline_backtest",
+  "source": "recorded_public_api",
+  "market_id": "6388418",
+  "token_id": "39052719427667549441061336729586714690321738031735676685095452636166553864432",
+  "outcome": "No",
+  "protocol": "v1",
+  "settled": true,
+  "trade_ticks": 5,
+  "quote_ticks_available": 1,
+  "quote_ticks_used_for_execution": 0,
+  "orders": 2,
+  "fills": [
+    {
+      "price": "0.8050000000000000",
+      "quantity": "1.000000",
+      "commission": "0.010990 pUSD",
+      "ts_event": 1793286584000000000
+    },
+    {
+      "price": "0.7550000000000000",
+      "quantity": "1.000000",
+      "commission": "0.012950 pUSD",
+      "ts_event": 1793286659000000000
+    }
+  ],
+  "initial_cash": "1000.000000 pUSD",
+  "final_cash": "999.926060 pUSD",
+  "total_commission": "0.023940",
+  "fee_rate": "0.07",
+  "fee_source": "gamma_schedule_current",
+  "limitations": [
+    "ingestion smoke, not strategy performance",
+    "current fee schedule applied to historical trades",
+    "no order book, spread, latency or settlement simulation",
+    "maker rebates disabled"
+  ]
+}

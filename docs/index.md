@@ -26,6 +26,7 @@
 - `docs/backtest-api.md`：双引擎异步 API、冻结 Dataset、费用滑点、持久队列与 ARB-5 回放事件
 - `docs/nautilus-polymarket-validation.md`：1.231.0 Polymarket 适配器、离线机制验证、历史接口失败点与协议抽样
 - [Polymarket 协议与 SDK 迁移评估](polymarket-protocol-v2.md)：CLOB / Protocol / Data V2 时间线、模块影响与后续验收清单
+- `docs/nautilus-data-v2-loader.md`：只读 Data API v2 历史加载、Nautilus 字段映射、真实已结算事件回放与缓存对齐
 - `docs/mm-backtest.md`：离线做市、L2 排队近似、返佣/奖励、PnL 分解与逆向选择统计
 - `docs/negrisk-scanner.md`：只读 negRisk 扫描、逐档深度、费用、JSON v1 合约与真实扫描验证边界
 
