@@ -95,6 +95,7 @@ research/.venv/bin/python -m arb_research.negrisk_cli \
 ```
 
 该命令使用合成示例，不联网。真实扫描命令、成本配置、JSON v1 合约与当前网络验证限制见 [negRisk 扫描器](docs/negrisk-scanner.md)。
+研究侧另有 [LLM 预测离线评估 v0](docs/llm-forecast-eval-v0.md)：支持时间截断、SQLite 逐次预测审计、Brier / Log loss / 校准、相对市场 Brier 优势及配对 bootstrap 区间，以及扣费后的 proper / 分数 Kelly 纸面模拟。60 道合成题 mock 示例和 JSON 可离线重放；真实市场及模型评估仍缺 API 直连、历史上下文档案和模型授权，不代表已验证 LLM 或交易收益。
 
 结算争议和大户地址研究提供独立的 `arb_research.resolution_whales_cli collect/build` 命令、真实公开样本、分组统计及带可得时间的 Parquet 特征。按截止时间读取可供回测使用；样本覆盖和预测限制见 [结算与巨鲸特征](docs/resolution-whale-features.md)。
 
