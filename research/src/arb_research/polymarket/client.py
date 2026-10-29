@@ -110,7 +110,7 @@ class PublicDataClient:
         if not ((host == "gamma-api.polymarket.com" and
                  re.fullmatch(r"/(events|markets)(?:/(?:slug/)?[\w%.-]+(?:/tags)?)?", path)) or
                 (host == "data-api.polymarket.com" and path in
-                 {"/v2/prices-history", "/v2/resolutions", "/v2/trades"})):
+                 {"/v2/prices-history", "/v2/resolutions", "/v2/trades", "/v2/holders"})):
             raise ValueError("Endpoint is outside the public data allowlist")
         url = f"https://{host}{path}"
         for attempt in range(4):
