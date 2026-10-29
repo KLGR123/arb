@@ -1,6 +1,6 @@
 # arb
 
-crypto / Polymarket 研究产品的最小地基。目前提供 TanStack Start SSR 示例页、独立回测页 MVP、shadcn/ui 与 beUI 组件和 Vela 图容器，以及两个独立 Python 引擎 smoke。回测页仅生成本地 stub run，不执行策略；没有真实行情、下单服务或密钥配置。
+crypto / Polymarket 研究产品的最小地基。目前提供 TanStack Start SSR 示例页、独立回测页 MVP、shadcn/ui 与 beUI 组件和 Vela 图容器，以及 Python 双引擎异步回测 API。API 可在已发布的离线合成快照上运行 VectorBT / NautilusTrader；回测页目前仍生成本地 stub，尚未接入 API。没有真实行情、实盘下单服务或密钥配置。
 
 ## 目录约定
 
@@ -12,7 +12,8 @@ apps/web/                  TanStack Start + React + TypeScript
   src/features/backtest/   回测专属配置、演示目录、本地 stub 与空态图表
   src/lib/                 前端工具和固定合成数据
 research/                  独立 Python 项目及 uv.lock
-  src/arb_research/         双引擎依赖 smoke；不是编排接口
+  src/arb_research/         双引擎、冻结 fixture、API、SQLite 队列与 worker
+  tests/                   API / 队列 / 真实引擎集成测试
 tests/                     浏览器集成 smoke
 ```
 
@@ -58,7 +59,15 @@ uv run --locked python -m arb_research.smoke --engine fast
 uv run --locked python -m arb_research.smoke --engine realistic
 ```
 
-与 PieQuant 双引擎命名一致：`fast` → VectorBT，`realistic` → NautilusTrader（Rust 核心 + Python API）。这里仅声明依赖并验证加载/计算；没有 Dataset freeze、队列或完整执行契约，也不比较两个 smoke 的收益。
+与 PieQuant 双引擎命名一致：`fast` → VectorBT，`realistic` → NautilusTrader（Rust 核心 + Python API）。上述 smoke 只验证依赖；新增的回测 API、持久队列、已发布合成 Dataset、费用/滑点与回放事件合约见 [回测 API](docs/backtest-api.md)。在 research 目录分别启动 API 和 worker：
+
+```bash
+uv run --locked uvicorn arb_research.api:create_app --factory --host 127.0.0.1 --port 8000
+uv run --locked python -m arb_research.worker
+uv run --locked pytest -q
+```
+
+API 文档位于 http://127.0.0.1:8000/docs。POST /backtests 入队并返回 run_id；GET /backtests/{id} 返回状态、metrics、equity、fills 和分阶段结果。默认 SQLite 位于 research/.state，API 与 worker 必须使用相同路径。realistic 请求会先发布 fast 草稿，再将最终结果挂到同一 run；也可用 POST /backtests/{id}/realistic 升级已有 fast run。当前只提供离线合成 Dataset，不代表生产数据注册服务。
 
 - VectorBT 0.28.5：四个固定价格 `[100,101,102,103]`，验证内置持有计算将 1000 变为 1030。
 - NautilusTrader 1.231.0：内存模拟场所接收四根合成 K 线，只计数，断言全部处理且订单数为零。
