@@ -1,0 +1,27 @@
+{
+  "provenance": "Synthetic contract regression cases based on official Data API v2 OpenAPI and polymarket-client 0.15.0. Not live recordings or real-event acceptance evidence.",
+  "event": {
+    "id": "100", "slug": "contract-event", "title": "Contract event", "closed": true,
+    "negRisk": true, "negRiskMarketID": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "tags": [{"id": "7", "label": "Contract", "slug": "contract"}],
+    "markets": [{"id": "200", "question": "Contract question?", "conditionId": "0xbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", "outcomes": "[\"Yes\", \"No\"]", "clobTokenIds": "[\"300\", \"301\"]"}]
+  },
+  "market": {
+    "id": "200", "slug": "contract-market", "question": "Contract question?", "version": "v2",
+    "conditionId": "0xbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "outcomes": "[\"Yes\", \"No\"]", "clobTokenIds": "[\"300\", \"301\"]", "positionIds": "[\"400\", \"401\"]",
+    "closed": true, "negRisk": true,
+    "description": "Resolve according to the contract test rules.", "resolutionSource": "https://example.org/rules"
+  },
+  "tags": [{"id": "7", "label": "Contract", "slug": "contract"}],
+  "prices": [
+    {"data": [{"timestamp": 1793000000, "price": 0.25, "resolution_seconds": 43200}], "pagination": {"next_cursor": "opaque-page-2", "has_more": true}},
+    {"data": [{"timestamp": 1793000000, "price": 0.25, "resolution_seconds": 43200}, {"timestamp": 1793043200, "price": 0.5, "resolution_seconds": 0}], "pagination": {"next_cursor": null, "has_more": false}}
+  ],
+  "resolutions": {"data": [{
+    "condition_id": "0xbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "status": "resolved", "extended_review": false, "was_disputed": true, "new_version_q": false,
+    "transaction_hash": "", "log_index": "", "last_update_timestamp": "2026-10-27T00:00:00Z",
+    "payouts": [500000, 500000], "resolved_at": "2026-10-27T00:00:00Z"
+  }]}
+}

@@ -1,6 +1,6 @@
 # arb
 
-crypto / Polymarket 研究产品的最小地基。目前提供 TanStack Start SSR 示例页、独立回测页 MVP、shadcn/ui 与 beUI 组件和 Vela 图容器，以及 Python 双引擎异步回测 API。API 可在已发布的离线合成快照上运行 VectorBT / NautilusTrader；回测页默认回放 ARB-4 的完整双引擎录制结果，配置表单仍生成本地 stub。没有真实行情、实盘下单服务或密钥配置。
+crypto / Polymarket 研究产品的最小地基。目前提供 TanStack Start SSR 示例页、独立回测页 MVP、shadcn/ui 与 beUI 组件和 Vela 图容器，以及 Python 双引擎异步回测 API。API 可在已发布的离线合成快照上运行 VectorBT / NautilusTrader；回测页默认回放 ARB-4 的完整双引擎录制结果，配置表单仍生成本地 stub。Polymarket 公共历史数据可显式同步到本地；没有实盘下单服务或密钥配置。
 
 ## 目录约定
 
@@ -16,6 +16,10 @@ research/                  独立 Python 项目及 uv.lock
   tests/                   API / 队列 / 真实引擎集成测试
 tests/                     浏览器集成 smoke
 ```
+
+## Polymarket 只读数据
+
+`research/src/arb_research/polymarket/` 提供 Gamma 元数据、Data API v2 价格/结算同步、Parquet/DuckDB 查询、CLI 和独立 FastAPI 服务。已验证两个真实已结算事件，并提供真实响应录制的离线回归。运行方式、12 小时桶精度与获批公共数据代理配置见 [Polymarket 数据说明](docs/polymarket-data.md)。合规 guard 始终拒绝交易。
 
 ## Web 本地启动
 

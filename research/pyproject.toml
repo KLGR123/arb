@@ -15,13 +15,20 @@ dependencies = [
   "plotly>=5.24.1,<7",
   "fastapi>=0.115,<1",
   "uvicorn>=0.34,<1",
+  "duckdb>=1.4,<3",
+  "pyarrow>=19,<27",
+  "polymarket-client==0.15.0",
   "httpx[socks]>=0.28.1,<0.29",
+  "pydantic>=2.11,<3",
 ]
 
 [project.optional-dependencies]
 # The 1.231.0 adapter imports this V2 SDK even on its data-only path.
 # This is NOT the archived py-clob-client package. No client is constructed.
 polymarket-validation = ["py-clob-client-v2==1.0.2"]
+
+[project.scripts]
+polymarket-data = "arb_research.polymarket.cli:main"
 
 [dependency-groups]
 dev = ["pytest>=8,<10", "httpx>=0.28,<1"]
