@@ -46,6 +46,10 @@ cd apps/web
 npx shadcn@latest add @beui/button-base
 ```
 
+## Polymarket 研究看板
+
+从首页进入 `/polymarket`，查看概率校准与 Brier、策略 / 基准 PnL 及分解堆叠、L2 深度 / 热力图时间回放。所有数据来自仓库内合成 fixture，页面标注「只读 / 纸面研究」，无下单或钱包入口、不请求外部接口。桌面与手机均可使用。类型草案、与 ARB-7/8/11/12 的字段映射假设和验证见 [看板说明](docs/polymarket-dashboard.md)。
+
 ## 研究侧本地启动
 
 需要 Python 3.12 和 [uv](https://docs.astral.sh/uv/getting-started/installation/)，不需要本地 Rust 编译器（使用 NautilusTrader 预编译 wheel）。在仓库根目录执行：

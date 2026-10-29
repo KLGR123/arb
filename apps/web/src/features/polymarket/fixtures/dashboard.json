@@ -1,0 +1,1625 @@
+{
+  "schema_version": 1,
+  "source": "synthetic-fixture",
+  "as_of": "2026-06-21T00:00:00Z",
+  "currency": "pUSD",
+  "market": {
+    "event_id": "fixture-event-001",
+    "market_id": "fixture-market-001",
+    "token_id": "fixture-token-yes",
+    "question": "演示市场：研究指数将在 6 月末高于 100？",
+    "outcome": "YES",
+    "protocol_version": "v2",
+    "neg_risk": false
+  },
+  "forecasts": [
+    {
+      "market_id": "fixture-resolved-001",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.05,
+      "q": 0.12,
+      "outcome": 1
+    },
+    {
+      "market_id": "fixture-resolved-002",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.05,
+      "q": 0.12,
+      "outcome": 0
+    },
+    {
+      "market_id": "fixture-resolved-003",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.05,
+      "q": 0.12,
+      "outcome": 0
+    },
+    {
+      "market_id": "fixture-resolved-004",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.05,
+      "q": 0.12,
+      "outcome": 0
+    },
+    {
+      "market_id": "fixture-resolved-005",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.05,
+      "q": 0.12,
+      "outcome": 0
+    },
+    {
+      "market_id": "fixture-resolved-006",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.05,
+      "q": 0.12,
+      "outcome": 0
+    },
+    {
+      "market_id": "fixture-resolved-007",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.05,
+      "q": 0.12,
+      "outcome": 0
+    },
+    {
+      "market_id": "fixture-resolved-008",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.05,
+      "q": 0.12,
+      "outcome": 0
+    },
+    {
+      "market_id": "fixture-resolved-009",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.05,
+      "q": 0.12,
+      "outcome": 0
+    },
+    {
+      "market_id": "fixture-resolved-010",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.05,
+      "q": 0.12,
+      "outcome": 0
+    },
+    {
+      "market_id": "fixture-resolved-011",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.15,
+      "q": 0.2,
+      "outcome": 1
+    },
+    {
+      "market_id": "fixture-resolved-012",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.15,
+      "q": 0.2,
+      "outcome": 0
+    },
+    {
+      "market_id": "fixture-resolved-013",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.15,
+      "q": 0.2,
+      "outcome": 0
+    },
+    {
+      "market_id": "fixture-resolved-014",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.15,
+      "q": 0.2,
+      "outcome": 0
+    },
+    {
+      "market_id": "fixture-resolved-015",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.15,
+      "q": 0.2,
+      "outcome": 0
+    },
+    {
+      "market_id": "fixture-resolved-016",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.15,
+      "q": 0.2,
+      "outcome": 0
+    },
+    {
+      "market_id": "fixture-resolved-017",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.15,
+      "q": 0.2,
+      "outcome": 0
+    },
+    {
+      "market_id": "fixture-resolved-018",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.15,
+      "q": 0.2,
+      "outcome": 0
+    },
+    {
+      "market_id": "fixture-resolved-019",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.15,
+      "q": 0.2,
+      "outcome": 0
+    },
+    {
+      "market_id": "fixture-resolved-020",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.15,
+      "q": 0.2,
+      "outcome": 0
+    },
+    {
+      "market_id": "fixture-resolved-021",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.25,
+      "q": 0.28,
+      "outcome": 1
+    },
+    {
+      "market_id": "fixture-resolved-022",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.25,
+      "q": 0.28,
+      "outcome": 1
+    },
+    {
+      "market_id": "fixture-resolved-023",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.25,
+      "q": 0.28,
+      "outcome": 1
+    },
+    {
+      "market_id": "fixture-resolved-024",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.25,
+      "q": 0.28,
+      "outcome": 0
+    },
+    {
+      "market_id": "fixture-resolved-025",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.25,
+      "q": 0.28,
+      "outcome": 0
+    },
+    {
+      "market_id": "fixture-resolved-026",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.25,
+      "q": 0.28,
+      "outcome": 0
+    },
+    {
+      "market_id": "fixture-resolved-027",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.25,
+      "q": 0.28,
+      "outcome": 0
+    },
+    {
+      "market_id": "fixture-resolved-028",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.25,
+      "q": 0.28,
+      "outcome": 0
+    },
+    {
+      "market_id": "fixture-resolved-029",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.25,
+      "q": 0.28,
+      "outcome": 0
+    },
+    {
+      "market_id": "fixture-resolved-030",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.25,
+      "q": 0.28,
+      "outcome": 0
+    },
+    {
+      "market_id": "fixture-resolved-031",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.35,
+      "q": 0.36,
+      "outcome": 1
+    },
+    {
+      "market_id": "fixture-resolved-032",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.35,
+      "q": 0.36,
+      "outcome": 1
+    },
+    {
+      "market_id": "fixture-resolved-033",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.35,
+      "q": 0.36,
+      "outcome": 1
+    },
+    {
+      "market_id": "fixture-resolved-034",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.35,
+      "q": 0.36,
+      "outcome": 0
+    },
+    {
+      "market_id": "fixture-resolved-035",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.35,
+      "q": 0.36,
+      "outcome": 0
+    },
+    {
+      "market_id": "fixture-resolved-036",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.35,
+      "q": 0.36,
+      "outcome": 0
+    },
+    {
+      "market_id": "fixture-resolved-037",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.35,
+      "q": 0.36,
+      "outcome": 0
+    },
+    {
+      "market_id": "fixture-resolved-038",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.35,
+      "q": 0.36,
+      "outcome": 0
+    },
+    {
+      "market_id": "fixture-resolved-039",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.35,
+      "q": 0.36,
+      "outcome": 0
+    },
+    {
+      "market_id": "fixture-resolved-040",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.35,
+      "q": 0.36,
+      "outcome": 0
+    },
+    {
+      "market_id": "fixture-resolved-041",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.45,
+      "q": 0.44,
+      "outcome": 1
+    },
+    {
+      "market_id": "fixture-resolved-042",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.45,
+      "q": 0.44,
+      "outcome": 1
+    },
+    {
+      "market_id": "fixture-resolved-043",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.45,
+      "q": 0.44,
+      "outcome": 1
+    },
+    {
+      "market_id": "fixture-resolved-044",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.45,
+      "q": 0.44,
+      "outcome": 1
+    },
+    {
+      "market_id": "fixture-resolved-045",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.45,
+      "q": 0.44,
+      "outcome": 0
+    },
+    {
+      "market_id": "fixture-resolved-046",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.45,
+      "q": 0.44,
+      "outcome": 0
+    },
+    {
+      "market_id": "fixture-resolved-047",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.45,
+      "q": 0.44,
+      "outcome": 0
+    },
+    {
+      "market_id": "fixture-resolved-048",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.45,
+      "q": 0.44,
+      "outcome": 0
+    },
+    {
+      "market_id": "fixture-resolved-049",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.45,
+      "q": 0.44,
+      "outcome": 0
+    },
+    {
+      "market_id": "fixture-resolved-050",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.45,
+      "q": 0.44,
+      "outcome": 0
+    },
+    {
+      "market_id": "fixture-resolved-051",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.55,
+      "q": 0.52,
+      "outcome": 1
+    },
+    {
+      "market_id": "fixture-resolved-052",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.55,
+      "q": 0.52,
+      "outcome": 1
+    },
+    {
+      "market_id": "fixture-resolved-053",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.55,
+      "q": 0.52,
+      "outcome": 1
+    },
+    {
+      "market_id": "fixture-resolved-054",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.55,
+      "q": 0.52,
+      "outcome": 1
+    },
+    {
+      "market_id": "fixture-resolved-055",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.55,
+      "q": 0.52,
+      "outcome": 1
+    },
+    {
+      "market_id": "fixture-resolved-056",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.55,
+      "q": 0.52,
+      "outcome": 1
+    },
+    {
+      "market_id": "fixture-resolved-057",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.55,
+      "q": 0.52,
+      "outcome": 0
+    },
+    {
+      "market_id": "fixture-resolved-058",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.55,
+      "q": 0.52,
+      "outcome": 0
+    },
+    {
+      "market_id": "fixture-resolved-059",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.55,
+      "q": 0.52,
+      "outcome": 0
+    },
+    {
+      "market_id": "fixture-resolved-060",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.55,
+      "q": 0.52,
+      "outcome": 0
+    },
+    {
+      "market_id": "fixture-resolved-061",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.65,
+      "q": 0.6,
+      "outcome": 1
+    },
+    {
+      "market_id": "fixture-resolved-062",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.65,
+      "q": 0.6,
+      "outcome": 1
+    },
+    {
+      "market_id": "fixture-resolved-063",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.65,
+      "q": 0.6,
+      "outcome": 1
+    },
+    {
+      "market_id": "fixture-resolved-064",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.65,
+      "q": 0.6,
+      "outcome": 1
+    },
+    {
+      "market_id": "fixture-resolved-065",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.65,
+      "q": 0.6,
+      "outcome": 1
+    },
+    {
+      "market_id": "fixture-resolved-066",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.65,
+      "q": 0.6,
+      "outcome": 1
+    },
+    {
+      "market_id": "fixture-resolved-067",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.65,
+      "q": 0.6,
+      "outcome": 0
+    },
+    {
+      "market_id": "fixture-resolved-068",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.65,
+      "q": 0.6,
+      "outcome": 0
+    },
+    {
+      "market_id": "fixture-resolved-069",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.65,
+      "q": 0.6,
+      "outcome": 0
+    },
+    {
+      "market_id": "fixture-resolved-070",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.65,
+      "q": 0.6,
+      "outcome": 0
+    },
+    {
+      "market_id": "fixture-resolved-071",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.75,
+      "q": 0.68,
+      "outcome": 1
+    },
+    {
+      "market_id": "fixture-resolved-072",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.75,
+      "q": 0.68,
+      "outcome": 1
+    },
+    {
+      "market_id": "fixture-resolved-073",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.75,
+      "q": 0.68,
+      "outcome": 1
+    },
+    {
+      "market_id": "fixture-resolved-074",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.75,
+      "q": 0.68,
+      "outcome": 1
+    },
+    {
+      "market_id": "fixture-resolved-075",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.75,
+      "q": 0.68,
+      "outcome": 1
+    },
+    {
+      "market_id": "fixture-resolved-076",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.75,
+      "q": 0.68,
+      "outcome": 1
+    },
+    {
+      "market_id": "fixture-resolved-077",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.75,
+      "q": 0.68,
+      "outcome": 1
+    },
+    {
+      "market_id": "fixture-resolved-078",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.75,
+      "q": 0.68,
+      "outcome": 0
+    },
+    {
+      "market_id": "fixture-resolved-079",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.75,
+      "q": 0.68,
+      "outcome": 0
+    },
+    {
+      "market_id": "fixture-resolved-080",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.75,
+      "q": 0.68,
+      "outcome": 0
+    },
+    {
+      "market_id": "fixture-resolved-081",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.85,
+      "q": 0.76,
+      "outcome": 1
+    },
+    {
+      "market_id": "fixture-resolved-082",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.85,
+      "q": 0.76,
+      "outcome": 1
+    },
+    {
+      "market_id": "fixture-resolved-083",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.85,
+      "q": 0.76,
+      "outcome": 1
+    },
+    {
+      "market_id": "fixture-resolved-084",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.85,
+      "q": 0.76,
+      "outcome": 1
+    },
+    {
+      "market_id": "fixture-resolved-085",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.85,
+      "q": 0.76,
+      "outcome": 1
+    },
+    {
+      "market_id": "fixture-resolved-086",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.85,
+      "q": 0.76,
+      "outcome": 1
+    },
+    {
+      "market_id": "fixture-resolved-087",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.85,
+      "q": 0.76,
+      "outcome": 1
+    },
+    {
+      "market_id": "fixture-resolved-088",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.85,
+      "q": 0.76,
+      "outcome": 1
+    },
+    {
+      "market_id": "fixture-resolved-089",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.85,
+      "q": 0.76,
+      "outcome": 1
+    },
+    {
+      "market_id": "fixture-resolved-090",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.85,
+      "q": 0.76,
+      "outcome": 0
+    },
+    {
+      "market_id": "fixture-resolved-091",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.95,
+      "q": 0.84,
+      "outcome": 1
+    },
+    {
+      "market_id": "fixture-resolved-092",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.95,
+      "q": 0.84,
+      "outcome": 1
+    },
+    {
+      "market_id": "fixture-resolved-093",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.95,
+      "q": 0.84,
+      "outcome": 1
+    },
+    {
+      "market_id": "fixture-resolved-094",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.95,
+      "q": 0.84,
+      "outcome": 1
+    },
+    {
+      "market_id": "fixture-resolved-095",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.95,
+      "q": 0.84,
+      "outcome": 1
+    },
+    {
+      "market_id": "fixture-resolved-096",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.95,
+      "q": 0.84,
+      "outcome": 1
+    },
+    {
+      "market_id": "fixture-resolved-097",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.95,
+      "q": 0.84,
+      "outcome": 1
+    },
+    {
+      "market_id": "fixture-resolved-098",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.95,
+      "q": 0.84,
+      "outcome": 1
+    },
+    {
+      "market_id": "fixture-resolved-099",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.95,
+      "q": 0.84,
+      "outcome": 1
+    },
+    {
+      "market_id": "fixture-resolved-100",
+      "predicted_at": "2026-06-01T00:00:00Z",
+      "resolved_at": "2026-06-21T00:00:00Z",
+      "p": 0.95,
+      "q": 0.84,
+      "outcome": 0
+    }
+  ],
+  "pnl": [
+    {
+      "timestamp": "2026-06-01T00:00:00Z",
+      "trading": 0.0,
+      "rebates": 0.0,
+      "rewards": 0.0,
+      "settlement": 0,
+      "fees": 0.0,
+      "benchmark": 0.0
+    },
+    {
+      "timestamp": "2026-06-02T00:00:00Z",
+      "trading": 15.18,
+      "rebates": 2.4,
+      "rewards": 3.6,
+      "settlement": 0,
+      "fees": -1.8,
+      "benchmark": 7.5
+    },
+    {
+      "timestamp": "2026-06-03T00:00:00Z",
+      "trading": 25.97,
+      "rebates": 4.8,
+      "rewards": 7.2,
+      "settlement": 0,
+      "fees": -3.6,
+      "benchmark": 14.46
+    },
+    {
+      "timestamp": "2026-06-04T00:00:00Z",
+      "trading": 30.34,
+      "rebates": 7.2,
+      "rewards": 10.8,
+      "settlement": 0,
+      "fees": -5.4,
+      "benchmark": 20.39
+    },
+    {
+      "timestamp": "2026-06-05T00:00:00Z",
+      "trading": 29.69,
+      "rebates": 9.6,
+      "rewards": 14.4,
+      "settlement": 0,
+      "fees": -7.2,
+      "benchmark": 25.0
+    },
+    {
+      "timestamp": "2026-06-06T00:00:00Z",
+      "trading": 28.14,
+      "rebates": 12.0,
+      "rewards": 18.0,
+      "settlement": 0,
+      "fees": -9.0,
+      "benchmark": 28.18
+    },
+    {
+      "timestamp": "2026-06-07T00:00:00Z",
+      "trading": 30.27,
+      "rebates": 14.4,
+      "rewards": 21.6,
+      "settlement": 0,
+      "fees": -10.8,
+      "benchmark": 30.08
+    },
+    {
+      "timestamp": "2026-06-08T00:00:00Z",
+      "trading": 38.69,
+      "rebates": 16.8,
+      "rewards": 25.2,
+      "settlement": 0,
+      "fees": -12.6,
+      "benchmark": 31.01
+    },
+    {
+      "timestamp": "2026-06-09T00:00:00Z",
+      "trading": 52.65,
+      "rebates": 19.2,
+      "rewards": 28.8,
+      "settlement": 0,
+      "fees": -14.4,
+      "benchmark": 31.47
+    },
+    {
+      "timestamp": "2026-06-10T00:00:00Z",
+      "trading": 68.4,
+      "rebates": 21.6,
+      "rewards": 32.4,
+      "settlement": 0,
+      "fees": -16.2,
+      "benchmark": 32.02
+    },
+    {
+      "timestamp": "2026-06-11T00:00:00Z",
+      "trading": 81.26,
+      "rebates": 24.0,
+      "rewards": 36.0,
+      "settlement": 0,
+      "fees": -18.0,
+      "benchmark": 33.19
+    },
+    {
+      "timestamp": "2026-06-12T00:00:00Z",
+      "trading": 88.07,
+      "rebates": 26.4,
+      "rewards": 39.6,
+      "settlement": 0,
+      "fees": -19.8,
+      "benchmark": 35.44
+    },
+    {
+      "timestamp": "2026-06-13T00:00:00Z",
+      "trading": 88.95,
+      "rebates": 28.8,
+      "rewards": 43.2,
+      "settlement": -18,
+      "fees": -21.6,
+      "benchmark": 39.03
+    },
+    {
+      "timestamp": "2026-06-14T00:00:00Z",
+      "trading": 87.17,
+      "rebates": 31.2,
+      "rewards": 46.8,
+      "settlement": -18,
+      "fees": -23.4,
+      "benchmark": 44.05
+    },
+    {
+      "timestamp": "2026-06-15T00:00:00Z",
+      "trading": 87.44,
+      "rebates": 33.6,
+      "rewards": 50.4,
+      "settlement": -18,
+      "fees": -25.2,
+      "benchmark": 50.32
+    },
+    {
+      "timestamp": "2026-06-16T00:00:00Z",
+      "trading": 93.39,
+      "rebates": 36.0,
+      "rewards": 54.0,
+      "settlement": -18,
+      "fees": -27.0,
+      "benchmark": 57.49
+    }
+  ],
+  "book": [
+    {
+      "timestamp": "2026-06-01T00:00:00Z",
+      "bids": [
+        {
+          "price": 0.49,
+          "size": 80
+        },
+        {
+          "price": 0.48,
+          "size": 117
+        },
+        {
+          "price": 0.47,
+          "size": 154
+        },
+        {
+          "price": 0.46,
+          "size": 191
+        },
+        {
+          "price": 0.45,
+          "size": 228
+        },
+        {
+          "price": 0.44,
+          "size": 85
+        }
+      ],
+      "asks": [
+        {
+          "price": 0.51,
+          "size": 70
+        },
+        {
+          "price": 0.52,
+          "size": 113
+        },
+        {
+          "price": 0.53,
+          "size": 156
+        },
+        {
+          "price": 0.54,
+          "size": 199
+        },
+        {
+          "price": 0.55,
+          "size": 242
+        },
+        {
+          "price": 0.56,
+          "size": 95
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-06-01T00:01:00Z",
+      "bids": [
+        {
+          "price": 0.5,
+          "size": 103
+        },
+        {
+          "price": 0.49,
+          "size": 140
+        },
+        {
+          "price": 0.48,
+          "size": 177
+        },
+        {
+          "price": 0.47,
+          "size": 214
+        },
+        {
+          "price": 0.46,
+          "size": 251
+        },
+        {
+          "price": 0.45,
+          "size": 108
+        }
+      ],
+      "asks": [
+        {
+          "price": 0.52,
+          "size": 101
+        },
+        {
+          "price": 0.53,
+          "size": 144
+        },
+        {
+          "price": 0.54,
+          "size": 187
+        },
+        {
+          "price": 0.55,
+          "size": 230
+        },
+        {
+          "price": 0.56,
+          "size": 83
+        },
+        {
+          "price": 0.57,
+          "size": 126
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-06-01T00:02:00Z",
+      "bids": [
+        {
+          "price": 0.51,
+          "size": 126
+        },
+        {
+          "price": 0.5,
+          "size": 163
+        },
+        {
+          "price": 0.49,
+          "size": 200
+        },
+        {
+          "price": 0.48,
+          "size": 237
+        },
+        {
+          "price": 0.47,
+          "size": 94
+        },
+        {
+          "price": 0.46,
+          "size": 131
+        }
+      ],
+      "asks": [
+        {
+          "price": 0.53,
+          "size": 132
+        },
+        {
+          "price": 0.54,
+          "size": 175
+        },
+        {
+          "price": 0.55,
+          "size": 218
+        },
+        {
+          "price": 0.56,
+          "size": 71
+        },
+        {
+          "price": 0.57,
+          "size": 114
+        },
+        {
+          "price": 0.58,
+          "size": 157
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-06-01T00:03:00Z",
+      "bids": [
+        {
+          "price": 0.51,
+          "size": 149
+        },
+        {
+          "price": 0.5,
+          "size": 186
+        },
+        {
+          "price": 0.49,
+          "size": 223
+        },
+        {
+          "price": 0.48,
+          "size": 80
+        },
+        {
+          "price": 0.47,
+          "size": 117
+        },
+        {
+          "price": 0.46,
+          "size": 154
+        }
+      ],
+      "asks": [
+        {
+          "price": 0.53,
+          "size": 163
+        },
+        {
+          "price": 0.54,
+          "size": 206
+        },
+        {
+          "price": 0.55,
+          "size": 249
+        },
+        {
+          "price": 0.56,
+          "size": 102
+        },
+        {
+          "price": 0.57,
+          "size": 145
+        },
+        {
+          "price": 0.58,
+          "size": 188
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-06-01T00:04:00Z",
+      "bids": [
+        {
+          "price": 0.5,
+          "size": 172
+        },
+        {
+          "price": 0.49,
+          "size": 209
+        },
+        {
+          "price": 0.48,
+          "size": 246
+        },
+        {
+          "price": 0.47,
+          "size": 103
+        },
+        {
+          "price": 0.46,
+          "size": 140
+        },
+        {
+          "price": 0.45,
+          "size": 177
+        }
+      ],
+      "asks": [
+        {
+          "price": 0.52,
+          "size": 194
+        },
+        {
+          "price": 0.53,
+          "size": 237
+        },
+        {
+          "price": 0.54,
+          "size": 90
+        },
+        {
+          "price": 0.55,
+          "size": 133
+        },
+        {
+          "price": 0.56,
+          "size": 176
+        },
+        {
+          "price": 0.57,
+          "size": 219
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-06-01T00:05:00Z",
+      "bids": [
+        {
+          "price": 0.49,
+          "size": 195
+        },
+        {
+          "price": 0.48,
+          "size": 232
+        },
+        {
+          "price": 0.47,
+          "size": 89
+        },
+        {
+          "price": 0.46,
+          "size": 126
+        },
+        {
+          "price": 0.45,
+          "size": 163
+        },
+        {
+          "price": 0.44,
+          "size": 200
+        }
+      ],
+      "asks": [
+        {
+          "price": 0.51,
+          "size": 225
+        },
+        {
+          "price": 0.52,
+          "size": 78
+        },
+        {
+          "price": 0.53,
+          "size": 121
+        },
+        {
+          "price": 0.54,
+          "size": 164
+        },
+        {
+          "price": 0.55,
+          "size": 207
+        },
+        {
+          "price": 0.56,
+          "size": 250
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-06-01T00:06:00Z",
+      "bids": [
+        {
+          "price": 0.48,
+          "size": 218
+        },
+        {
+          "price": 0.47,
+          "size": 255
+        },
+        {
+          "price": 0.46,
+          "size": 112
+        },
+        {
+          "price": 0.45,
+          "size": 149
+        },
+        {
+          "price": 0.44,
+          "size": 186
+        },
+        {
+          "price": 0.43,
+          "size": 223
+        }
+      ],
+      "asks": [
+        {
+          "price": 0.5,
+          "size": 256
+        },
+        {
+          "price": 0.51,
+          "size": 109
+        },
+        {
+          "price": 0.52,
+          "size": 152
+        },
+        {
+          "price": 0.53,
+          "size": 195
+        },
+        {
+          "price": 0.54,
+          "size": 238
+        },
+        {
+          "price": 0.55,
+          "size": 91
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-06-01T00:07:00Z",
+      "bids": [
+        {
+          "price": 0.47,
+          "size": 241
+        },
+        {
+          "price": 0.46,
+          "size": 98
+        },
+        {
+          "price": 0.45,
+          "size": 135
+        },
+        {
+          "price": 0.44,
+          "size": 172
+        },
+        {
+          "price": 0.43,
+          "size": 209
+        },
+        {
+          "price": 0.42,
+          "size": 246
+        }
+      ],
+      "asks": [
+        {
+          "price": 0.49,
+          "size": 97
+        },
+        {
+          "price": 0.5,
+          "size": 140
+        },
+        {
+          "price": 0.51,
+          "size": 183
+        },
+        {
+          "price": 0.52,
+          "size": 226
+        },
+        {
+          "price": 0.53,
+          "size": 79
+        },
+        {
+          "price": 0.54,
+          "size": 122
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-06-01T00:08:00Z",
+      "bids": [
+        {
+          "price": 0.47,
+          "size": 84
+        },
+        {
+          "price": 0.46,
+          "size": 121
+        },
+        {
+          "price": 0.45,
+          "size": 158
+        },
+        {
+          "price": 0.44,
+          "size": 195
+        },
+        {
+          "price": 0.43,
+          "size": 232
+        },
+        {
+          "price": 0.42,
+          "size": 89
+        }
+      ],
+      "asks": [
+        {
+          "price": 0.49,
+          "size": 128
+        },
+        {
+          "price": 0.5,
+          "size": 171
+        },
+        {
+          "price": 0.51,
+          "size": 214
+        },
+        {
+          "price": 0.52,
+          "size": 257
+        },
+        {
+          "price": 0.53,
+          "size": 110
+        },
+        {
+          "price": 0.54,
+          "size": 153
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-06-01T00:09:00Z",
+      "bids": [
+        {
+          "price": 0.47,
+          "size": 107
+        },
+        {
+          "price": 0.46,
+          "size": 144
+        },
+        {
+          "price": 0.45,
+          "size": 181
+        },
+        {
+          "price": 0.44,
+          "size": 218
+        },
+        {
+          "price": 0.43,
+          "size": 255
+        },
+        {
+          "price": 0.42,
+          "size": 112
+        }
+      ],
+      "asks": [
+        {
+          "price": 0.49,
+          "size": 159
+        },
+        {
+          "price": 0.5,
+          "size": 202
+        },
+        {
+          "price": 0.51,
+          "size": 245
+        },
+        {
+          "price": 0.52,
+          "size": 98
+        },
+        {
+          "price": 0.53,
+          "size": 141
+        },
+        {
+          "price": 0.54,
+          "size": 184
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-06-01T00:10:00Z",
+      "bids": [
+        {
+          "price": 0.48,
+          "size": 130
+        },
+        {
+          "price": 0.47,
+          "size": 167
+        },
+        {
+          "price": 0.46,
+          "size": 204
+        },
+        {
+          "price": 0.45,
+          "size": 241
+        },
+        {
+          "price": 0.44,
+          "size": 98
+        },
+        {
+          "price": 0.43,
+          "size": 135
+        }
+      ],
+      "asks": [
+        {
+          "price": 0.5,
+          "size": 190
+        },
+        {
+          "price": 0.51,
+          "size": 233
+        },
+        {
+          "price": 0.52,
+          "size": 86
+        },
+        {
+          "price": 0.53,
+          "size": 129
+        },
+        {
+          "price": 0.54,
+          "size": 172
+        },
+        {
+          "price": 0.55,
+          "size": 215
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-06-01T00:11:00Z",
+      "bids": [
+        {
+          "price": 0.5,
+          "size": 153
+        },
+        {
+          "price": 0.49,
+          "size": 190
+        },
+        {
+          "price": 0.48,
+          "size": 227
+        },
+        {
+          "price": 0.47,
+          "size": 84
+        },
+        {
+          "price": 0.46,
+          "size": 121
+        },
+        {
+          "price": 0.45,
+          "size": 158
+        }
+      ],
+      "asks": [
+        {
+          "price": 0.52,
+          "size": 221
+        },
+        {
+          "price": 0.53,
+          "size": 74
+        },
+        {
+          "price": 0.54,
+          "size": 117
+        },
+        {
+          "price": 0.55,
+          "size": 160
+        },
+        {
+          "price": 0.56,
+          "size": 203
+        },
+        {
+          "price": 0.57,
+          "size": 246
+        }
+      ]
+    }
+  ]
+}
