@@ -1,0 +1,31 @@
+{
+  "provenance": {
+    "kind": "upstream_settled_metadata_projection_with_synthetic_trades",
+    "source": "https://github.com/nautechsystems/nautilus_trader/blob/27a8e54e7ac3c57d6cbf8891f0283dfbaee97317/crates/adapters/polymarket/test_data/clob_market_closed_binary_accepting_false.json",
+    "gamma_source": "https://github.com/nautechsystems/nautilus_trader/blob/27a8e54e7ac3c57d6cbf8891f0283dfbaee97317/crates/adapters/polymarket/test_data/gamma_market_closed_binary_accepting_false.json",
+    "note": "Factual metadata projection. Protocol version absent upstream: not verified v1. Event wrapper and all trades are synthetic; not a historical return series."
+  },
+  "event_slug": "arb-validation-synthetic-event",
+  "market": {
+    "condition_id": "0x8ccc3f4951ff02c1d34b87988752b4444ad17228732780a6cf22afefe8478bb6",
+    "question": "Katana FDV above $1B one day after launch?",
+    "market_slug": "katana-fdv-above-1b-one-day-after-launch-395-996",
+    "minimum_tick_size": 0.001,
+    "end_date_iso": "2028-01-01T00:00:00Z",
+    "closed": true,
+    "accepting_orders": false,
+    "tokens": [
+      {"token_id": "108872296183993054938831082799825620165440189659433018108548854929333464287226", "outcome": "Yes", "price": 0, "winner": false},
+      {"token_id": "89711174926330519158043401581181146613785179104141808554061413232025882707365", "outcome": "No", "price": 1, "winner": true}
+    ]
+  },
+  "gamma_market": {
+    "id": "1460332",
+    "conditionId": "0x8ccc3f4951ff02c1d34b87988752b4444ad17228732780a6cf22afefe8478bb6",
+    "closed": true,
+    "closedTime": "2026-03-19 23:20:15+00",
+    "umaResolutionStatus": "resolved",
+    "feesEnabled": false
+  },
+  "synthetic_prices": ["0.30", "0.30", "0.50", "0.50"]
+}
