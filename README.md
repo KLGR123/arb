@@ -73,6 +73,8 @@ uv run --locked pytest -q
 
 API 文档位于 http://127.0.0.1:8000/docs。POST /backtests 入队并返回 run_id；GET /backtests/{id} 返回状态、metrics、equity、fills 和分阶段结果。默认 SQLite 位于 research/.state，API 与 worker 必须使用相同路径。realistic 请求会先发布 fast 草稿，再将最终结果挂到同一 run；也可用 POST /backtests/{id}/realistic 升级已有 fast run。当前只提供离线合成 Dataset，不代表生产数据注册服务。
 
+离线做市原型可通过 `uv run --locked python -m arb_research.mm --sample crypto` 运行（也支持 `sports`、`politics`）。输出 L2 排队近似成交、PnL 分解、估算返佣/流动性奖励和逆向选择统计；样本均为手工合成。该 CLI 独立于 Web 和双引擎 API，使用方法及近似边界见 [做市回测](docs/mm-backtest.md)。
+
 - VectorBT 0.28.5：四个固定价格 `[100,101,102,103]`，验证内置持有计算将 1000 变为 1030。
 - NautilusTrader 1.231.0：内存模拟场所接收四根合成 K 线，只计数，断言全部处理且订单数为零。
 - 固定 Python 3.12、pandas 2.x、VectorBT 0.28.5、NautilusTrader 1.x 作为本票验证基线；VectorBT 1.2 要求 pandas 3，留待一起升级验证。Plotly 限定 `<7`，因为 VectorBT 0.28 的主题仍使用 Plotly 7 已移除的 `scattermapbox`。
