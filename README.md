@@ -1,6 +1,6 @@
 # arb
 
-crypto / Polymarket 研究产品的最小地基。目前提供 TanStack Start SSR 示例页、独立回测页 MVP、shadcn/ui 与 beUI 组件和 Vela 图容器，以及 Python 双引擎异步回测 API。API 可在已发布的离线合成快照上运行 VectorBT / NautilusTrader；回测页默认回放 ARB-4 的完整双引擎录制结果，配置表单仍生成本地 stub。Polymarket 公共历史数据可显式同步到本地；没有实盘下单服务或密钥配置。
+crypto / Polymarket 研究产品的最小地基。目前提供 TanStack Start SSR 示例页、独立回测页 MVP、shadcn/ui 与 beUI 组件和 Vela 图容器，以及 Python 双引擎异步回测 API。API 可在已发布的离线合成快照上运行 VectorBT / NautilusTrader；回测页默认回放 ARB-4 的完整双引擎录制结果，配置表单仍生成本地 stub。Polymarket 公共历史数据可显式同步到本地；另提供独立的只读公开 CLOB market 录制与 L2 重放 CLI，见 [盘口录制运行说明](docs/orderbook-recorder.md)。没有实盘下单服务或密钥配置。
 
 ## 目录约定
 

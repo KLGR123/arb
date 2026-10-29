@@ -1,5 +1,5 @@
 version = 1
-revision = 5
+revision = 3
 requires-python = "==3.12.*"
 
 [[package]]
@@ -63,6 +63,7 @@ dependencies = [
     { name = "pydantic" },
     { name = "uvicorn" },
     { name = "vectorbt" },
+    { name = "websockets" },
 ]
 
 [package.optional-dependencies]
@@ -90,6 +91,7 @@ requires-dist = [
     { name = "pydantic", specifier = ">=2.11,<3" },
     { name = "uvicorn", specifier = ">=0.34,<1" },
     { name = "vectorbt", specifier = "==0.28.5" },
+    { name = "websockets", specifier = ">=15,<16" },
 ]
 provides-extras = ["polymarket-validation"]
 
