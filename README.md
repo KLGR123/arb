@@ -1,6 +1,6 @@
 # arb
 
-crypto / Polymarket 研究产品的最小地基。目前提供 TanStack Start SSR 示例页、shadcn/ui 组件和 Vela 假数据图，以及两个独立 Python 引擎 smoke。没有业务策略、真实行情、下单服务或密钥配置。
+crypto / Polymarket 研究产品的最小地基。目前提供 TanStack Start SSR 示例页、独立回测页 MVP、shadcn/ui 与 beUI 组件和 Vela 图容器，以及两个独立 Python 引擎 smoke。回测页仅生成本地 stub run，不执行策略；没有真实行情、下单服务或密钥配置。
 
 ## 目录约定
 
@@ -9,6 +9,7 @@ apps/web/                  TanStack Start + React + TypeScript
   src/routes/              文件路由（__root.tsx 为文档壳，index.tsx 为示例页）
   src/components/ui/       shadcn CLI 生成的源码，可直接修改
   src/components/          产品组件，含浏览器端 Vela 包装
+  src/features/backtest/   回测专属配置、演示目录、本地 stub 与空态图表
   src/lib/                 前端工具和固定合成数据
 research/                  独立 Python 项目及 uv.lock
   src/arb_research/         双引擎依赖 smoke；不是编排接口
@@ -27,6 +28,8 @@ npm run dev
 
 页面展示 shadcn Button / Badge / Card 和 `@luxalgo/vela` 合成小时 K 线，按钮可切换 48/96 根数据。数据时间从 2026-01-01 UTC 开始，数值不代表任何真实资产。页面不会请求行情服务，Vela 通过客户端动态导入避免 SSR 访问 DOM；切换数据和卸载时销毁图表实例。Vela™ 可见署名保留。
 
+从首页进入 `/backtest`：配置已发布的演示 Dataset、fast / realistic 引擎、均线参数、费用、滑点与 UTC 区间，创建并显示唯一 `stub-` run id。桌面三栏，手机纵向布局。preset 通过“保存预设 / 加载预设”存于当前浏览器，保存覆盖一个槽位。数据与结果均为 UI stub，未接真实回测 API。状态隔离、校验和 ARB-4 适配说明见 [回测页说明](docs/backtest-ui.md)。
+
 ```bash
 npm run build       # 生成 apps/web/dist/{client,server}
 npm run typecheck  # 首次先 build，生成 routeTree.gen.ts
@@ -35,11 +38,11 @@ npm run preview    # 本地预览生产 SSR 构建
 
 `preview` 用于本地验证；正式部署适配器、域名和服务托管留待部署任务。Vela 自身独立 chunk 约 1.1 MB（gzip 约 308 KB），当前最小示例接受这项体积警告。
 
-Tailwind v4 使用 CSS 主题变量。`apps/web/components.json` 已配置 shadcn 别名和公开 `@beui` registry，可按需要加入 Motion 组件；当前示例只用 shadcn，不额外引入 Motion：
+Tailwind v4 使用 CSS 主题变量。`apps/web/components.json` 已配置 shadcn 别名和公开 `@beui` registry；回测运行按钮已使用 beUI `button-base` + Motion，其余组件按需添加：
 
 ```bash
 cd apps/web
-npx shadcn@latest add @beui/button
+npx shadcn@latest add @beui/button-base
 ```
 
 ## 研究侧本地启动
