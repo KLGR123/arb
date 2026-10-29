@@ -6,18 +6,19 @@
     "20006732765674855733524007935991362439352594042415161039767275461950712817548",
     "54533569528927082430133047556849600511985191158927477533124630301934489498530"
   ],
-  "requested_duration_seconds": 45,
-  "first_received_ns": 1793292306388339008,
-  "last_received_ns": 1793292352764014041,
-  "last_market_received_ns": 1793292351352410678,
-  "start_utc": "2026-10-29T16:45:06.388339+00:00",
-  "end_utc": "2026-10-29T16:45:52.764014+00:00",
+  "requested_duration_seconds": 180,
+  "first_received_ns": 1793292922944336903,
+  "last_received_ns": 1793293104267629529,
+  "last_market_received_ns": 1793293102367213618,
+  "start_utc": "2026-10-29T16:55:22.944337+00:00",
+  "end_utc": "2026-10-29T16:58:24.267630+00:00",
   "event_counts": {
     "started": 1,
-    "connected": 1,
-    "book": 12,
-    "price_change": 980,
-    "last_trade_price": 5,
+    "connected": 2,
+    "book": 22,
+    "price_change": 3420,
+    "last_trade_price": 9,
+    "disconnected": 1,
     "stopped": 1
   },
   "geoblock": {
@@ -29,14 +30,42 @@
     "allowed": false,
     "reason": "geoblocked"
   },
-  "pings": 4,
-  "pongs": 4,
-  "observed_gaps": [],
-  "snapshot_rows": 18,
+  "public_http_status": {
+    "gamma_markets": 200,
+    "clob_time": 200
+  },
+  "pings": 16,
+  "pongs": 16,
+  "reconnects": 1,
+  "observed_gaps": [
+    {
+      "kind": "server_hash_conflict",
+      "received_ns": 1793293053807783489,
+      "session": "95399952f79a40c3800ff6acec1de59f",
+      "seq": 2557,
+      "asset_id": "20006732765674855733524007935991362439352594042415161039767275461950712817548"
+    },
+    {
+      "kind": "server_hash_conflict",
+      "received_ns": 1793293053807783489,
+      "session": "95399952f79a40c3800ff6acec1de59f",
+      "seq": 2557,
+      "asset_id": "54533569528927082430133047556849600511985191158927477533124630301934489498530"
+    },
+    {
+      "kind": "disconnected",
+      "received_ns": 1793293055132085724,
+      "session": "95399952f79a40c3800ff6acec1de59f",
+      "seq": 2558,
+      "asset_id": null
+    }
+  ],
+  "snapshot_rows": 34,
   "sha256": {
-    "date=2026-10-29/market=0x7586a96520578acaaaa4ea84a2582f197f84255da1f3392a7aa300386c187b37/events.2c5fd3632ff7451490d211484d5e029a.jsonl": "a9393d91ce355df2b871249595393ae3a53e16946eeeebcec714f81383750e49",
-    "date=2026-10-29/market=0x7586a96520578acaaaa4ea84a2582f197f84255da1f3392a7aa300386c187b37/snapshots.2c5fd3632ff7451490d211484d5e029a.jsonl": "feddf32f828d82a2390aa2be833b6b59ab49bb5b890b637cd98cc21c7b0ca218",
-    "date=2026-10-29/market=_control/events.2c5fd3632ff7451490d211484d5e029a.jsonl": "03b50d318372ab666174c732cb8effe81fd3e4e00a46b9d0fa383dda6ffe8a35",
-    "metrics.json": "a0327e8aa54a9e368150309caac2c34c8add88eb82b628ab175790bd78759257"
+    "metrics.json": "f2c4333e36ad6a67e1f839b10e58c698cd459d29f6216218e461b0d21ee2e458",
+    "date=2026-10-29/market=0x7586a96520578acaaaa4ea84a2582f197f84255da1f3392a7aa300386c187b37/events.95399952f79a40c3800ff6acec1de59f.jsonl": "fb320ad973e1b05d7275d07d2bad50b11a51cd6190578548b924ce42bcca2aa0",
+    "date=2026-10-29/market=0x7586a96520578acaaaa4ea84a2582f197f84255da1f3392a7aa300386c187b37/snapshots.95399952f79a40c3800ff6acec1de59f.jsonl": "ed790830f48136cf4a79ef55e143a49513b2cbd8aaf136ffab664769eeca2c96",
+    "date=2026-10-29/market=_control/events.95399952f79a40c3800ff6acec1de59f.jsonl": "7938c7bae5994b215fb44fefcecee2b9a432f7e52754067dde59ab5a1b903aad",
+    "date=2026-10-29/market=_control/gaps.95399952f79a40c3800ff6acec1de59f.jsonl": "02f472d045fc7037976d68b001058842ad4521767f7743efed851ebfdcc6ca5f"
   }
 }

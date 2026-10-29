@@ -28,7 +28,8 @@ SIGINT / SIGTERM 会落盘、写停止事件并关闭连接。程序不会自动
 
 每次录制通过 main 的 `arb_research.compliance.GeoblockClient` 检查公共数据访问出口
 （进程内缓存 60 秒）；仅注入公共 HTTP fetch，复用严格解析、退避和共享预算。
-返回不完整或检查失败时录制退出。`blocked=true` / US/VA 是交易限制信息，按用户授权可继续
+返回不完整或检查失败时告警并继续公共录制，CLI 输出保留 `error`，指标
+`geoblock_check_failed=1`；检查不是公共录制的硬门槛。`blocked=true` / US/VA 是交易限制信息，按用户授权可继续
 访问公开只读行情；该结果保留在 CLI 输出与指标中，不能解释为交易许可。
 main 的交易 guard 和默认拒绝路径保持原样，读行情不会改变交易开关。
 
@@ -186,23 +187,28 @@ available_books，以及磁盘空闲容量。不要仅用市场无成交判断�
 `research/tests/fixtures/orderbook-live/` 保存未经改写的真实 events、周期 snapshots、
 最终 metrics，以及 `capture.json` 中的时间范围、文件 SHA-256 和运行摘要。
 样本来自活跃的 “Will Benjamin Netanyahu be the next Prime Minister of Israel?” 市场，
-订阅两个 outcome token；UTC 2026-10-29 16:45:06–16:45:52，设定录制 45 秒（另含连接关闭时间）。
+订阅两个 outcome token；UTC 2026-10-29 16:55:22–16:58:24，设定录制 180 秒（另含连接关闭时间）。
 
-- 1,000 条日志：12 条 book、980 条 price_change、5 条 last_trade_price、3 条生命周期事件。
-- 18 条周期/退出快照；PING/PONG 各 4 次；未观察到缺口；最后市场事件时两个盘口均可重建。
+- 3,456 条日志：22 条 book、3,420 条 price_change、9 条 last_trade_price、5 条生命周期事件。
+- 34 条周期/退出快照；PING/PONG 各 16 次；最后市场事件时两个盘口均可重建。
+- `gaps` 报告 2 条 `server_hash_conflict` 和 1 条 `disconnected`。同一服务端 hash 对应的
+  价位数量从 197597.89 变为 197587.89，触发两个 outcome 的保守失效与一次重连；重新收到
+  两个完整 book 后恢复。这是观察到的一致性异常，不能仅据此断言上游丢包。
 - 样本期间没有 tick_size_change；该类型由受控离线 fixture 验证。
 - geoblock 返回 `blocked=true`；独立调用未修改的共享交易 guard，仍以 `geoblocked` 拒绝。
-- 包含元数据约 0.86 MiB。样本不含代理配置或认证信息；不是连续 7 天运行证明。
+- Gamma markets 和 CLOB `/time` 经显式公共代理均返回 200。
+- 包含元数据约 2.85 MiB。样本不含代理配置或认证信息；不是连续 7 天运行证明。
 
 从 `research/` 离线复现：
 
 ```bash
 uv run --locked python -m arb_research.orderbook replay tests/fixtures/orderbook-live \
-  --at-ns 1793292351352410678
+  --at-ns 1793293102367213618
 uv run --locked python -m arb_research.orderbook gaps tests/fixtures/orderbook-live
 uv run --locked python -m pytest -q tests/test_orderbook.py
 ```
 
 真实 fixture 测试将完整 book **到达之前**的增量重建结果，与下一条服务端权威 book 的所有
 价位和数量比较，避免仅验证“加载快照后等于自身”。另外验证原始文件校验和、两个盘口、
-心跳和快照数量。`gaps` 返回空列表只代表本样本未观察到支持检测的异常。
+心跳、快照数量与真实异常后的失效/恢复。重连后的首次完整 book 用于重新建立基准，
+不将缺口期间不可用的深度与其比较；缺口报告保留全部观察异常。

@@ -38,6 +38,7 @@ async def record(args):
     recorder = Recorder(args.output, assets, snapshot_seconds=args.snapshot_seconds)
     recorder.metrics["public_read_only"] = 1
     recorder.metrics["geoblock_blocked"] = int(geo["blocked"])
+    recorder.metrics["geoblock_check_failed"] = int(bool(geo.get("error")))
     await run_guarded(recorder, duration=args.duration)
     missing = set(assets) - recorder.seeded_assets
     if missing:

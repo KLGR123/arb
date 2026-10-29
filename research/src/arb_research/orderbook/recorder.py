@@ -107,7 +107,10 @@ async def resolve_assets(tokens, markets):
     result = await asyncio.to_thread(GEO_CLIENT.check)
     geo = {key: getattr(result, key) for key in ("blocked", "country", "region")}
     if result.error:
-        raise ValueError(f"geoblock unavailable: {result.error}; recording blocked")
+        # Advisory for public data only; the unchanged trading guard fails closed.
+        geo["error"] = result.error if result.error in {
+            "check_failed", "invalid_response", "http_error"} else "unavailable"
+        LOG.warning("geoblock unavailable; continuing public read-only recording; trading remains denied")
     # The configured route applies only to these fixed public endpoints.
     async with httpx.AsyncClient(proxy=public_proxy(), trust_env=False, timeout=10,
                                  follow_redirects=False) as client:
@@ -122,7 +125,7 @@ async def resolve_assets(tokens, markets):
             assets.update(json.loads(ids) if isinstance(ids, str) else ids)
     if not assets or len(assets) > 200 or any(not str(a).isdigit() for a in assets):
         raise ValueError("select 1..200 numeric outcome token IDs")
-    return sorted(assets), {key: geo.get(key) for key in ("blocked", "country", "region")}
+    return sorted(assets), geo
 
 
 class Recorder:

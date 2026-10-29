@@ -394,8 +394,39 @@ def test_http_retry_and_geo_guard_without_network(monkeypatch):
 
     monkeypatch.setattr(module, "GEO_CLIENT", GeoblockClient(
         fetch=lambda timeout: {"blocked": False}, sleep=lambda delay: None))
-    with pytest.raises(ValueError, match="geoblock unavailable"):
-        asyncio.run(module.resolve_assets(["123"], []))
+    assets, geo = asyncio.run(module.resolve_assets(["123"], []))
+    assert assets == ["123"] and geo["error"] == "invalid_response"
+
+
+def test_failed_geoblock_warns_but_records_public_data_and_denies_trading(tmp_path, monkeypatch, capsys, caplog):
+    from arb_research.compliance import (ComplianceDenied, ComplianceGuard,
+                                         ComplianceSettings, GeoblockClient)
+    from arb_research.orderbook import __main__ as cli
+    from arb_research.orderbook import recorder as module
+
+    private = "socks5h://fixture-secret@fixture.invalid:1080"
+
+    def unavailable(timeout):
+        raise OSError(private)
+
+    geo = GeoblockClient(fetch=unavailable, sleep=lambda _: None)
+    monkeypatch.setattr(module, "GEO_CLIENT", geo)
+
+    async def capture(recorder, **kwargs):
+        await recorder.run(duration=.01, connect=Connector([FakeSocket([json.dumps(BOOK)])]))
+
+    monkeypatch.setattr(module, "run_guarded", capture)
+    assert cli.main(["record", "--token", "123", "--output", str(tmp_path / "capture")]) == 0
+    result = json.loads(capsys.readouterr().out)
+    assert result["geoblock"]["error"] == "check_failed"
+    assert result["metrics"]["geoblock_check_failed"] == 1
+    assert result["trading_allowed"] is False
+    assert "continuing public read-only recording" in caplog.text
+    assert private not in caplog.text and private not in json.dumps(result)
+    guard = ComplianceGuard(ComplianceSettings(True, str(tmp_path / "audit.sqlite3")), geoblock=geo)
+    with pytest.raises(ComplianceDenied) as denied:
+        guard.require("order", caller="test.failed_geoblock_public_recorder")
+    assert denied.value.decision["reason"] == "geoblock_unavailable"
 
 
 def test_recorder_uses_shared_compliance_budget(monkeypatch):
@@ -490,8 +521,8 @@ def test_real_recording_rebuilds_deltas_to_authoritative_books():
     for relative, expected in capture["sha256"].items():
         assert hashlib.sha256((root / relative).read_bytes()).hexdigest() == expected
     rows = list(records(root))
-    assert len(rows) == 1000
-    deltas_seen, anchors = set(), 0
+    assert len(rows) == 3456
+    deltas_seen, anchors, reseeded = set(), 0, 0
 
     def numeric_depth(levels, reverse):
         return sorted([(Decimal(r["price"]), Decimal(r["size"])) for r in levels
@@ -505,16 +536,22 @@ def test_real_recording_rebuilds_deltas_to_authoritative_books():
             # Compare the pre-snapshot delta-built depth with the SERVER's next
             # full book, not a state produced after applying that snapshot.
             prior = replay(root, row["received_ns"] - 1)["books"][event["asset_id"]]
-            assert prior["available"]
+            if not prior["available"]:
+                # A detected gap requires this authoritative snapshot to reseed.
+                reseeded += 1
+                continue
             assert numeric_depth(prior["bids"], True) == numeric_depth(event["bids"], True)
             assert numeric_depth(prior["asks"], False) == numeric_depth(event["asks"], False)
             anchors += 1
     assert anchors >= 2
     final = replay(root, capture["last_market_received_ns"])
     assert len(final["books"]) == 2 and all(b["available"] for b in final["books"].values())
-    assert not final["gaps"]
-    assert capture["snapshot_rows"] == 18
-    assert capture["pings"] == capture["pongs"] == 4
+    assert final["gaps"] == capture["observed_gaps"]
+    assert sorted(g["kind"] for g in final["gaps"]) == [
+        "disconnected", "server_hash_conflict", "server_hash_conflict"]
+    assert reseeded == 2 and capture["reconnects"] == 1
+    assert capture["snapshot_rows"] == 34
+    assert capture["pings"] == capture["pongs"] == 16
 
 
 def test_proxy_failures_reconnect_without_logging_route(tmp_path, monkeypatch, caplog):
