@@ -2,6 +2,8 @@
 
 锁定 `nautilus_trader==1.231.0`，统一 SDK `polymarket-client==0.15.0`。加载器使用 Nautilus 核心 `BinaryOption` / `TradeTick` / `QuoteTick`，绕过原适配器中已退役的 Data API v1 历史路由。没有升级引擎，没有实例化执行客户端、签名器或钱包。
 
+ARB-29 收紧：生产转换现在仅接受明确 Protocol `v1`，Protocol `v2` 不再因 synthetic `positionIds` 映射而放行。需要历史已知条款与严格前视隔离时，使用[冻结成交转换层](nautilus-frozen-ticks.md)；本页的捕获快照回放仍只是数据与费用记账 smoke。
+
 ## 用法
 
 仓库根目录进入 `research/`：
@@ -51,7 +53,7 @@ for token in tokens:
 | --- | --- |
 | Gamma event ID → market ID → `conditionId` | 从事件元数据选市场，再读取市场详情；instrument ID 为 `{condition}-{token}.POLYMARKET` |
 | `version=v1` / `clobTokenIds` | 按 SDK 的 outcome 顺序映射两个 CTF token |
-| `version=v2` / `positionIds` | 映射两个 Protocol V2 position，仍作为离线二元 payoff instrument；缺版本 / 缺 ID 拒绝 |
+| `version=v2` / `positionIds` | 拒绝；缺少专用的身份、费用、结算资格 fixture，不提供放行开关 |
 | `outcomes` / `question` / `endDate` | `outcome` / `description` / `expiration_ns`；activation 未知记 0 |
 | `feeSchedule.rate`、exponent=1 | `taker_fee`，maker fee=0；缺 schedule 只有明确 `feesEnabled=false` 才按零处理 |
 | Data v2 `token_id`, `condition_id` | 校验市场关联并选择对应 token；未知 token 拒绝 |
@@ -70,7 +72,7 @@ for token in tokens:
 
 Data API v1 于 2026-10-24 退役。本实现仅 GET `/v2/trades`、`/v2/prices-history`、`/v2/resolutions` 和 Gamma event/market 详情；没有 `/trades` 兼容回退。价格/结算由 ARB-7 统一同步并读取本地缓存，collect 只额外请求 Gamma 元数据与成交。v2 使用 `data/pagination` envelope、snake_case、`condition` 和 opaque cursor，拒绝旧 `market` / `offset`。参考[官方迁移说明](https://docs.polymarket.com/migrate/data-api-v1-to-v2)。
 
-**CLOB API V2 与 market Protocol V2 是不同维度。** 本次两个真实已结算样本均由 Gamma 明确标为 Protocol `v1`，但所有历史请求均走现行 Data API v2。Protocol `v2` position 映射有受控契约测试，尚无真实 Protocol V2 历史回测证据；也不声称 Nautilus 原生适配器已支持其在线交易。
+**CLOB API V2 与 market Protocol V2 是不同维度。** 本次两个真实已结算样本均由 Gamma 明确标为 Protocol `v1`，但所有历史请求均走现行 Data API v2。旧的 Protocol `v2` position 受控映射测试不构成资格证明；ARB-29 已改为拒绝测试。没有真实 Protocol V2 历史回测证据，也不声称 Nautilus 原生适配器已支持其在线交易。
 
 市场级 `/v2/trades` 只提供固定三年窗口，忽略请求的 `start/end`；所以先遍历完整 cursor，再本地过滤。默认最小成交量 0.01 share 以下不保证覆盖。接口不暴露 fill sequence / log index，无法严格恢复同一秒内链上先后；回放反转 newest-first 返回流并稳定按秒排序，保留 multiplicity，不臆造亚秒时间。相同录制输入的 TradeId 稳定，不保证不同抓取范围间的 occurrence 编号相同。见[官方成交契约](https://docs.polymarket.com/api-reference/trades/list-trades)。
 

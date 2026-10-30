@@ -1,0 +1,138 @@
+{
+  "provenance": "Synthetic offline contract: identity, terms and trades are controlled. Not a recorded historical fee/settlement qualification.",
+  "event": {
+    "id": "event-ctf",
+    "closed": true,
+    "markets": [
+      {
+        "id": "market-ctf",
+        "event_id": "event-ctf",
+        "condition_id": "0x1111111111111111111111111111111111111111111111111111111111111111",
+        "protocol": "v1",
+        "tokens": [
+          {
+            "id": "101",
+            "outcome": "Yes",
+            "outcome_index": 0,
+            "protocol": "v1"
+          },
+          {
+            "id": "202",
+            "outcome": "No",
+            "outcome_index": 1,
+            "protocol": "v1"
+          }
+        ],
+        "closed": true,
+        "question": "Synthetic terminal description; must not reach instrument"
+      }
+    ]
+  },
+  "terms": {
+    "market-ctf": {
+      "event_id": "event-ctf",
+      "market_id": "market-ctf",
+      "condition_id": "0x1111111111111111111111111111111111111111111111111111111111111111",
+      "known_at_ns": 1793280000000000000,
+      "valid_until_ns": 1793290000000000000,
+      "expiration_ns": 1793289600000000000,
+      "fees_enabled": true,
+      "fee_rate": "0.07",
+      "fee_exponent": 1,
+      "valid_from_ns": 1793280000000000000
+    }
+  },
+  "snapshot": {
+    "schema_version": 1,
+    "source": "synthetic_contract",
+    "event": {
+      "id": "event-ctf",
+      "winner": "Yes"
+    },
+    "markets": [
+      {
+        "market": {
+          "id": "market-ctf",
+          "conditionId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+          "version": "v1",
+          "clobTokenIds": "[\"101\", \"202\"]",
+          "outcomes": "[\"Yes\", \"No\"]",
+          "closed": true,
+          "outcomePrices": "[1,0]",
+          "feeSchedule": {
+            "rate": "0.99"
+          },
+          "endDate": "2099-01-01T00:00:00Z"
+        },
+        "trades": [
+          {
+            "condition_id": "0x1111111111111111111111111111111111111111111111111111111111111111",
+            "token_id": "101",
+            "outcome": "Yes",
+            "outcome_index": 0,
+            "side": "SELL",
+            "timestamp": 1793286002,
+            "price": "0.5",
+            "size": "1",
+            "transaction_hash": "0x3333333333333333333333333333333333333333333333333333333333333333",
+            "proxy_wallet": "0x2222222222222222222222222222222222222222"
+          },
+          {
+            "condition_id": "0x1111111111111111111111111111111111111111111111111111111111111111",
+            "token_id": "202",
+            "outcome": "No",
+            "outcome_index": 1,
+            "side": "BUY",
+            "timestamp": 1793286001,
+            "price": "0.829999997",
+            "size": "0.000001",
+            "transaction_hash": "0x3333333333333333333333333333333333333333333333333333333333333333",
+            "proxy_wallet": "0x2222222222222222222222222222222222222222"
+          },
+          {
+            "condition_id": "0x1111111111111111111111111111111111111111111111111111111111111111",
+            "token_id": "101",
+            "outcome": "Yes",
+            "outcome_index": 0,
+            "side": "BUY",
+            "timestamp": 1793286000,
+            "price": "0.30",
+            "size": "10.000001",
+            "transaction_hash": "0x3333333333333333333333333333333333333333333333333333333333333333",
+            "proxy_wallet": "0x2222222222222222222222222222222222222222"
+          },
+          {
+            "condition_id": "0x1111111111111111111111111111111111111111111111111111111111111111",
+            "token_id": "101",
+            "outcome": "Yes",
+            "outcome_index": 0,
+            "side": "BUY",
+            "timestamp": 1793286000,
+            "price": "0.30",
+            "size": "10.000001",
+            "transaction_hash": "0x3333333333333333333333333333333333333333333333333333333333333333",
+            "proxy_wallet": "0x2222222222222222222222222222222222222222"
+          }
+        ],
+        "resolutions": [
+          {
+            "winner": "Yes",
+            "payouts": [
+              1,
+              0
+            ]
+          }
+        ],
+        "prices": {
+          "101": [
+            {
+              "timestamp": 1793289600,
+              "price": 1,
+              "resolution_seconds": 0
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

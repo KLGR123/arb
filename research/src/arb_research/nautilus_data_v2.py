@@ -247,6 +247,10 @@ def fee_rate(raw):
 
 
 def instruments_from_market(raw, *, event_id=None):
+    # A synthetic positionIds mapping is not evidence of correct V2 fees or
+    # settlement. Keep every production conversion entry point closed to V2.
+    if raw.get("version") != "v1":
+        raise DataError("Only explicit Protocol v1/CTF is qualified; Protocol V2 is disabled")
     market = parse(SDKMarket, raw)
     protocol = market.version.value if market.version else "unknown"
     if protocol not in ("v1", "v2") or not market.condition_id:
@@ -261,7 +265,7 @@ def instruments_from_market(raw, *, event_id=None):
         raise DataError("Market end date required for BinaryOption expiration")
     result, ids = [], set()
     for outcome in (market.outcomes.yes, market.outcomes.no):
-        token = outcome.position_id if protocol == "v2" else outcome.token_id
+        token = outcome.token_id
         if token is None or str(token) in ids:
             raise DataError("Distinct protocol-specific outcome IDs required")
         token = str(token)
