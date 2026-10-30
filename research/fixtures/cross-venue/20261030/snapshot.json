@@ -1,0 +1,4495 @@
+{
+  "as_of": "2026-10-30T01:37:51.081810+00:00",
+  "polymarket": [
+    {
+      "venue": "polymarket",
+      "id": "3215005",
+      "event_id": "770450",
+      "title": "Will the Fed decrease interest rates by 50+ bps after the December 2026 meeting?",
+      "event_title": "Fed Decision in December?",
+      "close_time": "2026-12-09T23:59:00Z",
+      "settlement_time": "2026-12-09T23:59:00Z",
+      "rules": "The FED interest rates are defined in this market by the upper bound of the target federal funds range. The decisions on the target federal funds range are made by the Federal Open Market Committee (FOMC) meetings.\n\nThis market will resolve to the amount of basis points the upper bound of the target federal funds rate is changed by versus the level it was prior to the Federal Reserve's December 2026 meeting.\n\nIf the target federal funds rate is changed to a level not expressed in the displayed options, the change will be rounded up to the nearest 25 and will resolve to the relevant bracket. (e.g. if there's a cut/increase of 12.5 bps it will be considered to be 25 bps)\n\nThe resolution source for this market is the FOMC’s statement after its meeting scheduled for December 8-9, 2026 according to the official calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm.\n\nThe level and change of the target federal funds rate is also published at the official website of the Federal Reserve at https://www.federalreserve.gov/monetarypolicy/openmarket.htm.\n\nThis market may resolve as soon as the FOMC’s statement for their December meeting with relevant data is issued. If no statement is released by the end date of the next scheduled meeting, this market will resolve to the \"No change\" bracket.",
+      "resolution_source": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+      "protocol": "v1",
+      "active": true,
+      "tokens": {
+        "yes": "17640596861394454242836532536014033416733783473450136742726948856144855149507",
+        "no": "104236736263775307891497202874191911203963566711959725788584750440530976742193"
+      }
+    },
+    {
+      "venue": "polymarket",
+      "id": "3215006",
+      "event_id": "770450",
+      "title": "Will the Fed decrease interest rates by 25 bps after the December 2026 meeting?",
+      "event_title": "Fed Decision in December?",
+      "close_time": "2026-12-09T23:59:00Z",
+      "settlement_time": "2026-12-09T23:59:00Z",
+      "rules": "The FED interest rates are defined in this market by the upper bound of the target federal funds range. The decisions on the target federal funds range are made by the Federal Open Market Committee (FOMC) meetings.\n\nThis market will resolve to the amount of basis points the upper bound of the target federal funds rate is changed by versus the level it was prior to the Federal Reserve's December 2026 meeting.\n\nIf the target federal funds rate is changed to a level not expressed in the displayed options, the change will be rounded up to the nearest 25 and will resolve to the relevant bracket. (e.g. if there's a cut/increase of 12.5 bps it will be considered to be 25 bps)\n\nThe resolution source for this market is the FOMC’s statement after its meeting scheduled for December 8-9, 2026 according to the official calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm.\n\nThe level and change of the target federal funds rate is also published at the official website of the Federal Reserve at https://www.federalreserve.gov/monetarypolicy/openmarket.htm.\n\nThis market may resolve as soon as the FOMC’s statement for their December meeting with relevant data is issued. If no statement is released by the end date of the next scheduled meeting, this market will resolve to the \"No change\" bracket.",
+      "resolution_source": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+      "protocol": "v1",
+      "active": true,
+      "tokens": {
+        "yes": "77367448845023382525249480243608609306658725883285195065573683809293972009019",
+        "no": "23677896678650147625251750117853328843601853501710889530409633595389256242910"
+      }
+    },
+    {
+      "venue": "polymarket",
+      "id": "3215007",
+      "event_id": "770450",
+      "title": "Will there be no change in Fed interest rates after the December 2026 meeting?",
+      "event_title": "Fed Decision in December?",
+      "close_time": "2026-12-09T23:59:00Z",
+      "settlement_time": "2026-12-09T23:59:00Z",
+      "rules": "The FED interest rates are defined in this market by the upper bound of the target federal funds range. The decisions on the target federal funds range are made by the Federal Open Market Committee (FOMC) meetings.\n\nThis market will resolve to the amount of basis points the upper bound of the target federal funds rate is changed by versus the level it was prior to the Federal Reserve's December 2026 meeting.\n\nIf the target federal funds rate is changed to a level not expressed in the displayed options, the change will be rounded up to the nearest 25 and will resolve to the relevant bracket. (e.g. if there's a cut/increase of 12.5 bps it will be considered to be 25 bps)\n\nThe resolution source for this market is the FOMC’s statement after its meeting scheduled for December 8-9, 2026 according to the official calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm.\n\nThe level and change of the target federal funds rate is also published at the official website of the Federal Reserve at https://www.federalreserve.gov/monetarypolicy/openmarket.htm.\n\nThis market may resolve as soon as the FOMC’s statement for their December meeting with relevant data is issued. If no statement is released by the end date of the next scheduled meeting, this market will resolve to the \"No change\" bracket.",
+      "resolution_source": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+      "protocol": "v1",
+      "active": true,
+      "tokens": {
+        "yes": "42865728742506860386768556888821101266630139112044622335353850919229585308601",
+        "no": "8077351031134730167836761678618167504307708651130165095377248922919635337796"
+      }
+    },
+    {
+      "venue": "polymarket",
+      "id": "3215008",
+      "event_id": "770450",
+      "title": "Will the Fed increase interest rates by 25 bps after the December 2026 meeting?",
+      "event_title": "Fed Decision in December?",
+      "close_time": "2026-12-09T23:59:00Z",
+      "settlement_time": "2026-12-09T23:59:00Z",
+      "rules": "The FED interest rates are defined in this market by the upper bound of the target federal funds range. The decisions on the target federal funds range are made by the Federal Open Market Committee (FOMC) meetings.\n\nThis market will resolve to the amount of basis points the upper bound of the target federal funds rate is changed by versus the level it was prior to the Federal Reserve's December 2026 meeting.\n\nIf the target federal funds rate is changed to a level not expressed in the displayed options, the change will be rounded up to the nearest 25 and will resolve to the relevant bracket. (e.g. if there's a cut/increase of 12.5 bps it will be considered to be 25 bps)\n\nThe resolution source for this market is the FOMC’s statement after its meeting scheduled for December 8-9, 2026 according to the official calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm.\n\nThe level and change of the target federal funds rate is also published at the official website of the Federal Reserve at https://www.federalreserve.gov/monetarypolicy/openmarket.htm.\n\nThis market may resolve as soon as the FOMC’s statement for their December meeting with relevant data is issued. If no statement is released by the end date of the next scheduled meeting, this market will resolve to the \"No change\" bracket.",
+      "resolution_source": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+      "protocol": "v1",
+      "active": true,
+      "tokens": {
+        "yes": "111662129652828266889360374468657435151479595863413519836161861837506140152890",
+        "no": "94483965432909797688470702512207472940215538148754820061518518664128018848687"
+      }
+    },
+    {
+      "venue": "polymarket",
+      "id": "3215009",
+      "event_id": "770450",
+      "title": "Will the Fed increase interest rates by 50+ bps after the December 2026 meeting?",
+      "event_title": "Fed Decision in December?",
+      "close_time": "2026-12-09T23:59:00Z",
+      "settlement_time": "2026-12-09T23:59:00Z",
+      "rules": "The FED interest rates are defined in this market by the upper bound of the target federal funds range. The decisions on the target federal funds range are made by the Federal Open Market Committee (FOMC) meetings.\n\nThis market will resolve to the amount of basis points the upper bound of the target federal funds rate is changed by versus the level it was prior to the Federal Reserve's December 2026 meeting.\n\nIf the target federal funds rate is changed to a level not expressed in the displayed options, the change will be rounded up to the nearest 25 and will resolve to the relevant bracket. (e.g. if there's a cut/increase of 12.5 bps it will be considered to be 25 bps)\n\nThe resolution source for this market is the FOMC’s statement after its meeting scheduled for December 8-9, 2026 according to the official calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm.\n\nThe level and change of the target federal funds rate is also published at the official website of the Federal Reserve at https://www.federalreserve.gov/monetarypolicy/openmarket.htm.\n\nThis market may resolve as soon as the FOMC’s statement for their December meeting with relevant data is issued. If no statement is released by the end date of the next scheduled meeting, this market will resolve to the \"No change\" bracket.",
+      "resolution_source": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+      "protocol": "v1",
+      "active": true,
+      "tokens": {
+        "yes": "35090254409399344650860070211816464534198960801264823587796928404808383727584",
+        "no": "17037715451587457598270390992151934195448806241696976473961259598235638233970"
+      }
+    }
+  ],
+  "kalshi": [
+    {
+      "venue": "kalshi",
+      "id": "KXFED-26DEC-T2.75",
+      "event_id": "KXFED-26DEC",
+      "title": "Will the upper bound of the federal funds rate be above 2.75% following the Fed's Dec 9, 2026 meeting? Above 2.75%",
+      "event_title": "Fed funds rate after Dec 2026 meeting?",
+      "close_time": "2026-12-09T18:55:00Z",
+      "settlement_time": "2026-12-09T19:05:00Z",
+      "rules": "If the upper bound of the target federal funds rate published on the Federal Reserve's official website is greater than 2.75% following the Federal Reserve's Dec 9, 2026 meeting, then the market resolves to Yes.\nThis market will expire the first 2:05 PM ET following the release of a Federal Reserve statement for their Dec 9, 2026 meeting or one week following the last day of that meeting.",
+      "resolution_source": [],
+      "contract_terms_url": null,
+      "active": true,
+      "fee_type": null,
+      "fee_multiplier": null
+    },
+    {
+      "venue": "kalshi",
+      "id": "KXFED-26DEC-T3.00",
+      "event_id": "KXFED-26DEC",
+      "title": "Will the upper bound of the federal funds rate be above 3.00% following the Fed's Dec 9, 2026 meeting? Above 3.00%",
+      "event_title": "Fed funds rate after Dec 2026 meeting?",
+      "close_time": "2026-12-09T18:55:00Z",
+      "settlement_time": "2026-12-09T19:05:00Z",
+      "rules": "If the upper bound of the target federal funds rate published on the Federal Reserve's official website is greater than 3.00% following the Federal Reserve's Dec 9, 2026 meeting, then the market resolves to Yes.\nThis market will expire the first 2:05 PM ET following the release of a Federal Reserve statement for their Dec 9, 2026 meeting or one week following the last day of that meeting.",
+      "resolution_source": [],
+      "contract_terms_url": null,
+      "active": true,
+      "fee_type": null,
+      "fee_multiplier": null
+    },
+    {
+      "venue": "kalshi",
+      "id": "KXFED-26DEC-T3.25",
+      "event_id": "KXFED-26DEC",
+      "title": "Will the upper bound of the federal funds rate be above 3.25% following the Fed's Dec 9, 2026 meeting? Above 3.25%",
+      "event_title": "Fed funds rate after Dec 2026 meeting?",
+      "close_time": "2026-12-09T18:55:00Z",
+      "settlement_time": "2026-12-09T19:05:00Z",
+      "rules": "If the upper bound of the target federal funds rate published on the Federal Reserve's official website is greater than 3.25% following the Federal Reserve's Dec 9, 2026 meeting, then the market resolves to Yes.\nThis market will expire the first 2:05 PM ET following the release of a Federal Reserve statement for their Dec 9, 2026 meeting or one week following the last day of that meeting.",
+      "resolution_source": [
+        {
+          "name": "Federal Reserve Board of Governors",
+          "url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
+        }
+      ],
+      "contract_terms_url": "https://assets.kalshi.com/contract_terms/FED.pdf",
+      "active": true,
+      "fee_type": "quadratic_with_maker_fees",
+      "fee_multiplier": 1
+    },
+    {
+      "venue": "kalshi",
+      "id": "KXFED-26DEC-T3.50",
+      "event_id": "KXFED-26DEC",
+      "title": "Will the upper bound of the federal funds rate be above 3.50% following the Fed's Dec 9, 2026 meeting? Above 3.50%",
+      "event_title": "Fed funds rate after Dec 2026 meeting?",
+      "close_time": "2026-12-09T18:55:00Z",
+      "settlement_time": "2026-12-09T19:05:00Z",
+      "rules": "If the upper bound of the target federal funds rate published on the Federal Reserve's official website is greater than 3.50% following the Federal Reserve's Dec 9, 2026 meeting, then the market resolves to Yes.\nThis market will expire the first 2:05 PM ET following the release of a Federal Reserve statement for their Dec 9, 2026 meeting or one week following the last day of that meeting.",
+      "resolution_source": [
+        {
+          "name": "Federal Reserve Board of Governors",
+          "url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
+        }
+      ],
+      "contract_terms_url": "https://assets.kalshi.com/contract_terms/FED.pdf",
+      "active": true,
+      "fee_type": "quadratic_with_maker_fees",
+      "fee_multiplier": 1
+    },
+    {
+      "venue": "kalshi",
+      "id": "KXFED-26DEC-T3.75",
+      "event_id": "KXFED-26DEC",
+      "title": "Will the upper bound of the federal funds rate be above 3.75% following the Fed's Dec 9, 2026 meeting? Above 3.75%",
+      "event_title": "Fed funds rate after Dec 2026 meeting?",
+      "close_time": "2026-12-09T18:55:00Z",
+      "settlement_time": "2026-12-09T19:05:00Z",
+      "rules": "If the upper bound of the target federal funds rate published on the Federal Reserve's official website is greater than 3.75% following the Federal Reserve's Dec 9, 2026 meeting, then the market resolves to Yes.\nThis market will expire the first 2:05 PM ET following the release of a Federal Reserve statement for their Dec 9, 2026 meeting or one week following the last day of that meeting.",
+      "resolution_source": [],
+      "contract_terms_url": null,
+      "active": true,
+      "fee_type": null,
+      "fee_multiplier": null
+    },
+    {
+      "venue": "kalshi",
+      "id": "KXFED-26DEC-T4.00",
+      "event_id": "KXFED-26DEC",
+      "title": "Will the upper bound of the federal funds rate be above 4.00% following the Fed's Dec 9, 2026 meeting? Above 4.00%",
+      "event_title": "Fed funds rate after Dec 2026 meeting?",
+      "close_time": "2026-12-09T18:55:00Z",
+      "settlement_time": "2026-12-09T19:05:00Z",
+      "rules": "If the upper bound of the target federal funds rate published on the Federal Reserve's official website is greater than 4.00% following the Federal Reserve's Dec 9, 2026 meeting, then the market resolves to Yes.\nThis market will expire the first 2:05 PM ET following the release of a Federal Reserve statement for their Dec 9, 2026 meeting or one week following the last day of that meeting.",
+      "resolution_source": [],
+      "contract_terms_url": null,
+      "active": true,
+      "fee_type": null,
+      "fee_multiplier": null
+    },
+    {
+      "venue": "kalshi",
+      "id": "KXFED-26DEC-T4.25",
+      "event_id": "KXFED-26DEC",
+      "title": "Will the upper bound of the federal funds rate be above 4.25% following the Fed's Dec 9, 2026 meeting? Above 4.25%",
+      "event_title": "Fed funds rate after Dec 2026 meeting?",
+      "close_time": "2026-12-09T18:55:00Z",
+      "settlement_time": "2026-12-09T19:05:00Z",
+      "rules": "If the upper bound of the target federal funds rate published on the Federal Reserve's official website is greater than 4.25% following the Federal Reserve's Dec 9, 2026 meeting, then the market resolves to Yes.\nThis market will expire the first 2:05 PM ET following the release of a Federal Reserve statement for their Dec 9, 2026 meeting or one week following the last day of that meeting.",
+      "resolution_source": [],
+      "contract_terms_url": null,
+      "active": true,
+      "fee_type": null,
+      "fee_multiplier": null
+    },
+    {
+      "venue": "kalshi",
+      "id": "KXFED-26DEC-T4.50",
+      "event_id": "KXFED-26DEC",
+      "title": "Will the upper bound of the federal funds rate be above 4.50% following the Fed's Dec 9, 2026 meeting? Above 4.50%",
+      "event_title": "Fed funds rate after Dec 2026 meeting?",
+      "close_time": "2026-12-09T18:55:00Z",
+      "settlement_time": "2026-12-09T19:05:00Z",
+      "rules": "If the upper bound of the target federal funds rate published on the Federal Reserve's official website is greater than 4.50% following the Federal Reserve's Dec 9, 2026 meeting, then the market resolves to Yes.\nThis market will expire the first 2:05 PM ET following the release of a Federal Reserve statement for their Dec 9, 2026 meeting or one week following the last day of that meeting.",
+      "resolution_source": [
+        {
+          "name": "Federal Reserve Board of Governors",
+          "url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
+        }
+      ],
+      "contract_terms_url": "https://assets.kalshi.com/contract_terms/FED.pdf",
+      "active": true,
+      "fee_type": "quadratic_with_maker_fees",
+      "fee_multiplier": 1
+    },
+    {
+      "venue": "kalshi",
+      "id": "KXFED-26DEC-T4.75",
+      "event_id": "KXFED-26DEC",
+      "title": "Will the upper bound of the federal funds rate be above 4.75% following the Fed's Dec 9, 2026 meeting? Above 4.75%",
+      "event_title": "Fed funds rate after Dec 2026 meeting?",
+      "close_time": "2026-12-09T18:55:00Z",
+      "settlement_time": "2026-12-09T19:05:00Z",
+      "rules": "If the upper bound of the target federal funds rate published on the Federal Reserve's official website is greater than 4.75% following the Federal Reserve's Dec 9, 2026 meeting, then the market resolves to Yes.\nThis market will expire the first 2:05 PM ET following the release of a Federal Reserve statement for their Dec 9, 2026 meeting or one week following the last day of that meeting.",
+      "resolution_source": [],
+      "contract_terms_url": null,
+      "active": true,
+      "fee_type": null,
+      "fee_multiplier": null
+    },
+    {
+      "venue": "kalshi",
+      "id": "KXFED-26DEC-T5.00",
+      "event_id": "KXFED-26DEC",
+      "title": "Will the upper bound of the federal funds rate be above 5.00% following the Fed's Dec 9, 2026 meeting? Above 5.00%",
+      "event_title": "Fed funds rate after Dec 2026 meeting?",
+      "close_time": "2026-12-09T18:55:00Z",
+      "settlement_time": "2026-12-09T19:05:00Z",
+      "rules": "If the upper bound of the target federal funds rate published on the Federal Reserve's official website is greater than 5.00% following the Federal Reserve's Dec 9, 2026 meeting, then the market resolves to Yes.\nThis market will expire the first 2:05 PM ET following the release of a Federal Reserve statement for their Dec 9, 2026 meeting or one week following the last day of that meeting.",
+      "resolution_source": [],
+      "contract_terms_url": null,
+      "active": true,
+      "fee_type": null,
+      "fee_multiplier": null
+    },
+    {
+      "venue": "kalshi",
+      "id": "KXFED-26DEC-T5.25",
+      "event_id": "KXFED-26DEC",
+      "title": "Will the upper bound of the federal funds rate be above 5.25% following the Fed's Dec 9, 2026 meeting? Above 5.25%",
+      "event_title": "Fed funds rate after Dec 2026 meeting?",
+      "close_time": "2026-12-09T18:55:00Z",
+      "settlement_time": "2026-12-09T19:05:00Z",
+      "rules": "If the upper bound of the target federal funds rate published on the Federal Reserve's official website is greater than 5.25% following the Federal Reserve's Dec 9, 2026 meeting, then the market resolves to Yes.\nThis market will expire the first 2:05 PM ET following the release of a Federal Reserve statement for their Dec 9, 2026 meeting or one week following the last day of that meeting.",
+      "resolution_source": [],
+      "contract_terms_url": null,
+      "active": true,
+      "fee_type": null,
+      "fee_multiplier": null
+    }
+  ],
+  "candidates": [
+    {
+      "poly_id": "3215005",
+      "kalshi_id": "KXFED-26DEC-T3.50",
+      "title_similarity": 0.2222222222222222,
+      "close_gap_seconds": 18240.0
+    },
+    {
+      "poly_id": "3215005",
+      "kalshi_id": "KXFED-26DEC-T4.50",
+      "title_similarity": 0.2222222222222222,
+      "close_gap_seconds": 18240.0
+    },
+    {
+      "poly_id": "3215006",
+      "kalshi_id": "KXFED-26DEC-T3.25",
+      "title_similarity": 0.2222222222222222,
+      "close_gap_seconds": 18240.0
+    }
+  ],
+  "poly_books": {
+    "17640596861394454242836532536014033416733783473450136742726948856144855149507": {
+      "market": "0xb9aee520bf51ac5f00b5c43e54ef9245bc9fcdef866ce8a33025f9a441cc651d",
+      "asset_id": "17640596861394454242836532536014033416733783473450136742726948856144855149507",
+      "timestamp": "1793324236576",
+      "hash": "f77482715d282c19f7e5569e9e4a3f5cb959da43",
+      "bids": [
+        {
+          "price": "0.001",
+          "size": "2737713.28"
+        },
+        {
+          "price": "0.002",
+          "size": "2761008.06"
+        },
+        {
+          "price": "0.003",
+          "size": "167751.04"
+        }
+      ],
+      "asks": [
+        {
+          "price": "0.999",
+          "size": "21006641.04"
+        },
+        {
+          "price": "0.998",
+          "size": "4139.87"
+        },
+        {
+          "price": "0.997",
+          "size": "61839.97"
+        },
+        {
+          "price": "0.996",
+          "size": "755.52"
+        },
+        {
+          "price": "0.995",
+          "size": "600"
+        },
+        {
+          "price": "0.994",
+          "size": "333.33"
+        },
+        {
+          "price": "0.993",
+          "size": "5.67"
+        },
+        {
+          "price": "0.99",
+          "size": "24263.54"
+        },
+        {
+          "price": "0.988",
+          "size": "60000"
+        },
+        {
+          "price": "0.987",
+          "size": "8.29"
+        },
+        {
+          "price": "0.97",
+          "size": "7673.4"
+        },
+        {
+          "price": "0.969",
+          "size": "90000"
+        },
+        {
+          "price": "0.968",
+          "size": "1450"
+        },
+        {
+          "price": "0.967",
+          "size": "5.76"
+        },
+        {
+          "price": "0.95",
+          "size": "4346.54"
+        },
+        {
+          "price": "0.949",
+          "size": "50000"
+        },
+        {
+          "price": "0.948",
+          "size": "10000"
+        },
+        {
+          "price": "0.94",
+          "size": "3395.98"
+        },
+        {
+          "price": "0.93",
+          "size": "1991.2"
+        },
+        {
+          "price": "0.928",
+          "size": "15000"
+        },
+        {
+          "price": "0.927",
+          "size": "6.47"
+        },
+        {
+          "price": "0.91",
+          "size": "1387.97"
+        },
+        {
+          "price": "0.908",
+          "size": "20000"
+        },
+        {
+          "price": "0.9",
+          "size": "996.4"
+        },
+        {
+          "price": "0.888",
+          "size": "1000"
+        },
+        {
+          "price": "0.887",
+          "size": "9000"
+        },
+        {
+          "price": "0.886",
+          "size": "800"
+        },
+        {
+          "price": "0.88",
+          "size": "674.77"
+        },
+        {
+          "price": "0.87",
+          "size": "469.83"
+        },
+        {
+          "price": "0.808",
+          "size": "9000"
+        },
+        {
+          "price": "0.807",
+          "size": "5.52"
+        },
+        {
+          "price": "0.75",
+          "size": "17537.5"
+        },
+        {
+          "price": "0.71",
+          "size": "14461.21"
+        },
+        {
+          "price": "0.709",
+          "size": "343"
+        },
+        {
+          "price": "0.67",
+          "size": "12130.68"
+        },
+        {
+          "price": "0.63",
+          "size": "10304.04"
+        },
+        {
+          "price": "0.59",
+          "size": "6509.15"
+        },
+        {
+          "price": "0.55",
+          "size": "5506.94"
+        },
+        {
+          "price": "0.549",
+          "size": "740"
+        },
+        {
+          "price": "0.51",
+          "size": "4279.34"
+        },
+        {
+          "price": "0.47",
+          "size": "3596.7"
+        },
+        {
+          "price": "0.43",
+          "size": "3344.3"
+        },
+        {
+          "price": "0.39",
+          "size": "2500"
+        },
+        {
+          "price": "0.388",
+          "size": "1000"
+        },
+        {
+          "price": "0.387",
+          "size": "10000"
+        },
+        {
+          "price": "0.386",
+          "size": "2870"
+        },
+        {
+          "price": "0.358",
+          "size": "1950"
+        },
+        {
+          "price": "0.328",
+          "size": "1950"
+        },
+        {
+          "price": "0.327",
+          "size": "500"
+        },
+        {
+          "price": "0.306",
+          "size": "620"
+        },
+        {
+          "price": "0.298",
+          "size": "1950"
+        },
+        {
+          "price": "0.268",
+          "size": "1950"
+        },
+        {
+          "price": "0.238",
+          "size": "1950"
+        },
+        {
+          "price": "0.208",
+          "size": "1950"
+        },
+        {
+          "price": "0.186",
+          "size": "620"
+        },
+        {
+          "price": "0.178",
+          "size": "1950"
+        },
+        {
+          "price": "0.148",
+          "size": "1950"
+        },
+        {
+          "price": "0.118",
+          "size": "1950"
+        },
+        {
+          "price": "0.098",
+          "size": "2449.98"
+        },
+        {
+          "price": "0.096",
+          "size": "620"
+        },
+        {
+          "price": "0.088",
+          "size": "2750"
+        },
+        {
+          "price": "0.086",
+          "size": "25"
+        },
+        {
+          "price": "0.078",
+          "size": "1950"
+        },
+        {
+          "price": "0.077",
+          "size": "80"
+        },
+        {
+          "price": "0.074",
+          "size": "1500"
+        },
+        {
+          "price": "0.068",
+          "size": "1621"
+        },
+        {
+          "price": "0.066",
+          "size": "320"
+        },
+        {
+          "price": "0.063",
+          "size": "5"
+        },
+        {
+          "price": "0.058",
+          "size": "288"
+        },
+        {
+          "price": "0.048",
+          "size": "288"
+        },
+        {
+          "price": "0.044",
+          "size": "80"
+        },
+        {
+          "price": "0.038",
+          "size": "288"
+        },
+        {
+          "price": "0.035",
+          "size": "50"
+        },
+        {
+          "price": "0.028",
+          "size": "383.3"
+        },
+        {
+          "price": "0.027",
+          "size": "666.66"
+        },
+        {
+          "price": "0.026",
+          "size": "666.67"
+        },
+        {
+          "price": "0.025",
+          "size": "1095.31"
+        },
+        {
+          "price": "0.024",
+          "size": "666.66"
+        },
+        {
+          "price": "0.023",
+          "size": "666.67"
+        },
+        {
+          "price": "0.022",
+          "size": "666.67"
+        },
+        {
+          "price": "0.021",
+          "size": "666.67"
+        },
+        {
+          "price": "0.02",
+          "size": "666.66"
+        },
+        {
+          "price": "0.019",
+          "size": "1286.67"
+        },
+        {
+          "price": "0.018",
+          "size": "745.31"
+        },
+        {
+          "price": "0.017",
+          "size": "881.4"
+        },
+        {
+          "price": "0.016",
+          "size": "666.67"
+        },
+        {
+          "price": "0.015",
+          "size": "926.67"
+        },
+        {
+          "price": "0.014",
+          "size": "666.76"
+        },
+        {
+          "price": "0.013",
+          "size": "668.45"
+        },
+        {
+          "price": "0.012",
+          "size": "828.2"
+        },
+        {
+          "price": "0.011",
+          "size": "666.67"
+        },
+        {
+          "price": "0.01",
+          "size": "666.67"
+        },
+        {
+          "price": "0.009",
+          "size": "666.69"
+        },
+        {
+          "price": "0.008",
+          "size": "1004.82"
+        },
+        {
+          "price": "0.007",
+          "size": "6289.6"
+        },
+        {
+          "price": "0.006",
+          "size": "16782.26"
+        },
+        {
+          "price": "0.005",
+          "size": "19604.86"
+        },
+        {
+          "price": "0.004",
+          "size": "4113.27"
+        }
+      ],
+      "min_order_size": "5",
+      "tick_size": "0.001",
+      "neg_risk": true,
+      "last_trade_price": "0.003"
+    },
+    "104236736263775307891497202874191911203963566711959725788584750440530976742193": {
+      "market": "0xb9aee520bf51ac5f00b5c43e54ef9245bc9fcdef866ce8a33025f9a441cc651d",
+      "asset_id": "104236736263775307891497202874191911203963566711959725788584750440530976742193",
+      "timestamp": "1793324236576",
+      "hash": "8a494c08009ef07287d382b54d8758cd9237b2cc",
+      "bids": [
+        {
+          "price": "0.001",
+          "size": "21006641.04"
+        },
+        {
+          "price": "0.002",
+          "size": "4139.87"
+        },
+        {
+          "price": "0.003",
+          "size": "61839.97"
+        },
+        {
+          "price": "0.004",
+          "size": "755.52"
+        },
+        {
+          "price": "0.005",
+          "size": "600"
+        },
+        {
+          "price": "0.006",
+          "size": "333.33"
+        },
+        {
+          "price": "0.007",
+          "size": "5.67"
+        },
+        {
+          "price": "0.01",
+          "size": "24263.54"
+        },
+        {
+          "price": "0.012",
+          "size": "60000"
+        },
+        {
+          "price": "0.013",
+          "size": "8.29"
+        },
+        {
+          "price": "0.03",
+          "size": "7673.4"
+        },
+        {
+          "price": "0.031",
+          "size": "90000"
+        },
+        {
+          "price": "0.032",
+          "size": "1450"
+        },
+        {
+          "price": "0.033",
+          "size": "5.76"
+        },
+        {
+          "price": "0.05",
+          "size": "4346.54"
+        },
+        {
+          "price": "0.051",
+          "size": "50000"
+        },
+        {
+          "price": "0.052",
+          "size": "10000"
+        },
+        {
+          "price": "0.06",
+          "size": "3395.98"
+        },
+        {
+          "price": "0.07",
+          "size": "1991.2"
+        },
+        {
+          "price": "0.072",
+          "size": "15000"
+        },
+        {
+          "price": "0.073",
+          "size": "6.47"
+        },
+        {
+          "price": "0.09",
+          "size": "1387.97"
+        },
+        {
+          "price": "0.092",
+          "size": "20000"
+        },
+        {
+          "price": "0.1",
+          "size": "996.4"
+        },
+        {
+          "price": "0.112",
+          "size": "1000"
+        },
+        {
+          "price": "0.113",
+          "size": "9000"
+        },
+        {
+          "price": "0.114",
+          "size": "800"
+        },
+        {
+          "price": "0.12",
+          "size": "674.77"
+        },
+        {
+          "price": "0.13",
+          "size": "469.83"
+        },
+        {
+          "price": "0.192",
+          "size": "9000"
+        },
+        {
+          "price": "0.193",
+          "size": "5.52"
+        },
+        {
+          "price": "0.25",
+          "size": "17537.5"
+        },
+        {
+          "price": "0.29",
+          "size": "14461.21"
+        },
+        {
+          "price": "0.291",
+          "size": "343"
+        },
+        {
+          "price": "0.33",
+          "size": "12130.68"
+        },
+        {
+          "price": "0.37",
+          "size": "10304.04"
+        },
+        {
+          "price": "0.41",
+          "size": "6509.15"
+        },
+        {
+          "price": "0.45",
+          "size": "5506.94"
+        },
+        {
+          "price": "0.451",
+          "size": "740"
+        },
+        {
+          "price": "0.49",
+          "size": "4279.34"
+        },
+        {
+          "price": "0.53",
+          "size": "3596.7"
+        },
+        {
+          "price": "0.57",
+          "size": "3344.3"
+        },
+        {
+          "price": "0.61",
+          "size": "2500"
+        },
+        {
+          "price": "0.612",
+          "size": "1000"
+        },
+        {
+          "price": "0.613",
+          "size": "10000"
+        },
+        {
+          "price": "0.614",
+          "size": "2870"
+        },
+        {
+          "price": "0.642",
+          "size": "1950"
+        },
+        {
+          "price": "0.672",
+          "size": "1950"
+        },
+        {
+          "price": "0.673",
+          "size": "500"
+        },
+        {
+          "price": "0.694",
+          "size": "620"
+        },
+        {
+          "price": "0.702",
+          "size": "1950"
+        },
+        {
+          "price": "0.732",
+          "size": "1950"
+        },
+        {
+          "price": "0.762",
+          "size": "1950"
+        },
+        {
+          "price": "0.792",
+          "size": "1950"
+        },
+        {
+          "price": "0.814",
+          "size": "620"
+        },
+        {
+          "price": "0.822",
+          "size": "1950"
+        },
+        {
+          "price": "0.852",
+          "size": "1950"
+        },
+        {
+          "price": "0.882",
+          "size": "1950"
+        },
+        {
+          "price": "0.902",
+          "size": "2449.98"
+        },
+        {
+          "price": "0.904",
+          "size": "620"
+        },
+        {
+          "price": "0.912",
+          "size": "2750"
+        },
+        {
+          "price": "0.914",
+          "size": "25"
+        },
+        {
+          "price": "0.922",
+          "size": "1950"
+        },
+        {
+          "price": "0.923",
+          "size": "80"
+        },
+        {
+          "price": "0.926",
+          "size": "1500"
+        },
+        {
+          "price": "0.932",
+          "size": "1621"
+        },
+        {
+          "price": "0.934",
+          "size": "320"
+        },
+        {
+          "price": "0.937",
+          "size": "5"
+        },
+        {
+          "price": "0.942",
+          "size": "288"
+        },
+        {
+          "price": "0.952",
+          "size": "288"
+        },
+        {
+          "price": "0.956",
+          "size": "80"
+        },
+        {
+          "price": "0.962",
+          "size": "288"
+        },
+        {
+          "price": "0.965",
+          "size": "50"
+        },
+        {
+          "price": "0.972",
+          "size": "383.3"
+        },
+        {
+          "price": "0.973",
+          "size": "666.66"
+        },
+        {
+          "price": "0.974",
+          "size": "666.67"
+        },
+        {
+          "price": "0.975",
+          "size": "1095.31"
+        },
+        {
+          "price": "0.976",
+          "size": "666.66"
+        },
+        {
+          "price": "0.977",
+          "size": "666.67"
+        },
+        {
+          "price": "0.978",
+          "size": "666.67"
+        },
+        {
+          "price": "0.979",
+          "size": "666.67"
+        },
+        {
+          "price": "0.98",
+          "size": "666.66"
+        },
+        {
+          "price": "0.981",
+          "size": "1286.67"
+        },
+        {
+          "price": "0.982",
+          "size": "745.31"
+        },
+        {
+          "price": "0.983",
+          "size": "881.4"
+        },
+        {
+          "price": "0.984",
+          "size": "666.67"
+        },
+        {
+          "price": "0.985",
+          "size": "926.67"
+        },
+        {
+          "price": "0.986",
+          "size": "666.76"
+        },
+        {
+          "price": "0.987",
+          "size": "668.45"
+        },
+        {
+          "price": "0.988",
+          "size": "828.2"
+        },
+        {
+          "price": "0.989",
+          "size": "666.67"
+        },
+        {
+          "price": "0.99",
+          "size": "666.67"
+        },
+        {
+          "price": "0.991",
+          "size": "666.69"
+        },
+        {
+          "price": "0.992",
+          "size": "1004.82"
+        },
+        {
+          "price": "0.993",
+          "size": "6289.6"
+        },
+        {
+          "price": "0.994",
+          "size": "16782.26"
+        },
+        {
+          "price": "0.995",
+          "size": "19604.86"
+        },
+        {
+          "price": "0.996",
+          "size": "4113.27"
+        }
+      ],
+      "asks": [
+        {
+          "price": "0.999",
+          "size": "2737713.28"
+        },
+        {
+          "price": "0.998",
+          "size": "2761008.06"
+        },
+        {
+          "price": "0.997",
+          "size": "167751.04"
+        }
+      ],
+      "min_order_size": "5",
+      "tick_size": "0.001",
+      "neg_risk": true,
+      "last_trade_price": "0.003"
+    },
+    "77367448845023382525249480243608609306658725883285195065573683809293972009019": {
+      "market": "0xf17ad24eb4ad57926495b114149c765b9b95bc286eadc91cbbfa901ceb10d0b8",
+      "asset_id": "77367448845023382525249480243608609306658725883285195065573683809293972009019",
+      "timestamp": "1793324270278",
+      "hash": "dfa3f05977cdc05439e7ca5d28b15e4685d6b362",
+      "bids": [
+        {
+          "price": "0.001",
+          "size": "1275477.22"
+        },
+        {
+          "price": "0.002",
+          "size": "2666510.1"
+        },
+        {
+          "price": "0.003",
+          "size": "1986238.1"
+        },
+        {
+          "price": "0.004",
+          "size": "1111346.13"
+        },
+        {
+          "price": "0.005",
+          "size": "42157.46"
+        }
+      ],
+      "asks": [
+        {
+          "price": "0.999",
+          "size": "21007534.89"
+        },
+        {
+          "price": "0.998",
+          "size": "69699.49"
+        },
+        {
+          "price": "0.997",
+          "size": "1847.56"
+        },
+        {
+          "price": "0.996",
+          "size": "750"
+        },
+        {
+          "price": "0.995",
+          "size": "600"
+        },
+        {
+          "price": "0.994",
+          "size": "338.99"
+        },
+        {
+          "price": "0.99",
+          "size": "24263.54"
+        },
+        {
+          "price": "0.989",
+          "size": "60000"
+        },
+        {
+          "price": "0.988",
+          "size": "18.97"
+        },
+        {
+          "price": "0.97",
+          "size": "7673.4"
+        },
+        {
+          "price": "0.969",
+          "size": "90000"
+        },
+        {
+          "price": "0.968",
+          "size": "2025"
+        },
+        {
+          "price": "0.95",
+          "size": "4346.54"
+        },
+        {
+          "price": "0.947",
+          "size": "60000"
+        },
+        {
+          "price": "0.946",
+          "size": "9101.25"
+        },
+        {
+          "price": "0.945",
+          "size": "5.83"
+        },
+        {
+          "price": "0.94",
+          "size": "3395.98"
+        },
+        {
+          "price": "0.93",
+          "size": "1991.2"
+        },
+        {
+          "price": "0.928",
+          "size": "20000"
+        },
+        {
+          "price": "0.927",
+          "size": "684"
+        },
+        {
+          "price": "0.91",
+          "size": "1387.97"
+        },
+        {
+          "price": "0.9",
+          "size": "1006.4"
+        },
+        {
+          "price": "0.889",
+          "size": "4000"
+        },
+        {
+          "price": "0.888",
+          "size": "499.99"
+        },
+        {
+          "price": "0.88",
+          "size": "674.77"
+        },
+        {
+          "price": "0.87",
+          "size": "469.83"
+        },
+        {
+          "price": "0.869",
+          "size": "9.92"
+        },
+        {
+          "price": "0.75",
+          "size": "17537.5"
+        },
+        {
+          "price": "0.748",
+          "size": "5000"
+        },
+        {
+          "price": "0.71",
+          "size": "14461.21"
+        },
+        {
+          "price": "0.709",
+          "size": "3000"
+        },
+        {
+          "price": "0.708",
+          "size": "342"
+        },
+        {
+          "price": "0.67",
+          "size": "12130.68"
+        },
+        {
+          "price": "0.63",
+          "size": "10304.04"
+        },
+        {
+          "price": "0.59",
+          "size": "6509.15"
+        },
+        {
+          "price": "0.55",
+          "size": "5506.94"
+        },
+        {
+          "price": "0.549",
+          "size": "620"
+        },
+        {
+          "price": "0.51",
+          "size": "4279.34"
+        },
+        {
+          "price": "0.47",
+          "size": "8596.69"
+        },
+        {
+          "price": "0.43",
+          "size": "3344.3"
+        },
+        {
+          "price": "0.429",
+          "size": "620"
+        },
+        {
+          "price": "0.39",
+          "size": "2500"
+        },
+        {
+          "price": "0.388",
+          "size": "500"
+        },
+        {
+          "price": "0.386",
+          "size": "2754"
+        },
+        {
+          "price": "0.356",
+          "size": "2754"
+        },
+        {
+          "price": "0.326",
+          "size": "2754"
+        },
+        {
+          "price": "0.296",
+          "size": "2754"
+        },
+        {
+          "price": "0.295",
+          "size": "620"
+        },
+        {
+          "price": "0.28",
+          "size": "5"
+        },
+        {
+          "price": "0.259",
+          "size": "5000"
+        },
+        {
+          "price": "0.229",
+          "size": "5000"
+        },
+        {
+          "price": "0.22",
+          "size": "6"
+        },
+        {
+          "price": "0.21",
+          "size": "510"
+        },
+        {
+          "price": "0.2",
+          "size": "50"
+        },
+        {
+          "price": "0.199",
+          "size": "5000"
+        },
+        {
+          "price": "0.198",
+          "size": "620"
+        },
+        {
+          "price": "0.18",
+          "size": "1020.25"
+        },
+        {
+          "price": "0.175",
+          "size": "150"
+        },
+        {
+          "price": "0.169",
+          "size": "5000"
+        },
+        {
+          "price": "0.14",
+          "size": "5"
+        },
+        {
+          "price": "0.139",
+          "size": "5000"
+        },
+        {
+          "price": "0.119",
+          "size": "5000"
+        },
+        {
+          "price": "0.094",
+          "size": "5206.97"
+        },
+        {
+          "price": "0.093",
+          "size": "620"
+        },
+        {
+          "price": "0.089",
+          "size": "4351"
+        },
+        {
+          "price": "0.087",
+          "size": "2000"
+        },
+        {
+          "price": "0.08",
+          "size": "292.85"
+        },
+        {
+          "price": "0.079",
+          "size": "4351"
+        },
+        {
+          "price": "0.078",
+          "size": "80"
+        },
+        {
+          "price": "0.069",
+          "size": "4376"
+        },
+        {
+          "price": "0.068",
+          "size": "1060.2"
+        },
+        {
+          "price": "0.067",
+          "size": "1820"
+        },
+        {
+          "price": "0.059",
+          "size": "900"
+        },
+        {
+          "price": "0.05",
+          "size": "600"
+        },
+        {
+          "price": "0.049",
+          "size": "262"
+        },
+        {
+          "price": "0.047",
+          "size": "80"
+        },
+        {
+          "price": "0.039",
+          "size": "262"
+        },
+        {
+          "price": "0.037",
+          "size": "50"
+        },
+        {
+          "price": "0.029",
+          "size": "515.85"
+        },
+        {
+          "price": "0.028",
+          "size": "666.67"
+        },
+        {
+          "price": "0.027",
+          "size": "666.66"
+        },
+        {
+          "price": "0.026",
+          "size": "666.67"
+        },
+        {
+          "price": "0.025",
+          "size": "666.67"
+        },
+        {
+          "price": "0.024",
+          "size": "2661.61"
+        },
+        {
+          "price": "0.023",
+          "size": "766.66"
+        },
+        {
+          "price": "0.022",
+          "size": "1912.64"
+        },
+        {
+          "price": "0.021",
+          "size": "1286.67"
+        },
+        {
+          "price": "0.02",
+          "size": "1323.57"
+        },
+        {
+          "price": "0.019",
+          "size": "666.67"
+        },
+        {
+          "price": "0.018",
+          "size": "2380.38"
+        },
+        {
+          "price": "0.017",
+          "size": "875.23"
+        },
+        {
+          "price": "0.016",
+          "size": "666.68"
+        },
+        {
+          "price": "0.015",
+          "size": "666.77"
+        },
+        {
+          "price": "0.014",
+          "size": "673.84"
+        },
+        {
+          "price": "0.013",
+          "size": "666.67"
+        },
+        {
+          "price": "0.012",
+          "size": "671.67"
+        },
+        {
+          "price": "0.011",
+          "size": "666.69"
+        },
+        {
+          "price": "0.01",
+          "size": "1266.65"
+        },
+        {
+          "price": "0.009",
+          "size": "677.41"
+        },
+        {
+          "price": "0.008",
+          "size": "1241.6"
+        },
+        {
+          "price": "0.007",
+          "size": "11080.35"
+        },
+        {
+          "price": "0.006",
+          "size": "12736.75"
+        }
+      ],
+      "min_order_size": "5",
+      "tick_size": "0.001",
+      "neg_risk": true,
+      "last_trade_price": "0.005"
+    },
+    "23677896678650147625251750117853328843601853501710889530409633595389256242910": {
+      "market": "0xf17ad24eb4ad57926495b114149c765b9b95bc286eadc91cbbfa901ceb10d0b8",
+      "asset_id": "23677896678650147625251750117853328843601853501710889530409633595389256242910",
+      "timestamp": "1793324270278",
+      "hash": "8d47bc505358fa0ff026ece85b15f1f7514170fc",
+      "bids": [
+        {
+          "price": "0.001",
+          "size": "21007534.89"
+        },
+        {
+          "price": "0.002",
+          "size": "69699.49"
+        },
+        {
+          "price": "0.003",
+          "size": "1847.56"
+        },
+        {
+          "price": "0.004",
+          "size": "750"
+        },
+        {
+          "price": "0.005",
+          "size": "600"
+        },
+        {
+          "price": "0.006",
+          "size": "338.99"
+        },
+        {
+          "price": "0.01",
+          "size": "24263.54"
+        },
+        {
+          "price": "0.011",
+          "size": "60000"
+        },
+        {
+          "price": "0.012",
+          "size": "18.97"
+        },
+        {
+          "price": "0.03",
+          "size": "7673.4"
+        },
+        {
+          "price": "0.031",
+          "size": "90000"
+        },
+        {
+          "price": "0.032",
+          "size": "2025"
+        },
+        {
+          "price": "0.05",
+          "size": "4346.54"
+        },
+        {
+          "price": "0.053",
+          "size": "60000"
+        },
+        {
+          "price": "0.054",
+          "size": "9101.25"
+        },
+        {
+          "price": "0.055",
+          "size": "5.83"
+        },
+        {
+          "price": "0.06",
+          "size": "3395.98"
+        },
+        {
+          "price": "0.07",
+          "size": "1991.2"
+        },
+        {
+          "price": "0.072",
+          "size": "20000"
+        },
+        {
+          "price": "0.073",
+          "size": "684"
+        },
+        {
+          "price": "0.09",
+          "size": "1387.97"
+        },
+        {
+          "price": "0.1",
+          "size": "1006.4"
+        },
+        {
+          "price": "0.111",
+          "size": "4000"
+        },
+        {
+          "price": "0.112",
+          "size": "499.99"
+        },
+        {
+          "price": "0.12",
+          "size": "674.77"
+        },
+        {
+          "price": "0.13",
+          "size": "469.83"
+        },
+        {
+          "price": "0.131",
+          "size": "9.92"
+        },
+        {
+          "price": "0.25",
+          "size": "17537.5"
+        },
+        {
+          "price": "0.252",
+          "size": "5000"
+        },
+        {
+          "price": "0.29",
+          "size": "14461.21"
+        },
+        {
+          "price": "0.291",
+          "size": "3000"
+        },
+        {
+          "price": "0.292",
+          "size": "342"
+        },
+        {
+          "price": "0.33",
+          "size": "12130.68"
+        },
+        {
+          "price": "0.37",
+          "size": "10304.04"
+        },
+        {
+          "price": "0.41",
+          "size": "6509.15"
+        },
+        {
+          "price": "0.45",
+          "size": "5506.94"
+        },
+        {
+          "price": "0.451",
+          "size": "620"
+        },
+        {
+          "price": "0.49",
+          "size": "4279.34"
+        },
+        {
+          "price": "0.53",
+          "size": "8596.69"
+        },
+        {
+          "price": "0.57",
+          "size": "3344.3"
+        },
+        {
+          "price": "0.571",
+          "size": "620"
+        },
+        {
+          "price": "0.61",
+          "size": "2500"
+        },
+        {
+          "price": "0.612",
+          "size": "500"
+        },
+        {
+          "price": "0.614",
+          "size": "2754"
+        },
+        {
+          "price": "0.644",
+          "size": "2754"
+        },
+        {
+          "price": "0.674",
+          "size": "2754"
+        },
+        {
+          "price": "0.704",
+          "size": "2754"
+        },
+        {
+          "price": "0.705",
+          "size": "620"
+        },
+        {
+          "price": "0.72",
+          "size": "5"
+        },
+        {
+          "price": "0.741",
+          "size": "5000"
+        },
+        {
+          "price": "0.771",
+          "size": "5000"
+        },
+        {
+          "price": "0.78",
+          "size": "6"
+        },
+        {
+          "price": "0.79",
+          "size": "510"
+        },
+        {
+          "price": "0.8",
+          "size": "50"
+        },
+        {
+          "price": "0.801",
+          "size": "5000"
+        },
+        {
+          "price": "0.802",
+          "size": "620"
+        },
+        {
+          "price": "0.82",
+          "size": "1020.25"
+        },
+        {
+          "price": "0.825",
+          "size": "150"
+        },
+        {
+          "price": "0.831",
+          "size": "5000"
+        },
+        {
+          "price": "0.86",
+          "size": "5"
+        },
+        {
+          "price": "0.861",
+          "size": "5000"
+        },
+        {
+          "price": "0.881",
+          "size": "5000"
+        },
+        {
+          "price": "0.906",
+          "size": "5206.97"
+        },
+        {
+          "price": "0.907",
+          "size": "620"
+        },
+        {
+          "price": "0.911",
+          "size": "4351"
+        },
+        {
+          "price": "0.913",
+          "size": "2000"
+        },
+        {
+          "price": "0.92",
+          "size": "292.85"
+        },
+        {
+          "price": "0.921",
+          "size": "4351"
+        },
+        {
+          "price": "0.922",
+          "size": "80"
+        },
+        {
+          "price": "0.931",
+          "size": "4376"
+        },
+        {
+          "price": "0.932",
+          "size": "1060.2"
+        },
+        {
+          "price": "0.933",
+          "size": "1820"
+        },
+        {
+          "price": "0.941",
+          "size": "900"
+        },
+        {
+          "price": "0.95",
+          "size": "600"
+        },
+        {
+          "price": "0.951",
+          "size": "262"
+        },
+        {
+          "price": "0.953",
+          "size": "80"
+        },
+        {
+          "price": "0.961",
+          "size": "262"
+        },
+        {
+          "price": "0.963",
+          "size": "50"
+        },
+        {
+          "price": "0.971",
+          "size": "515.85"
+        },
+        {
+          "price": "0.972",
+          "size": "666.67"
+        },
+        {
+          "price": "0.973",
+          "size": "666.66"
+        },
+        {
+          "price": "0.974",
+          "size": "666.67"
+        },
+        {
+          "price": "0.975",
+          "size": "666.67"
+        },
+        {
+          "price": "0.976",
+          "size": "2661.61"
+        },
+        {
+          "price": "0.977",
+          "size": "766.66"
+        },
+        {
+          "price": "0.978",
+          "size": "1912.64"
+        },
+        {
+          "price": "0.979",
+          "size": "1286.67"
+        },
+        {
+          "price": "0.98",
+          "size": "1323.57"
+        },
+        {
+          "price": "0.981",
+          "size": "666.67"
+        },
+        {
+          "price": "0.982",
+          "size": "2380.38"
+        },
+        {
+          "price": "0.983",
+          "size": "875.23"
+        },
+        {
+          "price": "0.984",
+          "size": "666.68"
+        },
+        {
+          "price": "0.985",
+          "size": "666.77"
+        },
+        {
+          "price": "0.986",
+          "size": "673.84"
+        },
+        {
+          "price": "0.987",
+          "size": "666.67"
+        },
+        {
+          "price": "0.988",
+          "size": "671.67"
+        },
+        {
+          "price": "0.989",
+          "size": "666.69"
+        },
+        {
+          "price": "0.99",
+          "size": "1266.65"
+        },
+        {
+          "price": "0.991",
+          "size": "677.41"
+        },
+        {
+          "price": "0.992",
+          "size": "1241.6"
+        },
+        {
+          "price": "0.993",
+          "size": "11080.35"
+        },
+        {
+          "price": "0.994",
+          "size": "12736.75"
+        }
+      ],
+      "asks": [
+        {
+          "price": "0.999",
+          "size": "1275477.22"
+        },
+        {
+          "price": "0.998",
+          "size": "2666510.1"
+        },
+        {
+          "price": "0.997",
+          "size": "1986238.1"
+        },
+        {
+          "price": "0.996",
+          "size": "1111346.13"
+        },
+        {
+          "price": "0.995",
+          "size": "42157.46"
+        }
+      ],
+      "min_order_size": "5",
+      "tick_size": "0.001",
+      "neg_risk": true,
+      "last_trade_price": "0.005"
+    }
+  },
+  "poly_fees": {
+    "3215005": [
+      "0",
+      "clob"
+    ],
+    "3215006": [
+      "0",
+      "clob"
+    ]
+  },
+  "kalshi_books": {
+    "KXFED-26DEC-T3.25": {
+      "raw": {
+        "orderbook_fp": {
+          "no_dollars": [],
+          "yes_dollars": [
+            [
+              "0.0100",
+              "767920.00"
+            ],
+            [
+              "0.0200",
+              "9100.00"
+            ],
+            [
+              "0.0300",
+              "7851.00"
+            ],
+            [
+              "0.1100",
+              "141246.00"
+            ],
+            [
+              "0.2100",
+              "28701.00"
+            ],
+            [
+              "0.3000",
+              "200.00"
+            ],
+            [
+              "0.3200",
+              "13453.00"
+            ],
+            [
+              "0.4200",
+              "4150.00"
+            ],
+            [
+              "0.4900",
+              "16875.00"
+            ],
+            [
+              "0.6200",
+              "7230.00"
+            ],
+            [
+              "0.6400",
+              "240.00"
+            ],
+            [
+              "0.6600",
+              "921.00"
+            ],
+            [
+              "0.6800",
+              "220.00"
+            ],
+            [
+              "0.6900",
+              "1884.00"
+            ],
+            [
+              "0.8100",
+              "269.00"
+            ],
+            [
+              "0.8200",
+              "460.00"
+            ],
+            [
+              "0.9000",
+              "10.00"
+            ],
+            [
+              "0.9100",
+              "40.36"
+            ],
+            [
+              "0.9300",
+              "43.00"
+            ],
+            [
+              "0.9400",
+              "79.72"
+            ],
+            [
+              "0.9500",
+              "97.00"
+            ],
+            [
+              "0.9600",
+              "982.53"
+            ],
+            [
+              "0.9700",
+              "1438.00"
+            ],
+            [
+              "0.9800",
+              "1.00"
+            ],
+            [
+              "0.9900",
+              "7.00"
+            ]
+          ]
+        }
+      },
+      "received_at": "2026-10-30T01:37:47.853054+00:00"
+    },
+    "KXFED-26DEC-T3.50": {
+      "raw": {
+        "orderbook_fp": {
+          "no_dollars": [],
+          "yes_dollars": [
+            [
+              "0.0100",
+              "769280.00"
+            ],
+            [
+              "0.0200",
+              "11830.00"
+            ],
+            [
+              "0.0300",
+              "7131.00"
+            ],
+            [
+              "0.0900",
+              "100.00"
+            ],
+            [
+              "0.1000",
+              "128752.00"
+            ],
+            [
+              "0.1300",
+              "100.00"
+            ],
+            [
+              "0.1900",
+              "100.00"
+            ],
+            [
+              "0.2000",
+              "33763.00"
+            ],
+            [
+              "0.3000",
+              "12931.00"
+            ],
+            [
+              "0.3700",
+              "100.00"
+            ],
+            [
+              "0.3900",
+              "4709.00"
+            ],
+            [
+              "0.4000",
+              "1.00"
+            ],
+            [
+              "0.4300",
+              "498.05"
+            ],
+            [
+              "0.4900",
+              "100.00"
+            ],
+            [
+              "0.5000",
+              "108.00"
+            ],
+            [
+              "0.5100",
+              "200.00"
+            ],
+            [
+              "0.5200",
+              "1679.00"
+            ],
+            [
+              "0.5300",
+              "15604.00"
+            ],
+            [
+              "0.5600",
+              "58.00"
+            ],
+            [
+              "0.5900",
+              "1083.00"
+            ],
+            [
+              "0.6000",
+              "6639.00"
+            ],
+            [
+              "0.6200",
+              "424.00"
+            ],
+            [
+              "0.6300",
+              "8.44"
+            ],
+            [
+              "0.6400",
+              "849.00"
+            ],
+            [
+              "0.6500",
+              "181.00"
+            ],
+            [
+              "0.7400",
+              "203.28"
+            ],
+            [
+              "0.7500",
+              "8.44"
+            ],
+            [
+              "0.7900",
+              "2034.00"
+            ],
+            [
+              "0.8100",
+              "1471.33"
+            ],
+            [
+              "0.8200",
+              "16.88"
+            ],
+            [
+              "0.9200",
+              "1551.18"
+            ],
+            [
+              "0.9300",
+              "27.00"
+            ],
+            [
+              "0.9400",
+              "62.98"
+            ],
+            [
+              "0.9500",
+              "1176.95"
+            ],
+            [
+              "0.9600",
+              "1027.62"
+            ],
+            [
+              "0.9700",
+              "77.62"
+            ],
+            [
+              "0.9800",
+              "2.45"
+            ],
+            [
+              "0.9900",
+              "78.30"
+            ]
+          ]
+        }
+      },
+      "received_at": "2026-10-30T01:37:48.330233+00:00"
+    },
+    "KXFED-26DEC-T4.50": {
+      "raw": {
+        "orderbook_fp": {
+          "no_dollars": [
+            [
+              "0.0100",
+              "831669.00"
+            ],
+            [
+              "0.0200",
+              "10620.00"
+            ],
+            [
+              "0.0300",
+              "5703.00"
+            ],
+            [
+              "0.0900",
+              "112766.00"
+            ],
+            [
+              "0.1700",
+              "30554.00"
+            ],
+            [
+              "0.1800",
+              "39.00"
+            ],
+            [
+              "0.2600",
+              "13229.00"
+            ],
+            [
+              "0.3400",
+              "4482.00"
+            ],
+            [
+              "0.4800",
+              "6175.00"
+            ],
+            [
+              "0.4900",
+              "86.00"
+            ],
+            [
+              "0.5700",
+              "3518.00"
+            ],
+            [
+              "0.5900",
+              "1023.00"
+            ],
+            [
+              "0.6100",
+              "990.00"
+            ],
+            [
+              "0.6300",
+              "3183.00"
+            ],
+            [
+              "0.6400",
+              "931.00"
+            ],
+            [
+              "0.6500",
+              "1.80"
+            ],
+            [
+              "0.6600",
+              "219.00"
+            ],
+            [
+              "0.6700",
+              "2372.00"
+            ],
+            [
+              "0.6800",
+              "1.84"
+            ],
+            [
+              "0.9000",
+              "16.00"
+            ],
+            [
+              "0.9100",
+              "2056.14"
+            ],
+            [
+              "0.9200",
+              "224.67"
+            ],
+            [
+              "0.9300",
+              "69.00"
+            ],
+            [
+              "0.9400",
+              "2105.65"
+            ],
+            [
+              "0.9500",
+              "6136.03"
+            ],
+            [
+              "0.9600",
+              "1038.92"
+            ],
+            [
+              "0.9700",
+              "2014.00"
+            ],
+            [
+              "0.9800",
+              "144568.44"
+            ],
+            [
+              "0.9900",
+              "5.04"
+            ]
+          ],
+          "yes_dollars": []
+        }
+      },
+      "received_at": "2026-10-30T01:37:48.807884+00:00"
+    }
+  },
+  "raw": {
+    "poly_events": [
+      {
+        "$schema": "https://gamma-api.polymarket.com/schemas/Event.json",
+        "id": "770450",
+        "ticker": "fed-decision-in-december-20260729232808632",
+        "slug": "fed-decision-in-december-20260729232808632",
+        "title": "Fed Decision in December?",
+        "description": "The FED interest rates are defined in this market by the upper bound of the target federal funds range. The decisions on the target federal funds range are made by the Federal Open Market Committee (FOMC) meetings.\n\nThis market will resolve to the amount of basis points the upper bound of the target federal funds rate is changed by versus the level it was prior to the Federal Reserve's December 2026 meeting.\n\nIf the target federal funds rate is changed to a level not expressed in the displayed options, the change will be rounded up to the nearest 25 and will resolve to the relevant bracket. (e.g. if there's a cut/increase of 12.5 bps it will be considered to be 25 bps)\n\nThe resolution source for this market is the FOMC’s statement after its meeting scheduled for December 8-9, 2026 according to the official calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm.\n\nThe level and change of the target federal funds rate is also published at the official website of the Federal Reserve at https://www.federalreserve.gov/monetarypolicy/openmarket.htm.\n\nThis market may resolve as soon as the FOMC’s statement for their December meeting with relevant data is issued. If no statement is released by the end date of the next scheduled meeting, this market will resolve to the \"No change\" bracket.",
+        "resolutionSource": "",
+        "startDate": "2026-07-30T00:43:48.912145Z",
+        "creationDate": "2026-07-30T01:03:13.640133Z",
+        "endDate": "2026-12-10T04:59:00Z",
+        "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/fed-decision-in-september-762-c4RyWuxRPo1L.jpg",
+        "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/fed-decision-in-september-762-c4RyWuxRPo1L.jpg",
+        "active": true,
+        "closed": false,
+        "archived": false,
+        "new": false,
+        "featured": true,
+        "restricted": true,
+        "liquidity": "1371515.06843",
+        "volume": "8929316.182382999",
+        "openInterest": "1215550.8962",
+        "sortBy": "ascending",
+        "createdAt": "2026-07-30T00:36:56.42426Z",
+        "updatedAt": "2026-10-30T01:32:57.616516Z",
+        "competitive": "0.9633679342983069",
+        "volume24hr": "2035332.667444",
+        "volume1wk": "4489416.990953",
+        "volume1mo": "6983500.428756",
+        "volume1yr": "8929316.182382999",
+        "enableOrderBook": true,
+        "liquidityClob": "1371515.06843",
+        "negRisk": true,
+        "negRiskMarketID": "0xa74f5328517db0e030a5e62edc800e37bd36ca6e455571b14e8bb2b0dd38d700",
+        "commentCount": 0,
+        "markets": [
+          {
+            "id": "3215005",
+            "question": "Will the Fed decrease interest rates by 50+ bps after the December 2026 meeting?",
+            "conditionId": "0xb9aee520bf51ac5f00b5c43e54ef9245bc9fcdef866ce8a33025f9a441cc651d",
+            "slug": "will-the-fed-decrease-interest-rates-by-50-bps-after-the-december-2026-meeting-20260729232808633",
+            "resolutionSource": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+            "endDate": "2026-12-09T23:59:00Z",
+            "liquidity": "168135.37457",
+            "startDate": "2026-07-30T00:53:15.730668Z",
+            "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/fed-decision-in-september-762-c4RyWuxRPo1L.jpg",
+            "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/fed-decision-in-september-762-c4RyWuxRPo1L.jpg",
+            "description": "The FED interest rates are defined in this market by the upper bound of the target federal funds range. The decisions on the target federal funds range are made by the Federal Open Market Committee (FOMC) meetings.\n\nThis market will resolve to the amount of basis points the upper bound of the target federal funds rate is changed by versus the level it was prior to the Federal Reserve's December 2026 meeting.\n\nIf the target federal funds rate is changed to a level not expressed in the displayed options, the change will be rounded up to the nearest 25 and will resolve to the relevant bracket. (e.g. if there's a cut/increase of 12.5 bps it will be considered to be 25 bps)\n\nThe resolution source for this market is the FOMC’s statement after its meeting scheduled for December 8-9, 2026 according to the official calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm.\n\nThe level and change of the target federal funds rate is also published at the official website of the Federal Reserve at https://www.federalreserve.gov/monetarypolicy/openmarket.htm.\n\nThis market may resolve as soon as the FOMC’s statement for their December meeting with relevant data is issued. If no statement is released by the end date of the next scheduled meeting, this market will resolve to the \"No change\" bracket.",
+            "outcomes": "[\"Yes\", \"No\"]",
+            "outcomePrices": "[\"0.0035\", \"0.9965\"]",
+            "volume": "1721363.6076419998",
+            "active": true,
+            "closed": false,
+            "marketMakerAddress": "",
+            "createdAt": "2026-07-30T00:36:56.830135Z",
+            "updatedAt": "2026-10-30T01:32:45.058766Z",
+            "new": false,
+            "featured": false,
+            "submitted_by": "0xF43d55F3A8B7484Ed4B6931f93CB6F9eF5Dd369D",
+            "archived": false,
+            "resolvedBy": "0x69c47De9D4D3Dad79590d61b9e05918E03775f24",
+            "restricted": true,
+            "groupItemTitle": "50+ bps decrease",
+            "groupItemThreshold": "0",
+            "questionID": "0xa74f5328517db0e030a5e62edc800e37bd36ca6e455571b14e8bb2b0dd38d700",
+            "enableOrderBook": true,
+            "orderPriceMinTickSize": "0.001",
+            "orderMinSize": 5,
+            "volumeNum": "1721363.6076419998",
+            "liquidityNum": "168135.37457",
+            "endDateIso": "2026-12-09",
+            "startDateIso": "2026-07-30",
+            "hasReviewedDates": true,
+            "volume24hr": "514241.731979",
+            "volume1wk": "941359.9764640001",
+            "volume1mo": "1385739.773783",
+            "volume1yr": "1721363.6076419998",
+            "clobTokenIds": "[\"17640596861394454242836532536014033416733783473450136742726948856144855149507\", \"104236736263775307891497202874191911203963566711959725788584750440530976742193\"]",
+            "comboStatus": "disabled",
+            "umaBond": "500",
+            "umaReward": "5",
+            "volume24hrClob": "514241.731979",
+            "volume1wkClob": "941359.9764640001",
+            "volume1moClob": "1385739.773783",
+            "volume1yrClob": "1721363.6076419998",
+            "volumeClob": "1721363.6076419998",
+            "liquidityClob": "168135.37457",
+            "makerBaseFee": 1000,
+            "takerBaseFee": 1000,
+            "customLiveness": 0,
+            "acceptingOrders": true,
+            "negRisk": true,
+            "negRiskMarketID": "0xa74f5328517db0e030a5e62edc800e37bd36ca6e455571b14e8bb2b0dd38d700",
+            "negRiskRequestID": "0xa7eb5ee80cd9af85c122f68630f86903fd3ebfba14c614c20e8dcf082feaacb4",
+            "ready": false,
+            "funded": false,
+            "acceptingOrdersTimestamp": "2026-07-30T00:52:15Z",
+            "cyom": false,
+            "competitive": "0.8022384055993032",
+            "approved": true,
+            "rewardsMinSize": 50,
+            "rewardsMaxSpread": "4.5",
+            "spread": "0.001",
+            "oneDayPriceChange": "0.001",
+            "oneWeekPriceChange": "-0.001",
+            "oneMonthPriceChange": "-0.001",
+            "lastTradePrice": "0.003",
+            "bestBid": "0.003",
+            "bestAsk": "0.004",
+            "automaticallyActive": true,
+            "clearBookOnStart": true,
+            "showGmpSeries": false,
+            "showGmpOutcome": false,
+            "manualActivation": false,
+            "negRiskOther": false,
+            "umaResolutionStatuses": "[]",
+            "pendingDeployment": false,
+            "deploying": false,
+            "deployingTimestamp": "2026-07-30T00:38:52.406458Z",
+            "rfqEnabled": false,
+            "holdingRewardsEnabled": false,
+            "feesEnabled": true,
+            "feeType": "zero_fees",
+            "feeSchedule": {
+              "exponent": 1,
+              "rate": 0,
+              "takerOnly": true,
+              "rebateRate": 0
+            },
+            "fallbackResolutionType": "none",
+            "resolutionMechanism": "oracle",
+            "tradingEligible": true,
+            "version": "v1"
+          },
+          {
+            "id": "3215006",
+            "question": "Will the Fed decrease interest rates by 25 bps after the December 2026 meeting?",
+            "conditionId": "0xf17ad24eb4ad57926495b114149c765b9b95bc286eadc91cbbfa901ceb10d0b8",
+            "slug": "will-the-fed-decrease-interest-rates-by-25-bps-after-the-december-2026-meeting-20260729232808634",
+            "resolutionSource": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+            "endDate": "2026-12-09T23:59:00Z",
+            "liquidity": "186328.54922",
+            "startDate": "2026-07-30T00:58:46.257796Z",
+            "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/fed-decision-in-september-762-c4RyWuxRPo1L.jpg",
+            "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/fed-decision-in-september-762-c4RyWuxRPo1L.jpg",
+            "description": "The FED interest rates are defined in this market by the upper bound of the target federal funds range. The decisions on the target federal funds range are made by the Federal Open Market Committee (FOMC) meetings.\n\nThis market will resolve to the amount of basis points the upper bound of the target federal funds rate is changed by versus the level it was prior to the Federal Reserve's December 2026 meeting.\n\nIf the target federal funds rate is changed to a level not expressed in the displayed options, the change will be rounded up to the nearest 25 and will resolve to the relevant bracket. (e.g. if there's a cut/increase of 12.5 bps it will be considered to be 25 bps)\n\nThe resolution source for this market is the FOMC’s statement after its meeting scheduled for December 8-9, 2026 according to the official calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm.\n\nThe level and change of the target federal funds rate is also published at the official website of the Federal Reserve at https://www.federalreserve.gov/monetarypolicy/openmarket.htm.\n\nThis market may resolve as soon as the FOMC’s statement for their December meeting with relevant data is issued. If no statement is released by the end date of the next scheduled meeting, this market will resolve to the \"No change\" bracket.",
+            "outcomes": "[\"Yes\", \"No\"]",
+            "outcomePrices": "[\"0.0055\", \"0.9945\"]",
+            "volume": "1949203.4215850001",
+            "active": true,
+            "closed": false,
+            "marketMakerAddress": "",
+            "createdAt": "2026-07-30T00:36:57.065489Z",
+            "updatedAt": "2026-10-30T01:32:45.058766Z",
+            "new": false,
+            "featured": false,
+            "submitted_by": "0xF43d55F3A8B7484Ed4B6931f93CB6F9eF5Dd369D",
+            "archived": false,
+            "resolvedBy": "0x69c47De9D4D3Dad79590d61b9e05918E03775f24",
+            "restricted": true,
+            "groupItemTitle": "25 bps decrease",
+            "groupItemThreshold": "1",
+            "questionID": "0xa74f5328517db0e030a5e62edc800e37bd36ca6e455571b14e8bb2b0dd38d701",
+            "enableOrderBook": true,
+            "orderPriceMinTickSize": "0.001",
+            "orderMinSize": 5,
+            "volumeNum": "1949203.4215850001",
+            "liquidityNum": "186328.54922",
+            "endDateIso": "2026-12-09",
+            "startDateIso": "2026-07-30",
+            "hasReviewedDates": true,
+            "volume24hr": "484754.1130999999",
+            "volume1wk": "960555.5731809998",
+            "volume1mo": "1566702.847317",
+            "volume1yr": "1949203.421585",
+            "clobTokenIds": "[\"77367448845023382525249480243608609306658725883285195065573683809293972009019\", \"23677896678650147625251750117853328843601853501710889530409633595389256242910\"]",
+            "comboStatus": "disabled",
+            "umaBond": "500",
+            "umaReward": "5",
+            "volume24hrClob": "484754.1130999999",
+            "volume1wkClob": "960555.5731809998",
+            "volume1moClob": "1566702.847317",
+            "volume1yrClob": "1949203.421585",
+            "volumeClob": "1949203.4215850001",
+            "liquidityClob": "186328.54922",
+            "makerBaseFee": 1000,
+            "takerBaseFee": 1000,
+            "customLiveness": 0,
+            "acceptingOrders": true,
+            "negRisk": true,
+            "negRiskMarketID": "0xa74f5328517db0e030a5e62edc800e37bd36ca6e455571b14e8bb2b0dd38d700",
+            "negRiskRequestID": "0x48bc50e8e089781a5fb212a2cd30c8cc26bd5e7c6f29afcea4d8131cf4a078b9",
+            "ready": false,
+            "funded": false,
+            "acceptingOrdersTimestamp": "2026-07-30T00:57:45Z",
+            "cyom": false,
+            "competitive": "0.8035160254240507",
+            "approved": true,
+            "rewardsMinSize": 50,
+            "rewardsMaxSpread": "4.5",
+            "spread": "0.001",
+            "oneWeekPriceChange": "-0.001",
+            "oneMonthPriceChange": "-0.004",
+            "lastTradePrice": "0.005",
+            "bestBid": "0.005",
+            "bestAsk": "0.006",
+            "automaticallyActive": true,
+            "clearBookOnStart": true,
+            "showGmpSeries": false,
+            "showGmpOutcome": false,
+            "manualActivation": false,
+            "negRiskOther": false,
+            "umaResolutionStatuses": "[]",
+            "pendingDeployment": false,
+            "deploying": false,
+            "deployingTimestamp": "2026-07-30T00:38:52.418699Z",
+            "rfqEnabled": false,
+            "holdingRewardsEnabled": false,
+            "feesEnabled": true,
+            "feeType": "zero_fees",
+            "feeSchedule": {
+              "exponent": 1,
+              "rate": 0,
+              "takerOnly": true,
+              "rebateRate": 0
+            },
+            "fallbackResolutionType": "none",
+            "resolutionMechanism": "oracle",
+            "tradingEligible": true,
+            "version": "v1"
+          },
+          {
+            "id": "3215007",
+            "question": "Will there be no change in Fed interest rates after the December 2026 meeting?",
+            "conditionId": "0x723822eb2b143cee54c0bd7c1efba322b21f0051984c266df8879c394f1011c0",
+            "slug": "will-there-be-no-change-in-fed-interest-rates-after-the-december-2026-meeting-20260729232808635",
+            "resolutionSource": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+            "endDate": "2026-12-09T23:59:00Z",
+            "liquidity": "450910.364",
+            "startDate": "2026-07-30T00:43:48.912145Z",
+            "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/fed-decision-in-september-762-c4RyWuxRPo1L.jpg",
+            "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/fed-decision-in-september-762-c4RyWuxRPo1L.jpg",
+            "description": "The FED interest rates are defined in this market by the upper bound of the target federal funds range. The decisions on the target federal funds range are made by the Federal Open Market Committee (FOMC) meetings.\n\nThis market will resolve to the amount of basis points the upper bound of the target federal funds rate is changed by versus the level it was prior to the Federal Reserve's December 2026 meeting.\n\nIf the target federal funds rate is changed to a level not expressed in the displayed options, the change will be rounded up to the nearest 25 and will resolve to the relevant bracket. (e.g. if there's a cut/increase of 12.5 bps it will be considered to be 25 bps)\n\nThe resolution source for this market is the FOMC’s statement after its meeting scheduled for December 8-9, 2026 according to the official calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm.\n\nThe level and change of the target federal funds rate is also published at the official website of the Federal Reserve at https://www.federalreserve.gov/monetarypolicy/openmarket.htm.\n\nThis market may resolve as soon as the FOMC’s statement for their December meeting with relevant data is issued. If no statement is released by the end date of the next scheduled meeting, this market will resolve to the \"No change\" bracket.",
+            "outcomes": "[\"Yes\", \"No\"]",
+            "outcomePrices": "[\"0.285\", \"0.715\"]",
+            "volume": "2120616.907476",
+            "active": true,
+            "closed": false,
+            "marketMakerAddress": "",
+            "createdAt": "2026-07-30T00:36:57.288053Z",
+            "updatedAt": "2026-10-30T01:32:45.058766Z",
+            "new": false,
+            "featured": false,
+            "submitted_by": "0xF43d55F3A8B7484Ed4B6931f93CB6F9eF5Dd369D",
+            "archived": false,
+            "resolvedBy": "0x69c47De9D4D3Dad79590d61b9e05918E03775f24",
+            "restricted": true,
+            "groupItemTitle": "No change",
+            "groupItemThreshold": "2",
+            "questionID": "0xa74f5328517db0e030a5e62edc800e37bd36ca6e455571b14e8bb2b0dd38d702",
+            "enableOrderBook": true,
+            "orderPriceMinTickSize": "0.01",
+            "orderMinSize": 5,
+            "volumeNum": "2120616.907476",
+            "liquidityNum": "450910.364",
+            "endDateIso": "2026-12-09",
+            "startDateIso": "2026-07-30",
+            "hasReviewedDates": true,
+            "volume24hr": "491482.688731",
+            "volume1wk": "1115257.91283",
+            "volume1mo": "1756928.506594",
+            "volume1yr": "2120616.907476",
+            "clobTokenIds": "[\"42865728742506860386768556888821101266630139112044622335353850919229585308601\", \"8077351031134730167836761678618167504307708651130165095377248922919635337796\"]",
+            "comboStatus": "disabled",
+            "umaBond": "500",
+            "umaReward": "5",
+            "volume24hrClob": "491482.688731",
+            "volume1wkClob": "1115257.91283",
+            "volume1moClob": "1756928.506594",
+            "volume1yrClob": "2120616.907476",
+            "volumeClob": "2120616.907476",
+            "liquidityClob": "450910.364",
+            "makerBaseFee": 1000,
+            "takerBaseFee": 1000,
+            "customLiveness": 0,
+            "acceptingOrders": true,
+            "negRisk": true,
+            "negRiskMarketID": "0xa74f5328517db0e030a5e62edc800e37bd36ca6e455571b14e8bb2b0dd38d700",
+            "negRiskRequestID": "0x36904b0d52bfcda18d57a7072f1c06b5340dfa024ace8a7c0bb6a46f57f1d5fd",
+            "ready": false,
+            "funded": false,
+            "acceptingOrdersTimestamp": "2026-07-30T00:42:48Z",
+            "cyom": false,
+            "competitive": "0.9558173433056943",
+            "approved": true,
+            "clobRewards": [
+              {
+                "id": "1086483",
+                "conditionId": "0x723822eb2b143cee54c0bd7c1efba322b21f0051984c266df8879c394f1011c0",
+                "assetAddress": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
+                "rewardsAmount": 0,
+                "rewardsDailyRate": 1000,
+                "startDate": "2026-10-27",
+                "endDate": "2500-12-31"
+              }
+            ],
+            "rewardsMinSize": 50,
+            "rewardsMaxSpread": "4.5",
+            "spread": "0.01",
+            "oneDayPriceChange": "0.11",
+            "oneHourPriceChange": "0.02",
+            "oneWeekPriceChange": "0.05",
+            "oneMonthPriceChange": "0.04",
+            "lastTradePrice": "0.28",
+            "bestBid": "0.28",
+            "bestAsk": "0.29",
+            "automaticallyActive": true,
+            "clearBookOnStart": true,
+            "showGmpSeries": false,
+            "showGmpOutcome": false,
+            "manualActivation": false,
+            "negRiskOther": false,
+            "umaResolutionStatuses": "[]",
+            "pendingDeployment": false,
+            "deploying": false,
+            "deployingTimestamp": "2026-07-30T00:38:52.429651Z",
+            "rfqEnabled": false,
+            "holdingRewardsEnabled": false,
+            "feesEnabled": true,
+            "feeType": "zero_fees",
+            "feeSchedule": {
+              "exponent": 1,
+              "rate": 0,
+              "takerOnly": true,
+              "rebateRate": 0
+            },
+            "fallbackResolutionType": "none",
+            "resolutionMechanism": "oracle",
+            "tradingEligible": true,
+            "version": "v1"
+          },
+          {
+            "id": "3215008",
+            "question": "Will the Fed increase interest rates by 25 bps after the December 2026 meeting?",
+            "conditionId": "0x8a4196617dcb703e49d9bb36d3847bf6a75fd364dbd19f8d408ac944bf1a03d8",
+            "slug": "will-the-fed-increase-interest-rates-by-25-bps-after-the-december-2026-meeting-20260729232808636",
+            "resolutionSource": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+            "endDate": "2026-12-09T23:59:00Z",
+            "liquidity": "304565.7925",
+            "startDate": "2026-07-30T00:55:13.207782Z",
+            "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/fed-decision-in-september-762-c4RyWuxRPo1L.jpg",
+            "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/fed-decision-in-september-762-c4RyWuxRPo1L.jpg",
+            "description": "The FED interest rates are defined in this market by the upper bound of the target federal funds range. The decisions on the target federal funds range are made by the Federal Open Market Committee (FOMC) meetings.\n\nThis market will resolve to the amount of basis points the upper bound of the target federal funds rate is changed by versus the level it was prior to the Federal Reserve's December 2026 meeting.\n\nIf the target federal funds rate is changed to a level not expressed in the displayed options, the change will be rounded up to the nearest 25 and will resolve to the relevant bracket. (e.g. if there's a cut/increase of 12.5 bps it will be considered to be 25 bps)\n\nThe resolution source for this market is the FOMC’s statement after its meeting scheduled for December 8-9, 2026 according to the official calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm.\n\nThe level and change of the target federal funds rate is also published at the official website of the Federal Reserve at https://www.federalreserve.gov/monetarypolicy/openmarket.htm.\n\nThis market may resolve as soon as the FOMC’s statement for their December meeting with relevant data is issued. If no statement is released by the end date of the next scheduled meeting, this market will resolve to the \"No change\" bracket.",
+            "outcomes": "[\"Yes\", \"No\"]",
+            "outcomePrices": "[\"0.695\", \"0.305\"]",
+            "volume": "2037360.9767239997",
+            "active": true,
+            "closed": false,
+            "marketMakerAddress": "",
+            "createdAt": "2026-07-30T00:36:57.524595Z",
+            "updatedAt": "2026-10-30T01:32:45.058766Z",
+            "new": false,
+            "featured": false,
+            "submitted_by": "0xF43d55F3A8B7484Ed4B6931f93CB6F9eF5Dd369D",
+            "archived": false,
+            "resolvedBy": "0x69c47De9D4D3Dad79590d61b9e05918E03775f24",
+            "restricted": true,
+            "groupItemTitle": "25 bps increase",
+            "groupItemThreshold": "3",
+            "questionID": "0xa74f5328517db0e030a5e62edc800e37bd36ca6e455571b14e8bb2b0dd38d703",
+            "enableOrderBook": true,
+            "orderPriceMinTickSize": "0.01",
+            "orderMinSize": 5,
+            "volumeNum": "2037360.9767239997",
+            "liquidityNum": "304565.7925",
+            "endDateIso": "2026-12-09",
+            "startDateIso": "2026-07-30",
+            "hasReviewedDates": true,
+            "volume24hr": "360791.88129",
+            "volume1wk": "977140.1706160001",
+            "volume1mo": "1462600.318581",
+            "volume1yr": "2037360.976724",
+            "clobTokenIds": "[\"111662129652828266889360374468657435151479595863413519836161861837506140152890\", \"94483965432909797688470702512207472940215538148754820061518518664128018848687\"]",
+            "comboStatus": "disabled",
+            "umaBond": "500",
+            "umaReward": "5",
+            "volume24hrClob": "360791.88129",
+            "volume1wkClob": "977140.1706160001",
+            "volume1moClob": "1462600.318581",
+            "volume1yrClob": "2037360.976724",
+            "volumeClob": "2037360.9767239997",
+            "liquidityClob": "304565.7925",
+            "makerBaseFee": 1000,
+            "takerBaseFee": 1000,
+            "customLiveness": 0,
+            "acceptingOrders": true,
+            "negRisk": true,
+            "negRiskMarketID": "0xa74f5328517db0e030a5e62edc800e37bd36ca6e455571b14e8bb2b0dd38d700",
+            "negRiskRequestID": "0x6b156061fcf4a92d0d45dc93aacf9f2e88a78b8bad4a16e909f02abed12f18cd",
+            "ready": false,
+            "funded": false,
+            "acceptingOrdersTimestamp": "2026-07-30T00:54:12Z",
+            "cyom": false,
+            "competitive": "0.9633679342983069",
+            "approved": true,
+            "clobRewards": [
+              {
+                "id": "1086478",
+                "conditionId": "0x8a4196617dcb703e49d9bb36d3847bf6a75fd364dbd19f8d408ac944bf1a03d8",
+                "assetAddress": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
+                "rewardsAmount": 0,
+                "rewardsDailyRate": 1000,
+                "startDate": "2026-10-27",
+                "endDate": "2500-12-31"
+              }
+            ],
+            "rewardsMinSize": 50,
+            "rewardsMaxSpread": "4.5",
+            "spread": "0.01",
+            "oneDayPriceChange": "-0.1",
+            "oneHourPriceChange": "-0.02",
+            "oneWeekPriceChange": "-0.02",
+            "oneMonthPriceChange": "-0.05",
+            "lastTradePrice": "0.7",
+            "bestBid": "0.69",
+            "bestAsk": "0.7",
+            "automaticallyActive": true,
+            "clearBookOnStart": true,
+            "showGmpSeries": false,
+            "showGmpOutcome": false,
+            "manualActivation": false,
+            "negRiskOther": false,
+            "umaResolutionStatuses": "[]",
+            "pendingDeployment": false,
+            "deploying": false,
+            "deployingTimestamp": "2026-07-30T00:38:52.447808Z",
+            "rfqEnabled": false,
+            "holdingRewardsEnabled": false,
+            "feesEnabled": true,
+            "feeType": "zero_fees",
+            "feeSchedule": {
+              "exponent": 1,
+              "rate": 0,
+              "takerOnly": true,
+              "rebateRate": 0
+            },
+            "fallbackResolutionType": "none",
+            "resolutionMechanism": "oracle",
+            "tradingEligible": true,
+            "version": "v1"
+          },
+          {
+            "id": "3215009",
+            "question": "Will the Fed increase interest rates by 50+ bps after the December 2026 meeting?",
+            "conditionId": "0xa5f8a44504de30fa36fff2406b2b27b3d15476ed50448e4fc3ead4861d8a5e3e",
+            "slug": "will-the-fed-increase-interest-rates-by-50-bps-after-the-december-2026-meeting-20260729232808637",
+            "resolutionSource": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+            "endDate": "2026-12-09T23:59:00Z",
+            "liquidity": "247315.49395",
+            "startDate": "2026-07-30T01:01:52.935105Z",
+            "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/fed-decision-in-september-762-c4RyWuxRPo1L.jpg",
+            "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/fed-decision-in-september-762-c4RyWuxRPo1L.jpg",
+            "description": "The FED interest rates are defined in this market by the upper bound of the target federal funds range. The decisions on the target federal funds range are made by the Federal Open Market Committee (FOMC) meetings.\n\nThis market will resolve to the amount of basis points the upper bound of the target federal funds rate is changed by versus the level it was prior to the Federal Reserve's December 2026 meeting.\n\nIf the target federal funds rate is changed to a level not expressed in the displayed options, the change will be rounded up to the nearest 25 and will resolve to the relevant bracket. (e.g. if there's a cut/increase of 12.5 bps it will be considered to be 25 bps)\n\nThe resolution source for this market is the FOMC’s statement after its meeting scheduled for December 8-9, 2026 according to the official calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm.\n\nThe level and change of the target federal funds rate is also published at the official website of the Federal Reserve at https://www.federalreserve.gov/monetarypolicy/openmarket.htm.\n\nThis market may resolve as soon as the FOMC’s statement for their December meeting with relevant data is issued. If no statement is released by the end date of the next scheduled meeting, this market will resolve to the \"No change\" bracket.",
+            "outcomes": "[\"Yes\", \"No\"]",
+            "outcomePrices": "[\"0.0205\", \"0.9795\"]",
+            "volume": "1100771.268956",
+            "active": true,
+            "closed": false,
+            "marketMakerAddress": "",
+            "createdAt": "2026-07-30T00:36:57.933271Z",
+            "updatedAt": "2026-10-30T01:32:45.058766Z",
+            "new": false,
+            "featured": false,
+            "submitted_by": "0xF43d55F3A8B7484Ed4B6931f93CB6F9eF5Dd369D",
+            "archived": false,
+            "resolvedBy": "0x69c47De9D4D3Dad79590d61b9e05918E03775f24",
+            "restricted": true,
+            "groupItemTitle": "50+ bps increase",
+            "groupItemThreshold": "4",
+            "questionID": "0xa74f5328517db0e030a5e62edc800e37bd36ca6e455571b14e8bb2b0dd38d704",
+            "enableOrderBook": true,
+            "orderPriceMinTickSize": "0.001",
+            "orderMinSize": 5,
+            "volumeNum": "1100771.268956",
+            "liquidityNum": "247315.49395",
+            "endDateIso": "2026-12-09",
+            "startDateIso": "2026-07-30",
+            "hasReviewedDates": true,
+            "volume24hr": "184062.25234400004",
+            "volume1wk": "495103.35786200006",
+            "volume1mo": "811528.982481",
+            "volume1yr": "1100771.268956",
+            "clobTokenIds": "[\"35090254409399344650860070211816464534198960801264823587796928404808383727584\", \"17037715451587457598270390992151934195448806241696976473961259598235638233970\"]",
+            "comboStatus": "disabled",
+            "umaBond": "500",
+            "umaReward": "5",
+            "volume24hrClob": "184062.25234400004",
+            "volume1wkClob": "495103.35786200006",
+            "volume1moClob": "811528.982481",
+            "volume1yrClob": "1100771.268956",
+            "volumeClob": "1100771.268956",
+            "liquidityClob": "247315.49395",
+            "makerBaseFee": 1000,
+            "takerBaseFee": 1000,
+            "customLiveness": 0,
+            "acceptingOrders": true,
+            "negRisk": true,
+            "negRiskMarketID": "0xa74f5328517db0e030a5e62edc800e37bd36ca6e455571b14e8bb2b0dd38d700",
+            "negRiskRequestID": "0x26a491dcb7ac5165afa5aaa3cbdccfcbed8accda652b1d044e9cd663887ea608",
+            "ready": false,
+            "funded": false,
+            "acceptingOrdersTimestamp": "2026-07-30T01:00:53Z",
+            "cyom": false,
+            "competitive": "0.8130608468313291",
+            "approved": true,
+            "rewardsMinSize": 50,
+            "rewardsMaxSpread": "4.5",
+            "spread": "0.001",
+            "oneDayPriceChange": "-0.0045",
+            "oneWeekPriceChange": "-0.0085",
+            "oneMonthPriceChange": "0.007",
+            "lastTradePrice": "0.02",
+            "bestBid": "0.02",
+            "bestAsk": "0.021",
+            "automaticallyActive": true,
+            "clearBookOnStart": true,
+            "showGmpSeries": false,
+            "showGmpOutcome": false,
+            "manualActivation": false,
+            "negRiskOther": false,
+            "umaResolutionStatuses": "[]",
+            "pendingDeployment": false,
+            "deploying": false,
+            "deployingTimestamp": "2026-07-30T00:38:52.453684Z",
+            "rfqEnabled": false,
+            "holdingRewardsEnabled": false,
+            "feesEnabled": true,
+            "feeType": "zero_fees",
+            "feeSchedule": {
+              "exponent": 1,
+              "rate": 0,
+              "takerOnly": true,
+              "rebateRate": 0
+            },
+            "fallbackResolutionType": "none",
+            "resolutionMechanism": "oracle",
+            "tradingEligible": true,
+            "version": "v1"
+          }
+        ],
+        "series": [
+          {
+            "id": "35",
+            "ticker": "fomc",
+            "slug": "fomc",
+            "title": "FOMC",
+            "seriesType": "single",
+            "recurrence": "monthly",
+            "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/jerome+powel+stern.png",
+            "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/jerome+powel+stern.png",
+            "layout": "default",
+            "active": true,
+            "closed": false,
+            "archived": false,
+            "new": false,
+            "featured": false,
+            "restricted": true,
+            "publishedAt": "2023-03-22 19:17:35.835+00",
+            "createdBy": "15",
+            "updatedBy": "15",
+            "createdAt": "2023-02-03T22:02:38.864Z",
+            "updatedAt": "2026-10-30T01:33:13.842944Z",
+            "commentsEnabled": false,
+            "competitive": "0",
+            "volume24hr": "2113867.832288",
+            "volume": "10033166.808546",
+            "liquidity": "2519488.78577",
+            "startDate": "2021-01-01T17:00:00Z",
+            "commentCount": 9717
+          }
+        ],
+        "tags": [
+          {
+            "id": "159",
+            "label": "Fed",
+            "slug": "fed",
+            "forceShow": false,
+            "publishedAt": "2023-11-02 21:27:18.98+00",
+            "createdAt": "2023-11-02T21:27:18.986Z",
+            "updatedAt": "2026-04-17T21:09:42.963001Z",
+            "isCarousel": false
+          },
+          {
+            "id": "100478",
+            "label": "fomc",
+            "slug": "fomc",
+            "createdAt": "2024-09-18T16:39:12.895052Z",
+            "updatedAt": "2026-04-17T20:41:15.156214Z"
+          },
+          {
+            "id": "126",
+            "label": "Trump",
+            "slug": "trump",
+            "forceShow": false,
+            "publishedAt": "2023-11-02 21:23:16.384+00",
+            "updatedBy": 15,
+            "createdAt": "2023-11-02T21:23:16.39Z",
+            "updatedAt": "2026-04-17T20:39:14.206724Z"
+          },
+          {
+            "id": "100328",
+            "label": "Economy",
+            "slug": "economy",
+            "forceShow": false,
+            "createdAt": "2024-08-05T05:34:54.235643Z",
+            "updatedAt": "2026-04-17T20:29:06.948273Z"
+          },
+          {
+            "id": "100196",
+            "label": "Fed Rates",
+            "slug": "fed-rates",
+            "forceShow": true,
+            "updatedAt": "2026-04-17T17:15:07.579162Z"
+          },
+          {
+            "id": "104088",
+            "label": "Kevin Warsh",
+            "slug": "kevin-warsh",
+            "createdAt": "2026-03-04T18:35:08.832648Z",
+            "updatedAt": "2026-04-17T20:46:16.097266Z"
+          },
+          {
+            "id": "103176",
+            "label": "Global Rates",
+            "slug": "Global-Rates",
+            "forceShow": false,
+            "createdAt": "2026-01-16T22:01:30.899064Z",
+            "updatedAt": "2026-04-17T17:21:01.178149Z",
+            "isCarousel": false
+          },
+          {
+            "id": "101800",
+            "label": "Economic Policy",
+            "slug": "economic-policy",
+            "forceShow": false,
+            "createdAt": "2025-02-06T18:05:50.554703Z",
+            "updatedAt": "2026-04-17T20:34:30.088167Z"
+          },
+          {
+            "id": "102000",
+            "label": "Macro Indicators",
+            "slug": "macro-indicators",
+            "forceShow": false,
+            "createdAt": "2025-03-26T21:57:53.430333Z",
+            "updatedAt": "2026-04-17T17:16:07.641202Z"
+          },
+          {
+            "id": "101757",
+            "label": "Recurring",
+            "slug": "recurring",
+            "forceShow": false,
+            "createdAt": "2025-02-01T00:45:26.493838Z",
+            "updatedAt": "2026-04-17T17:25:43.117249Z"
+          }
+        ],
+        "cyom": false,
+        "showAllOutcomes": true,
+        "showMarketImages": false,
+        "enableNegRisk": true,
+        "automaticallyActive": true,
+        "seriesSlug": "fomc",
+        "gmpChartMode": "default",
+        "negRiskAugmented": false,
+        "featuredOrder": 15,
+        "estimateValue": false,
+        "cumulativeMarkets": false,
+        "pendingDeployment": false,
+        "deploying": false,
+        "deployingTimestamp": "2026-07-30T00:37:14.71408Z",
+        "eventMetadata": {
+          "context_requires_regen": true
+        },
+        "version": "v1"
+      }
+    ],
+    "kalshi_events": [
+      {
+        "category": "Economics",
+        "collateral_return_type": "DIRECNET",
+        "event_ticker": "KXFED-26DEC",
+        "exchange_index": 0,
+        "last_updated_ts": "0001-01-01T00:00:00Z",
+        "markets": [
+          {
+            "can_close_early": true,
+            "close_time": "2026-12-09T18:55:00Z",
+            "created_time": "2025-08-06T14:29:24.100133Z",
+            "event_ticker": "KXFED-26DEC",
+            "exchange_index": 0,
+            "expected_expiration_time": "2026-12-09T19:05:00Z",
+            "expiration_time": "2026-12-16T19:05:00Z",
+            "expiration_value": "",
+            "floor_strike": 2.75,
+            "last_price_dollars": "0.9800",
+            "latest_expiration_time": "2026-12-16T19:05:00Z",
+            "market_type": "binary",
+            "no_ask_dollars": "0.0100",
+            "no_bid_dollars": "0.0000",
+            "no_sub_title": "Above 2.75%",
+            "notional_value_dollars": "1.0000",
+            "open_interest_fp": "6582.63",
+            "open_time": "2025-08-06T14:30:00Z",
+            "previous_price_dollars": "0.9800",
+            "previous_yes_ask_dollars": "1.0000",
+            "previous_yes_bid_dollars": "0.9900",
+            "price_level_structure": "linear_cent",
+            "price_ranges": [
+              {
+                "end": "1.0000",
+                "start": "0.0000",
+                "step": "0.0100"
+              }
+            ],
+            "result": "",
+            "rules_primary": "If the upper bound of the target federal funds rate published on the Federal Reserve's official website is greater than 2.75% following the Federal Reserve's Dec 9, 2026 meeting, then the market resolves to Yes.",
+            "rules_secondary": "This market will expire the first 2:05 PM ET following the release of a Federal Reserve statement for their Dec 9, 2026 meeting or one week following the last day of that meeting.",
+            "settlement_bounds_type": "default",
+            "settlement_timer_seconds": 300,
+            "status": "active",
+            "strike_type": "greater",
+            "subtitle": "2.75%",
+            "ticker": "KXFED-26DEC-T2.75",
+            "title": "Will the upper bound of the federal funds rate be above 2.75% following the Fed's Dec 9, 2026 meeting?",
+            "updated_time": "2026-10-27T18:37:20.024122Z",
+            "volume_24h_fp": "0.00",
+            "volume_fp": "21665.95",
+            "yes_ask_dollars": "1.0000",
+            "yes_ask_size_fp": "0.00",
+            "yes_bid_dollars": "0.9900",
+            "yes_bid_size_fp": "2000.00",
+            "yes_sub_title": "Above 2.75%"
+          },
+          {
+            "can_close_early": true,
+            "close_time": "2026-12-09T18:55:00Z",
+            "created_time": "2025-08-06T14:29:24.100133Z",
+            "event_ticker": "KXFED-26DEC",
+            "exchange_index": 0,
+            "expected_expiration_time": "2026-12-09T19:05:00Z",
+            "expiration_time": "2026-12-16T19:05:00Z",
+            "expiration_value": "",
+            "floor_strike": 3,
+            "last_price_dollars": "0.9900",
+            "latest_expiration_time": "2026-12-16T19:05:00Z",
+            "market_type": "binary",
+            "no_ask_dollars": "0.0100",
+            "no_bid_dollars": "0.0000",
+            "no_sub_title": "Above 3.00%",
+            "notional_value_dollars": "1.0000",
+            "open_interest_fp": "2802.17",
+            "open_time": "2025-08-06T14:30:00Z",
+            "previous_price_dollars": "0.9900",
+            "previous_yes_ask_dollars": "1.0000",
+            "previous_yes_bid_dollars": "0.9900",
+            "price_level_structure": "linear_cent",
+            "price_ranges": [
+              {
+                "end": "1.0000",
+                "start": "0.0000",
+                "step": "0.0100"
+              }
+            ],
+            "result": "",
+            "rules_primary": "If the upper bound of the target federal funds rate published on the Federal Reserve's official website is greater than 3.00% following the Federal Reserve's Dec 9, 2026 meeting, then the market resolves to Yes.",
+            "rules_secondary": "This market will expire the first 2:05 PM ET following the release of a Federal Reserve statement for their Dec 9, 2026 meeting or one week following the last day of that meeting.",
+            "settlement_bounds_type": "default",
+            "settlement_timer_seconds": 300,
+            "status": "active",
+            "strike_type": "greater",
+            "subtitle": "3.00%",
+            "ticker": "KXFED-26DEC-T3.00",
+            "title": "Will the upper bound of the federal funds rate be above 3.00% following the Fed's Dec 9, 2026 meeting?",
+            "updated_time": "2026-10-27T18:37:20.024122Z",
+            "volume_24h_fp": "0.00",
+            "volume_fp": "8062.42",
+            "yes_ask_dollars": "1.0000",
+            "yes_ask_size_fp": "0.00",
+            "yes_bid_dollars": "0.9900",
+            "yes_bid_size_fp": "529.00",
+            "yes_sub_title": "Above 3.00%"
+          },
+          {
+            "can_close_early": true,
+            "close_time": "2026-12-09T18:55:00Z",
+            "created_time": "2025-08-06T14:29:24.100133Z",
+            "event_ticker": "KXFED-26DEC",
+            "exchange_index": 0,
+            "expected_expiration_time": "2026-12-09T19:05:00Z",
+            "expiration_time": "2026-12-16T19:05:00Z",
+            "expiration_value": "",
+            "floor_strike": 3.25,
+            "last_price_dollars": "0.9900",
+            "latest_expiration_time": "2026-12-16T19:05:00Z",
+            "market_type": "binary",
+            "no_ask_dollars": "0.0100",
+            "no_bid_dollars": "0.0000",
+            "no_sub_title": "Above 3.25%",
+            "notional_value_dollars": "1.0000",
+            "open_interest_fp": "2125.00",
+            "open_time": "2025-08-06T14:30:00Z",
+            "previous_price_dollars": "0.9900",
+            "previous_yes_ask_dollars": "1.0000",
+            "previous_yes_bid_dollars": "0.9900",
+            "price_level_structure": "linear_cent",
+            "price_ranges": [
+              {
+                "end": "1.0000",
+                "start": "0.0000",
+                "step": "0.0100"
+              }
+            ],
+            "result": "",
+            "rules_primary": "If the upper bound of the target federal funds rate published on the Federal Reserve's official website is greater than 3.25% following the Federal Reserve's Dec 9, 2026 meeting, then the market resolves to Yes.",
+            "rules_secondary": "This market will expire the first 2:05 PM ET following the release of a Federal Reserve statement for their Dec 9, 2026 meeting or one week following the last day of that meeting.",
+            "settlement_bounds_type": "default",
+            "settlement_timer_seconds": 300,
+            "status": "active",
+            "strike_type": "greater",
+            "subtitle": "3.25%",
+            "ticker": "KXFED-26DEC-T3.25",
+            "title": "Will the upper bound of the federal funds rate be above 3.25% following the Fed's Dec 9, 2026 meeting?",
+            "updated_time": "2026-10-27T18:37:20.024122Z",
+            "volume_24h_fp": "0.00",
+            "volume_fp": "14039.48",
+            "yes_ask_dollars": "1.0000",
+            "yes_ask_size_fp": "0.00",
+            "yes_bid_dollars": "0.9900",
+            "yes_bid_size_fp": "7.00",
+            "yes_sub_title": "Above 3.25%"
+          },
+          {
+            "can_close_early": true,
+            "close_time": "2026-12-09T18:55:00Z",
+            "created_time": "2025-08-06T14:29:24.100133Z",
+            "event_ticker": "KXFED-26DEC",
+            "exchange_index": 0,
+            "expected_expiration_time": "2026-12-09T19:05:00Z",
+            "expiration_time": "2026-12-16T19:05:00Z",
+            "expiration_value": "",
+            "floor_strike": 3.5,
+            "last_price_dollars": "0.9900",
+            "latest_expiration_time": "2026-12-16T19:05:00Z",
+            "market_type": "binary",
+            "no_ask_dollars": "0.0100",
+            "no_bid_dollars": "0.0000",
+            "no_sub_title": "Above 3.50%",
+            "notional_value_dollars": "1.0000",
+            "open_interest_fp": "16287.28",
+            "open_time": "2025-08-06T14:30:00Z",
+            "previous_price_dollars": "0.9900",
+            "previous_yes_ask_dollars": "1.0000",
+            "previous_yes_bid_dollars": "0.9900",
+            "price_level_structure": "linear_cent",
+            "price_ranges": [
+              {
+                "end": "1.0000",
+                "start": "0.0000",
+                "step": "0.0100"
+              }
+            ],
+            "result": "",
+            "rules_primary": "If the upper bound of the target federal funds rate published on the Federal Reserve's official website is greater than 3.50% following the Federal Reserve's Dec 9, 2026 meeting, then the market resolves to Yes.",
+            "rules_secondary": "This market will expire the first 2:05 PM ET following the release of a Federal Reserve statement for their Dec 9, 2026 meeting or one week following the last day of that meeting.",
+            "settlement_bounds_type": "default",
+            "settlement_timer_seconds": 300,
+            "status": "active",
+            "strike_type": "greater",
+            "subtitle": "3.50%",
+            "ticker": "KXFED-26DEC-T3.50",
+            "title": "Will the upper bound of the federal funds rate be above 3.50% following the Fed's Dec 9, 2026 meeting?",
+            "updated_time": "2026-10-27T18:37:20.024122Z",
+            "volume_24h_fp": "0.00",
+            "volume_fp": "45961.08",
+            "yes_ask_dollars": "1.0000",
+            "yes_ask_size_fp": "0.00",
+            "yes_bid_dollars": "0.9900",
+            "yes_bid_size_fp": "78.30",
+            "yes_sub_title": "Above 3.50%"
+          },
+          {
+            "can_close_early": true,
+            "close_time": "2026-12-09T18:55:00Z",
+            "created_time": "2025-08-06T14:29:24.100133Z",
+            "event_ticker": "KXFED-26DEC",
+            "exchange_index": 0,
+            "expected_expiration_time": "2026-12-09T19:05:00Z",
+            "expiration_time": "2026-12-16T19:05:00Z",
+            "expiration_value": "",
+            "floor_strike": 3.75,
+            "last_price_dollars": "0.9800",
+            "latest_expiration_time": "2026-12-16T19:05:00Z",
+            "market_type": "binary",
+            "no_ask_dollars": "0.0200",
+            "no_bid_dollars": "0.0100",
+            "no_sub_title": "Above 3.75%",
+            "notional_value_dollars": "1.0000",
+            "open_interest_fp": "31655.23",
+            "open_time": "2025-08-06T14:30:00Z",
+            "previous_price_dollars": "0.9900",
+            "previous_yes_ask_dollars": "0.9900",
+            "previous_yes_bid_dollars": "0.9800",
+            "price_level_structure": "linear_cent",
+            "price_ranges": [
+              {
+                "end": "1.0000",
+                "start": "0.0000",
+                "step": "0.0100"
+              }
+            ],
+            "result": "",
+            "rules_primary": "If the upper bound of the target federal funds rate published on the Federal Reserve's official website is greater than 3.75% following the Federal Reserve's Dec 9, 2026 meeting, then the market resolves to Yes.",
+            "rules_secondary": "This market will expire the first 2:05 PM ET following the release of a Federal Reserve statement for their Dec 9, 2026 meeting or one week following the last day of that meeting.",
+            "settlement_bounds_type": "default",
+            "settlement_timer_seconds": 300,
+            "status": "active",
+            "strike_type": "greater",
+            "subtitle": "3.75%",
+            "ticker": "KXFED-26DEC-T3.75",
+            "title": "Will the upper bound of the federal funds rate be above 3.75% following the Fed's Dec 9, 2026 meeting?",
+            "updated_time": "2026-10-27T18:37:20.024122Z",
+            "volume_24h_fp": "6203.45",
+            "volume_fp": "81979.01",
+            "yes_ask_dollars": "0.9900",
+            "yes_ask_size_fp": "14.76",
+            "yes_bid_dollars": "0.9800",
+            "yes_bid_size_fp": "2612.81",
+            "yes_sub_title": "Above 3.75%"
+          },
+          {
+            "can_close_early": true,
+            "close_time": "2026-12-09T18:55:00Z",
+            "created_time": "2025-08-06T14:29:24.100133Z",
+            "event_ticker": "KXFED-26DEC",
+            "exchange_index": 0,
+            "expected_expiration_time": "2026-12-09T19:05:00Z",
+            "expiration_time": "2026-12-16T19:05:00Z",
+            "expiration_value": "",
+            "floor_strike": 4,
+            "last_price_dollars": "0.7500",
+            "latest_expiration_time": "2026-12-16T19:05:00Z",
+            "market_type": "binary",
+            "no_ask_dollars": "0.2800",
+            "no_bid_dollars": "0.2700",
+            "no_sub_title": "Above 4.00%",
+            "notional_value_dollars": "1.0000",
+            "open_interest_fp": "57559.16",
+            "open_time": "2025-08-06T14:30:00Z",
+            "previous_price_dollars": "0.8100",
+            "previous_yes_ask_dollars": "0.8300",
+            "previous_yes_bid_dollars": "0.8200",
+            "price_level_structure": "linear_cent",
+            "price_ranges": [
+              {
+                "end": "1.0000",
+                "start": "0.0000",
+                "step": "0.0100"
+              }
+            ],
+            "result": "",
+            "rules_primary": "If the upper bound of the target federal funds rate published on the Federal Reserve's official website is greater than 4.00% following the Federal Reserve's Dec 9, 2026 meeting, then the market resolves to Yes.",
+            "rules_secondary": "This market will expire the first 2:05 PM ET following the release of a Federal Reserve statement for their Dec 9, 2026 meeting or one week following the last day of that meeting.",
+            "settlement_bounds_type": "default",
+            "settlement_timer_seconds": 300,
+            "status": "active",
+            "strike_type": "greater",
+            "subtitle": "4.00%",
+            "ticker": "KXFED-26DEC-T4.00",
+            "title": "Will the upper bound of the federal funds rate be above 4.00% following the Fed's Dec 9, 2026 meeting?",
+            "updated_time": "2026-10-27T18:37:20.024122Z",
+            "volume_24h_fp": "9333.77",
+            "volume_fp": "107342.44",
+            "yes_ask_dollars": "0.7300",
+            "yes_ask_size_fp": "28.00",
+            "yes_bid_dollars": "0.7200",
+            "yes_bid_size_fp": "121.43",
+            "yes_sub_title": "Above 4.00%"
+          },
+          {
+            "can_close_early": true,
+            "close_time": "2026-12-09T18:55:00Z",
+            "created_time": "2025-08-06T14:29:24.100133Z",
+            "event_ticker": "KXFED-26DEC",
+            "exchange_index": 0,
+            "expected_expiration_time": "2026-12-09T19:05:00Z",
+            "expiration_time": "2026-12-16T19:05:00Z",
+            "expiration_value": "",
+            "floor_strike": 4.25,
+            "last_price_dollars": "0.0300",
+            "latest_expiration_time": "2026-12-16T19:05:00Z",
+            "market_type": "binary",
+            "no_ask_dollars": "0.9800",
+            "no_bid_dollars": "0.9700",
+            "no_sub_title": "Above 4.25%",
+            "notional_value_dollars": "1.0000",
+            "open_interest_fp": "55734.69",
+            "open_time": "2025-08-06T14:30:00Z",
+            "previous_price_dollars": "0.0400",
+            "previous_yes_ask_dollars": "0.0300",
+            "previous_yes_bid_dollars": "0.0200",
+            "price_level_structure": "linear_cent",
+            "price_ranges": [
+              {
+                "end": "1.0000",
+                "start": "0.0000",
+                "step": "0.0100"
+              }
+            ],
+            "result": "",
+            "rules_primary": "If the upper bound of the target federal funds rate published on the Federal Reserve's official website is greater than 4.25% following the Federal Reserve's Dec 9, 2026 meeting, then the market resolves to Yes.",
+            "rules_secondary": "This market will expire the first 2:05 PM ET following the release of a Federal Reserve statement for their Dec 9, 2026 meeting or one week following the last day of that meeting.",
+            "settlement_bounds_type": "default",
+            "settlement_timer_seconds": 300,
+            "status": "active",
+            "strike_type": "greater",
+            "subtitle": "4.25%",
+            "ticker": "KXFED-26DEC-T4.25",
+            "title": "Will the upper bound of the federal funds rate be above 4.25% following the Fed's Dec 9, 2026 meeting?",
+            "updated_time": "2026-10-27T18:37:20.024122Z",
+            "volume_24h_fp": "2248.25",
+            "volume_fp": "95110.29",
+            "yes_ask_dollars": "0.0300",
+            "yes_ask_size_fp": "7794.48",
+            "yes_bid_dollars": "0.0200",
+            "yes_bid_size_fp": "1729.97",
+            "yes_sub_title": "Above 4.25%"
+          },
+          {
+            "can_close_early": true,
+            "close_time": "2026-12-09T18:55:00Z",
+            "created_time": "2025-08-06T14:29:24.100134Z",
+            "event_ticker": "KXFED-26DEC",
+            "exchange_index": 0,
+            "expected_expiration_time": "2026-12-09T19:05:00Z",
+            "expiration_time": "2026-12-16T19:05:00Z",
+            "expiration_value": "",
+            "floor_strike": 4.5,
+            "last_price_dollars": "0.0100",
+            "latest_expiration_time": "2026-12-16T19:05:00Z",
+            "market_type": "binary",
+            "no_ask_dollars": "1.0000",
+            "no_bid_dollars": "0.9900",
+            "no_sub_title": "Above 4.50%",
+            "notional_value_dollars": "1.0000",
+            "open_interest_fp": "158891.14",
+            "open_time": "2025-08-06T14:30:00Z",
+            "previous_price_dollars": "0.0100",
+            "previous_yes_ask_dollars": "0.0200",
+            "previous_yes_bid_dollars": "0.0100",
+            "price_level_structure": "linear_cent",
+            "price_ranges": [
+              {
+                "end": "1.0000",
+                "start": "0.0000",
+                "step": "0.0100"
+              }
+            ],
+            "result": "",
+            "rules_primary": "If the upper bound of the target federal funds rate published on the Federal Reserve's official website is greater than 4.50% following the Federal Reserve's Dec 9, 2026 meeting, then the market resolves to Yes.",
+            "rules_secondary": "This market will expire the first 2:05 PM ET following the release of a Federal Reserve statement for their Dec 9, 2026 meeting or one week following the last day of that meeting.",
+            "settlement_bounds_type": "default",
+            "settlement_timer_seconds": 300,
+            "status": "active",
+            "strike_type": "greater",
+            "subtitle": "4.50%",
+            "ticker": "KXFED-26DEC-T4.50",
+            "title": "Will the upper bound of the federal funds rate be above 4.50% following the Fed's Dec 9, 2026 meeting?",
+            "updated_time": "2026-10-27T18:37:20.024122Z",
+            "volume_24h_fp": "4004.41",
+            "volume_fp": "299881.85",
+            "yes_ask_dollars": "0.0100",
+            "yes_ask_size_fp": "5.04",
+            "yes_bid_dollars": "0.0000",
+            "yes_bid_size_fp": "0.00",
+            "yes_sub_title": "Above 4.50%"
+          },
+          {
+            "can_close_early": true,
+            "close_time": "2026-12-09T18:55:00Z",
+            "created_time": "2025-08-06T14:29:24.100134Z",
+            "event_ticker": "KXFED-26DEC",
+            "exchange_index": 0,
+            "expected_expiration_time": "2026-12-09T19:05:00Z",
+            "expiration_time": "2026-12-16T19:05:00Z",
+            "expiration_value": "",
+            "floor_strike": 4.75,
+            "last_price_dollars": "0.0100",
+            "latest_expiration_time": "2026-12-16T19:05:00Z",
+            "market_type": "binary",
+            "no_ask_dollars": "1.0000",
+            "no_bid_dollars": "0.9900",
+            "no_sub_title": "Above 4.75%",
+            "notional_value_dollars": "1.0000",
+            "open_interest_fp": "1458.04",
+            "open_time": "2025-08-06T14:30:00Z",
+            "previous_price_dollars": "0.0100",
+            "previous_yes_ask_dollars": "0.0100",
+            "previous_yes_bid_dollars": "0.0000",
+            "price_level_structure": "linear_cent",
+            "price_ranges": [
+              {
+                "end": "1.0000",
+                "start": "0.0000",
+                "step": "0.0100"
+              }
+            ],
+            "result": "",
+            "rules_primary": "If the upper bound of the target federal funds rate published on the Federal Reserve's official website is greater than 4.75% following the Federal Reserve's Dec 9, 2026 meeting, then the market resolves to Yes.",
+            "rules_secondary": "This market will expire the first 2:05 PM ET following the release of a Federal Reserve statement for their Dec 9, 2026 meeting or one week following the last day of that meeting.",
+            "settlement_bounds_type": "default",
+            "settlement_timer_seconds": 300,
+            "status": "active",
+            "strike_type": "greater",
+            "subtitle": "4.75%",
+            "ticker": "KXFED-26DEC-T4.75",
+            "title": "Will the upper bound of the federal funds rate be above 4.75% following the Fed's Dec 9, 2026 meeting?",
+            "updated_time": "2026-10-27T18:37:20.024122Z",
+            "volume_24h_fp": "1.00",
+            "volume_fp": "1933.13",
+            "yes_ask_dollars": "0.0100",
+            "yes_ask_size_fp": "10790.79",
+            "yes_bid_dollars": "0.0000",
+            "yes_bid_size_fp": "0.00",
+            "yes_sub_title": "Above 4.75%"
+          },
+          {
+            "can_close_early": true,
+            "close_time": "2026-12-09T18:55:00Z",
+            "created_time": "2025-08-06T14:29:24.100134Z",
+            "event_ticker": "KXFED-26DEC",
+            "exchange_index": 0,
+            "expected_expiration_time": "2026-12-09T19:05:00Z",
+            "expiration_time": "2026-12-16T19:05:00Z",
+            "expiration_value": "",
+            "floor_strike": 5,
+            "last_price_dollars": "0.0200",
+            "latest_expiration_time": "2026-12-16T19:05:00Z",
+            "market_type": "binary",
+            "no_ask_dollars": "1.0000",
+            "no_bid_dollars": "0.9900",
+            "no_sub_title": "Above 5.00%",
+            "notional_value_dollars": "1.0000",
+            "open_interest_fp": "969.86",
+            "open_time": "2025-08-06T14:30:00Z",
+            "previous_price_dollars": "0.0200",
+            "previous_yes_ask_dollars": "0.0100",
+            "previous_yes_bid_dollars": "0.0000",
+            "price_level_structure": "linear_cent",
+            "price_ranges": [
+              {
+                "end": "1.0000",
+                "start": "0.0000",
+                "step": "0.0100"
+              }
+            ],
+            "result": "",
+            "rules_primary": "If the upper bound of the target federal funds rate published on the Federal Reserve's official website is greater than 5.00% following the Federal Reserve's Dec 9, 2026 meeting, then the market resolves to Yes.",
+            "rules_secondary": "This market will expire the first 2:05 PM ET following the release of a Federal Reserve statement for their Dec 9, 2026 meeting or one week following the last day of that meeting.",
+            "settlement_bounds_type": "default",
+            "settlement_timer_seconds": 300,
+            "status": "active",
+            "strike_type": "greater",
+            "subtitle": "5.00%",
+            "ticker": "KXFED-26DEC-T5.00",
+            "title": "Will the upper bound of the federal funds rate be above 5.00% following the Fed's Dec 9, 2026 meeting?",
+            "updated_time": "2026-10-27T18:37:20.024122Z",
+            "volume_24h_fp": "0.00",
+            "volume_fp": "1719.32",
+            "yes_ask_dollars": "0.0100",
+            "yes_ask_size_fp": "10226.00",
+            "yes_bid_dollars": "0.0000",
+            "yes_bid_size_fp": "0.00",
+            "yes_sub_title": "Above 5.00%"
+          },
+          {
+            "can_close_early": true,
+            "close_time": "2026-12-09T18:55:00Z",
+            "created_time": "2025-08-06T14:29:24.100134Z",
+            "event_ticker": "KXFED-26DEC",
+            "exchange_index": 0,
+            "expected_expiration_time": "2026-12-09T19:05:00Z",
+            "expiration_time": "2026-12-16T19:05:00Z",
+            "expiration_value": "",
+            "floor_strike": 5.25,
+            "last_price_dollars": "0.0100",
+            "latest_expiration_time": "2026-12-16T19:05:00Z",
+            "market_type": "binary",
+            "no_ask_dollars": "1.0000",
+            "no_bid_dollars": "0.9900",
+            "no_sub_title": "Above 5.25%",
+            "notional_value_dollars": "1.0000",
+            "open_interest_fp": "679.86",
+            "open_time": "2025-08-06T14:30:00Z",
+            "previous_price_dollars": "0.0100",
+            "previous_yes_ask_dollars": "0.0100",
+            "previous_yes_bid_dollars": "0.0000",
+            "price_level_structure": "linear_cent",
+            "price_ranges": [
+              {
+                "end": "1.0000",
+                "start": "0.0000",
+                "step": "0.0100"
+              }
+            ],
+            "result": "",
+            "rules_primary": "If the upper bound of the target federal funds rate published on the Federal Reserve's official website is greater than 5.25% following the Federal Reserve's Dec 9, 2026 meeting, then the market resolves to Yes.",
+            "rules_secondary": "This market will expire the first 2:05 PM ET following the release of a Federal Reserve statement for their Dec 9, 2026 meeting or one week following the last day of that meeting.",
+            "settlement_bounds_type": "default",
+            "settlement_timer_seconds": 300,
+            "status": "active",
+            "strike_type": "greater",
+            "subtitle": "5.25%",
+            "ticker": "KXFED-26DEC-T5.25",
+            "title": "Will the upper bound of the federal funds rate be above 5.25% following the Fed's Dec 9, 2026 meeting?",
+            "updated_time": "2026-10-27T18:37:20.024122Z",
+            "volume_24h_fp": "0.00",
+            "volume_fp": "944.87",
+            "yes_ask_dollars": "0.0100",
+            "yes_ask_size_fp": "10478.00",
+            "yes_bid_dollars": "0.0000",
+            "yes_bid_size_fp": "0.00",
+            "yes_sub_title": "Above 5.25%"
+          }
+        ],
+        "mutually_exclusive": false,
+        "product_metadata": {
+          "competition": "US FED",
+          "competition_scope": "Fed Rate After Meeting"
+        },
+        "series_ticker": "KXFED",
+        "settlement_sources": [
+          {
+            "name": "Federal Reserve Board of Governors",
+            "url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
+          }
+        ],
+        "strike_date": "2026-12-09T19:00:00Z",
+        "strike_period": "",
+        "sub_title": "On Dec 9, 2026",
+        "title": "Fed funds rate after Dec 2026 meeting?"
+      }
+    ],
+    "kalshi_markets": [
+      {
+        "can_close_early": true,
+        "close_time": "2026-12-09T18:55:00Z",
+        "created_time": "2025-08-06T14:29:24.100133Z",
+        "event_ticker": "KXFED-26DEC",
+        "exchange_index": 0,
+        "expected_expiration_time": "2026-12-09T19:05:00Z",
+        "expiration_time": "2026-12-16T19:05:00Z",
+        "expiration_value": "",
+        "floor_strike": 2.75,
+        "last_price_dollars": "0.9800",
+        "latest_expiration_time": "2026-12-16T19:05:00Z",
+        "market_type": "binary",
+        "no_ask_dollars": "0.0100",
+        "no_bid_dollars": "0.0000",
+        "no_sub_title": "Above 2.75%",
+        "notional_value_dollars": "1.0000",
+        "open_interest_fp": "6582.63",
+        "open_time": "2025-08-06T14:30:00Z",
+        "previous_price_dollars": "0.9800",
+        "previous_yes_ask_dollars": "1.0000",
+        "previous_yes_bid_dollars": "0.9900",
+        "price_level_structure": "linear_cent",
+        "price_ranges": [
+          {
+            "end": "1.0000",
+            "start": "0.0000",
+            "step": "0.0100"
+          }
+        ],
+        "result": "",
+        "rules_primary": "If the upper bound of the target federal funds rate published on the Federal Reserve's official website is greater than 2.75% following the Federal Reserve's Dec 9, 2026 meeting, then the market resolves to Yes.",
+        "rules_secondary": "This market will expire the first 2:05 PM ET following the release of a Federal Reserve statement for their Dec 9, 2026 meeting or one week following the last day of that meeting.",
+        "settlement_bounds_type": "default",
+        "settlement_timer_seconds": 300,
+        "status": "active",
+        "strike_type": "greater",
+        "subtitle": "2.75%",
+        "ticker": "KXFED-26DEC-T2.75",
+        "title": "Will the upper bound of the federal funds rate be above 2.75% following the Fed's Dec 9, 2026 meeting?",
+        "updated_time": "2026-10-27T18:37:20.024122Z",
+        "volume_24h_fp": "0.00",
+        "volume_fp": "21665.95",
+        "yes_ask_dollars": "1.0000",
+        "yes_ask_size_fp": "0.00",
+        "yes_bid_dollars": "0.9900",
+        "yes_bid_size_fp": "2000.00",
+        "yes_sub_title": "Above 2.75%"
+      },
+      {
+        "can_close_early": true,
+        "close_time": "2026-12-09T18:55:00Z",
+        "created_time": "2025-08-06T14:29:24.100133Z",
+        "event_ticker": "KXFED-26DEC",
+        "exchange_index": 0,
+        "expected_expiration_time": "2026-12-09T19:05:00Z",
+        "expiration_time": "2026-12-16T19:05:00Z",
+        "expiration_value": "",
+        "floor_strike": 3,
+        "last_price_dollars": "0.9900",
+        "latest_expiration_time": "2026-12-16T19:05:00Z",
+        "market_type": "binary",
+        "no_ask_dollars": "0.0100",
+        "no_bid_dollars": "0.0000",
+        "no_sub_title": "Above 3.00%",
+        "notional_value_dollars": "1.0000",
+        "open_interest_fp": "2802.17",
+        "open_time": "2025-08-06T14:30:00Z",
+        "previous_price_dollars": "0.9900",
+        "previous_yes_ask_dollars": "1.0000",
+        "previous_yes_bid_dollars": "0.9900",
+        "price_level_structure": "linear_cent",
+        "price_ranges": [
+          {
+            "end": "1.0000",
+            "start": "0.0000",
+            "step": "0.0100"
+          }
+        ],
+        "result": "",
+        "rules_primary": "If the upper bound of the target federal funds rate published on the Federal Reserve's official website is greater than 3.00% following the Federal Reserve's Dec 9, 2026 meeting, then the market resolves to Yes.",
+        "rules_secondary": "This market will expire the first 2:05 PM ET following the release of a Federal Reserve statement for their Dec 9, 2026 meeting or one week following the last day of that meeting.",
+        "settlement_bounds_type": "default",
+        "settlement_timer_seconds": 300,
+        "status": "active",
+        "strike_type": "greater",
+        "subtitle": "3.00%",
+        "ticker": "KXFED-26DEC-T3.00",
+        "title": "Will the upper bound of the federal funds rate be above 3.00% following the Fed's Dec 9, 2026 meeting?",
+        "updated_time": "2026-10-27T18:37:20.024122Z",
+        "volume_24h_fp": "0.00",
+        "volume_fp": "8062.42",
+        "yes_ask_dollars": "1.0000",
+        "yes_ask_size_fp": "0.00",
+        "yes_bid_dollars": "0.9900",
+        "yes_bid_size_fp": "529.00",
+        "yes_sub_title": "Above 3.00%"
+      },
+      {
+        "can_close_early": true,
+        "close_time": "2026-12-09T18:55:00Z",
+        "created_time": "2025-08-06T14:29:24.100133Z",
+        "event_ticker": "KXFED-26DEC",
+        "exchange_index": 0,
+        "expected_expiration_time": "2026-12-09T19:05:00Z",
+        "expiration_time": "2026-12-16T19:05:00Z",
+        "expiration_value": "",
+        "floor_strike": 3.25,
+        "last_price_dollars": "0.9900",
+        "latest_expiration_time": "2026-12-16T19:05:00Z",
+        "market_type": "binary",
+        "no_ask_dollars": "0.0100",
+        "no_bid_dollars": "0.0000",
+        "no_sub_title": "Above 3.25%",
+        "notional_value_dollars": "1.0000",
+        "open_interest_fp": "2125.00",
+        "open_time": "2025-08-06T14:30:00Z",
+        "previous_price_dollars": "0.9900",
+        "previous_yes_ask_dollars": "1.0000",
+        "previous_yes_bid_dollars": "0.9900",
+        "price_level_structure": "linear_cent",
+        "price_ranges": [
+          {
+            "end": "1.0000",
+            "start": "0.0000",
+            "step": "0.0100"
+          }
+        ],
+        "result": "",
+        "rules_primary": "If the upper bound of the target federal funds rate published on the Federal Reserve's official website is greater than 3.25% following the Federal Reserve's Dec 9, 2026 meeting, then the market resolves to Yes.",
+        "rules_secondary": "This market will expire the first 2:05 PM ET following the release of a Federal Reserve statement for their Dec 9, 2026 meeting or one week following the last day of that meeting.",
+        "settlement_bounds_type": "default",
+        "settlement_timer_seconds": 300,
+        "status": "active",
+        "strike_type": "greater",
+        "subtitle": "3.25%",
+        "ticker": "KXFED-26DEC-T3.25",
+        "title": "Will the upper bound of the federal funds rate be above 3.25% following the Fed's Dec 9, 2026 meeting?",
+        "updated_time": "2026-10-27T18:37:20.024122Z",
+        "volume_24h_fp": "0.00",
+        "volume_fp": "14039.48",
+        "yes_ask_dollars": "1.0000",
+        "yes_ask_size_fp": "0.00",
+        "yes_bid_dollars": "0.9900",
+        "yes_bid_size_fp": "7.00",
+        "yes_sub_title": "Above 3.25%"
+      },
+      {
+        "can_close_early": true,
+        "close_time": "2026-12-09T18:55:00Z",
+        "created_time": "2025-08-06T14:29:24.100133Z",
+        "event_ticker": "KXFED-26DEC",
+        "exchange_index": 0,
+        "expected_expiration_time": "2026-12-09T19:05:00Z",
+        "expiration_time": "2026-12-16T19:05:00Z",
+        "expiration_value": "",
+        "floor_strike": 3.5,
+        "last_price_dollars": "0.9900",
+        "latest_expiration_time": "2026-12-16T19:05:00Z",
+        "market_type": "binary",
+        "no_ask_dollars": "0.0100",
+        "no_bid_dollars": "0.0000",
+        "no_sub_title": "Above 3.50%",
+        "notional_value_dollars": "1.0000",
+        "open_interest_fp": "16287.28",
+        "open_time": "2025-08-06T14:30:00Z",
+        "previous_price_dollars": "0.9900",
+        "previous_yes_ask_dollars": "1.0000",
+        "previous_yes_bid_dollars": "0.9900",
+        "price_level_structure": "linear_cent",
+        "price_ranges": [
+          {
+            "end": "1.0000",
+            "start": "0.0000",
+            "step": "0.0100"
+          }
+        ],
+        "result": "",
+        "rules_primary": "If the upper bound of the target federal funds rate published on the Federal Reserve's official website is greater than 3.50% following the Federal Reserve's Dec 9, 2026 meeting, then the market resolves to Yes.",
+        "rules_secondary": "This market will expire the first 2:05 PM ET following the release of a Federal Reserve statement for their Dec 9, 2026 meeting or one week following the last day of that meeting.",
+        "settlement_bounds_type": "default",
+        "settlement_timer_seconds": 300,
+        "status": "active",
+        "strike_type": "greater",
+        "subtitle": "3.50%",
+        "ticker": "KXFED-26DEC-T3.50",
+        "title": "Will the upper bound of the federal funds rate be above 3.50% following the Fed's Dec 9, 2026 meeting?",
+        "updated_time": "2026-10-27T18:37:20.024122Z",
+        "volume_24h_fp": "0.00",
+        "volume_fp": "45961.08",
+        "yes_ask_dollars": "1.0000",
+        "yes_ask_size_fp": "0.00",
+        "yes_bid_dollars": "0.9900",
+        "yes_bid_size_fp": "78.30",
+        "yes_sub_title": "Above 3.50%"
+      },
+      {
+        "can_close_early": true,
+        "close_time": "2026-12-09T18:55:00Z",
+        "created_time": "2025-08-06T14:29:24.100133Z",
+        "event_ticker": "KXFED-26DEC",
+        "exchange_index": 0,
+        "expected_expiration_time": "2026-12-09T19:05:00Z",
+        "expiration_time": "2026-12-16T19:05:00Z",
+        "expiration_value": "",
+        "floor_strike": 3.75,
+        "last_price_dollars": "0.9800",
+        "latest_expiration_time": "2026-12-16T19:05:00Z",
+        "market_type": "binary",
+        "no_ask_dollars": "0.0200",
+        "no_bid_dollars": "0.0100",
+        "no_sub_title": "Above 3.75%",
+        "notional_value_dollars": "1.0000",
+        "open_interest_fp": "31655.23",
+        "open_time": "2025-08-06T14:30:00Z",
+        "previous_price_dollars": "0.9900",
+        "previous_yes_ask_dollars": "0.9900",
+        "previous_yes_bid_dollars": "0.9800",
+        "price_level_structure": "linear_cent",
+        "price_ranges": [
+          {
+            "end": "1.0000",
+            "start": "0.0000",
+            "step": "0.0100"
+          }
+        ],
+        "result": "",
+        "rules_primary": "If the upper bound of the target federal funds rate published on the Federal Reserve's official website is greater than 3.75% following the Federal Reserve's Dec 9, 2026 meeting, then the market resolves to Yes.",
+        "rules_secondary": "This market will expire the first 2:05 PM ET following the release of a Federal Reserve statement for their Dec 9, 2026 meeting or one week following the last day of that meeting.",
+        "settlement_bounds_type": "default",
+        "settlement_timer_seconds": 300,
+        "status": "active",
+        "strike_type": "greater",
+        "subtitle": "3.75%",
+        "ticker": "KXFED-26DEC-T3.75",
+        "title": "Will the upper bound of the federal funds rate be above 3.75% following the Fed's Dec 9, 2026 meeting?",
+        "updated_time": "2026-10-27T18:37:20.024122Z",
+        "volume_24h_fp": "6203.45",
+        "volume_fp": "81979.01",
+        "yes_ask_dollars": "0.9900",
+        "yes_ask_size_fp": "14.76",
+        "yes_bid_dollars": "0.9800",
+        "yes_bid_size_fp": "2612.81",
+        "yes_sub_title": "Above 3.75%"
+      },
+      {
+        "can_close_early": true,
+        "close_time": "2026-12-09T18:55:00Z",
+        "created_time": "2025-08-06T14:29:24.100133Z",
+        "event_ticker": "KXFED-26DEC",
+        "exchange_index": 0,
+        "expected_expiration_time": "2026-12-09T19:05:00Z",
+        "expiration_time": "2026-12-16T19:05:00Z",
+        "expiration_value": "",
+        "floor_strike": 4,
+        "last_price_dollars": "0.7500",
+        "latest_expiration_time": "2026-12-16T19:05:00Z",
+        "market_type": "binary",
+        "no_ask_dollars": "0.2800",
+        "no_bid_dollars": "0.2700",
+        "no_sub_title": "Above 4.00%",
+        "notional_value_dollars": "1.0000",
+        "open_interest_fp": "57559.16",
+        "open_time": "2025-08-06T14:30:00Z",
+        "previous_price_dollars": "0.8100",
+        "previous_yes_ask_dollars": "0.8300",
+        "previous_yes_bid_dollars": "0.8200",
+        "price_level_structure": "linear_cent",
+        "price_ranges": [
+          {
+            "end": "1.0000",
+            "start": "0.0000",
+            "step": "0.0100"
+          }
+        ],
+        "result": "",
+        "rules_primary": "If the upper bound of the target federal funds rate published on the Federal Reserve's official website is greater than 4.00% following the Federal Reserve's Dec 9, 2026 meeting, then the market resolves to Yes.",
+        "rules_secondary": "This market will expire the first 2:05 PM ET following the release of a Federal Reserve statement for their Dec 9, 2026 meeting or one week following the last day of that meeting.",
+        "settlement_bounds_type": "default",
+        "settlement_timer_seconds": 300,
+        "status": "active",
+        "strike_type": "greater",
+        "subtitle": "4.00%",
+        "ticker": "KXFED-26DEC-T4.00",
+        "title": "Will the upper bound of the federal funds rate be above 4.00% following the Fed's Dec 9, 2026 meeting?",
+        "updated_time": "2026-10-27T18:37:20.024122Z",
+        "volume_24h_fp": "9333.77",
+        "volume_fp": "107342.44",
+        "yes_ask_dollars": "0.7300",
+        "yes_ask_size_fp": "28.00",
+        "yes_bid_dollars": "0.7200",
+        "yes_bid_size_fp": "121.43",
+        "yes_sub_title": "Above 4.00%"
+      },
+      {
+        "can_close_early": true,
+        "close_time": "2026-12-09T18:55:00Z",
+        "created_time": "2025-08-06T14:29:24.100133Z",
+        "event_ticker": "KXFED-26DEC",
+        "exchange_index": 0,
+        "expected_expiration_time": "2026-12-09T19:05:00Z",
+        "expiration_time": "2026-12-16T19:05:00Z",
+        "expiration_value": "",
+        "floor_strike": 4.25,
+        "last_price_dollars": "0.0300",
+        "latest_expiration_time": "2026-12-16T19:05:00Z",
+        "market_type": "binary",
+        "no_ask_dollars": "0.9800",
+        "no_bid_dollars": "0.9700",
+        "no_sub_title": "Above 4.25%",
+        "notional_value_dollars": "1.0000",
+        "open_interest_fp": "55734.69",
+        "open_time": "2025-08-06T14:30:00Z",
+        "previous_price_dollars": "0.0400",
+        "previous_yes_ask_dollars": "0.0300",
+        "previous_yes_bid_dollars": "0.0200",
+        "price_level_structure": "linear_cent",
+        "price_ranges": [
+          {
+            "end": "1.0000",
+            "start": "0.0000",
+            "step": "0.0100"
+          }
+        ],
+        "result": "",
+        "rules_primary": "If the upper bound of the target federal funds rate published on the Federal Reserve's official website is greater than 4.25% following the Federal Reserve's Dec 9, 2026 meeting, then the market resolves to Yes.",
+        "rules_secondary": "This market will expire the first 2:05 PM ET following the release of a Federal Reserve statement for their Dec 9, 2026 meeting or one week following the last day of that meeting.",
+        "settlement_bounds_type": "default",
+        "settlement_timer_seconds": 300,
+        "status": "active",
+        "strike_type": "greater",
+        "subtitle": "4.25%",
+        "ticker": "KXFED-26DEC-T4.25",
+        "title": "Will the upper bound of the federal funds rate be above 4.25% following the Fed's Dec 9, 2026 meeting?",
+        "updated_time": "2026-10-27T18:37:20.024122Z",
+        "volume_24h_fp": "2248.25",
+        "volume_fp": "95110.29",
+        "yes_ask_dollars": "0.0300",
+        "yes_ask_size_fp": "7794.48",
+        "yes_bid_dollars": "0.0200",
+        "yes_bid_size_fp": "1729.97",
+        "yes_sub_title": "Above 4.25%"
+      },
+      {
+        "can_close_early": true,
+        "close_time": "2026-12-09T18:55:00Z",
+        "created_time": "2025-08-06T14:29:24.100134Z",
+        "event_ticker": "KXFED-26DEC",
+        "exchange_index": 0,
+        "expected_expiration_time": "2026-12-09T19:05:00Z",
+        "expiration_time": "2026-12-16T19:05:00Z",
+        "expiration_value": "",
+        "floor_strike": 4.5,
+        "last_price_dollars": "0.0100",
+        "latest_expiration_time": "2026-12-16T19:05:00Z",
+        "market_type": "binary",
+        "no_ask_dollars": "1.0000",
+        "no_bid_dollars": "0.9900",
+        "no_sub_title": "Above 4.50%",
+        "notional_value_dollars": "1.0000",
+        "open_interest_fp": "158891.14",
+        "open_time": "2025-08-06T14:30:00Z",
+        "previous_price_dollars": "0.0100",
+        "previous_yes_ask_dollars": "0.0200",
+        "previous_yes_bid_dollars": "0.0100",
+        "price_level_structure": "linear_cent",
+        "price_ranges": [
+          {
+            "end": "1.0000",
+            "start": "0.0000",
+            "step": "0.0100"
+          }
+        ],
+        "result": "",
+        "rules_primary": "If the upper bound of the target federal funds rate published on the Federal Reserve's official website is greater than 4.50% following the Federal Reserve's Dec 9, 2026 meeting, then the market resolves to Yes.",
+        "rules_secondary": "This market will expire the first 2:05 PM ET following the release of a Federal Reserve statement for their Dec 9, 2026 meeting or one week following the last day of that meeting.",
+        "settlement_bounds_type": "default",
+        "settlement_timer_seconds": 300,
+        "status": "active",
+        "strike_type": "greater",
+        "subtitle": "4.50%",
+        "ticker": "KXFED-26DEC-T4.50",
+        "title": "Will the upper bound of the federal funds rate be above 4.50% following the Fed's Dec 9, 2026 meeting?",
+        "updated_time": "2026-10-27T18:37:20.024122Z",
+        "volume_24h_fp": "4004.41",
+        "volume_fp": "299881.85",
+        "yes_ask_dollars": "0.0100",
+        "yes_ask_size_fp": "5.04",
+        "yes_bid_dollars": "0.0000",
+        "yes_bid_size_fp": "0.00",
+        "yes_sub_title": "Above 4.50%"
+      },
+      {
+        "can_close_early": true,
+        "close_time": "2026-12-09T18:55:00Z",
+        "created_time": "2025-08-06T14:29:24.100134Z",
+        "event_ticker": "KXFED-26DEC",
+        "exchange_index": 0,
+        "expected_expiration_time": "2026-12-09T19:05:00Z",
+        "expiration_time": "2026-12-16T19:05:00Z",
+        "expiration_value": "",
+        "floor_strike": 4.75,
+        "last_price_dollars": "0.0100",
+        "latest_expiration_time": "2026-12-16T19:05:00Z",
+        "market_type": "binary",
+        "no_ask_dollars": "1.0000",
+        "no_bid_dollars": "0.9900",
+        "no_sub_title": "Above 4.75%",
+        "notional_value_dollars": "1.0000",
+        "open_interest_fp": "1458.04",
+        "open_time": "2025-08-06T14:30:00Z",
+        "previous_price_dollars": "0.0100",
+        "previous_yes_ask_dollars": "0.0100",
+        "previous_yes_bid_dollars": "0.0000",
+        "price_level_structure": "linear_cent",
+        "price_ranges": [
+          {
+            "end": "1.0000",
+            "start": "0.0000",
+            "step": "0.0100"
+          }
+        ],
+        "result": "",
+        "rules_primary": "If the upper bound of the target federal funds rate published on the Federal Reserve's official website is greater than 4.75% following the Federal Reserve's Dec 9, 2026 meeting, then the market resolves to Yes.",
+        "rules_secondary": "This market will expire the first 2:05 PM ET following the release of a Federal Reserve statement for their Dec 9, 2026 meeting or one week following the last day of that meeting.",
+        "settlement_bounds_type": "default",
+        "settlement_timer_seconds": 300,
+        "status": "active",
+        "strike_type": "greater",
+        "subtitle": "4.75%",
+        "ticker": "KXFED-26DEC-T4.75",
+        "title": "Will the upper bound of the federal funds rate be above 4.75% following the Fed's Dec 9, 2026 meeting?",
+        "updated_time": "2026-10-27T18:37:20.024122Z",
+        "volume_24h_fp": "1.00",
+        "volume_fp": "1933.13",
+        "yes_ask_dollars": "0.0100",
+        "yes_ask_size_fp": "10790.79",
+        "yes_bid_dollars": "0.0000",
+        "yes_bid_size_fp": "0.00",
+        "yes_sub_title": "Above 4.75%"
+      },
+      {
+        "can_close_early": true,
+        "close_time": "2026-12-09T18:55:00Z",
+        "created_time": "2025-08-06T14:29:24.100134Z",
+        "event_ticker": "KXFED-26DEC",
+        "exchange_index": 0,
+        "expected_expiration_time": "2026-12-09T19:05:00Z",
+        "expiration_time": "2026-12-16T19:05:00Z",
+        "expiration_value": "",
+        "floor_strike": 5,
+        "last_price_dollars": "0.0200",
+        "latest_expiration_time": "2026-12-16T19:05:00Z",
+        "market_type": "binary",
+        "no_ask_dollars": "1.0000",
+        "no_bid_dollars": "0.9900",
+        "no_sub_title": "Above 5.00%",
+        "notional_value_dollars": "1.0000",
+        "open_interest_fp": "969.86",
+        "open_time": "2025-08-06T14:30:00Z",
+        "previous_price_dollars": "0.0200",
+        "previous_yes_ask_dollars": "0.0100",
+        "previous_yes_bid_dollars": "0.0000",
+        "price_level_structure": "linear_cent",
+        "price_ranges": [
+          {
+            "end": "1.0000",
+            "start": "0.0000",
+            "step": "0.0100"
+          }
+        ],
+        "result": "",
+        "rules_primary": "If the upper bound of the target federal funds rate published on the Federal Reserve's official website is greater than 5.00% following the Federal Reserve's Dec 9, 2026 meeting, then the market resolves to Yes.",
+        "rules_secondary": "This market will expire the first 2:05 PM ET following the release of a Federal Reserve statement for their Dec 9, 2026 meeting or one week following the last day of that meeting.",
+        "settlement_bounds_type": "default",
+        "settlement_timer_seconds": 300,
+        "status": "active",
+        "strike_type": "greater",
+        "subtitle": "5.00%",
+        "ticker": "KXFED-26DEC-T5.00",
+        "title": "Will the upper bound of the federal funds rate be above 5.00% following the Fed's Dec 9, 2026 meeting?",
+        "updated_time": "2026-10-27T18:37:20.024122Z",
+        "volume_24h_fp": "0.00",
+        "volume_fp": "1719.32",
+        "yes_ask_dollars": "0.0100",
+        "yes_ask_size_fp": "10226.00",
+        "yes_bid_dollars": "0.0000",
+        "yes_bid_size_fp": "0.00",
+        "yes_sub_title": "Above 5.00%"
+      },
+      {
+        "can_close_early": true,
+        "close_time": "2026-12-09T18:55:00Z",
+        "created_time": "2025-08-06T14:29:24.100134Z",
+        "event_ticker": "KXFED-26DEC",
+        "exchange_index": 0,
+        "expected_expiration_time": "2026-12-09T19:05:00Z",
+        "expiration_time": "2026-12-16T19:05:00Z",
+        "expiration_value": "",
+        "floor_strike": 5.25,
+        "last_price_dollars": "0.0100",
+        "latest_expiration_time": "2026-12-16T19:05:00Z",
+        "market_type": "binary",
+        "no_ask_dollars": "1.0000",
+        "no_bid_dollars": "0.9900",
+        "no_sub_title": "Above 5.25%",
+        "notional_value_dollars": "1.0000",
+        "open_interest_fp": "679.86",
+        "open_time": "2025-08-06T14:30:00Z",
+        "previous_price_dollars": "0.0100",
+        "previous_yes_ask_dollars": "0.0100",
+        "previous_yes_bid_dollars": "0.0000",
+        "price_level_structure": "linear_cent",
+        "price_ranges": [
+          {
+            "end": "1.0000",
+            "start": "0.0000",
+            "step": "0.0100"
+          }
+        ],
+        "result": "",
+        "rules_primary": "If the upper bound of the target federal funds rate published on the Federal Reserve's official website is greater than 5.25% following the Federal Reserve's Dec 9, 2026 meeting, then the market resolves to Yes.",
+        "rules_secondary": "This market will expire the first 2:05 PM ET following the release of a Federal Reserve statement for their Dec 9, 2026 meeting or one week following the last day of that meeting.",
+        "settlement_bounds_type": "default",
+        "settlement_timer_seconds": 300,
+        "status": "active",
+        "strike_type": "greater",
+        "subtitle": "5.25%",
+        "ticker": "KXFED-26DEC-T5.25",
+        "title": "Will the upper bound of the federal funds rate be above 5.25% following the Fed's Dec 9, 2026 meeting?",
+        "updated_time": "2026-10-27T18:37:20.024122Z",
+        "volume_24h_fp": "0.00",
+        "volume_fp": "944.87",
+        "yes_ask_dollars": "0.0100",
+        "yes_ask_size_fp": "10478.00",
+        "yes_bid_dollars": "0.0000",
+        "yes_bid_size_fp": "0.00",
+        "yes_sub_title": "Above 5.25%"
+      }
+    ],
+    "series": {
+      "KXFED": {
+        "additional_prohibitions": [
+          "Persons who are employed by any of the Source Agencies are not permitted to trade on the Contract.",
+          "Persons who hold any material, non-public information on the Underlying are not permitted to trade on the Contract."
+        ],
+        "categories": [
+          "Economics"
+        ],
+        "category": "Economics",
+        "contract_terms_url": "https://assets.kalshi.com/contract_terms/FED.pdf",
+        "contract_url": "https://assets.kalshi.com/regulatory/product-certifications/FED.pdf",
+        "exchange_index": 0,
+        "fee_multiplier": 1,
+        "fee_type": "quadratic_with_maker_fees",
+        "frequency": "custom",
+        "last_updated_ts": "2026-02-26T08:50:31.901806Z",
+        "product_metadata": {
+          "scope": "Fed Rate After Meeting"
+        },
+        "settlement_sources": [
+          {
+            "name": "Federal Reserve Board of Governors",
+            "url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
+          }
+        ],
+        "tags": [
+          "Fed"
+        ],
+        "ticker": "KXFED",
+        "title": "Fed funds rate"
+      }
+    },
+    "clob": {
+      "3215005": {
+        "r": {
+          "mi": 50,
+          "ma": "4.5",
+          "moas": 30
+        },
+        "t": [
+          {
+            "t": "17640596861394454242836532536014033416733783473450136742726948856144855149507",
+            "o": "Yes"
+          },
+          {
+            "t": "104236736263775307891497202874191911203963566711959725788584750440530976742193",
+            "o": "No"
+          }
+        ],
+        "c": "0xb9aee520bf51ac5f00b5c43e54ef9245bc9fcdef866ce8a33025f9a441cc651d",
+        "mos": 5,
+        "mts": "0.001",
+        "mbf": 1000,
+        "tbf": 1000,
+        "ao": true,
+        "nr": true,
+        "cbos": true,
+        "aot": "2026-07-30T00:52:15Z",
+        "ibce": true,
+        "fd": {
+          "r": 0,
+          "e": 1,
+          "to": true
+        },
+        "v": "v1"
+      },
+      "3215006": {
+        "r": {
+          "mi": 50,
+          "ma": "4.5",
+          "moas": 30
+        },
+        "t": [
+          {
+            "t": "77367448845023382525249480243608609306658725883285195065573683809293972009019",
+            "o": "Yes"
+          },
+          {
+            "t": "23677896678650147625251750117853328843601853501710889530409633595389256242910",
+            "o": "No"
+          }
+        ],
+        "c": "0xf17ad24eb4ad57926495b114149c765b9b95bc286eadc91cbbfa901ceb10d0b8",
+        "mos": 5,
+        "mts": "0.001",
+        "mbf": 1000,
+        "tbf": 1000,
+        "ao": true,
+        "nr": true,
+        "cbos": true,
+        "aot": "2026-07-30T00:57:45Z",
+        "ibce": true,
+        "fd": {
+          "r": 0,
+          "e": 1,
+          "to": true
+        },
+        "v": "v1"
+      }
+    },
+    "kalshi_details": {
+      "KXFED-26DEC-T3.25": {
+        "can_close_early": true,
+        "close_time": "2026-12-09T18:55:00Z",
+        "created_time": "2025-08-06T14:29:24.100133Z",
+        "event_ticker": "KXFED-26DEC",
+        "exchange_index": 0,
+        "expected_expiration_time": "2026-12-09T19:05:00Z",
+        "expiration_time": "2026-12-16T19:05:00Z",
+        "expiration_value": "",
+        "floor_strike": 3.25,
+        "last_price_dollars": "0.9900",
+        "latest_expiration_time": "2026-12-16T19:05:00Z",
+        "market_type": "binary",
+        "no_ask_dollars": "0.0100",
+        "no_bid_dollars": "0.0000",
+        "no_sub_title": "Above 3.25%",
+        "notional_value_dollars": "1.0000",
+        "open_interest_fp": "2125.00",
+        "open_time": "2025-08-06T14:30:00Z",
+        "previous_price_dollars": "0.9900",
+        "previous_yes_ask_dollars": "1.0000",
+        "previous_yes_bid_dollars": "0.9900",
+        "price_level_structure": "linear_cent",
+        "price_ranges": [
+          {
+            "end": "1.0000",
+            "start": "0.0000",
+            "step": "0.0100"
+          }
+        ],
+        "result": "",
+        "rules_primary": "If the upper bound of the target federal funds rate published on the Federal Reserve's official website is greater than 3.25% following the Federal Reserve's Dec 9, 2026 meeting, then the market resolves to Yes.",
+        "rules_secondary": "This market will expire the first 2:05 PM ET following the release of a Federal Reserve statement for their Dec 9, 2026 meeting or one week following the last day of that meeting.",
+        "settlement_bounds_type": "default",
+        "settlement_timer_seconds": 300,
+        "status": "active",
+        "strike_type": "greater",
+        "subtitle": "3.25%",
+        "ticker": "KXFED-26DEC-T3.25",
+        "title": "Will the upper bound of the federal funds rate be above 3.25% following the Fed's Dec 9, 2026 meeting?",
+        "updated_time": "2026-10-27T18:37:20.024122Z",
+        "volume_24h_fp": "0.00",
+        "volume_fp": "14039.48",
+        "yes_ask_dollars": "1.0000",
+        "yes_ask_size_fp": "0.00",
+        "yes_bid_dollars": "0.9900",
+        "yes_bid_size_fp": "7.00",
+        "yes_sub_title": "Above 3.25%"
+      },
+      "KXFED-26DEC-T3.50": {
+        "can_close_early": true,
+        "close_time": "2026-12-09T18:55:00Z",
+        "created_time": "2025-08-06T14:29:24.100133Z",
+        "event_ticker": "KXFED-26DEC",
+        "exchange_index": 0,
+        "expected_expiration_time": "2026-12-09T19:05:00Z",
+        "expiration_time": "2026-12-16T19:05:00Z",
+        "expiration_value": "",
+        "floor_strike": 3.5,
+        "last_price_dollars": "0.9900",
+        "latest_expiration_time": "2026-12-16T19:05:00Z",
+        "market_type": "binary",
+        "no_ask_dollars": "0.0100",
+        "no_bid_dollars": "0.0000",
+        "no_sub_title": "Above 3.50%",
+        "notional_value_dollars": "1.0000",
+        "open_interest_fp": "16287.28",
+        "open_time": "2025-08-06T14:30:00Z",
+        "previous_price_dollars": "0.9900",
+        "previous_yes_ask_dollars": "1.0000",
+        "previous_yes_bid_dollars": "0.9900",
+        "price_level_structure": "linear_cent",
+        "price_ranges": [
+          {
+            "end": "1.0000",
+            "start": "0.0000",
+            "step": "0.0100"
+          }
+        ],
+        "result": "",
+        "rules_primary": "If the upper bound of the target federal funds rate published on the Federal Reserve's official website is greater than 3.50% following the Federal Reserve's Dec 9, 2026 meeting, then the market resolves to Yes.",
+        "rules_secondary": "This market will expire the first 2:05 PM ET following the release of a Federal Reserve statement for their Dec 9, 2026 meeting or one week following the last day of that meeting.",
+        "settlement_bounds_type": "default",
+        "settlement_timer_seconds": 300,
+        "status": "active",
+        "strike_type": "greater",
+        "subtitle": "3.50%",
+        "ticker": "KXFED-26DEC-T3.50",
+        "title": "Will the upper bound of the federal funds rate be above 3.50% following the Fed's Dec 9, 2026 meeting?",
+        "updated_time": "2026-10-27T18:37:20.024122Z",
+        "volume_24h_fp": "0.00",
+        "volume_fp": "45961.08",
+        "yes_ask_dollars": "1.0000",
+        "yes_ask_size_fp": "0.00",
+        "yes_bid_dollars": "0.9900",
+        "yes_bid_size_fp": "78.30",
+        "yes_sub_title": "Above 3.50%"
+      },
+      "KXFED-26DEC-T4.50": {
+        "can_close_early": true,
+        "close_time": "2026-12-09T18:55:00Z",
+        "created_time": "2025-08-06T14:29:24.100134Z",
+        "event_ticker": "KXFED-26DEC",
+        "exchange_index": 0,
+        "expected_expiration_time": "2026-12-09T19:05:00Z",
+        "expiration_time": "2026-12-16T19:05:00Z",
+        "expiration_value": "",
+        "floor_strike": 4.5,
+        "last_price_dollars": "0.0100",
+        "latest_expiration_time": "2026-12-16T19:05:00Z",
+        "market_type": "binary",
+        "no_ask_dollars": "1.0000",
+        "no_bid_dollars": "0.9900",
+        "no_sub_title": "Above 4.50%",
+        "notional_value_dollars": "1.0000",
+        "open_interest_fp": "158891.14",
+        "open_time": "2025-08-06T14:30:00Z",
+        "previous_price_dollars": "0.0100",
+        "previous_yes_ask_dollars": "0.0200",
+        "previous_yes_bid_dollars": "0.0100",
+        "price_level_structure": "linear_cent",
+        "price_ranges": [
+          {
+            "end": "1.0000",
+            "start": "0.0000",
+            "step": "0.0100"
+          }
+        ],
+        "result": "",
+        "rules_primary": "If the upper bound of the target federal funds rate published on the Federal Reserve's official website is greater than 4.50% following the Federal Reserve's Dec 9, 2026 meeting, then the market resolves to Yes.",
+        "rules_secondary": "This market will expire the first 2:05 PM ET following the release of a Federal Reserve statement for their Dec 9, 2026 meeting or one week following the last day of that meeting.",
+        "settlement_bounds_type": "default",
+        "settlement_timer_seconds": 300,
+        "status": "active",
+        "strike_type": "greater",
+        "subtitle": "4.50%",
+        "ticker": "KXFED-26DEC-T4.50",
+        "title": "Will the upper bound of the federal funds rate be above 4.50% following the Fed's Dec 9, 2026 meeting?",
+        "updated_time": "2026-10-27T18:37:20.024122Z",
+        "volume_24h_fp": "4004.41",
+        "volume_fp": "299881.85",
+        "yes_ask_dollars": "0.0100",
+        "yes_ask_size_fp": "5.04",
+        "yes_bid_dollars": "0.0000",
+        "yes_bid_size_fp": "0.00",
+        "yes_sub_title": "Above 4.50%"
+      }
+    }
+  },
+  "errors": [],
+  "coverage": {
+    "pages_limit": 1,
+    "pair_limit": 3,
+    "max_close_gap_hours": 48,
+    "min_title_similarity": 0.2,
+    "selection": "explicit_events",
+    "poly_markets": 5,
+    "kalshi_markets": 11,
+    "selected_pairs": 3,
+    "exhaustive": false
+  },
+  "compliance": {
+    "trading_enabled": false,
+    "trading_allowed": false,
+    "allowlist_configured": false,
+    "mode": "read_only",
+    "geoblock": {
+      "blocked": true,
+      "country": "US",
+      "region": "CA",
+      "checked_at": "2026-10-30T01:37:46.224222+00:00",
+      "error": null,
+      "cached": false
+    }
+  }
+}
