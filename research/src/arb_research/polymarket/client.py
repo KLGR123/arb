@@ -12,6 +12,7 @@ import sqlite3
 import time
 from pathlib import Path
 from decimal import Decimal
+from datetime import datetime, timezone
 from urllib.error import HTTPError
 from urllib.parse import quote
 
@@ -21,7 +22,8 @@ from polymarket.models import Market as SDKMarket
 from polymarket.models.data import Resolution as SDKResolution
 
 from ..compliance import GEOBLOCK_URL, PUBLIC_API_BUDGET, ComplianceGuard, GeoblockClient
-from .models import Event, Market, PricePage, PricePoint, Resolution, Tag, Token
+from .models import Event, Market, PricePage, PricePoint, Resolution, Tag
+from .assets import historical_tokens, select_assets
 
 
 class UpstreamError(RuntimeError):
@@ -69,7 +71,7 @@ def _tags(items) -> list[Tag]:
 class PublicDataClient:
     def __init__(self, *, limiter: SharedLimiter | None = None,
                  transport: httpx.BaseTransport | None = None,
-                 record_dir: Path | None = None, sleep=time.sleep,
+                 record_dir: Path | None = None, sleep=time.sleep, clock=time.time,
                  proxy: str | None = None):
         try:
             self.http = httpx.Client(transport=transport, proxy=proxy, trust_env=False,
@@ -78,7 +80,7 @@ class PublicDataClient:
             # Configuration errors may include a credential-bearing proxy URL.
             raise UpstreamError("Invalid public-data proxy configuration or missing SOCKS support") from None
         self.limiter = limiter or SharedLimiter()
-        self.record_dir, self.sleep = record_dir, sleep
+        self.record_dir, self.sleep, self.clock = record_dir, sleep, clock
         self.guard = ComplianceGuard(geoblock=GeoblockClient(
             fetch=self._fetch_geoblock,
             budget=PUBLIC_API_BUDGET, sleep=sleep,
@@ -148,33 +150,32 @@ class PublicDataClient:
     def event(self, selector: str) -> Event:
         path = selector if selector.isdecimal() else "slug/" + quote(selector, safe="")
         raw = self.get("gamma-api.polymarket.com", f"/events/{path}")
-        event = SDKEvent.parse_response(raw)
+        # Summary identity can be malformed or a future protocol. Parse event
+        # metadata separately so the strict raw boundary can quarantine each market.
+        event = SDKEvent.parse_response({**raw, "markets": []})
         markets = []
-        for summary in event.markets:
-            raw_market = self.get("gamma-api.polymarket.com", f"/markets/{summary.id}")
-            market = SDKMarket.parse_response(raw_market)
-            tags = self.get("gamma-api.polymarket.com", f"/markets/{summary.id}/tags")
-            protocol = market.version.value if market.version else "unknown"
-            # Gamma positionIds are the V2 token keys. Keep any historical CTF
-            # pair too, explicitly tagged, rather than guessing from a date.
-            tokens = []
-            for i, outcome in enumerate([market.outcomes.yes, market.outcomes.no]):
-                if outcome.token_id is not None:
-                    tokens.append(Token(id=str(outcome.token_id), outcome=outcome.label,
-                                        outcome_index=i, protocol="v1"))
-                if outcome.position_id is not None:
-                    tokens.append(Token(id=str(outcome.position_id), outcome=outcome.label,
-                                        outcome_index=i, protocol="v2"))
-            if not market.condition_id or not tokens:
-                raise UpstreamError(f"Market {market.id} lacks condition or outcome token IDs")
+        for summary in raw.get("markets", []):
+            mid = str(summary["id"])
+            raw_market = self.get("gamma-api.polymarket.com", f"/markets/{mid}")
+            received_at = datetime.fromtimestamp(self.clock(), timezone.utc).isoformat()
+            selection = select_assets(raw_market, event_id=str(event.id),
+                                      observed_at=received_at, received_at=received_at)
+            # The SDK is used for metadata only. Its permissive ID coercion and
+            # binary positional normalization must not decide consumer identity.
+            metadata = {**raw_market, "version": None, "outcomes": ["Yes", "No"],
+                        "clobTokenIds": [], "positionIds": []}
+            market = SDKMarket.parse_response(metadata)
+            tags = self.get("gamma-api.polymarket.com", f"/markets/{mid}/tags")
+            protocol = selection.protocol_version
+            tokens = historical_tokens(raw_market)
             markets.append(Market(
-                id=str(market.id), event_id=str(event.id), condition_id=str(market.condition_id),
+                id=str(market.id), event_id=str(event.id), condition_id=str(market.condition_id) if market.condition_id is not None else "",
                 slug=market.slug, question=market.question, rules=market.description,
                 resolution_source=raw_market.get("resolutionSource"), closed=market.state.closed,
                 protocol=protocol, neg_risk=market.state.neg_risk,
                 neg_risk_group=raw_market.get("negRiskMarketID") or event.trading.neg_risk_market_id,
                 tags=[Tag(id=str(t["id"]), label=t.get("label"), slug=t.get("slug")) for t in tags],
-                tokens=tokens,
+                tokens=tokens, asset_selection=selection,
             ))
         if not markets:
             raise UpstreamError(f"Event {event.id} has no markets")

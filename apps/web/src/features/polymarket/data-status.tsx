@@ -11,7 +11,7 @@ export function DataStatus({ data, referenceTime = data.as_of }: { data: Dashboa
   const asset = selectedAsset(market, data.outcome_index)
   const price = latestPrice(data)
   const resolution = data.resolutions.data[0]
-  const prices = data.prices.data.filter((p) => p.token_id === asset?.id)
+  const prices = data.prices.data.filter((p) => p.token_id === asset?.asset_id)
     .sort((a, b) => a.timestamp - b.timestamp)
   return (
     <section
@@ -32,7 +32,7 @@ export function DataStatus({ data, referenceTime = data.as_of }: { data: Dashboa
       </p>
       <p className="break-all">
         {market.protocol === 'v2' ? 'position_id' : 'token_id'}:{' '}
-        {asset?.id ?? '—（资产已隔离）'} · outcome: {asset?.outcome ?? '—'} ·
+        {asset?.asset_id ?? '—（资产已隔离）'} · outcome: {asset?.outcome ?? '—'} ·
         价格：{price ? price.price.toFixed(4) : '—'} pUSD / 份
       </p>
       {price && (

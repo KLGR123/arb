@@ -51,6 +51,8 @@ research/.venv/bin/python -m unittest discover \
 
 这里只使用 CLOB V2 切换后仍受支持的公开读接口。不要将 CLOB API V2 与市场 `version=v2` 的仓位协议混为一谈：只有显式 `version=v2` 才用 `positionIds`，显式 `version=v1` 才用 `clobTokenIds`。缺失/未知版本隔离，禁止回退；ID 必须为 ASCII 十进制字符串，拒绝数值、负数、指数、十六进制及重复 ID。两类 ID 同时出现时仍只按 version 选取；大整数原样传递。始终按 `outcomes` 标签匹配 YES/NO，不能假设数组第一项为 YES。
 
+共享实现为 `polymarket/assets.py`；报告 schema 1.1 附 `asset_selection`，字段与迁移见 [共享所选资产视图](polymarket-data.md#共享所选资产视图arb-27)。V2 估值继续使用下文 ARB-28 的模块资格规则。
+
 进程内所有 API 和重试首先经过本扫描器 10 req/s、突发 10 的桶，并共用 main 的 `PUBLIC_API_BUDGET`；低于通用 9,000 req/10s 及所用端点限额。429/500/502/503/504 与连接错误最多尝试 3 次，指数退避带抖动，处理至多 30 秒的 `Retry-After`；403 不重试。单请求连接/读取 timeout 默认 10 秒，系统 DNS 与多地址重试可能使总耗时更长。多进程部署需由票 2 统一限速，当前桶不跨进程。
 
 `geoblock.blocked=true` 或 country=US 会记录 blocked；请求失败记 unknown。无论地理结果如何，`execution` 永远是 blocked。即使 US/VA 也只读取公开数据，不实现交易，不将网络可达性视为交易许可。根据 Pie 对本票的明确授权，仅从 `ARB_POLYMARKET_PROXY` 读取 SOCKS5h 配置，并显式传给本扫描器 HTTPX client 的 `proxy` 参数；`trust_env=False`。不设置全局代理，不打印该值，不把它写入 snapshot、报告、仓库或异常消息。未配置该变量时使用直连；配置无效会以脱敏错误失败，不偷偷更换出口。该客户端只允许上表公共读接口，禁止接入交易或签名路径。geoblock 经相同只读出口检测并由 main guard 校验，返回的 IP 不保存。main 默认 geoblock 客户端仍保持原有直连行为；本票只注入本扫描器自己的 fetch。
@@ -87,11 +89,11 @@ research/.venv/bin/python -m unittest discover \
 
 ## JSON v1 合约（票 8）
 
-`schema_version="1.0"`。所有金额、价格、费率、份额及 edge 都是十进制字符串；消费者用 Decimal 解析，不要直接使用二进制浮点进行资金运算。计数和秒/小时配置是 JSON integer。时间是有时区 ISO 8601。缺失可选值用 null，列表没有结果用 `[]`。字段增加可兼容，删除/改名/改语义需提升主版本。
+`schema_version="1.1"`。所有金额、价格、费率、份额及 edge 都是十进制字符串；消费者用 Decimal 解析，不要直接使用二进制浮点进行资金运算。计数和秒/小时配置是 JSON integer。时间是有时区 ISO 8601。缺失可选值用 null，列表没有结果用 `[]`。字段增加可兼容，删除/改名/改语义需提升主版本。
 
 | 顶层字段 | 类型与语义 |
 | --- | --- |
-| `schema_version` | string，固定 `1.0` |
+| `schema_version` | string，固定 `1.1` |
 | `as_of` | string，本次采集结束 UTC 时间；回放使用原时间 |
 | `mode`, `currency`, `collateral` | 固定 `read_only`、`USD`、`pUSD≈USD` |
 | `geoblock` | `{status, execution, country?, region?}`；status 为 allowed/blocked/unknown，fixture 可为 fixture；execution 固定 blocked |
@@ -121,7 +123,7 @@ Leg：`{market_id: string, asset_id: string, outcome: "yes"|"no", side: "buy"|"s
 
 2026-10-29 16:40:44 UTC，已通过用户批准的只读客户端完成两个当前活跃组的真实扫描：Balance of Power: 2026 Midterms（event 32228）和 Fed Decision in December?（event 770450），共 10 个二元市场、20 本 YES/NO 盘口，采集/解析错误为 0。上限为 1,000 份，默认操作成本 0（见假设），没有扣费后正 edge 候选；这不代表全市场没有机会。geoblock 为 US/CA、blocked=true，main guard 的 trading_allowed=false。
 
-[原始 JSON 报告](reports/negrisk-2026-10-29.json)和[Markdown 摘要](reports/negrisk-2026-10-29.md)随代码交付，可从 PR 打开。回放命令（历史 JSON 保留当时 schema；当前输出增加身份与跳过诊断，既有估值字段保持一致）：
+[原始 JSON 报告](reports/negrisk-2026-10-29.json)和[Markdown 摘要](reports/negrisk-2026-10-29.md)随代码交付，可从 PR 打开。回放命令（历史 JSON 使用当时 schema；当前输出增加身份与跳过诊断，既有估值字段保持一致）：
 
 ```bash
 research/.venv/bin/python -m arb_research.negrisk_cli \
@@ -151,7 +153,7 @@ research/.venv/bin/python -m arb_research.negrisk_cli \
 
 只有组资格通过后才给出 `conversion_ratio=1-conversion_fee_bps/10000`，否则为 null。V1 与 V2 NegRisk 都按每份 NO 转为每个其他结果一份 YES 的公开协议模型，再扣显式配置的比例成本；`0≤bps<10000`，不把该纸面假设声称为实时链上费用。没有执行任何转换。
 
-JSON 保留 `schema_version="1.0"`，新增字段：Market 的 `asset_selection`（完整共享视图）、`protocol_version`、有效 `module` 和按 YES/NO 索引的 `assets`；机会的每条 leg 带同一完整身份。Group 增加 `skipped_markets`、`skipped_reasons`、`conversion_ratio`。拒绝记录保留原始 `version`、`protocol_version`、`asset_kind`、`module`、所选资产和 `raw_identity`，未知版本的 asset kind 为 null；不把非法原始 ID 填进合格资产字段。组跳过也写入 `errors(stage="group")`，CLI 返回 2，Markdown 显示组跳过原因；因此旧不完整扫描的错误计数可能增加。
+JSON 使用 `schema_version="1.1"`，新增字段：Market 的 `asset_selection`（完整共享视图）、`protocol_version`、有效 `module` 和按 YES/NO 索引的 `assets`；机会的每条 leg 带同一完整身份。Group 增加 `skipped_markets`、`skipped_reasons`、`conversion_ratio`。拒绝记录保留原始 `version`、`protocol_version`、`asset_kind`、`module`、所选资产和 `raw_identity`，未知版本的 asset kind 为 null；不把非法原始 ID 填进合格资产字段。组跳过也写入 `errors(stage="group")`，CLI 返回 2，Markdown 显示组跳过原因；因此旧不完整扫描的错误计数可能增加。
 
 历史录制及历史报告不改写。离线回归逐字段比较既有金融数值、候选、盘口与原有错误；只允许新增身份/组诊断字段。V1/V2 合成 fixture 使用相同盘口，完整 YES basket 的 Q=20、gross=5 USD、taker fee=0.78050 USD；市场 1 的二元 merge 在固定成本 0.1 USD 时 net=3.34000 USD。转换比例 0.99 时，锚市场 3 的 NO→YES gross=1.5140 USD。
 

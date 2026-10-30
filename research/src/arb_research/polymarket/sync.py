@@ -2,6 +2,7 @@
 
 import time
 
+from .assets import stream_key
 from .client import PublicDataClient, UpstreamError
 from .models import SyncResult
 from .store import DataStore
@@ -12,7 +13,7 @@ WINDOW = 15 * 86400
 
 def sync_event(client: PublicDataClient, store: DataStore, selector: str, *, now: int | None = None) -> SyncResult:
     target = int(time.time()) if now is None else now
-    count, empty = 0, []
+    count, empty, quarantined = 0, [], []
     with store.writer():
         compliance = client.guard.status()
         # The shared guard always denies trading. Geoblocked/unknown regions
@@ -24,8 +25,11 @@ def sync_event(client: PublicDataClient, store: DataStore, selector: str, *, now
         resolutions = client.resolutions(event)
         store.put_resolutions(event, resolutions)
         for market in event.markets:
-            for token in market.tokens:
-                state = store.checkpoint(token.id)
+            if market.asset_selection.status != "selected":
+                quarantined.append({"market_id": market.id, "reason": market.asset_selection.reason})
+                continue
+            for token in market.asset_selection.assets:
+                state = store.checkpoint(stream_key(token))
                 seen = set()
                 # Finish a persisted window even if this run's clock is earlier.
                 while state["pending"] or state["through"] < target:
@@ -45,7 +49,7 @@ def sync_event(client: PublicDataClient, store: DataStore, selector: str, *, now
                         raise UpstreamError("Repeated price-history cursor; checkpoint preserved")
                     seen.add(cursor)
                     try:
-                        page = client.prices(token.id, pending["params"], cursor)
+                        page = client.prices(token.asset_id, pending["params"], cursor)
                     except UpstreamError:
                         # First-page errors leave no checkpoint; the identical
                         # request is reconstructed. Later pages were committed.
@@ -59,12 +63,12 @@ def sync_event(client: PublicDataClient, store: DataStore, selector: str, *, now
                         state["through"] = pending["until"]
                         state["pending"] = None
                         seen.clear()
-                    store.commit_page(market.id, token.id, page, state)
+                    store.commit_page(market.id, token.asset_id, page, state, asset=token)
                 # Empty series is an explicit coverage gap, never a zero price.
-                if not store.history(event, market_id=market.id, token_id=token.id, limit=1).data:
-                    empty.append(token.id)
+                if not store.history(event, market_id=market.id, token_id=token.asset_id, limit=1).data:
+                    empty.append(token.asset_id)
         missing = store.resolutions(event).missing_market_ids
         return SyncResult(compliance=compliance, event_id=event.id, markets=len(event.markets),
-                          tokens=sum(len(m.tokens) for m in event.markets), points_received=count,
+                          tokens=sum(len(m.asset_selection.assets) for m in event.markets), points_received=count,
                           resolutions=len(resolutions), missing_resolution_market_ids=missing,
-                          empty_token_ids=empty)
+                          empty_token_ids=empty, quarantined_markets=quarantined)

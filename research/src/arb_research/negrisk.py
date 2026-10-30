@@ -125,13 +125,6 @@ def fee_config(market, event, clob):
     return rate, source
 
 
-def array(value):
-    result = json.loads(value) if isinstance(value, str) else value
-    if not isinstance(result, list):
-        raise ValueError("expected array")
-    return result
-
-
 def assets(market):
     selected = require_assets(select_assets(market))
     result = {asset.outcome.strip().lower(): asset.asset_id for asset in selected}
@@ -361,7 +354,7 @@ def scan(snapshot, costs=Costs(), max_shares=D("1000"), max_age=120, max_skew=10
                 result["anchor_market_id"] = str(market["id"])
                 opportunities.append(result)
     opportunities.sort(key=lambda r: (-r["net_edge_per_share"], -r["net_profit_usd"], r["event_id"], r["kind"], r.get("anchor_market_id", "")))
-    return {"schema_version": "1.0", "as_of": snapshot["as_of"], "mode": "read_only",
+    return {"schema_version": "1.1", "as_of": snapshot["as_of"], "mode": "read_only",
             "currency": "USD", "collateral": "pUSD≈USD", "geoblock": geoblock,
             "coverage": snapshot.get("coverage", {}), "compliance": compliance,
             "assumptions": {"split_usd": costs.split_usd, "merge_usd": costs.merge_usd,

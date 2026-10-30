@@ -130,7 +130,7 @@ main 的 ARB-7 已锁定 0.15.0，复用公开 Gamma/Resolution 解析模型；�
 | ARB-13 前端 | `apps/web/src/features/polymarket/model.ts` 的 Dashboard 固定 `protocol_version:'v2'`，字段仍叫 token_id，来源固定 synthetic-fixture | 接数据前扩为 v1/v2/unknown + asset kind/来源；显示未知、空态、partial/gap/as_of；协议与 API/schema 版本分开。平滑图或成功渲染不代表真实/全市场覆盖；迁移字段需升 schema 并提供 adapter，不能只改字面量 |
 | Nautilus 1.231.0 adapter/loader | ARB-9 已测：原生 `/trades` + market/offset/camelCase；版本缺失/v1/v2 fixture 都被当作 CTF 接受；费用缺失会回零 | 保留离线引擎；不再调用原生在线历史 loader。后续从 ARB-7 的合格冻结 ticks 转 TradeTick，单独验证 instrument 身份、价格/份额精度、时间、手续费和前视隔离。未经专门离线资格验证前，Protocol V2 输入拒绝；不能以不抛异常证明支持 |
 
-模块间建议交接字段（待 ARB-7 确认并发布，**不是现成 API**）：`protocol_version`（v1/v2/unknown）、`asset_kind`（ctf_token/position）、`asset_id`（decimal string）、`ledger`、Gamma market/event ID、原始与规范化 condition ID、outcome、module、source/API/schema/SDK version、`observed_at` / `received_at`、费用与 tick 的有效时间、完整性状态。保留原始 ID 字段便于追溯，存储主键至少区分 chain、ledger 与资产，不能只凭标题关联。
+模块间交接字段（ARB-27 已发布身份子集为 `asset_selection` / `selected-assets.v1`，见 [共享视图](polymarket-data.md#共享所选资产视图arb-27)；费用/tick 有效期仍由对应数据契约提供）：`protocol_version`（v1/v2/unknown）、`asset_kind`（ctf_token/position）、`asset_id`（decimal string）、`ledger`、Gamma market/event ID、原始与规范化 condition ID、outcome、module、source/API/schema/SDK version、`observed_at` / `received_at`、费用与 tick 的有效时间、完整性状态。保留原始 ID 字段便于追溯，存储主键至少区分 chain、ledger 与资产，不能只凭标题关联。
 
 公开 market WS 文档给出毫秒字符串时间和 book hash，没有承诺适用于所有消息的全局连续序号；本地 sequence 不能伪装成交易所 sequence，hash 存在也不等于已证明无缺口。[Market channel（核对 2026-10-30）](https://docs.polymarket.com/api-reference/wss/market)
 

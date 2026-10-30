@@ -14,7 +14,7 @@ ARB-13 提供独立 `/polymarket` 路由：首页的「Polymarket 看板」进�
 
 ## 前端契约与适配
 
-ARB-24 将展示包络升级为 v2，运行时 schema、后端响应类型与身份选择器位于 `apps/web/src/features/polymarket/contract.ts`。展示包经 server function 读取，并在服务端与路由入口用 zod 校验后进入组件。完整字段映射、版本边界和破坏性变更规则见 [前端数据契约](frontend-data-contract.md)。
+ARB-24 建立展示包络，ARB-27 升级为 v3（共享 asset_selection），运行时 schema、后端响应类型与身份选择器位于 `apps/web/src/features/polymarket/contract.ts`。展示包经 server function 读取，并在服务端与路由入口用 zod 校验后进入组件。完整字段映射、版本边界和破坏性变更规则见 [前端数据契约](frontend-data-contract.md)。
 
 页面默认使用真实 ARB-7 生产录制的本地重放包，也可配置本地 sync 导出文件。事件/市场、历史价格与结算沿用 ARB-7 本地字段；V2 资产显示为 position_id，原有 protocol_version 和统一 token_id 展示已移除。地区状态未提供时明确提示不可用，不能当成未受限。缺失价格/结算保留为空，真实数据新鲜度按服务端 loaded_at 判断，原 as_of 保留。
 

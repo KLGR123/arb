@@ -19,7 +19,8 @@ import duckdb
 import pyarrow as pa
 import pyarrow.parquet as pq
 
-from .models import Event, History, PricePage, PriceRow, Resolution, ResolutionResult
+from .assets import stream_key
+from .models import SelectedAsset, Event, History, PricePage, PriceRow, Resolution, ResolutionResult
 
 
 class DataStore:
@@ -77,14 +78,18 @@ class DataStore:
             row = db.execute("SELECT body FROM checkpoints WHERE token=?", (token_id,)).fetchone()
         return json.loads(row[0]) if row else {"through": 0, "pending": None}
 
-    def commit_page(self, market_id: str, token_id: str, page: PricePage, state: dict):
+    def commit_page(self, market_id: str, token_id: str, page: PricePage, state: dict,
+                    *, asset: SelectedAsset):
+        if asset.market_id != market_id or asset.asset_id != token_id:
+            raise ValueError("Page identity mismatch")
         paths = []
         by_date = {}
         version = time.time_ns()
         for point in page.data:
             date = datetime.fromtimestamp(point.timestamp, UTC).date().isoformat()
             by_date.setdefault(date, []).append({**point.model_dump(), "token_id": token_id,
-                                                "market_id": market_id, "_version": version})
+                                                "market_id": market_id, "ledger": asset.ledger,
+                                                "chain_id": asset.chain_id, "_version": version})
         for date, rows in by_date.items():
             directory = self.root / "prices" / f"market={quote(market_id, safe='')}" / f"date={date}"
             directory.mkdir(parents=True, exist_ok=True)
@@ -104,7 +109,7 @@ class DataStore:
         with self.connect() as db:
             for path in paths:
                 db.execute("INSERT INTO fragments VALUES (?, ?)", (path, market_id))
-            db.execute("INSERT OR REPLACE INTO checkpoints VALUES (?, ?)", (token_id, json.dumps(state)))
+            db.execute("INSERT OR REPLACE INTO checkpoints VALUES (?, ?)", (stream_key(asset), json.dumps(state)))
 
     def put_resolutions(self, event: Event, rows: list[Resolution]):
         with self.connect() as db:
@@ -127,7 +132,13 @@ class DataStore:
                 start: int = 1, end: int = 253402300799, offset: int = 0, limit: int = 1000) -> History:
         if start <= 0 or end < start or offset < 0 or not 1 <= limit <= 10000:
             raise ValueError("Invalid history bounds or pagination")
-        ids = [m.id for m in event.markets if market_id is None or m.id == market_id]
+        selected = [{"market": m.id, "asset": a.asset_id, "ledger": a.ledger, "chain": a.chain_id}
+                    for m in event.markets if market_id is None or m.id == market_id
+                    if m.asset_selection.status == "selected"
+                    for a in m.asset_selection.assets]
+        if not selected:
+            return History(data=[])
+        ids = list({row["market"] for row in selected})
         with self.connect() as db:
             paths = [str(self.root / row[0]) for row in db.execute(
                 "SELECT path FROM fragments WHERE market IN (SELECT value FROM json_each(?))", (json.dumps(ids),))]
@@ -136,14 +147,22 @@ class DataStore:
         with duckdb.connect() as query:
             rows = query.execute("""
                 SELECT market_id, token_id, timestamp, price, resolution_seconds
-                FROM read_parquet(?, hive_partitioning=false)
+                FROM (SELECT * FROM read_parquet(?, hive_partitioning=false, union_by_name=true)
+                      UNION ALL BY NAME SELECT NULL::VARCHAR AS ledger, NULL::VARCHAR AS chain_id WHERE false)
                 WHERE timestamp >= ? AND timestamp <= ? AND (? IS NULL OR token_id=?)
+                  AND EXISTS (
+                    SELECT 1 FROM json_each(?) AS identity
+                    WHERE json_extract_string(identity.value, '$.market') = market_id
+                      AND json_extract_string(identity.value, '$.asset') = token_id
+                      AND json_extract_string(identity.value, '$.ledger') = ledger
+                      AND json_extract_string(identity.value, '$.chain') IS NOT DISTINCT FROM chain_id
+                  )
                 QUALIFY row_number() OVER (
                     PARTITION BY market_id, token_id, timestamp, resolution_seconds ORDER BY _version DESC
                 )=1
                 ORDER BY timestamp, market_id, token_id, resolution_seconds
                 LIMIT ? OFFSET ?
-            """, [paths, start, end, token_id, token_id, limit+1, offset]).fetchall()
+            """, [paths, start, end, token_id, token_id, json.dumps(selected), limit+1, offset]).fetchall()
         data = [PriceRow(event_id=event.id, market_id=r[0], token_id=r[1], timestamp=r[2], price=r[3],
                          resolution_seconds=r[4]) for r in rows[:limit]]
         return History(data=data, next_offset=offset+limit if len(rows) > limit else None)
