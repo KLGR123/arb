@@ -170,11 +170,10 @@ def test_explicit_protocol_and_fee_contracts():
     for protocol in (None, "future"):
         with pytest.raises((DataError, ValueError)):
             instruments_from_market({**market, "version": protocol})
-    # Synthetic protocol-v2 mapping: CTF token IDs must not be chosen.
+    # A field rewrite does not qualify V2 identity, fees and settlement.
     ids = json.loads(market["clobTokenIds"])[::-1]
-    v2 = instruments_from_market({**market, "version": "v2", "positionIds": json.dumps(ids)})
-    assert [str(i.raw_symbol) for i in v2] == ids
-    assert all(i.info["protocol"] == "v2" for i in v2)
+    with pytest.raises(DataError, match="Protocol V2 is disabled"):
+        instruments_from_market({**market, "version": "v2", "positionIds": json.dumps(ids)})
     missing = {k: v for k, v in market.items() if k != "feeSchedule"}
     with pytest.raises(DataError, match="Fee schedule"):
         instruments_from_market(missing)
