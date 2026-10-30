@@ -103,8 +103,12 @@ def fair_up(path, start, end, observed_at, lookback=60, sigma=None):
     return float(expected >= float(strike)) if sd == 0 else NormalDist().cdf((expected - float(strike)) / sd)
 
 
-def parse_market(event):
-    """Require per-market 5m TWAP60 rules and an explicitly resolved binary payout."""
+def parse_market(event, *, require_resolved=True):
+    """Require per-market 5m TWAP60 rules; by default require a resolved payout.
+
+    Active-book research may opt out of settlement validation. Its actual_up is
+    then None, so provisional outcome prices never become settlement truth.
+    """
     import json
     from datetime import datetime
 
@@ -124,10 +128,11 @@ def parse_market(event):
             or "greater than or equal" not in market.get("description", "")):
         raise ValueError("unsupported or unverified market rules")
     outcomes, payouts = array(market["outcomes"]), array(market["outcomePrices"])
-    tokens = array(market["clobTokenIds"])
-    if (market.get("closed") is not True or market.get("umaResolutionStatus") != "resolved"
-            or outcomes != ["Up", "Down"] or len(tokens) != 2
-            or [Decimal(str(p)) for p in payouts] not in ([Decimal(1), Decimal(0)], [Decimal(0), Decimal(1)])):
+    tokens = array(market["positionIds"] if market.get("version") == "v2" else market["clobTokenIds"])
+    resolved = (market.get("closed") is True and market.get("umaResolutionStatus") == "resolved"
+                and [Decimal(str(p)) for p in payouts] in ([Decimal(1), Decimal(0)], [Decimal(0), Decimal(1)]))
+    if (outcomes != ["Up", "Down"] or len(tokens) != 2 or len(set(tokens)) != 2
+            or (require_resolved and not resolved)):
         raise ValueError("market is not a resolved Up/Down binary")
     start = datetime.fromisoformat(market["eventStartTime"].replace("Z", "+00:00")).timestamp()
     end = datetime.fromisoformat(market["endDate"].replace("Z", "+00:00")).timestamp()
@@ -140,7 +145,8 @@ def parse_market(event):
     if not math.isfinite(rate) or not 0 <= rate <= 1:
         raise ValueError("invalid fee rate")
     return {"id": str(market["id"]), "slug": market["slug"], "start": start, "end": end,
-            "up_token": tokens[0], "actual_up": int(Decimal(str(payouts[0]))), "fee_rate": rate}
+            "up_token": tokens[0], "down_token": tokens[1],
+            "actual_up": int(Decimal(str(payouts[0]))) if resolved else None, "fee_rate": rate}
 
 
 def distribution(values):

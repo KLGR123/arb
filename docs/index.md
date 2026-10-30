@@ -31,6 +31,7 @@
 - `docs/negrisk-scanner.md`：只读 negRisk 扫描、逐档深度、费用、JSON v1 合约与真实扫描验证边界
 - `docs/negrisk-deep-scan.md`：扩大 negRisk 样本、逐组毛/净 edge、权威费用、返佣情景与覆盖缺口
 - `docs/crypto-updown-pricing.md`：60 个已结算五分钟盘的 CEX TWAP 代理、公允概率、费用与延迟研究
+- `docs/crypto-updown-fillable-edge.md`：真实 BTC 双边盘口的深度、费用、延迟与 tick 压力回放及采样边界
 - `docs/resolution-whale-features.md`：结算争议与大户统计、真实样本、可得时间约束、Parquet schema 与离线读取
 - `docs/llm-forecast-eval-v0.md`：LLM 真实前瞻评估、时间截断、Brier 优势区间、纸面下注、实录与 mock 重放
 - `docs/cross-venue-kalshi.md`：Kalshi × Polymarket 只读配对、Codex 规则缓存、费用与风险及真实验证边界
