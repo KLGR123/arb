@@ -9,13 +9,25 @@ import subprocess
 import tempfile
 
 MODEL = "gpt-6.1-terra"
-PROMPT_VERSION = "kalshi-rules-v1"
+PROMPT_VERSION = "kalshi-rules-v2"
+DIMENSIONS = ("source", "deadline", "boundary", "underlying")
+CHECK_SCHEMA = {
+    "type": "object", "additionalProperties": False,
+    "properties": {
+        "verdict": {"type": "string", "enum": ["equivalent", "mismatch", "unknown"]},
+        "poly_evidence": {"type": "string"}, "kalshi_evidence": {"type": "string"},
+        "explanation": {"type": "string"},
+    },
+    "required": ["verdict", "poly_evidence", "kalshi_evidence", "explanation"],
+}
 FIELDS = {
     "relation": {"type": "string", "enum": ["same", "inverse", "different", "uncertain"]},
     "alignment": {"type": "number", "minimum": 0, "maximum": 1},
     "source_comparison": {"type": "string"},
     "deadline_comparison": {"type": "string"},
     "boundary_comparison": {"type": "string"},
+    "checks": {"type": "object", "additionalProperties": False,
+               "properties": {key: CHECK_SCHEMA for key in DIMENSIONS}, "required": list(DIMENSIONS)},
     "differences": {"type": "array", "items": {"type": "string"}},
     "explanation": {"type": "string"},
 }
@@ -35,6 +47,17 @@ def validate(result):
             raise ValueError("missing rule comparison explanation")
     if not isinstance(result["differences"], list) or not all(isinstance(x, str) for x in result["differences"]):
         raise ValueError("invalid rule differences")
+    checks = result["checks"]
+    if not isinstance(checks, dict) or set(checks) != set(DIMENSIONS):
+        raise ValueError("missing settlement dimensions")
+    for check in checks.values():
+        if not isinstance(check, dict) or set(check) != set(CHECK_SCHEMA["properties"]):
+            raise ValueError("invalid settlement dimension")
+        if check["verdict"] not in CHECK_SCHEMA["properties"]["verdict"]["enum"]:
+            raise ValueError("invalid settlement verdict")
+        for key in ("poly_evidence", "kalshi_evidence", "explanation"):
+            if not isinstance(check[key], str) or not check[key].strip():
+                raise ValueError("missing settlement evidence")
     return result
 
 
@@ -48,6 +71,15 @@ def prompt_for(poly, kalshi):
             "binary payouts under all conditions. Missing rules or unresolved ambiguity means uncertain; "
             "a known material mismatch means different. An identical title alone is insufficient. "
             "Give alignment in [0,1], separate comparisons, differences and explanation. "
+            "For each checks dimension return equivalent, mismatch or unknown plus verbatim evidence "
+            "from each venue's supplied rules/resolution_source and an explanation. Use 'not supplied' "
+            "for missing evidence and mark unknown. source includes fallback hierarchy; deadline "
+            "includes the actual observation window, cutoff, date and timezone (a trading close or "
+            "expected payout time is not proof); boundary includes equality, rounding, cancellation, "
+            "ties and nonbinary payouts; underlying includes asset/index definition, units, threshold "
+            "and absolute level versus change. Never infer absent contract/PDF terms. Every critical "
+            "mismatch or unresolved condition must appear in differences even when the overall score "
+            "is high. inverse is allowed only if all four dimensions match after flipping YES/NO. "
             "Return only the requested JSON object.\n" + json.dumps(
                 {"prompt_version": PROMPT_VERSION, "polymarket": poly, "kalshi": kalshi},
                 ensure_ascii=False, sort_keys=True))
