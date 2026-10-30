@@ -34,6 +34,7 @@
 - `docs/crypto-updown-fillable-edge.md`：真实 BTC 双边盘口的深度、费用、延迟与 tick 压力回放及采样边界
 - `docs/resolution-whale-features.md`：结算争议与大户统计、真实样本、可得时间约束、Parquet schema 与离线读取
 - `docs/llm-forecast-eval-v0.md`：LLM 真实前瞻评估、时间截断、Brier 优势区间、纸面下注、实录与 mock 重放
+- `docs/llm-ablation-v1.md`：非加密已结算市场的价格提示消融、配对高 effort 实验、费用与离线重放
 - `docs/cross-venue-kalshi.md`：Kalshi × Polymarket 只读配对、Codex 规则缓存、费用与风险及真实验证边界
 
 ## 规则
