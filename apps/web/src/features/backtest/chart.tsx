@@ -2,15 +2,25 @@ import { useEffect, useRef, useState } from 'react'
 import type { Vela, LineLikeSeries } from '@luxalgo/vela'
 import type { NativeIndicatorContext } from '@luxalgo/vela/plugin'
 import { Button } from '@/components/ui/button'
-import { bars, recording, replayFrame, resultFor } from './replay'
+import { replayFrame } from './replay'
+import type { BacktestBars, BacktestRun } from './api'
 import type { Engine } from './model'
 
-export function BacktestChart() {
+export function BacktestChart({
+  run,
+  snapshot,
+}: {
+  run: BacktestRun
+  snapshot: BacktestBars
+}) {
+  const bars = snapshot.bars
   const container = useRef<HTMLDivElement>(null)
   const chartRef = useRef<Vela | null>(null)
-  const [engine, setEngine] = useState<Engine>('realistic')
+  const [engine, setEngine] = useState<Engine>(
+    run.stages.realistic?.result ? 'realistic' : 'fast',
+  )
   const [status, setStatus] = useState('loading')
-  const [count, setCount] = useState(32)
+  const [count, setCount] = useState(Math.min(32, bars.length))
   const [hover, setHover] = useState<number | null>(null)
   const [playing, setPlaying] = useState(false)
   const [speed, setSpeed] = useState(1)
@@ -18,8 +28,14 @@ export function BacktestChart() {
   const annotationsRef = useRef(annotations)
   annotationsRef.current = annotations
   const refreshRef = useRef<(() => void) | null>(null)
-  const result = resultFor(engine)
-  const frame = replayFrame(result, count)
+  const availableEngine = run.stages[engine]?.result
+    ? engine
+    : run.stages.realistic?.result
+      ? 'realistic'
+      : 'fast'
+  const result = run.stages[availableEngine]!.result!
+  const initialCount = Math.min(32, bars.length)
+  const frame = replayFrame(result, count, bars)
   const selected = Math.max(0, Math.min(hover ?? count - 1, count - 1))
   const bar = bars[selected]
   const selectedEquity = frame.equity[selected]?.value
@@ -31,7 +47,7 @@ export function BacktestChart() {
     setStatus('loading')
     setPlaying(false)
     setHover(null)
-    setCount(32)
+    setCount(initialCount)
     async function mount() {
       try {
         const [{ Vela }, plugin] = await Promise.all([
@@ -55,7 +71,7 @@ export function BacktestChart() {
               function emit() {
                 const visible = context.bars()
                 if (!visible.length) return
-                const f = replayFrame(result, visible.length)
+                const f = replayFrame(result, visible.length, bars)
                 const line = (
                   id: string,
                   title: string,
@@ -192,7 +208,9 @@ export function BacktestChart() {
         )
         await chart.ready()
         if (disposed) return
-        await chart.replay.start({ from: Date.parse(bars[31].timestamp) })
+        await chart.replay.start({
+          from: Date.parse(bars[initialCount - 1].timestamp),
+        })
         if (disposed) return
         chart.addNativeIndicator(types[0])
         chart.addNativeIndicator(types[1])
@@ -214,7 +232,9 @@ export function BacktestChart() {
                 bars[state.active ? Math.max(0, revealed - 96) : 0].timestamp,
               ),
               to:
-                Date.parse(bars[Math.max(32, revealed) - 1].timestamp) +
+                Date.parse(
+                  bars[Math.max(initialCount, revealed) - 1].timestamp,
+                ) +
                 3 * 3600000,
             })
           }
@@ -248,7 +268,7 @@ export function BacktestChart() {
       chart?.destroy()
       unregister?.()
     }
-  }, [engine, result])
+  }, [availableEngine, result, bars, initialCount])
 
   const ready = status === 'ready'
   async function seek(next: number) {
@@ -268,25 +288,29 @@ export function BacktestChart() {
         <div className="flex flex-wrap items-center justify-between gap-3">
           <span className="font-medium text-primary">回放 / 标注 · 非实盘</span>
           <label>
-            录制阶段{' '}
+            运行阶段{' '}
             <select
-              aria-label="录制阶段"
+              aria-label="运行阶段"
               className="rounded border bg-background p-2"
-              value={engine}
+              value={availableEngine}
               onChange={(e) => setEngine(e.target.value as Engine)}
             >
-              <option value="realistic">realistic · final</option>
-              <option value="fast">fast · draft</option>
+              {run.stages.realistic?.result && (
+                <option value="realistic">realistic · final</option>
+              )}
+              {run.stages.fast.result && (
+                <option value="fast">fast · draft</option>
+              )}
             </select>
           </label>
         </div>
         <p className="break-all text-[10px] text-muted-foreground">
-          录制 run: {recording.run.run_id}
+          run: {run.run_id}
           <br />
-          {recording.run.request.dataset_id} · {result.source.package}{' '}
+          {run.request.dataset_id} · {result.source.package}{' '}
           {result.source.version}
           <br />
-          as_of: {recording.run.as_of} · 336 根合成小时线
+          as_of: {run.as_of} · {bars.length} 根冻结小时线
         </p>
         <div className="flex flex-wrap items-center gap-2">
           <Button
@@ -392,17 +416,17 @@ export function BacktestChart() {
       <div
         className="grid gap-2 border-t p-4 font-mono text-[10px]"
         data-testid="replay-readout"
-        data-time={bar.timestamp}
+        data-time={bar?.timestamp}
       >
         <p>
-          {bar.timestamp} · UTC · {hover == null ? '回放游标' : '图表光标'}
+          {bar?.timestamp} · UTC · {hover == null ? '回放游标' : '图表光标'}
         </p>
         <p>
           O {bar.open.toFixed(2)} · H {bar.high.toFixed(2)} · L{' '}
           {bar.low.toFixed(2)} · C {bar.close.toFixed(2)} · V{' '}
           {bar.volume.toFixed(0)}
         </p>
-        <p data-testid="replay-equity" data-time={bar.timestamp}>
+        <p data-testid="replay-equity" data-time={bar?.timestamp}>
           Equity {selectedEquity?.toFixed(2) ?? '—'} USD
         </p>
         <p data-testid="replay-position">

@@ -1,29 +1,4 @@
-// UI-owned frozen fixtures. These IDs are published only in this demo catalog;
-// a production registry must replace the catalog before enabling real runs.
-export const datasets = [
-  {
-    id: 'demo-synthetic-1h-v1',
-    name: 'Synthetic · 1H',
-    status: 'published',
-    frozen: true,
-    start: '2026-01-01',
-    end: '2026-01-31',
-    bars: 744,
-    source: 'synthetic fixture',
-    as_of: '2026-02-01T00:00:00Z',
-  },
-  {
-    id: 'demo-synthetic-1h-v2',
-    name: 'Synthetic · 1H / short',
-    status: 'published',
-    frozen: true,
-    start: '2026-01-01',
-    end: '2026-01-14',
-    bars: 336,
-    source: 'synthetic fixture',
-    as_of: '2026-02-01T00:00:00Z',
-  },
-] as const
+import type { Dataset } from './api'
 
 export type Engine = 'fast' | 'realistic'
 export type BacktestConfig = {
@@ -39,18 +14,21 @@ export type BacktestConfig = {
 }
 
 export const defaultConfig: BacktestConfig = {
-  datasetId: datasets[0].id,
+  datasetId: 'demo-synthetic-1h-v1',
   engine: 'fast',
   fastWindow: 10,
   slowWindow: 30,
   feeBps: 10,
   slippageBps: 5,
-  start: datasets[0].start,
-  end: datasets[0].end,
+  start: '2026-01-01',
+  end: '2026-01-31',
   initialCapital: 10000,
 }
 
-export function validateConfig(value: unknown): string | undefined {
+export function validateConfig(
+  value: unknown,
+  datasets: Dataset[],
+): string | undefined {
   if (!value || typeof value !== 'object') return '配置格式无效。'
   const c = value as BacktestConfig
   const dataset = datasets.find(
@@ -73,13 +51,16 @@ export function validateConfig(value: unknown): string | undefined {
     )
   )
     return '费用与滑点需在 0–10000 bps 之间。'
+  if (c.slippageBps >= 10000) return '滑点必须小于 10000 bps。'
   if (
     typeof c.initialCapital !== 'number' ||
     !Number.isFinite(c.initialCapital) ||
-    c.initialCapital <= 0 ||
+    c.initialCapital < 0.01 ||
     c.initialCapital > 1e12
   )
-    return '初始资金需大于 0 且不超过 1 万亿。'
+    return '初始资金需至少 0.01 USD 且不超过 1 万亿。'
+  if (!/^\d+(?:\.\d{1,2})?$/.test(String(c.initialCapital)))
+    return '初始资金必须为整分（0.01 USD）。'
   if (
     ![c.start, c.end].every(
       (date) =>
@@ -94,7 +75,7 @@ export function validateConfig(value: unknown): string | undefined {
     return '区间需在 Dataset 覆盖范围内，且开始不晚于结束。'
 }
 
-// This is a UI adapter seam, not an HTTP route or a job implementation.
+// ARB-4 request contract; the API remains authoritative for validation.
 export type CreateBacktestRequest = {
   dataset_id: string
   engine: Engine
@@ -113,19 +94,11 @@ export type CreateBacktestRequest = {
   currency: 'USD'
 }
 
-export type BacktestRun = {
-  run_id: string
-  status: 'queued'
-  source: 'ui_stub'
-  as_of: string
-  request: CreateBacktestRequest
-  metrics: Record<string, number>
-  equity: { timestamp: string; value: number }[]
-  fills: { timestamp: string; side: string; quantity: number; price: number }[]
-}
-
-export function toRequest(config: BacktestConfig): CreateBacktestRequest {
-  const error = validateConfig(config)
+export function toRequest(
+  config: BacktestConfig,
+  datasets: Dataset[],
+): CreateBacktestRequest {
+  const error = validateConfig(config, datasets)
   if (error) throw new Error(error)
   return {
     dataset_id: config.datasetId,
@@ -149,28 +122,12 @@ export function toRequest(config: BacktestConfig): CreateBacktestRequest {
   }
 }
 
-export async function createStubRun(
-  config: BacktestConfig,
-): Promise<BacktestRun> {
-  const request = toRequest(config)
-  return {
-    run_id: `stub-${crypto.randomUUID()}`,
-    status: 'queued',
-    source: 'ui_stub',
-    as_of: new Date().toISOString(),
-    request,
-    metrics: {},
-    equity: [],
-    fills: [],
-  }
-}
-
 export const presetKey = 'arb.backtest.preset.v1'
 
-export function parsePreset(raw: string): BacktestConfig {
+export function parsePreset(raw: string, datasets: Dataset[]): BacktestConfig {
   const envelope = JSON.parse(raw)
   if (envelope?.version !== 1) throw new Error('预设版本不支持。')
-  const error = validateConfig(envelope.config)
+  const error = validateConfig(envelope.config, datasets)
   if (error) throw new Error(error)
   // Copy only known fields: never carry arbitrary persisted data into a run.
   const c = envelope.config as BacktestConfig
