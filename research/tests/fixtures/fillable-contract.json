@@ -1,0 +1,8 @@
+{
+  "asks": [{"price": "0.40", "size": "10"}, {"price": "0.42", "size": "20"}],
+  "shares": 40,
+  "rate": "0.07",
+  "tick": "0.01",
+  "zero_tick": {"filled": 30, "cost": "12.40", "fee": "0.50904"},
+  "one_tick": {"filled": 30, "cost": "12.70", "fee": "0.51247"}
+}

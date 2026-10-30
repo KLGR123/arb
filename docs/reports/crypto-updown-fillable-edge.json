@@ -1,0 +1,4831 @@
+{
+  "schema_version": 1,
+  "study": "btc-updown-fillable-edge",
+  "execution": "disabled",
+  "status": "complete",
+  "recorded_at": "2026-10-30T02:03:48.817093+00:00",
+  "compliance": {
+    "trading_enabled": false,
+    "trading_allowed": false,
+    "allowlist_configured": false,
+    "mode": "read_only",
+    "geoblock": {
+      "blocked": true,
+      "country": "US",
+      "region": "CA",
+      "checked_at": "2026-10-30T02:00:47.590516+00:00",
+      "error": null,
+      "cached": false
+    }
+  },
+  "assumptions": {
+    "collateral": "pUSD assumed USD",
+    "cex": "BTCUSDT assumed USD, Chainlink proxy",
+    "model": "ARB-15 fair_up with trailing 900s sigma and TWAP60",
+    "cex_visibility": "retrospective finalized 1s close with assumed extra 1s lag; no CEX receive times",
+    "fair_value": "fixed at decision for all arrival scenarios",
+    "reference": "Up L2 midpoint, Down=1-Up midpoint (paper reference only)",
+    "fills": "independent optimistic displayed-ask taker probes; no actual orders or fill probability",
+    "slippage": "adverse_ticks * arrival tick added to every consumed level; shifted price >=1 unavailable",
+    "fees": "negrisk.taker_fee per stressed level, half-up 5dp; no rebates",
+    "no_fill_edge": "null; zero surplus per requested share; excluded from filled edge distribution",
+    "minimum": "reject requested size or partial fill below market minimum",
+    "book_clock": "local received_ns, no interpolation, invalidate WS gaps",
+    "book_transport": "websocket",
+    "rest_sampling": null,
+    "max_book_age_seconds": 5,
+    "server_clock_future_tolerance_seconds": 1,
+    "requested_shares": 100.0,
+    "depth_bucket": "decision side ask quantity within 5 current ticks of best ask",
+    "result_scope": "descriptive short recording; complete means replay has signals, not statistical power"
+  },
+  "coverage": {
+    "markets": 2,
+    "markets_with_signals": 1,
+    "first_received_ns": 1793325647591363051,
+    "last_received_ns": 1793325827614387894,
+    "events": 812,
+    "signals": 4,
+    "excluded_decisions": 176,
+    "gaps": 26
+  },
+  "baseline": {
+    "probes": 4,
+    "filled_probes": 2,
+    "full_fills": 2,
+    "positive_paper_signals": 2,
+    "positive_fillable_probes": 1,
+    "reasons": {
+      "full": 2,
+      "book_unavailable": 2
+    },
+    "paper_edge": {
+      "n": 4,
+      "mean": 0.019199488143748528,
+      "p05": 0.009115297359987496,
+      "p50": 0.018831128125108176,
+      "p95": 0.029799382953606048
+    },
+    "paper_net_edge": {
+      "n": 4,
+      "mean": 0.0058731881437485275,
+      "p05": -0.0038827026400125044,
+      "p50": 0.004384828125108176,
+      "p95": 0.017712782953606048
+    },
+    "fillable_edge": {
+      "n": 2,
+      "mean": -0.0005153718748918288,
+      "p05": -0.004611803595955387,
+      "p50": -0.0005153718748918288,
+      "p95": 0.003581059846171729
+    },
+    "paired_paper_net_edge": {
+      "n": 2,
+      "mean": 0.004384828125108176,
+      "p05": 0.0003860464040446184,
+      "p50": 0.004384828125108176,
+      "p95": 0.008383609846171734
+    },
+    "edge_erosion": {
+      "n": 2,
+      "mean": 0.004900200000000005,
+      "p05": 0.004802550000000004,
+      "p50": 0.004900200000000005,
+      "p95": 0.004997850000000005
+    },
+    "fill_fraction": {
+      "n": 4,
+      "mean": 0.5,
+      "p05": 0.0,
+      "p50": 0.5,
+      "p95": 1.0
+    },
+    "expected_surplus_per_requested_share": {
+      "n": 4,
+      "mean": -0.0002576859374459144,
+      "p05": -0.004306918274662525,
+      "p50": 0.0,
+      "p95": 0.003430786087346415
+    }
+  },
+  "sensitivity": [
+    {
+      "delay_seconds": 0,
+      "adverse_ticks": 0,
+      "probes": 4,
+      "filled_probes": 2,
+      "full_fills": 2,
+      "positive_paper_signals": 2,
+      "positive_fillable_probes": 1,
+      "reasons": {
+        "full": 2,
+        "book_unavailable": 2
+      },
+      "paper_edge": {
+        "n": 4,
+        "mean": 0.019199488143748528,
+        "p05": 0.009115297359987496,
+        "p50": 0.018831128125108176,
+        "p95": 0.029799382953606048
+      },
+      "paper_net_edge": {
+        "n": 4,
+        "mean": 0.0058731881437485275,
+        "p05": -0.0038827026400125044,
+        "p50": 0.004384828125108176,
+        "p95": 0.017712782953606048
+      },
+      "fillable_edge": {
+        "n": 2,
+        "mean": -0.0005153718748918288,
+        "p05": -0.004611803595955387,
+        "p50": -0.0005153718748918288,
+        "p95": 0.003581059846171729
+      },
+      "paired_paper_net_edge": {
+        "n": 2,
+        "mean": 0.004384828125108176,
+        "p05": 0.0003860464040446184,
+        "p50": 0.004384828125108176,
+        "p95": 0.008383609846171734
+      },
+      "edge_erosion": {
+        "n": 2,
+        "mean": 0.004900200000000005,
+        "p05": 0.004802550000000004,
+        "p50": 0.004900200000000005,
+        "p95": 0.004997850000000005
+      },
+      "fill_fraction": {
+        "n": 4,
+        "mean": 0.5,
+        "p05": 0.0,
+        "p50": 0.5,
+        "p95": 1.0
+      },
+      "expected_surplus_per_requested_share": {
+        "n": 4,
+        "mean": -0.0002576859374459144,
+        "p05": -0.004306918274662525,
+        "p50": 0.0,
+        "p95": 0.003430786087346415
+      }
+    },
+    {
+      "delay_seconds": 0,
+      "adverse_ticks": 1,
+      "probes": 4,
+      "filled_probes": 2,
+      "full_fills": 2,
+      "positive_paper_signals": 2,
+      "positive_fillable_probes": 0,
+      "reasons": {
+        "full": 2,
+        "book_unavailable": 2
+      },
+      "paper_edge": {
+        "n": 4,
+        "mean": 0.019199488143748528,
+        "p05": 0.009115297359987496,
+        "p50": 0.018831128125108176,
+        "p95": 0.029799382953606048
+      },
+      "paper_net_edge": {
+        "n": 4,
+        "mean": 0.0058731881437485275,
+        "p05": -0.0038827026400125044,
+        "p50": 0.004384828125108176,
+        "p95": 0.017712782953606048
+      },
+      "fillable_edge": {
+        "n": 2,
+        "mean": -0.010305371874891837,
+        "p05": -0.014597103595955395,
+        "p50": -0.010305371874891837,
+        "p95": -0.006013640153828281
+      },
+      "paired_paper_net_edge": {
+        "n": 2,
+        "mean": 0.004384828125108176,
+        "p05": 0.0003860464040446184,
+        "p50": 0.004384828125108176,
+        "p95": 0.008383609846171734
+      },
+      "edge_erosion": {
+        "n": 2,
+        "mean": 0.014690200000000014,
+        "p05": 0.014397250000000012,
+        "p50": 0.014690200000000014,
+        "p95": 0.014983150000000015
+      },
+      "fill_fraction": {
+        "n": 4,
+        "mean": 0.5,
+        "p05": 0.0,
+        "p50": 0.5,
+        "p95": 1.0
+      },
+      "expected_surplus_per_requested_share": {
+        "n": 4,
+        "mean": -0.005152685937445918,
+        "p05": -0.013643385435719049,
+        "p50": -0.0027683905368550534,
+        "p95": 0.0
+      }
+    },
+    {
+      "delay_seconds": 0,
+      "adverse_ticks": 3,
+      "probes": 4,
+      "filled_probes": 2,
+      "full_fills": 2,
+      "positive_paper_signals": 2,
+      "positive_fillable_probes": 0,
+      "reasons": {
+        "full": 2,
+        "book_unavailable": 2
+      },
+      "paper_edge": {
+        "n": 4,
+        "mean": 0.019199488143748528,
+        "p05": 0.009115297359987496,
+        "p50": 0.018831128125108176,
+        "p95": 0.029799382953606048
+      },
+      "paper_net_edge": {
+        "n": 4,
+        "mean": 0.0058731881437485275,
+        "p05": -0.0038827026400125044,
+        "p50": 0.004384828125108176,
+        "p95": 0.017712782953606048
+      },
+      "fillable_edge": {
+        "n": 2,
+        "mean": -0.0298433718748918,
+        "p05": -0.03452570359595541,
+        "p50": -0.0298433718748918,
+        "p95": -0.025161040153828196
+      },
+      "paired_paper_net_edge": {
+        "n": 2,
+        "mean": 0.004384828125108176,
+        "p05": 0.0003860464040446184,
+        "p50": 0.004384828125108176,
+        "p95": 0.008383609846171734
+      },
+      "edge_erosion": {
+        "n": 2,
+        "mean": 0.03422819999999997,
+        "p05": 0.033544649999999926,
+        "p50": 0.03422819999999997,
+        "p95": 0.034911750000000026
+      },
+      "fill_fraction": {
+        "n": 4,
+        "mean": 0.5,
+        "p05": 0.0,
+        "p50": 0.5,
+        "p95": 1.0
+      },
+      "expected_surplus_per_requested_share": {
+        "n": 4,
+        "mean": -0.0149216859374459,
+        "p05": -0.03348518543571905,
+        "p50": -0.012320390536855007,
+        "p95": 0.0
+      }
+    },
+    {
+      "delay_seconds": 0,
+      "adverse_ticks": 5,
+      "probes": 4,
+      "filled_probes": 2,
+      "full_fills": 2,
+      "positive_paper_signals": 2,
+      "positive_fillable_probes": 0,
+      "reasons": {
+        "full": 2,
+        "book_unavailable": 2
+      },
+      "paper_edge": {
+        "n": 4,
+        "mean": 0.019199488143748528,
+        "p05": 0.009115297359987496,
+        "p50": 0.018831128125108176,
+        "p95": 0.029799382953606048
+      },
+      "paper_net_edge": {
+        "n": 4,
+        "mean": 0.0058731881437485275,
+        "p05": -0.0038827026400125044,
+        "p50": 0.004384828125108176,
+        "p95": 0.017712782953606048
+      },
+      "fillable_edge": {
+        "n": 2,
+        "mean": -0.04932537187489182,
+        "p05": -0.054398303595955426,
+        "p50": -0.04932537187489182,
+        "p95": -0.04425244015382821
+      },
+      "paired_paper_net_edge": {
+        "n": 2,
+        "mean": 0.004384828125108176,
+        "p05": 0.0003860464040446184,
+        "p50": 0.004384828125108176,
+        "p95": 0.008383609846171734
+      },
+      "edge_erosion": {
+        "n": 2,
+        "mean": 0.0537102,
+        "p05": 0.05263604999999995,
+        "p50": 0.0537102,
+        "p95": 0.054784350000000044
+      },
+      "fill_fraction": {
+        "n": 4,
+        "mean": 0.5,
+        "p05": 0.0,
+        "p50": 0.5,
+        "p95": 1.0
+      },
+      "expected_surplus_per_requested_share": {
+        "n": 4,
+        "mean": -0.02466268593744591,
+        "p05": -0.053270985435719065,
+        "p50": -0.021844390536855017,
+        "p95": 0.0
+      }
+    },
+    {
+      "delay_seconds": 0.05,
+      "adverse_ticks": 0,
+      "probes": 4,
+      "filled_probes": 2,
+      "full_fills": 2,
+      "positive_paper_signals": 2,
+      "positive_fillable_probes": 1,
+      "reasons": {
+        "full": 2,
+        "book_unavailable": 2
+      },
+      "paper_edge": {
+        "n": 4,
+        "mean": 0.019199488143748528,
+        "p05": 0.009115297359987496,
+        "p50": 0.018831128125108176,
+        "p95": 0.029799382953606048
+      },
+      "paper_net_edge": {
+        "n": 4,
+        "mean": 0.0058731881437485275,
+        "p05": -0.0038827026400125044,
+        "p50": 0.004384828125108176,
+        "p95": 0.017712782953606048
+      },
+      "fillable_edge": {
+        "n": 2,
+        "mean": -0.0005153718748918288,
+        "p05": -0.004611803595955387,
+        "p50": -0.0005153718748918288,
+        "p95": 0.003581059846171729
+      },
+      "paired_paper_net_edge": {
+        "n": 2,
+        "mean": 0.004384828125108176,
+        "p05": 0.0003860464040446184,
+        "p50": 0.004384828125108176,
+        "p95": 0.008383609846171734
+      },
+      "edge_erosion": {
+        "n": 2,
+        "mean": 0.004900200000000005,
+        "p05": 0.004802550000000004,
+        "p50": 0.004900200000000005,
+        "p95": 0.004997850000000005
+      },
+      "fill_fraction": {
+        "n": 4,
+        "mean": 0.5,
+        "p05": 0.0,
+        "p50": 0.5,
+        "p95": 1.0
+      },
+      "expected_surplus_per_requested_share": {
+        "n": 4,
+        "mean": -0.0002576859374459144,
+        "p05": -0.004306918274662525,
+        "p50": 0.0,
+        "p95": 0.003430786087346415
+      }
+    },
+    {
+      "delay_seconds": 0.05,
+      "adverse_ticks": 1,
+      "probes": 4,
+      "filled_probes": 2,
+      "full_fills": 2,
+      "positive_paper_signals": 2,
+      "positive_fillable_probes": 0,
+      "reasons": {
+        "full": 2,
+        "book_unavailable": 2
+      },
+      "paper_edge": {
+        "n": 4,
+        "mean": 0.019199488143748528,
+        "p05": 0.009115297359987496,
+        "p50": 0.018831128125108176,
+        "p95": 0.029799382953606048
+      },
+      "paper_net_edge": {
+        "n": 4,
+        "mean": 0.0058731881437485275,
+        "p05": -0.0038827026400125044,
+        "p50": 0.004384828125108176,
+        "p95": 0.017712782953606048
+      },
+      "fillable_edge": {
+        "n": 2,
+        "mean": -0.010305371874891837,
+        "p05": -0.014597103595955395,
+        "p50": -0.010305371874891837,
+        "p95": -0.006013640153828281
+      },
+      "paired_paper_net_edge": {
+        "n": 2,
+        "mean": 0.004384828125108176,
+        "p05": 0.0003860464040446184,
+        "p50": 0.004384828125108176,
+        "p95": 0.008383609846171734
+      },
+      "edge_erosion": {
+        "n": 2,
+        "mean": 0.014690200000000014,
+        "p05": 0.014397250000000012,
+        "p50": 0.014690200000000014,
+        "p95": 0.014983150000000015
+      },
+      "fill_fraction": {
+        "n": 4,
+        "mean": 0.5,
+        "p05": 0.0,
+        "p50": 0.5,
+        "p95": 1.0
+      },
+      "expected_surplus_per_requested_share": {
+        "n": 4,
+        "mean": -0.005152685937445918,
+        "p05": -0.013643385435719049,
+        "p50": -0.0027683905368550534,
+        "p95": 0.0
+      }
+    },
+    {
+      "delay_seconds": 0.05,
+      "adverse_ticks": 3,
+      "probes": 4,
+      "filled_probes": 2,
+      "full_fills": 2,
+      "positive_paper_signals": 2,
+      "positive_fillable_probes": 0,
+      "reasons": {
+        "full": 2,
+        "book_unavailable": 2
+      },
+      "paper_edge": {
+        "n": 4,
+        "mean": 0.019199488143748528,
+        "p05": 0.009115297359987496,
+        "p50": 0.018831128125108176,
+        "p95": 0.029799382953606048
+      },
+      "paper_net_edge": {
+        "n": 4,
+        "mean": 0.0058731881437485275,
+        "p05": -0.0038827026400125044,
+        "p50": 0.004384828125108176,
+        "p95": 0.017712782953606048
+      },
+      "fillable_edge": {
+        "n": 2,
+        "mean": -0.0298433718748918,
+        "p05": -0.03452570359595541,
+        "p50": -0.0298433718748918,
+        "p95": -0.025161040153828196
+      },
+      "paired_paper_net_edge": {
+        "n": 2,
+        "mean": 0.004384828125108176,
+        "p05": 0.0003860464040446184,
+        "p50": 0.004384828125108176,
+        "p95": 0.008383609846171734
+      },
+      "edge_erosion": {
+        "n": 2,
+        "mean": 0.03422819999999997,
+        "p05": 0.033544649999999926,
+        "p50": 0.03422819999999997,
+        "p95": 0.034911750000000026
+      },
+      "fill_fraction": {
+        "n": 4,
+        "mean": 0.5,
+        "p05": 0.0,
+        "p50": 0.5,
+        "p95": 1.0
+      },
+      "expected_surplus_per_requested_share": {
+        "n": 4,
+        "mean": -0.0149216859374459,
+        "p05": -0.03348518543571905,
+        "p50": -0.012320390536855007,
+        "p95": 0.0
+      }
+    },
+    {
+      "delay_seconds": 0.05,
+      "adverse_ticks": 5,
+      "probes": 4,
+      "filled_probes": 2,
+      "full_fills": 2,
+      "positive_paper_signals": 2,
+      "positive_fillable_probes": 0,
+      "reasons": {
+        "full": 2,
+        "book_unavailable": 2
+      },
+      "paper_edge": {
+        "n": 4,
+        "mean": 0.019199488143748528,
+        "p05": 0.009115297359987496,
+        "p50": 0.018831128125108176,
+        "p95": 0.029799382953606048
+      },
+      "paper_net_edge": {
+        "n": 4,
+        "mean": 0.0058731881437485275,
+        "p05": -0.0038827026400125044,
+        "p50": 0.004384828125108176,
+        "p95": 0.017712782953606048
+      },
+      "fillable_edge": {
+        "n": 2,
+        "mean": -0.04932537187489182,
+        "p05": -0.054398303595955426,
+        "p50": -0.04932537187489182,
+        "p95": -0.04425244015382821
+      },
+      "paired_paper_net_edge": {
+        "n": 2,
+        "mean": 0.004384828125108176,
+        "p05": 0.0003860464040446184,
+        "p50": 0.004384828125108176,
+        "p95": 0.008383609846171734
+      },
+      "edge_erosion": {
+        "n": 2,
+        "mean": 0.0537102,
+        "p05": 0.05263604999999995,
+        "p50": 0.0537102,
+        "p95": 0.054784350000000044
+      },
+      "fill_fraction": {
+        "n": 4,
+        "mean": 0.5,
+        "p05": 0.0,
+        "p50": 0.5,
+        "p95": 1.0
+      },
+      "expected_surplus_per_requested_share": {
+        "n": 4,
+        "mean": -0.02466268593744591,
+        "p05": -0.053270985435719065,
+        "p50": -0.021844390536855017,
+        "p95": 0.0
+      }
+    },
+    {
+      "delay_seconds": 0.25,
+      "adverse_ticks": 0,
+      "probes": 4,
+      "filled_probes": 1,
+      "full_fills": 1,
+      "positive_paper_signals": 2,
+      "positive_fillable_probes": 0,
+      "reasons": {
+        "full": 1,
+        "book_unavailable": 3
+      },
+      "paper_edge": {
+        "n": 4,
+        "mean": 0.019199488143748528,
+        "p05": 0.009115297359987496,
+        "p50": 0.018831128125108176,
+        "p95": 0.029799382953606048
+      },
+      "paper_net_edge": {
+        "n": 4,
+        "mean": 0.0058731881437485275,
+        "p05": -0.0038827026400125044,
+        "p50": 0.004384828125108176,
+        "p95": 0.017712782953606048
+      },
+      "fillable_edge": {
+        "n": 1,
+        "mean": -0.0050669626760735595,
+        "p05": -0.0050669626760735595,
+        "p50": -0.0050669626760735595,
+        "p95": -0.0050669626760735595
+      },
+      "paired_paper_net_edge": {
+        "n": 1,
+        "mean": -5.8262676073554676e-05,
+        "p05": -5.8262676073554676e-05,
+        "p50": -5.8262676073554676e-05,
+        "p95": -5.8262676073554676e-05
+      },
+      "edge_erosion": {
+        "n": 1,
+        "mean": 0.005008700000000005,
+        "p05": 0.005008700000000005,
+        "p50": 0.005008700000000005,
+        "p95": 0.005008700000000005
+      },
+      "fill_fraction": {
+        "n": 4,
+        "mean": 0.25,
+        "p05": 0.0,
+        "p50": 0.0,
+        "p95": 0.8499999999999996
+      },
+      "expected_surplus_per_requested_share": {
+        "n": 4,
+        "mean": -0.0012667406690183899,
+        "p05": -0.004306918274662525,
+        "p50": 0.0,
+        "p95": 0.0
+      }
+    },
+    {
+      "delay_seconds": 0.25,
+      "adverse_ticks": 1,
+      "probes": 4,
+      "filled_probes": 1,
+      "full_fills": 1,
+      "positive_paper_signals": 2,
+      "positive_fillable_probes": 0,
+      "reasons": {
+        "full": 1,
+        "book_unavailable": 3
+      },
+      "paper_edge": {
+        "n": 4,
+        "mean": 0.019199488143748528,
+        "p05": 0.009115297359987496,
+        "p50": 0.018831128125108176,
+        "p95": 0.029799382953606048
+      },
+      "paper_net_edge": {
+        "n": 4,
+        "mean": 0.0058731881437485275,
+        "p05": -0.0038827026400125044,
+        "p50": 0.004384828125108176,
+        "p95": 0.017712782953606048
+      },
+      "fillable_edge": {
+        "n": 1,
+        "mean": -0.015073962676073568,
+        "p05": -0.015073962676073568,
+        "p50": -0.015073962676073568,
+        "p95": -0.015073962676073568
+      },
+      "paired_paper_net_edge": {
+        "n": 1,
+        "mean": -5.8262676073554676e-05,
+        "p05": -5.8262676073554676e-05,
+        "p50": -5.8262676073554676e-05,
+        "p95": -5.8262676073554676e-05
+      },
+      "edge_erosion": {
+        "n": 1,
+        "mean": 0.015015700000000014,
+        "p05": 0.015015700000000014,
+        "p50": 0.015015700000000014,
+        "p95": 0.015015700000000014
+      },
+      "fill_fraction": {
+        "n": 4,
+        "mean": 0.25,
+        "p05": 0.0,
+        "p50": 0.0,
+        "p95": 0.8499999999999996
+      },
+      "expected_surplus_per_requested_share": {
+        "n": 4,
+        "mean": -0.003768490669018392,
+        "p05": -0.012812868274662534,
+        "p50": 0.0,
+        "p95": 0.0
+      }
+    },
+    {
+      "delay_seconds": 0.25,
+      "adverse_ticks": 3,
+      "probes": 4,
+      "filled_probes": 1,
+      "full_fills": 1,
+      "positive_paper_signals": 2,
+      "positive_fillable_probes": 0,
+      "reasons": {
+        "full": 1,
+        "book_unavailable": 3
+      },
+      "paper_edge": {
+        "n": 4,
+        "mean": 0.019199488143748528,
+        "p05": 0.009115297359987496,
+        "p50": 0.018831128125108176,
+        "p95": 0.029799382953606048
+      },
+      "paper_net_edge": {
+        "n": 4,
+        "mean": 0.0058731881437485275,
+        "p05": -0.0038827026400125044,
+        "p50": 0.004384828125108176,
+        "p95": 0.017712782953606048
+      },
+      "fillable_edge": {
+        "n": 1,
+        "mean": -0.035045962676073586,
+        "p05": -0.035045962676073586,
+        "p50": -0.035045962676073586,
+        "p95": -0.035045962676073586
+      },
+      "paired_paper_net_edge": {
+        "n": 1,
+        "mean": -5.8262676073554676e-05,
+        "p05": -5.8262676073554676e-05,
+        "p50": -5.8262676073554676e-05,
+        "p95": -5.8262676073554676e-05
+      },
+      "edge_erosion": {
+        "n": 1,
+        "mean": 0.03498770000000003,
+        "p05": 0.03498770000000003,
+        "p50": 0.03498770000000003,
+        "p95": 0.03498770000000003
+      },
+      "fill_fraction": {
+        "n": 4,
+        "mean": 0.25,
+        "p05": 0.0,
+        "p50": 0.0,
+        "p95": 0.8499999999999996
+      },
+      "expected_surplus_per_requested_share": {
+        "n": 4,
+        "mean": -0.008761490669018396,
+        "p05": -0.029789068274662548,
+        "p50": 0.0,
+        "p95": 0.0
+      }
+    },
+    {
+      "delay_seconds": 0.25,
+      "adverse_ticks": 5,
+      "probes": 4,
+      "filled_probes": 1,
+      "full_fills": 1,
+      "positive_paper_signals": 2,
+      "positive_fillable_probes": 0,
+      "reasons": {
+        "full": 1,
+        "book_unavailable": 3
+      },
+      "paper_edge": {
+        "n": 4,
+        "mean": 0.019199488143748528,
+        "p05": 0.009115297359987496,
+        "p50": 0.018831128125108176,
+        "p95": 0.029799382953606048
+      },
+      "paper_net_edge": {
+        "n": 4,
+        "mean": 0.0058731881437485275,
+        "p05": -0.0038827026400125044,
+        "p50": 0.004384828125108176,
+        "p95": 0.017712782953606048
+      },
+      "fillable_edge": {
+        "n": 1,
+        "mean": -0.0549619626760736,
+        "p05": -0.0549619626760736,
+        "p50": -0.0549619626760736,
+        "p95": -0.0549619626760736
+      },
+      "paired_paper_net_edge": {
+        "n": 1,
+        "mean": -5.8262676073554676e-05,
+        "p05": -5.8262676073554676e-05,
+        "p50": -5.8262676073554676e-05,
+        "p95": -5.8262676073554676e-05
+      },
+      "edge_erosion": {
+        "n": 1,
+        "mean": 0.05490370000000005,
+        "p05": 0.05490370000000005,
+        "p50": 0.05490370000000005,
+        "p95": 0.05490370000000005
+      },
+      "fill_fraction": {
+        "n": 4,
+        "mean": 0.25,
+        "p05": 0.0,
+        "p50": 0.0,
+        "p95": 0.8499999999999996
+      },
+      "expected_surplus_per_requested_share": {
+        "n": 4,
+        "mean": -0.0137404906690184,
+        "p05": -0.04671766827466256,
+        "p50": 0.0,
+        "p95": 0.0
+      }
+    },
+    {
+      "delay_seconds": 1,
+      "adverse_ticks": 0,
+      "probes": 4,
+      "filled_probes": 0,
+      "full_fills": 0,
+      "positive_paper_signals": 2,
+      "positive_fillable_probes": 0,
+      "reasons": {
+        "book_unavailable": 4
+      },
+      "paper_edge": {
+        "n": 4,
+        "mean": 0.019199488143748528,
+        "p05": 0.009115297359987496,
+        "p50": 0.018831128125108176,
+        "p95": 0.029799382953606048
+      },
+      "paper_net_edge": {
+        "n": 4,
+        "mean": 0.0058731881437485275,
+        "p05": -0.0038827026400125044,
+        "p50": 0.004384828125108176,
+        "p95": 0.017712782953606048
+      },
+      "fillable_edge": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "paired_paper_net_edge": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "edge_erosion": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "fill_fraction": {
+        "n": 4,
+        "mean": 0.0,
+        "p05": 0.0,
+        "p50": 0.0,
+        "p95": 0.0
+      },
+      "expected_surplus_per_requested_share": {
+        "n": 4,
+        "mean": 0.0,
+        "p05": 0.0,
+        "p50": 0.0,
+        "p95": 0.0
+      }
+    },
+    {
+      "delay_seconds": 1,
+      "adverse_ticks": 1,
+      "probes": 4,
+      "filled_probes": 0,
+      "full_fills": 0,
+      "positive_paper_signals": 2,
+      "positive_fillable_probes": 0,
+      "reasons": {
+        "book_unavailable": 4
+      },
+      "paper_edge": {
+        "n": 4,
+        "mean": 0.019199488143748528,
+        "p05": 0.009115297359987496,
+        "p50": 0.018831128125108176,
+        "p95": 0.029799382953606048
+      },
+      "paper_net_edge": {
+        "n": 4,
+        "mean": 0.0058731881437485275,
+        "p05": -0.0038827026400125044,
+        "p50": 0.004384828125108176,
+        "p95": 0.017712782953606048
+      },
+      "fillable_edge": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "paired_paper_net_edge": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "edge_erosion": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "fill_fraction": {
+        "n": 4,
+        "mean": 0.0,
+        "p05": 0.0,
+        "p50": 0.0,
+        "p95": 0.0
+      },
+      "expected_surplus_per_requested_share": {
+        "n": 4,
+        "mean": 0.0,
+        "p05": 0.0,
+        "p50": 0.0,
+        "p95": 0.0
+      }
+    },
+    {
+      "delay_seconds": 1,
+      "adverse_ticks": 3,
+      "probes": 4,
+      "filled_probes": 0,
+      "full_fills": 0,
+      "positive_paper_signals": 2,
+      "positive_fillable_probes": 0,
+      "reasons": {
+        "book_unavailable": 4
+      },
+      "paper_edge": {
+        "n": 4,
+        "mean": 0.019199488143748528,
+        "p05": 0.009115297359987496,
+        "p50": 0.018831128125108176,
+        "p95": 0.029799382953606048
+      },
+      "paper_net_edge": {
+        "n": 4,
+        "mean": 0.0058731881437485275,
+        "p05": -0.0038827026400125044,
+        "p50": 0.004384828125108176,
+        "p95": 0.017712782953606048
+      },
+      "fillable_edge": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "paired_paper_net_edge": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "edge_erosion": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "fill_fraction": {
+        "n": 4,
+        "mean": 0.0,
+        "p05": 0.0,
+        "p50": 0.0,
+        "p95": 0.0
+      },
+      "expected_surplus_per_requested_share": {
+        "n": 4,
+        "mean": 0.0,
+        "p05": 0.0,
+        "p50": 0.0,
+        "p95": 0.0
+      }
+    },
+    {
+      "delay_seconds": 1,
+      "adverse_ticks": 5,
+      "probes": 4,
+      "filled_probes": 0,
+      "full_fills": 0,
+      "positive_paper_signals": 2,
+      "positive_fillable_probes": 0,
+      "reasons": {
+        "book_unavailable": 4
+      },
+      "paper_edge": {
+        "n": 4,
+        "mean": 0.019199488143748528,
+        "p05": 0.009115297359987496,
+        "p50": 0.018831128125108176,
+        "p95": 0.029799382953606048
+      },
+      "paper_net_edge": {
+        "n": 4,
+        "mean": 0.0058731881437485275,
+        "p05": -0.0038827026400125044,
+        "p50": 0.004384828125108176,
+        "p95": 0.017712782953606048
+      },
+      "fillable_edge": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "paired_paper_net_edge": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "edge_erosion": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "fill_fraction": {
+        "n": 4,
+        "mean": 0.0,
+        "p05": 0.0,
+        "p50": 0.0,
+        "p95": 0.0
+      },
+      "expected_surplus_per_requested_share": {
+        "n": 4,
+        "mean": 0.0,
+        "p05": 0.0,
+        "p50": 0.0,
+        "p95": 0.0
+      }
+    },
+    {
+      "delay_seconds": 2,
+      "adverse_ticks": 0,
+      "probes": 4,
+      "filled_probes": 0,
+      "full_fills": 0,
+      "positive_paper_signals": 2,
+      "positive_fillable_probes": 0,
+      "reasons": {
+        "book_unavailable": 4
+      },
+      "paper_edge": {
+        "n": 4,
+        "mean": 0.019199488143748528,
+        "p05": 0.009115297359987496,
+        "p50": 0.018831128125108176,
+        "p95": 0.029799382953606048
+      },
+      "paper_net_edge": {
+        "n": 4,
+        "mean": 0.0058731881437485275,
+        "p05": -0.0038827026400125044,
+        "p50": 0.004384828125108176,
+        "p95": 0.017712782953606048
+      },
+      "fillable_edge": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "paired_paper_net_edge": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "edge_erosion": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "fill_fraction": {
+        "n": 4,
+        "mean": 0.0,
+        "p05": 0.0,
+        "p50": 0.0,
+        "p95": 0.0
+      },
+      "expected_surplus_per_requested_share": {
+        "n": 4,
+        "mean": 0.0,
+        "p05": 0.0,
+        "p50": 0.0,
+        "p95": 0.0
+      }
+    },
+    {
+      "delay_seconds": 2,
+      "adverse_ticks": 1,
+      "probes": 4,
+      "filled_probes": 0,
+      "full_fills": 0,
+      "positive_paper_signals": 2,
+      "positive_fillable_probes": 0,
+      "reasons": {
+        "book_unavailable": 4
+      },
+      "paper_edge": {
+        "n": 4,
+        "mean": 0.019199488143748528,
+        "p05": 0.009115297359987496,
+        "p50": 0.018831128125108176,
+        "p95": 0.029799382953606048
+      },
+      "paper_net_edge": {
+        "n": 4,
+        "mean": 0.0058731881437485275,
+        "p05": -0.0038827026400125044,
+        "p50": 0.004384828125108176,
+        "p95": 0.017712782953606048
+      },
+      "fillable_edge": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "paired_paper_net_edge": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "edge_erosion": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "fill_fraction": {
+        "n": 4,
+        "mean": 0.0,
+        "p05": 0.0,
+        "p50": 0.0,
+        "p95": 0.0
+      },
+      "expected_surplus_per_requested_share": {
+        "n": 4,
+        "mean": 0.0,
+        "p05": 0.0,
+        "p50": 0.0,
+        "p95": 0.0
+      }
+    },
+    {
+      "delay_seconds": 2,
+      "adverse_ticks": 3,
+      "probes": 4,
+      "filled_probes": 0,
+      "full_fills": 0,
+      "positive_paper_signals": 2,
+      "positive_fillable_probes": 0,
+      "reasons": {
+        "book_unavailable": 4
+      },
+      "paper_edge": {
+        "n": 4,
+        "mean": 0.019199488143748528,
+        "p05": 0.009115297359987496,
+        "p50": 0.018831128125108176,
+        "p95": 0.029799382953606048
+      },
+      "paper_net_edge": {
+        "n": 4,
+        "mean": 0.0058731881437485275,
+        "p05": -0.0038827026400125044,
+        "p50": 0.004384828125108176,
+        "p95": 0.017712782953606048
+      },
+      "fillable_edge": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "paired_paper_net_edge": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "edge_erosion": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "fill_fraction": {
+        "n": 4,
+        "mean": 0.0,
+        "p05": 0.0,
+        "p50": 0.0,
+        "p95": 0.0
+      },
+      "expected_surplus_per_requested_share": {
+        "n": 4,
+        "mean": 0.0,
+        "p05": 0.0,
+        "p50": 0.0,
+        "p95": 0.0
+      }
+    },
+    {
+      "delay_seconds": 2,
+      "adverse_ticks": 5,
+      "probes": 4,
+      "filled_probes": 0,
+      "full_fills": 0,
+      "positive_paper_signals": 2,
+      "positive_fillable_probes": 0,
+      "reasons": {
+        "book_unavailable": 4
+      },
+      "paper_edge": {
+        "n": 4,
+        "mean": 0.019199488143748528,
+        "p05": 0.009115297359987496,
+        "p50": 0.018831128125108176,
+        "p95": 0.029799382953606048
+      },
+      "paper_net_edge": {
+        "n": 4,
+        "mean": 0.0058731881437485275,
+        "p05": -0.0038827026400125044,
+        "p50": 0.004384828125108176,
+        "p95": 0.017712782953606048
+      },
+      "fillable_edge": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "paired_paper_net_edge": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "edge_erosion": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "fill_fraction": {
+        "n": 4,
+        "mean": 0.0,
+        "p05": 0.0,
+        "p50": 0.0,
+        "p95": 0.0
+      },
+      "expected_surplus_per_requested_share": {
+        "n": 4,
+        "mean": 0.0,
+        "p05": 0.0,
+        "p50": 0.0,
+        "p95": 0.0
+      }
+    }
+  ],
+  "buckets": {
+    "remaining_0_60s": {
+      "probes": 0,
+      "filled_probes": 0,
+      "full_fills": 0,
+      "positive_paper_signals": 0,
+      "positive_fillable_probes": 0,
+      "reasons": {},
+      "paper_edge": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "paper_net_edge": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "fillable_edge": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "paired_paper_net_edge": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "edge_erosion": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "fill_fraction": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "expected_surplus_per_requested_share": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      }
+    },
+    "remaining_60_180s": {
+      "probes": 3,
+      "filled_probes": 1,
+      "full_fills": 1,
+      "positive_paper_signals": 2,
+      "positive_fillable_probes": 1,
+      "reasons": {
+        "book_unavailable": 2,
+        "full": 1
+      },
+      "paper_edge": {
+        "n": 3,
+        "mean": 0.019790638417022555,
+        "p05": 0.00890744846352155,
+        "p50": 0.020236218926289906,
+        "p95": 0.03036192201403641
+      },
+      "paper_net_edge": {
+        "n": 3,
+        "mean": 0.007850338417022555,
+        "p05": -0.00321905153647845,
+        "p50": 0.008827918926289906,
+        "p95": 0.018235422014036412
+      },
+      "fillable_edge": {
+        "n": 1,
+        "mean": 0.004036218926289902,
+        "p05": 0.004036218926289902,
+        "p50": 0.004036218926289902,
+        "p95": 0.004036218926289902
+      },
+      "paired_paper_net_edge": {
+        "n": 1,
+        "mean": 0.008827918926289906,
+        "p05": 0.008827918926289906,
+        "p50": 0.008827918926289906,
+        "p95": 0.008827918926289906
+      },
+      "edge_erosion": {
+        "n": 1,
+        "mean": 0.004791700000000005,
+        "p05": 0.004791700000000005,
+        "p50": 0.004791700000000005,
+        "p95": 0.004791700000000005
+      },
+      "fill_fraction": {
+        "n": 3,
+        "mean": 0.3333333333333333,
+        "p05": 0.0,
+        "p50": 0.0,
+        "p95": 0.8999999999999999
+      },
+      "expected_surplus_per_requested_share": {
+        "n": 3,
+        "mean": 0.0013454063087633007,
+        "p05": 0.0,
+        "p50": 0.0,
+        "p95": 0.0036325970336609113
+      }
+    },
+    "remaining_180_300s": {
+      "probes": 1,
+      "filled_probes": 1,
+      "full_fills": 1,
+      "positive_paper_signals": 0,
+      "positive_fillable_probes": 0,
+      "reasons": {
+        "full": 1
+      },
+      "paper_edge": {
+        "n": 1,
+        "mean": 0.017426037323926447,
+        "p05": 0.017426037323926447,
+        "p50": 0.017426037323926447,
+        "p95": 0.017426037323926447
+      },
+      "paper_net_edge": {
+        "n": 1,
+        "mean": -5.8262676073554676e-05,
+        "p05": -5.8262676073554676e-05,
+        "p50": -5.8262676073554676e-05,
+        "p95": -5.8262676073554676e-05
+      },
+      "fillable_edge": {
+        "n": 1,
+        "mean": -0.0050669626760735595,
+        "p05": -0.0050669626760735595,
+        "p50": -0.0050669626760735595,
+        "p95": -0.0050669626760735595
+      },
+      "paired_paper_net_edge": {
+        "n": 1,
+        "mean": -5.8262676073554676e-05,
+        "p05": -5.8262676073554676e-05,
+        "p50": -5.8262676073554676e-05,
+        "p95": -5.8262676073554676e-05
+      },
+      "edge_erosion": {
+        "n": 1,
+        "mean": 0.005008700000000005,
+        "p05": 0.005008700000000005,
+        "p50": 0.005008700000000005,
+        "p95": 0.005008700000000005
+      },
+      "fill_fraction": {
+        "n": 1,
+        "mean": 1.0,
+        "p05": 1.0,
+        "p50": 1.0,
+        "p95": 1.0
+      },
+      "expected_surplus_per_requested_share": {
+        "n": 1,
+        "mean": -0.0050669626760735595,
+        "p05": -0.0050669626760735595,
+        "p50": -0.0050669626760735595,
+        "p95": -0.0050669626760735595
+      }
+    },
+    "sigma_below_0.00005": {
+      "probes": 0,
+      "filled_probes": 0,
+      "full_fills": 0,
+      "positive_paper_signals": 0,
+      "positive_fillable_probes": 0,
+      "reasons": {},
+      "paper_edge": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "paper_net_edge": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "fillable_edge": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "paired_paper_net_edge": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "edge_erosion": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "fill_fraction": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "expected_surplus_per_requested_share": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      }
+    },
+    "sigma_0.00005_0.00010": {
+      "probes": 0,
+      "filled_probes": 0,
+      "full_fills": 0,
+      "positive_paper_signals": 0,
+      "positive_fillable_probes": 0,
+      "reasons": {},
+      "paper_edge": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "paper_net_edge": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "fillable_edge": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "paired_paper_net_edge": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "edge_erosion": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "fill_fraction": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "expected_surplus_per_requested_share": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      }
+    },
+    "sigma_at_least_0.00010": {
+      "probes": 4,
+      "filled_probes": 2,
+      "full_fills": 2,
+      "positive_paper_signals": 2,
+      "positive_fillable_probes": 1,
+      "reasons": {
+        "full": 2,
+        "book_unavailable": 2
+      },
+      "paper_edge": {
+        "n": 4,
+        "mean": 0.019199488143748528,
+        "p05": 0.009115297359987496,
+        "p50": 0.018831128125108176,
+        "p95": 0.029799382953606048
+      },
+      "paper_net_edge": {
+        "n": 4,
+        "mean": 0.0058731881437485275,
+        "p05": -0.0038827026400125044,
+        "p50": 0.004384828125108176,
+        "p95": 0.017712782953606048
+      },
+      "fillable_edge": {
+        "n": 2,
+        "mean": -0.0005153718748918288,
+        "p05": -0.004611803595955387,
+        "p50": -0.0005153718748918288,
+        "p95": 0.003581059846171729
+      },
+      "paired_paper_net_edge": {
+        "n": 2,
+        "mean": 0.004384828125108176,
+        "p05": 0.0003860464040446184,
+        "p50": 0.004384828125108176,
+        "p95": 0.008383609846171734
+      },
+      "edge_erosion": {
+        "n": 2,
+        "mean": 0.004900200000000005,
+        "p05": 0.004802550000000004,
+        "p50": 0.004900200000000005,
+        "p95": 0.004997850000000005
+      },
+      "fill_fraction": {
+        "n": 4,
+        "mean": 0.5,
+        "p05": 0.0,
+        "p50": 0.5,
+        "p95": 1.0
+      },
+      "expected_surplus_per_requested_share": {
+        "n": 4,
+        "mean": -0.0002576859374459144,
+        "p05": -0.004306918274662525,
+        "p50": 0.0,
+        "p95": 0.003430786087346415
+      }
+    },
+    "depth_unavailable": {
+      "probes": 2,
+      "filled_probes": 0,
+      "full_fills": 0,
+      "positive_paper_signals": 1,
+      "positive_fillable_probes": 0,
+      "reasons": {
+        "book_unavailable": 2
+      },
+      "paper_edge": {
+        "n": 2,
+        "mean": 0.01956784816238888,
+        "p05": 0.008840611387131447,
+        "p50": 0.01956784816238888,
+        "p95": 0.030295084937646308
+      },
+      "paper_net_edge": {
+        "n": 2,
+        "mean": 0.007361548162388879,
+        "p05": -0.0033656886128685523,
+        "p50": 0.007361548162388879,
+        "p95": 0.018088784937646308
+      },
+      "fillable_edge": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "paired_paper_net_edge": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "edge_erosion": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "fill_fraction": {
+        "n": 2,
+        "mean": 0.0,
+        "p05": 0.0,
+        "p50": 0.0,
+        "p95": 0.0
+      },
+      "expected_surplus_per_requested_share": {
+        "n": 2,
+        "mean": 0.0,
+        "p05": 0.0,
+        "p50": 0.0,
+        "p95": 0.0
+      }
+    },
+    "depth_below_100_shares": {
+      "probes": 0,
+      "filled_probes": 0,
+      "full_fills": 0,
+      "positive_paper_signals": 0,
+      "positive_fillable_probes": 0,
+      "reasons": {},
+      "paper_edge": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "paper_net_edge": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "fillable_edge": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "paired_paper_net_edge": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "edge_erosion": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "fill_fraction": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "expected_surplus_per_requested_share": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      }
+    },
+    "depth_100_1000_shares": {
+      "probes": 0,
+      "filled_probes": 0,
+      "full_fills": 0,
+      "positive_paper_signals": 0,
+      "positive_fillable_probes": 0,
+      "reasons": {},
+      "paper_edge": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "paper_net_edge": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "fillable_edge": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "paired_paper_net_edge": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "edge_erosion": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "fill_fraction": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      },
+      "expected_surplus_per_requested_share": {
+        "n": 0,
+        "mean": null,
+        "p05": null,
+        "p50": null,
+        "p95": null
+      }
+    },
+    "depth_at_least_1000_shares": {
+      "probes": 2,
+      "filled_probes": 2,
+      "full_fills": 2,
+      "positive_paper_signals": 1,
+      "positive_fillable_probes": 1,
+      "reasons": {
+        "full": 2
+      },
+      "paper_edge": {
+        "n": 2,
+        "mean": 0.018831128125108176,
+        "p05": 0.01756654640404462,
+        "p50": 0.018831128125108176,
+        "p95": 0.020095709846171733
+      },
+      "paper_net_edge": {
+        "n": 2,
+        "mean": 0.004384828125108176,
+        "p05": 0.0003860464040446184,
+        "p50": 0.004384828125108176,
+        "p95": 0.008383609846171734
+      },
+      "fillable_edge": {
+        "n": 2,
+        "mean": -0.0005153718748918288,
+        "p05": -0.004611803595955387,
+        "p50": -0.0005153718748918288,
+        "p95": 0.003581059846171729
+      },
+      "paired_paper_net_edge": {
+        "n": 2,
+        "mean": 0.004384828125108176,
+        "p05": 0.0003860464040446184,
+        "p50": 0.004384828125108176,
+        "p95": 0.008383609846171734
+      },
+      "edge_erosion": {
+        "n": 2,
+        "mean": 0.004900200000000005,
+        "p05": 0.004802550000000004,
+        "p50": 0.004900200000000005,
+        "p95": 0.004997850000000005
+      },
+      "fill_fraction": {
+        "n": 2,
+        "mean": 1.0,
+        "p05": 1.0,
+        "p50": 1.0,
+        "p95": 1.0
+      },
+      "expected_surplus_per_requested_share": {
+        "n": 2,
+        "mean": -0.0005153718748918288,
+        "p05": -0.004611803595955387,
+        "p50": -0.0005153718748918288,
+        "p95": 0.003581059846171729
+      }
+    }
+  },
+  "signals": [
+    {
+      "signal_id": "6376279:1793325655",
+      "market_id": "6376279",
+      "decision_at": 1793325655,
+      "cex_observed_at": 1793325654,
+      "side": "Down",
+      "remaining_seconds": 245.0,
+      "sigma_per_sqrt_second": 0.0001202564929468744,
+      "fair_value": 0.5024260373239264,
+      "reference_price": 0.485,
+      "paper_edge": 0.017426037323926447,
+      "paper_net_edge": -5.8262676073554676e-05,
+      "decision_best_ask": 0.49,
+      "decision_book_reason": null,
+      "ask_depth_within_5_ticks": 5332.04,
+      "tick_size": 0.01
+    },
+    {
+      "signal_id": "6376279:1793325737",
+      "market_id": "6376279",
+      "decision_at": 1793325737,
+      "cex_observed_at": 1793325736,
+      "side": "Down",
+      "remaining_seconds": 163.0,
+      "sigma_per_sqrt_second": 0.00012231438573470475,
+      "fair_value": 0.8064870001348972,
+      "reference_price": 0.775,
+      "paper_edge": 0.031487000134897136,
+      "paper_net_edge": 0.019280700134897136,
+      "decision_best_ask": null,
+      "decision_book_reason": "book_unavailable",
+      "ask_depth_within_5_ticks": null,
+      "tick_size": 0.01
+    },
+    {
+      "signal_id": "6376279:1793325738",
+      "market_id": "6376279",
+      "decision_at": 1793325738,
+      "cex_observed_at": 1793325737,
+      "side": "Down",
+      "remaining_seconds": 162.0,
+      "sigma_per_sqrt_second": 0.00012230235115599086,
+      "fair_value": 0.7826486961898806,
+      "reference_price": 0.775,
+      "paper_edge": 0.007648696189880622,
+      "paper_net_edge": -0.004557603810119378,
+      "decision_best_ask": null,
+      "decision_book_reason": "book_unavailable",
+      "ask_depth_within_5_ticks": null,
+      "tick_size": 0.01
+    },
+    {
+      "signal_id": "6376279:1793325770",
+      "market_id": "6376279",
+      "decision_at": 1793325770,
+      "cex_observed_at": 1793325769,
+      "side": "Down",
+      "remaining_seconds": 130.0,
+      "sigma_per_sqrt_second": 0.00012088287678743328,
+      "fair_value": 0.81523621892629,
+      "reference_price": 0.795,
+      "paper_edge": 0.020236218926289906,
+      "paper_net_edge": 0.008827918926289906,
+      "decision_best_ask": 0.8,
+      "decision_book_reason": null,
+      "ask_depth_within_5_ticks": 5871.57,
+      "tick_size": 0.01
+    }
+  ],
+  "probes": [
+    {
+      "signal_id": "6376279:1793325655",
+      "delay_seconds": 0,
+      "adverse_ticks": 0,
+      "arrival_ns": 1793325655000000000,
+      "paper_edge": 0.017426037323926447,
+      "paper_net_edge": -5.8262676073554676e-05,
+      "filled_shares": 100.0,
+      "fill_fraction": 1.0,
+      "unfilled_shares": 0.0,
+      "fillable_edge": -0.0050669626760735595,
+      "expected_surplus_per_requested_share": -0.0050669626760735595,
+      "cost_usd": 49.0,
+      "fee_usd": 1.7493,
+      "slippage_cost_usd": 0.0,
+      "vwap": 0.49,
+      "fee_usd_per_share": 0.017493,
+      "fills": [
+        {
+          "displayed_price": 0.49,
+          "stressed_price": 0.49,
+          "shares": 100.0,
+          "fee_usd": 1.7493
+        }
+      ],
+      "reason": "full",
+      "arrival_book_received_ns": 1793325654881981099
+    },
+    {
+      "signal_id": "6376279:1793325655",
+      "delay_seconds": 0,
+      "adverse_ticks": 1,
+      "arrival_ns": 1793325655000000000,
+      "paper_edge": 0.017426037323926447,
+      "paper_net_edge": -5.8262676073554676e-05,
+      "filled_shares": 100.0,
+      "fill_fraction": 1.0,
+      "unfilled_shares": 0.0,
+      "fillable_edge": -0.015073962676073568,
+      "expected_surplus_per_requested_share": -0.015073962676073568,
+      "cost_usd": 50.0,
+      "fee_usd": 1.75,
+      "slippage_cost_usd": 1.0,
+      "vwap": 0.5,
+      "fee_usd_per_share": 0.0175,
+      "fills": [
+        {
+          "displayed_price": 0.49,
+          "stressed_price": 0.5,
+          "shares": 100.0,
+          "fee_usd": 1.75
+        }
+      ],
+      "reason": "full",
+      "arrival_book_received_ns": 1793325654881981099
+    },
+    {
+      "signal_id": "6376279:1793325655",
+      "delay_seconds": 0,
+      "adverse_ticks": 3,
+      "arrival_ns": 1793325655000000000,
+      "paper_edge": 0.017426037323926447,
+      "paper_net_edge": -5.8262676073554676e-05,
+      "filled_shares": 100.0,
+      "fill_fraction": 1.0,
+      "unfilled_shares": 0.0,
+      "fillable_edge": -0.035045962676073586,
+      "expected_surplus_per_requested_share": -0.035045962676073586,
+      "cost_usd": 52.0,
+      "fee_usd": 1.7472,
+      "slippage_cost_usd": 3.0,
+      "vwap": 0.52,
+      "fee_usd_per_share": 0.017472,
+      "fills": [
+        {
+          "displayed_price": 0.49,
+          "stressed_price": 0.52,
+          "shares": 100.0,
+          "fee_usd": 1.7472
+        }
+      ],
+      "reason": "full",
+      "arrival_book_received_ns": 1793325654881981099
+    },
+    {
+      "signal_id": "6376279:1793325655",
+      "delay_seconds": 0,
+      "adverse_ticks": 5,
+      "arrival_ns": 1793325655000000000,
+      "paper_edge": 0.017426037323926447,
+      "paper_net_edge": -5.8262676073554676e-05,
+      "filled_shares": 100.0,
+      "fill_fraction": 1.0,
+      "unfilled_shares": 0.0,
+      "fillable_edge": -0.0549619626760736,
+      "expected_surplus_per_requested_share": -0.0549619626760736,
+      "cost_usd": 54.0,
+      "fee_usd": 1.7388,
+      "slippage_cost_usd": 5.0,
+      "vwap": 0.54,
+      "fee_usd_per_share": 0.017388,
+      "fills": [
+        {
+          "displayed_price": 0.49,
+          "stressed_price": 0.54,
+          "shares": 100.0,
+          "fee_usd": 1.7388
+        }
+      ],
+      "reason": "full",
+      "arrival_book_received_ns": 1793325654881981099
+    },
+    {
+      "signal_id": "6376279:1793325655",
+      "delay_seconds": 0.05,
+      "adverse_ticks": 0,
+      "arrival_ns": 1793325655050000000,
+      "paper_edge": 0.017426037323926447,
+      "paper_net_edge": -5.8262676073554676e-05,
+      "filled_shares": 100.0,
+      "fill_fraction": 1.0,
+      "unfilled_shares": 0.0,
+      "fillable_edge": -0.0050669626760735595,
+      "expected_surplus_per_requested_share": -0.0050669626760735595,
+      "cost_usd": 49.0,
+      "fee_usd": 1.7493,
+      "slippage_cost_usd": 0.0,
+      "vwap": 0.49,
+      "fee_usd_per_share": 0.017493,
+      "fills": [
+        {
+          "displayed_price": 0.49,
+          "stressed_price": 0.49,
+          "shares": 100.0,
+          "fee_usd": 1.7493
+        }
+      ],
+      "reason": "full",
+      "arrival_book_received_ns": 1793325655037998079
+    },
+    {
+      "signal_id": "6376279:1793325655",
+      "delay_seconds": 0.05,
+      "adverse_ticks": 1,
+      "arrival_ns": 1793325655050000000,
+      "paper_edge": 0.017426037323926447,
+      "paper_net_edge": -5.8262676073554676e-05,
+      "filled_shares": 100.0,
+      "fill_fraction": 1.0,
+      "unfilled_shares": 0.0,
+      "fillable_edge": -0.015073962676073568,
+      "expected_surplus_per_requested_share": -0.015073962676073568,
+      "cost_usd": 50.0,
+      "fee_usd": 1.75,
+      "slippage_cost_usd": 1.0,
+      "vwap": 0.5,
+      "fee_usd_per_share": 0.0175,
+      "fills": [
+        {
+          "displayed_price": 0.49,
+          "stressed_price": 0.5,
+          "shares": 100.0,
+          "fee_usd": 1.75
+        }
+      ],
+      "reason": "full",
+      "arrival_book_received_ns": 1793325655037998079
+    },
+    {
+      "signal_id": "6376279:1793325655",
+      "delay_seconds": 0.05,
+      "adverse_ticks": 3,
+      "arrival_ns": 1793325655050000000,
+      "paper_edge": 0.017426037323926447,
+      "paper_net_edge": -5.8262676073554676e-05,
+      "filled_shares": 100.0,
+      "fill_fraction": 1.0,
+      "unfilled_shares": 0.0,
+      "fillable_edge": -0.035045962676073586,
+      "expected_surplus_per_requested_share": -0.035045962676073586,
+      "cost_usd": 52.0,
+      "fee_usd": 1.7472,
+      "slippage_cost_usd": 3.0,
+      "vwap": 0.52,
+      "fee_usd_per_share": 0.017472,
+      "fills": [
+        {
+          "displayed_price": 0.49,
+          "stressed_price": 0.52,
+          "shares": 100.0,
+          "fee_usd": 1.7472
+        }
+      ],
+      "reason": "full",
+      "arrival_book_received_ns": 1793325655037998079
+    },
+    {
+      "signal_id": "6376279:1793325655",
+      "delay_seconds": 0.05,
+      "adverse_ticks": 5,
+      "arrival_ns": 1793325655050000000,
+      "paper_edge": 0.017426037323926447,
+      "paper_net_edge": -5.8262676073554676e-05,
+      "filled_shares": 100.0,
+      "fill_fraction": 1.0,
+      "unfilled_shares": 0.0,
+      "fillable_edge": -0.0549619626760736,
+      "expected_surplus_per_requested_share": -0.0549619626760736,
+      "cost_usd": 54.0,
+      "fee_usd": 1.7388,
+      "slippage_cost_usd": 5.0,
+      "vwap": 0.54,
+      "fee_usd_per_share": 0.017388,
+      "fills": [
+        {
+          "displayed_price": 0.49,
+          "stressed_price": 0.54,
+          "shares": 100.0,
+          "fee_usd": 1.7388
+        }
+      ],
+      "reason": "full",
+      "arrival_book_received_ns": 1793325655037998079
+    },
+    {
+      "signal_id": "6376279:1793325655",
+      "delay_seconds": 0.25,
+      "adverse_ticks": 0,
+      "arrival_ns": 1793325655250000000,
+      "paper_edge": 0.017426037323926447,
+      "paper_net_edge": -5.8262676073554676e-05,
+      "filled_shares": 100.0,
+      "fill_fraction": 1.0,
+      "unfilled_shares": 0.0,
+      "fillable_edge": -0.0050669626760735595,
+      "expected_surplus_per_requested_share": -0.0050669626760735595,
+      "cost_usd": 49.0,
+      "fee_usd": 1.7493,
+      "slippage_cost_usd": 0.0,
+      "vwap": 0.49,
+      "fee_usd_per_share": 0.017493,
+      "fills": [
+        {
+          "displayed_price": 0.49,
+          "stressed_price": 0.49,
+          "shares": 100.0,
+          "fee_usd": 1.7493
+        }
+      ],
+      "reason": "full",
+      "arrival_book_received_ns": 1793325655213698020
+    },
+    {
+      "signal_id": "6376279:1793325655",
+      "delay_seconds": 0.25,
+      "adverse_ticks": 1,
+      "arrival_ns": 1793325655250000000,
+      "paper_edge": 0.017426037323926447,
+      "paper_net_edge": -5.8262676073554676e-05,
+      "filled_shares": 100.0,
+      "fill_fraction": 1.0,
+      "unfilled_shares": 0.0,
+      "fillable_edge": -0.015073962676073568,
+      "expected_surplus_per_requested_share": -0.015073962676073568,
+      "cost_usd": 50.0,
+      "fee_usd": 1.75,
+      "slippage_cost_usd": 1.0,
+      "vwap": 0.5,
+      "fee_usd_per_share": 0.0175,
+      "fills": [
+        {
+          "displayed_price": 0.49,
+          "stressed_price": 0.5,
+          "shares": 100.0,
+          "fee_usd": 1.75
+        }
+      ],
+      "reason": "full",
+      "arrival_book_received_ns": 1793325655213698020
+    },
+    {
+      "signal_id": "6376279:1793325655",
+      "delay_seconds": 0.25,
+      "adverse_ticks": 3,
+      "arrival_ns": 1793325655250000000,
+      "paper_edge": 0.017426037323926447,
+      "paper_net_edge": -5.8262676073554676e-05,
+      "filled_shares": 100.0,
+      "fill_fraction": 1.0,
+      "unfilled_shares": 0.0,
+      "fillable_edge": -0.035045962676073586,
+      "expected_surplus_per_requested_share": -0.035045962676073586,
+      "cost_usd": 52.0,
+      "fee_usd": 1.7472,
+      "slippage_cost_usd": 3.0,
+      "vwap": 0.52,
+      "fee_usd_per_share": 0.017472,
+      "fills": [
+        {
+          "displayed_price": 0.49,
+          "stressed_price": 0.52,
+          "shares": 100.0,
+          "fee_usd": 1.7472
+        }
+      ],
+      "reason": "full",
+      "arrival_book_received_ns": 1793325655213698020
+    },
+    {
+      "signal_id": "6376279:1793325655",
+      "delay_seconds": 0.25,
+      "adverse_ticks": 5,
+      "arrival_ns": 1793325655250000000,
+      "paper_edge": 0.017426037323926447,
+      "paper_net_edge": -5.8262676073554676e-05,
+      "filled_shares": 100.0,
+      "fill_fraction": 1.0,
+      "unfilled_shares": 0.0,
+      "fillable_edge": -0.0549619626760736,
+      "expected_surplus_per_requested_share": -0.0549619626760736,
+      "cost_usd": 54.0,
+      "fee_usd": 1.7388,
+      "slippage_cost_usd": 5.0,
+      "vwap": 0.54,
+      "fee_usd_per_share": 0.017388,
+      "fills": [
+        {
+          "displayed_price": 0.49,
+          "stressed_price": 0.54,
+          "shares": 100.0,
+          "fee_usd": 1.7388
+        }
+      ],
+      "reason": "full",
+      "arrival_book_received_ns": 1793325655213698020
+    },
+    {
+      "signal_id": "6376279:1793325655",
+      "delay_seconds": 1,
+      "adverse_ticks": 0,
+      "arrival_ns": 1793325656000000000,
+      "paper_edge": 0.017426037323926447,
+      "paper_net_edge": -5.8262676073554676e-05,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325655",
+      "delay_seconds": 1,
+      "adverse_ticks": 1,
+      "arrival_ns": 1793325656000000000,
+      "paper_edge": 0.017426037323926447,
+      "paper_net_edge": -5.8262676073554676e-05,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325655",
+      "delay_seconds": 1,
+      "adverse_ticks": 3,
+      "arrival_ns": 1793325656000000000,
+      "paper_edge": 0.017426037323926447,
+      "paper_net_edge": -5.8262676073554676e-05,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325655",
+      "delay_seconds": 1,
+      "adverse_ticks": 5,
+      "arrival_ns": 1793325656000000000,
+      "paper_edge": 0.017426037323926447,
+      "paper_net_edge": -5.8262676073554676e-05,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325655",
+      "delay_seconds": 2,
+      "adverse_ticks": 0,
+      "arrival_ns": 1793325657000000000,
+      "paper_edge": 0.017426037323926447,
+      "paper_net_edge": -5.8262676073554676e-05,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325655",
+      "delay_seconds": 2,
+      "adverse_ticks": 1,
+      "arrival_ns": 1793325657000000000,
+      "paper_edge": 0.017426037323926447,
+      "paper_net_edge": -5.8262676073554676e-05,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325655",
+      "delay_seconds": 2,
+      "adverse_ticks": 3,
+      "arrival_ns": 1793325657000000000,
+      "paper_edge": 0.017426037323926447,
+      "paper_net_edge": -5.8262676073554676e-05,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325655",
+      "delay_seconds": 2,
+      "adverse_ticks": 5,
+      "arrival_ns": 1793325657000000000,
+      "paper_edge": 0.017426037323926447,
+      "paper_net_edge": -5.8262676073554676e-05,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325737",
+      "delay_seconds": 0,
+      "adverse_ticks": 0,
+      "arrival_ns": 1793325737000000000,
+      "paper_edge": 0.031487000134897136,
+      "paper_net_edge": 0.019280700134897136,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325737",
+      "delay_seconds": 0,
+      "adverse_ticks": 1,
+      "arrival_ns": 1793325737000000000,
+      "paper_edge": 0.031487000134897136,
+      "paper_net_edge": 0.019280700134897136,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325737",
+      "delay_seconds": 0,
+      "adverse_ticks": 3,
+      "arrival_ns": 1793325737000000000,
+      "paper_edge": 0.031487000134897136,
+      "paper_net_edge": 0.019280700134897136,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325737",
+      "delay_seconds": 0,
+      "adverse_ticks": 5,
+      "arrival_ns": 1793325737000000000,
+      "paper_edge": 0.031487000134897136,
+      "paper_net_edge": 0.019280700134897136,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325737",
+      "delay_seconds": 0.05,
+      "adverse_ticks": 0,
+      "arrival_ns": 1793325737050000000,
+      "paper_edge": 0.031487000134897136,
+      "paper_net_edge": 0.019280700134897136,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325737",
+      "delay_seconds": 0.05,
+      "adverse_ticks": 1,
+      "arrival_ns": 1793325737050000000,
+      "paper_edge": 0.031487000134897136,
+      "paper_net_edge": 0.019280700134897136,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325737",
+      "delay_seconds": 0.05,
+      "adverse_ticks": 3,
+      "arrival_ns": 1793325737050000000,
+      "paper_edge": 0.031487000134897136,
+      "paper_net_edge": 0.019280700134897136,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325737",
+      "delay_seconds": 0.05,
+      "adverse_ticks": 5,
+      "arrival_ns": 1793325737050000000,
+      "paper_edge": 0.031487000134897136,
+      "paper_net_edge": 0.019280700134897136,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325737",
+      "delay_seconds": 0.25,
+      "adverse_ticks": 0,
+      "arrival_ns": 1793325737250000000,
+      "paper_edge": 0.031487000134897136,
+      "paper_net_edge": 0.019280700134897136,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325737",
+      "delay_seconds": 0.25,
+      "adverse_ticks": 1,
+      "arrival_ns": 1793325737250000000,
+      "paper_edge": 0.031487000134897136,
+      "paper_net_edge": 0.019280700134897136,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325737",
+      "delay_seconds": 0.25,
+      "adverse_ticks": 3,
+      "arrival_ns": 1793325737250000000,
+      "paper_edge": 0.031487000134897136,
+      "paper_net_edge": 0.019280700134897136,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325737",
+      "delay_seconds": 0.25,
+      "adverse_ticks": 5,
+      "arrival_ns": 1793325737250000000,
+      "paper_edge": 0.031487000134897136,
+      "paper_net_edge": 0.019280700134897136,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325737",
+      "delay_seconds": 1,
+      "adverse_ticks": 0,
+      "arrival_ns": 1793325738000000000,
+      "paper_edge": 0.031487000134897136,
+      "paper_net_edge": 0.019280700134897136,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325737",
+      "delay_seconds": 1,
+      "adverse_ticks": 1,
+      "arrival_ns": 1793325738000000000,
+      "paper_edge": 0.031487000134897136,
+      "paper_net_edge": 0.019280700134897136,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325737",
+      "delay_seconds": 1,
+      "adverse_ticks": 3,
+      "arrival_ns": 1793325738000000000,
+      "paper_edge": 0.031487000134897136,
+      "paper_net_edge": 0.019280700134897136,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325737",
+      "delay_seconds": 1,
+      "adverse_ticks": 5,
+      "arrival_ns": 1793325738000000000,
+      "paper_edge": 0.031487000134897136,
+      "paper_net_edge": 0.019280700134897136,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325737",
+      "delay_seconds": 2,
+      "adverse_ticks": 0,
+      "arrival_ns": 1793325739000000000,
+      "paper_edge": 0.031487000134897136,
+      "paper_net_edge": 0.019280700134897136,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325737",
+      "delay_seconds": 2,
+      "adverse_ticks": 1,
+      "arrival_ns": 1793325739000000000,
+      "paper_edge": 0.031487000134897136,
+      "paper_net_edge": 0.019280700134897136,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325737",
+      "delay_seconds": 2,
+      "adverse_ticks": 3,
+      "arrival_ns": 1793325739000000000,
+      "paper_edge": 0.031487000134897136,
+      "paper_net_edge": 0.019280700134897136,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325737",
+      "delay_seconds": 2,
+      "adverse_ticks": 5,
+      "arrival_ns": 1793325739000000000,
+      "paper_edge": 0.031487000134897136,
+      "paper_net_edge": 0.019280700134897136,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325738",
+      "delay_seconds": 0,
+      "adverse_ticks": 0,
+      "arrival_ns": 1793325738000000000,
+      "paper_edge": 0.007648696189880622,
+      "paper_net_edge": -0.004557603810119378,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325738",
+      "delay_seconds": 0,
+      "adverse_ticks": 1,
+      "arrival_ns": 1793325738000000000,
+      "paper_edge": 0.007648696189880622,
+      "paper_net_edge": -0.004557603810119378,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325738",
+      "delay_seconds": 0,
+      "adverse_ticks": 3,
+      "arrival_ns": 1793325738000000000,
+      "paper_edge": 0.007648696189880622,
+      "paper_net_edge": -0.004557603810119378,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325738",
+      "delay_seconds": 0,
+      "adverse_ticks": 5,
+      "arrival_ns": 1793325738000000000,
+      "paper_edge": 0.007648696189880622,
+      "paper_net_edge": -0.004557603810119378,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325738",
+      "delay_seconds": 0.05,
+      "adverse_ticks": 0,
+      "arrival_ns": 1793325738050000000,
+      "paper_edge": 0.007648696189880622,
+      "paper_net_edge": -0.004557603810119378,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325738",
+      "delay_seconds": 0.05,
+      "adverse_ticks": 1,
+      "arrival_ns": 1793325738050000000,
+      "paper_edge": 0.007648696189880622,
+      "paper_net_edge": -0.004557603810119378,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325738",
+      "delay_seconds": 0.05,
+      "adverse_ticks": 3,
+      "arrival_ns": 1793325738050000000,
+      "paper_edge": 0.007648696189880622,
+      "paper_net_edge": -0.004557603810119378,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325738",
+      "delay_seconds": 0.05,
+      "adverse_ticks": 5,
+      "arrival_ns": 1793325738050000000,
+      "paper_edge": 0.007648696189880622,
+      "paper_net_edge": -0.004557603810119378,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325738",
+      "delay_seconds": 0.25,
+      "adverse_ticks": 0,
+      "arrival_ns": 1793325738250000000,
+      "paper_edge": 0.007648696189880622,
+      "paper_net_edge": -0.004557603810119378,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325738",
+      "delay_seconds": 0.25,
+      "adverse_ticks": 1,
+      "arrival_ns": 1793325738250000000,
+      "paper_edge": 0.007648696189880622,
+      "paper_net_edge": -0.004557603810119378,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325738",
+      "delay_seconds": 0.25,
+      "adverse_ticks": 3,
+      "arrival_ns": 1793325738250000000,
+      "paper_edge": 0.007648696189880622,
+      "paper_net_edge": -0.004557603810119378,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325738",
+      "delay_seconds": 0.25,
+      "adverse_ticks": 5,
+      "arrival_ns": 1793325738250000000,
+      "paper_edge": 0.007648696189880622,
+      "paper_net_edge": -0.004557603810119378,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325738",
+      "delay_seconds": 1,
+      "adverse_ticks": 0,
+      "arrival_ns": 1793325739000000000,
+      "paper_edge": 0.007648696189880622,
+      "paper_net_edge": -0.004557603810119378,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325738",
+      "delay_seconds": 1,
+      "adverse_ticks": 1,
+      "arrival_ns": 1793325739000000000,
+      "paper_edge": 0.007648696189880622,
+      "paper_net_edge": -0.004557603810119378,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325738",
+      "delay_seconds": 1,
+      "adverse_ticks": 3,
+      "arrival_ns": 1793325739000000000,
+      "paper_edge": 0.007648696189880622,
+      "paper_net_edge": -0.004557603810119378,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325738",
+      "delay_seconds": 1,
+      "adverse_ticks": 5,
+      "arrival_ns": 1793325739000000000,
+      "paper_edge": 0.007648696189880622,
+      "paper_net_edge": -0.004557603810119378,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325738",
+      "delay_seconds": 2,
+      "adverse_ticks": 0,
+      "arrival_ns": 1793325740000000000,
+      "paper_edge": 0.007648696189880622,
+      "paper_net_edge": -0.004557603810119378,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325738",
+      "delay_seconds": 2,
+      "adverse_ticks": 1,
+      "arrival_ns": 1793325740000000000,
+      "paper_edge": 0.007648696189880622,
+      "paper_net_edge": -0.004557603810119378,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325738",
+      "delay_seconds": 2,
+      "adverse_ticks": 3,
+      "arrival_ns": 1793325740000000000,
+      "paper_edge": 0.007648696189880622,
+      "paper_net_edge": -0.004557603810119378,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325738",
+      "delay_seconds": 2,
+      "adverse_ticks": 5,
+      "arrival_ns": 1793325740000000000,
+      "paper_edge": 0.007648696189880622,
+      "paper_net_edge": -0.004557603810119378,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325770",
+      "delay_seconds": 0,
+      "adverse_ticks": 0,
+      "arrival_ns": 1793325770000000000,
+      "paper_edge": 0.020236218926289906,
+      "paper_net_edge": 0.008827918926289906,
+      "filled_shares": 100.0,
+      "fill_fraction": 1.0,
+      "unfilled_shares": 0.0,
+      "fillable_edge": 0.004036218926289902,
+      "expected_surplus_per_requested_share": 0.004036218926289902,
+      "cost_usd": 80.0,
+      "fee_usd": 1.12,
+      "slippage_cost_usd": 0.0,
+      "vwap": 0.8,
+      "fee_usd_per_share": 0.0112,
+      "fills": [
+        {
+          "displayed_price": 0.8,
+          "stressed_price": 0.8,
+          "shares": 100.0,
+          "fee_usd": 1.12
+        }
+      ],
+      "reason": "full",
+      "arrival_book_received_ns": 1793325769999888588
+    },
+    {
+      "signal_id": "6376279:1793325770",
+      "delay_seconds": 0,
+      "adverse_ticks": 1,
+      "arrival_ns": 1793325770000000000,
+      "paper_edge": 0.020236218926289906,
+      "paper_net_edge": 0.008827918926289906,
+      "filled_shares": 100.0,
+      "fill_fraction": 1.0,
+      "unfilled_shares": 0.0,
+      "fillable_edge": -0.005536781073710107,
+      "expected_surplus_per_requested_share": -0.005536781073710107,
+      "cost_usd": 81.0,
+      "fee_usd": 1.0773,
+      "slippage_cost_usd": 1.0,
+      "vwap": 0.81,
+      "fee_usd_per_share": 0.010773,
+      "fills": [
+        {
+          "displayed_price": 0.8,
+          "stressed_price": 0.81,
+          "shares": 100.0,
+          "fee_usd": 1.0773
+        }
+      ],
+      "reason": "full",
+      "arrival_book_received_ns": 1793325769999888588
+    },
+    {
+      "signal_id": "6376279:1793325770",
+      "delay_seconds": 0,
+      "adverse_ticks": 3,
+      "arrival_ns": 1793325770000000000,
+      "paper_edge": 0.020236218926289906,
+      "paper_net_edge": 0.008827918926289906,
+      "filled_shares": 100.0,
+      "fill_fraction": 1.0,
+      "unfilled_shares": 0.0,
+      "fillable_edge": -0.024640781073710014,
+      "expected_surplus_per_requested_share": -0.024640781073710014,
+      "cost_usd": 83.0,
+      "fee_usd": 0.9877,
+      "slippage_cost_usd": 3.0,
+      "vwap": 0.83,
+      "fee_usd_per_share": 0.009877,
+      "fills": [
+        {
+          "displayed_price": 0.8,
+          "stressed_price": 0.83,
+          "shares": 100.0,
+          "fee_usd": 0.9877
+        }
+      ],
+      "reason": "full",
+      "arrival_book_received_ns": 1793325769999888588
+    },
+    {
+      "signal_id": "6376279:1793325770",
+      "delay_seconds": 0,
+      "adverse_ticks": 5,
+      "arrival_ns": 1793325770000000000,
+      "paper_edge": 0.020236218926289906,
+      "paper_net_edge": 0.008827918926289906,
+      "filled_shares": 100.0,
+      "fill_fraction": 1.0,
+      "unfilled_shares": 0.0,
+      "fillable_edge": -0.043688781073710034,
+      "expected_surplus_per_requested_share": -0.043688781073710034,
+      "cost_usd": 85.0,
+      "fee_usd": 0.8925,
+      "slippage_cost_usd": 5.0,
+      "vwap": 0.85,
+      "fee_usd_per_share": 0.008925,
+      "fills": [
+        {
+          "displayed_price": 0.8,
+          "stressed_price": 0.85,
+          "shares": 100.0,
+          "fee_usd": 0.8925
+        }
+      ],
+      "reason": "full",
+      "arrival_book_received_ns": 1793325769999888588
+    },
+    {
+      "signal_id": "6376279:1793325770",
+      "delay_seconds": 0.05,
+      "adverse_ticks": 0,
+      "arrival_ns": 1793325770050000000,
+      "paper_edge": 0.020236218926289906,
+      "paper_net_edge": 0.008827918926289906,
+      "filled_shares": 100.0,
+      "fill_fraction": 1.0,
+      "unfilled_shares": 0.0,
+      "fillable_edge": 0.004036218926289902,
+      "expected_surplus_per_requested_share": 0.004036218926289902,
+      "cost_usd": 80.0,
+      "fee_usd": 1.12,
+      "slippage_cost_usd": 0.0,
+      "vwap": 0.8,
+      "fee_usd_per_share": 0.0112,
+      "fills": [
+        {
+          "displayed_price": 0.8,
+          "stressed_price": 0.8,
+          "shares": 100.0,
+          "fee_usd": 1.12
+        }
+      ],
+      "reason": "full",
+      "arrival_book_received_ns": 1793325770028739345
+    },
+    {
+      "signal_id": "6376279:1793325770",
+      "delay_seconds": 0.05,
+      "adverse_ticks": 1,
+      "arrival_ns": 1793325770050000000,
+      "paper_edge": 0.020236218926289906,
+      "paper_net_edge": 0.008827918926289906,
+      "filled_shares": 100.0,
+      "fill_fraction": 1.0,
+      "unfilled_shares": 0.0,
+      "fillable_edge": -0.005536781073710107,
+      "expected_surplus_per_requested_share": -0.005536781073710107,
+      "cost_usd": 81.0,
+      "fee_usd": 1.0773,
+      "slippage_cost_usd": 1.0,
+      "vwap": 0.81,
+      "fee_usd_per_share": 0.010773,
+      "fills": [
+        {
+          "displayed_price": 0.8,
+          "stressed_price": 0.81,
+          "shares": 100.0,
+          "fee_usd": 1.0773
+        }
+      ],
+      "reason": "full",
+      "arrival_book_received_ns": 1793325770028739345
+    },
+    {
+      "signal_id": "6376279:1793325770",
+      "delay_seconds": 0.05,
+      "adverse_ticks": 3,
+      "arrival_ns": 1793325770050000000,
+      "paper_edge": 0.020236218926289906,
+      "paper_net_edge": 0.008827918926289906,
+      "filled_shares": 100.0,
+      "fill_fraction": 1.0,
+      "unfilled_shares": 0.0,
+      "fillable_edge": -0.024640781073710014,
+      "expected_surplus_per_requested_share": -0.024640781073710014,
+      "cost_usd": 83.0,
+      "fee_usd": 0.9877,
+      "slippage_cost_usd": 3.0,
+      "vwap": 0.83,
+      "fee_usd_per_share": 0.009877,
+      "fills": [
+        {
+          "displayed_price": 0.8,
+          "stressed_price": 0.83,
+          "shares": 100.0,
+          "fee_usd": 0.9877
+        }
+      ],
+      "reason": "full",
+      "arrival_book_received_ns": 1793325770028739345
+    },
+    {
+      "signal_id": "6376279:1793325770",
+      "delay_seconds": 0.05,
+      "adverse_ticks": 5,
+      "arrival_ns": 1793325770050000000,
+      "paper_edge": 0.020236218926289906,
+      "paper_net_edge": 0.008827918926289906,
+      "filled_shares": 100.0,
+      "fill_fraction": 1.0,
+      "unfilled_shares": 0.0,
+      "fillable_edge": -0.043688781073710034,
+      "expected_surplus_per_requested_share": -0.043688781073710034,
+      "cost_usd": 85.0,
+      "fee_usd": 0.8925,
+      "slippage_cost_usd": 5.0,
+      "vwap": 0.85,
+      "fee_usd_per_share": 0.008925,
+      "fills": [
+        {
+          "displayed_price": 0.8,
+          "stressed_price": 0.85,
+          "shares": 100.0,
+          "fee_usd": 0.8925
+        }
+      ],
+      "reason": "full",
+      "arrival_book_received_ns": 1793325770028739345
+    },
+    {
+      "signal_id": "6376279:1793325770",
+      "delay_seconds": 0.25,
+      "adverse_ticks": 0,
+      "arrival_ns": 1793325770250000000,
+      "paper_edge": 0.020236218926289906,
+      "paper_net_edge": 0.008827918926289906,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325770",
+      "delay_seconds": 0.25,
+      "adverse_ticks": 1,
+      "arrival_ns": 1793325770250000000,
+      "paper_edge": 0.020236218926289906,
+      "paper_net_edge": 0.008827918926289906,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325770",
+      "delay_seconds": 0.25,
+      "adverse_ticks": 3,
+      "arrival_ns": 1793325770250000000,
+      "paper_edge": 0.020236218926289906,
+      "paper_net_edge": 0.008827918926289906,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325770",
+      "delay_seconds": 0.25,
+      "adverse_ticks": 5,
+      "arrival_ns": 1793325770250000000,
+      "paper_edge": 0.020236218926289906,
+      "paper_net_edge": 0.008827918926289906,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325770",
+      "delay_seconds": 1,
+      "adverse_ticks": 0,
+      "arrival_ns": 1793325771000000000,
+      "paper_edge": 0.020236218926289906,
+      "paper_net_edge": 0.008827918926289906,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325770",
+      "delay_seconds": 1,
+      "adverse_ticks": 1,
+      "arrival_ns": 1793325771000000000,
+      "paper_edge": 0.020236218926289906,
+      "paper_net_edge": 0.008827918926289906,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325770",
+      "delay_seconds": 1,
+      "adverse_ticks": 3,
+      "arrival_ns": 1793325771000000000,
+      "paper_edge": 0.020236218926289906,
+      "paper_net_edge": 0.008827918926289906,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325770",
+      "delay_seconds": 1,
+      "adverse_ticks": 5,
+      "arrival_ns": 1793325771000000000,
+      "paper_edge": 0.020236218926289906,
+      "paper_net_edge": 0.008827918926289906,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325770",
+      "delay_seconds": 2,
+      "adverse_ticks": 0,
+      "arrival_ns": 1793325772000000000,
+      "paper_edge": 0.020236218926289906,
+      "paper_net_edge": 0.008827918926289906,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325770",
+      "delay_seconds": 2,
+      "adverse_ticks": 1,
+      "arrival_ns": 1793325772000000000,
+      "paper_edge": 0.020236218926289906,
+      "paper_net_edge": 0.008827918926289906,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325770",
+      "delay_seconds": 2,
+      "adverse_ticks": 3,
+      "arrival_ns": 1793325772000000000,
+      "paper_edge": 0.020236218926289906,
+      "paper_net_edge": 0.008827918926289906,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    },
+    {
+      "signal_id": "6376279:1793325770",
+      "delay_seconds": 2,
+      "adverse_ticks": 5,
+      "arrival_ns": 1793325772000000000,
+      "paper_edge": 0.020236218926289906,
+      "paper_net_edge": 0.008827918926289906,
+      "filled_shares": 0.0,
+      "fill_fraction": 0.0,
+      "unfilled_shares": 100.0,
+      "fillable_edge": null,
+      "expected_surplus_per_requested_share": 0.0,
+      "cost_usd": 0.0,
+      "fee_usd": 0.0,
+      "slippage_cost_usd": 0.0,
+      "vwap": null,
+      "fee_usd_per_share": null,
+      "fills": [],
+      "reason": "book_unavailable"
+    }
+  ],
+  "excluded": [
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325648,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325649,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325650,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325651,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325652,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325653,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325654,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325656,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325657,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325658,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325659,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325660,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325661,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325662,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325663,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325664,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325665,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325666,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325667,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325668,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325669,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325670,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325671,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325672,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325673,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325674,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325675,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325676,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325677,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325678,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325679,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325680,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325681,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325682,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325683,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325684,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325685,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325686,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325687,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325688,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325689,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325690,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325691,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325692,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325693,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325694,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325695,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325696,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325697,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325698,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325699,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325700,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325701,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325702,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325703,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325704,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325705,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325706,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325707,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325708,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325709,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325710,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325711,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325712,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325713,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325714,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325715,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325716,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325717,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325718,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325719,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325720,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325721,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325722,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325723,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325724,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325725,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325726,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325727,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325728,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325729,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325730,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325731,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325732,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325733,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325734,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325735,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325736,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325739,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325740,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325741,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325742,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325743,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325744,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325745,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325746,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325747,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325748,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325749,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325750,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325751,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325752,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325753,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325754,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325755,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325756,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325757,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325758,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325759,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325760,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325761,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325762,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325763,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325764,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325765,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325766,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325767,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325768,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325769,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325771,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325772,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325773,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325774,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325775,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325776,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325777,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325778,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325779,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325780,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325781,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325782,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325783,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325784,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325785,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325786,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325787,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325788,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325789,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325790,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325791,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325792,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325793,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325794,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325795,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325796,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325797,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325798,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325799,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325800,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325801,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325802,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325803,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325804,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325805,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325806,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325807,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325808,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325809,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325810,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325811,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325812,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325813,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325814,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325815,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325816,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325817,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325818,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325819,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325820,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325821,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325822,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325823,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325824,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325825,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325826,
+      "reason": "book_unavailable"
+    },
+    {
+      "market_id": "6376279",
+      "decision_at": 1793325827,
+      "reason": "book_unavailable"
+    }
+  ],
+  "gaps": [
+    {
+      "kind": "server_hash_conflict",
+      "received_ns": 1793325649451318876,
+      "session": "3525f81539fd41c495ccffb7aab29cd7",
+      "seq": 33,
+      "asset_id": "65078128808532943237265308451617558229287454859004924531404031620098522044378"
+    },
+    {
+      "kind": "server_hash_conflict",
+      "received_ns": 1793325649451318876,
+      "session": "3525f81539fd41c495ccffb7aab29cd7",
+      "seq": 33,
+      "asset_id": "40427698632824756470540157665380199693503024292970938000426274101905025307751"
+    },
+    {
+      "kind": "disconnected",
+      "received_ns": 1793325651455287197,
+      "session": "3525f81539fd41c495ccffb7aab29cd7",
+      "seq": 34,
+      "asset_id": null
+    },
+    {
+      "kind": "server_hash_conflict",
+      "received_ns": 1793325655321242547,
+      "session": "3525f81539fd41c495ccffb7aab29cd7",
+      "seq": 337,
+      "asset_id": "40427698632824756470540157665380199693503024292970938000426274101905025307751"
+    },
+    {
+      "kind": "server_hash_conflict",
+      "received_ns": 1793325655321242547,
+      "session": "3525f81539fd41c495ccffb7aab29cd7",
+      "seq": 337,
+      "asset_id": "65078128808532943237265308451617558229287454859004924531404031620098522044378"
+    },
+    {
+      "kind": "disconnected",
+      "received_ns": 1793325657322676357,
+      "session": "3525f81539fd41c495ccffb7aab29cd7",
+      "seq": 338,
+      "asset_id": null
+    },
+    {
+      "kind": "server_hash_conflict",
+      "received_ns": 1793325661881027036,
+      "session": "3525f81539fd41c495ccffb7aab29cd7",
+      "seq": 417,
+      "asset_id": "65078128808532943237265308451617558229287454859004924531404031620098522044378"
+    },
+    {
+      "kind": "server_hash_conflict",
+      "received_ns": 1793325661881027036,
+      "session": "3525f81539fd41c495ccffb7aab29cd7",
+      "seq": 417,
+      "asset_id": "40427698632824756470540157665380199693503024292970938000426274101905025307751"
+    },
+    {
+      "kind": "disconnected",
+      "received_ns": 1793325663883578035,
+      "session": "3525f81539fd41c495ccffb7aab29cd7",
+      "seq": 418,
+      "asset_id": null
+    },
+    {
+      "kind": "server_hash_conflict",
+      "received_ns": 1793325669798826904,
+      "session": "3525f81539fd41c495ccffb7aab29cd7",
+      "seq": 510,
+      "asset_id": "65078128808532943237265308451617558229287454859004924531404031620098522044378"
+    },
+    {
+      "kind": "server_hash_conflict",
+      "received_ns": 1793325669798826904,
+      "session": "3525f81539fd41c495ccffb7aab29cd7",
+      "seq": 510,
+      "asset_id": "40427698632824756470540157665380199693503024292970938000426274101905025307751"
+    },
+    {
+      "kind": "disconnected",
+      "received_ns": 1793325671800712646,
+      "session": "3525f81539fd41c495ccffb7aab29cd7",
+      "seq": 511,
+      "asset_id": null
+    },
+    {
+      "kind": "server_hash_conflict",
+      "received_ns": 1793325681953102275,
+      "session": "3525f81539fd41c495ccffb7aab29cd7",
+      "seq": 544,
+      "asset_id": "65078128808532943237265308451617558229287454859004924531404031620098522044378"
+    },
+    {
+      "kind": "server_hash_conflict",
+      "received_ns": 1793325681953102275,
+      "session": "3525f81539fd41c495ccffb7aab29cd7",
+      "seq": 544,
+      "asset_id": "40427698632824756470540157665380199693503024292970938000426274101905025307751"
+    },
+    {
+      "kind": "disconnected",
+      "received_ns": 1793325683960487861,
+      "session": "3525f81539fd41c495ccffb7aab29cd7",
+      "seq": 545,
+      "asset_id": null
+    },
+    {
+      "kind": "server_hash_conflict",
+      "received_ns": 1793325701849797111,
+      "session": "3525f81539fd41c495ccffb7aab29cd7",
+      "seq": 585,
+      "asset_id": "40427698632824756470540157665380199693503024292970938000426274101905025307751"
+    },
+    {
+      "kind": "server_hash_conflict",
+      "received_ns": 1793325701849797111,
+      "session": "3525f81539fd41c495ccffb7aab29cd7",
+      "seq": 585,
+      "asset_id": "65078128808532943237265308451617558229287454859004924531404031620098522044378"
+    },
+    {
+      "kind": "disconnected",
+      "received_ns": 1793325703852541357,
+      "session": "3525f81539fd41c495ccffb7aab29cd7",
+      "seq": 586,
+      "asset_id": null
+    },
+    {
+      "kind": "server_hash_conflict",
+      "received_ns": 1793325736122437881,
+      "session": "3525f81539fd41c495ccffb7aab29cd7",
+      "seq": 599,
+      "asset_id": "65078128808532943237265308451617558229287454859004924531404031620098522044378"
+    },
+    {
+      "kind": "disconnected",
+      "received_ns": 1793325738124870877,
+      "session": "3525f81539fd41c495ccffb7aab29cd7",
+      "seq": 600,
+      "asset_id": null
+    },
+    {
+      "kind": "server_hash_conflict",
+      "received_ns": 1793325770145637467,
+      "session": "3525f81539fd41c495ccffb7aab29cd7",
+      "seq": 739,
+      "asset_id": "65078128808532943237265308451617558229287454859004924531404031620098522044378"
+    },
+    {
+      "kind": "server_hash_conflict",
+      "received_ns": 1793325770145637467,
+      "session": "3525f81539fd41c495ccffb7aab29cd7",
+      "seq": 739,
+      "asset_id": "40427698632824756470540157665380199693503024292970938000426274101905025307751"
+    },
+    {
+      "kind": "disconnected",
+      "received_ns": 1793325772150561273,
+      "session": "3525f81539fd41c495ccffb7aab29cd7",
+      "seq": 740,
+      "asset_id": null
+    },
+    {
+      "kind": "best_price_mismatch",
+      "received_ns": 1793325804285271853,
+      "session": "3525f81539fd41c495ccffb7aab29cd7",
+      "seq": 810,
+      "asset_id": "65078128808532943237265308451617558229287454859004924531404031620098522044378",
+      "field": "best_bid"
+    },
+    {
+      "kind": "best_price_mismatch",
+      "received_ns": 1793325804285271853,
+      "session": "3525f81539fd41c495ccffb7aab29cd7",
+      "seq": 810,
+      "asset_id": "40427698632824756470540157665380199693503024292970938000426274101905025307751",
+      "field": "best_ask"
+    },
+    {
+      "kind": "disconnected",
+      "received_ns": 1793325806288468559,
+      "session": "3525f81539fd41c495ccffb7aab29cd7",
+      "seq": 811,
+      "asset_id": null
+    }
+  ],
+  "input_sha256": "002bc60d6b15aa6608c0fea92b1cd2c5a9fa91fb68d46c311bd170e32853082d"
+}
