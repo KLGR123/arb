@@ -81,9 +81,7 @@ def _export_dashboard(store, event_id, market_id, *, limit, collected_at, compli
         "source": "recorded-sync" if recorded else "local-sync",
         "as_of": recorded["recorded_at"] if recorded else datetime.now(UTC).isoformat(),
         "currency": "pUSD",
-        # Dashboard v2 has a strict, smaller event wire contract. Keep internal
-        # ARB-28 selection metadata in the data layer, not in this read-only view.
-        "event": event.model_dump(mode="json", exclude={"markets": {"__all__": {"asset_selection"}}}),
+        "event": event.model_dump(mode="json"),
         "market_id": market.id,
         "outcome_index": 0,
         "prices": store.history(event, market_id=market.id, limit=limit).model_dump(mode="json"),
