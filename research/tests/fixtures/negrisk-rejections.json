@@ -1,0 +1,127 @@
+[
+  {
+    "name": "missing-version",
+    "patch": {
+      "version": null
+    },
+    "reason": "missing_protocol_version"
+  },
+  {
+    "name": "unknown-version",
+    "patch": {
+      "version": "v3"
+    },
+    "reason": "unknown_protocol_version"
+  },
+  {
+    "name": "invalid-id",
+    "patch": {
+      "clobTokenIds": [
+        "0x101",
+        "102"
+      ]
+    },
+    "reason": "invalid_decimal_asset_id_string"
+  },
+  {
+    "name": "numeric-id",
+    "patch": {
+      "clobTokenIds": [
+        101,
+        "102"
+      ]
+    },
+    "reason": "invalid_decimal_asset_id_string"
+  },
+  {
+    "name": "unicode-id",
+    "patch": {
+      "clobTokenIds": [
+        "\u0661\u0660\u0661",
+        "102"
+      ]
+    },
+    "reason": "invalid_decimal_asset_id_string"
+  },
+  {
+    "name": "combo",
+    "patch": {
+      "version": "v2",
+      "module": "combo",
+      "positionIds": [
+        "501",
+        "502"
+      ]
+    },
+    "reason": "unsupported_combo_module"
+  },
+  {
+    "name": "unknown-module",
+    "patch": {
+      "version": "v2",
+      "module": "future",
+      "positionIds": [
+        "501",
+        "502"
+      ]
+    },
+    "reason": "unsupported_or_missing_negrisk_module"
+  },
+  {
+    "name": "missing-module",
+    "patch": {
+      "version": "v2",
+      "positionIds": [
+        "501",
+        "502"
+      ]
+    },
+    "reason": "unsupported_or_missing_negrisk_module"
+  },
+  {
+    "name": "v2-binary-in-negrisk",
+    "patch": {
+      "version": "v2",
+      "module": "binary",
+      "positionIds": [
+        "501",
+        "502"
+      ]
+    },
+    "reason": "unsupported_or_missing_negrisk_module"
+  },
+  {
+    "name": "wrong-v1-module",
+    "patch": {
+      "module": "combo"
+    },
+    "reason": "unsupported_ctf_module"
+  },
+  {
+    "name": "incomplete-membership",
+    "patch": {
+      "negRiskMarketID": null
+    },
+    "reason": "unverified_negrisk_group_membership"
+  },
+  {
+    "name": "conflicting-module-address",
+    "patch": {
+      "version": "v2",
+      "module": "neg_risk",
+      "moduleAddress": "0xunknown",
+      "positionIds": [
+        "501",
+        "502"
+      ]
+    },
+    "reason": "unverified_module_address"
+  },
+  {
+    "name": "ctf-module-address",
+    "patch": {
+      "moduleAddress": "0xunknown"
+    },
+    "reason": "unverified_module_address"
+  }
+]

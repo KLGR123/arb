@@ -233,8 +233,8 @@ def test_explicit_event_prefers_populated_nested_markets():
 
 def test_poly_v2_asset_ids_preserved():
     p = normalize_poly({"id": "e"}, {"id": "p", "question": "Test", "version": "v2",
-        "positionIds": '["new-yes", "new-no"]', "clobTokenIds": '["old-yes", "old-no"]', "outcomes": '["Yes","No"]'})
-    assert p["tokens"] == {"yes":"new-yes", "no":"new-no"}
+        "conditionId": "condition-1", "positionIds": '["901", "902"]', "clobTokenIds": '["801", "802"]', "outcomes": '["Yes","No"]'})
+    assert p["tokens"] == {"yes":"901", "no":"902"}
 
 
 @pytest.mark.parametrize("quantity", [D("NaN"), D(0), D("1.5")])
@@ -270,8 +270,13 @@ def test_collector_contract_and_guard_use(snapshot, tmp_path, monkeypatch, relat
     monkeypatch.setattr("arb_research.cross_venue_cli.datetime", FixedDatetime)
     price_allowed = relation == "same" and refresh is None
     p, k = snapshot["polymarket"][0], snapshot["kalshi"][0]
-    pmarket = {"id": "p1", "question": p["title"], "description": p["rules"],
-               "outcomes": ["Yes", "No"], "clobTokenIds": ["py", "pn"],
+    # Raw Gamma inputs now use the shared strict identity contract.
+    for old, new in (("py", "101"), ("pn", "102")):
+        book = snapshot["poly_books"].pop(old)
+        book["asset_id"] = new
+        snapshot["poly_books"][new] = book
+    pmarket = {"id": "p1", "version": "v1", "question": p["title"], "description": p["rules"],
+               "outcomes": ["Yes", "No"], "clobTokenIds": ["101", "102"],
                "active": True, "closed": False, "endDate": p["close_time"], "conditionId": "condition-1"}
     pevent = {"id":"e1", "title":"Bitcoin", "markets": [pmarket]}
     kmarket = {"ticker": k["id"], "event_ticker": k["event_id"], "title": k["title"],

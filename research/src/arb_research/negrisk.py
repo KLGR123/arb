@@ -5,6 +5,9 @@ from datetime import datetime, timezone
 from decimal import Decimal, ROUND_HALF_UP
 import json
 
+from .negrisk_protocol import asset_wire, diagnostic, group_reasons, identity, qualified_assets
+from .polymarket.assets import require_assets, select_assets
+
 D = Decimal
 ZERO = D(0)
 ONE = D(1)
@@ -130,13 +133,11 @@ def array(value):
 
 
 def assets(market):
-    labels = [str(x).lower() for x in array(market["outcomes"])]
-    # Protocol V2 IDs differ from post-April-2026 CLOB V2 API generation.
-    key = "positionIds" if market.get("version") == "v2" else "clobTokenIds"
-    ids = [str(x) for x in array(market[key])]
-    if sorted(labels) != ["no", "yes"] or len(ids) != 2 or len(set(ids)) != 2:
+    selected = require_assets(select_assets(market))
+    result = {asset.outcome.strip().lower(): asset.asset_id for asset in selected}
+    if sorted(result) != ["no", "yes"]:
         raise ValueError("expected distinct binary YES/NO assets")
-    return dict(zip(labels, ids))
+    return result
 
 
 @dataclass
@@ -147,6 +148,7 @@ class Leg:
     book: Book
     rate: D
     ratio: D = ONE
+    identity: dict | None = None
 
     @property
     def levels(self):
@@ -197,7 +199,7 @@ def opportunity(kind, event_id, legs, collateral_per_unit, fixed_cost, risks, ma
             else:
                 sells += value
             fees += fee
-            detail.append({"market_id": leg.market_id, "asset_id": leg.book.asset_id,
+            detail.append({**(leg.identity or {}), "market_id": leg.market_id, "asset_id": leg.book.asset_id,
                            "outcome": leg.outcome, "side": leg.side,
                            "shares": quantity * leg.ratio, "notional_usd": value, "fee_usd": fee})
         gross = sells - buys + quantity * collateral_per_unit
@@ -236,17 +238,19 @@ def scan(snapshot, costs=Costs(), max_shares=D("1000"), max_age=120, max_skew=10
         group = {"event_id": event_id, "title": event.get("title", ""),
                  "markets": [], "risks": risks, "complete": False,
                  "yes_ask_sum": None, "yes_bid_sum": None,
-                 "yes_ask_deviation": None, "yes_bid_deviation": None}
+                 "yes_ask_deviation": None, "yes_bid_deviation": None,
+                 "skipped_reasons": group_reasons(event), "skipped_markets": [],
+                 "conversion_ratio": None}
         for market in markets:
             mid = str(market.get("id", ""))
+            view = identity(market, event_id, snapshot["as_of"])
             try:
                 if (market.get("closed") or market.get("active") is not True
                         or market.get("acceptingOrders") is not True
                         or market.get("enableOrderBook") is not True):
                     raise ValueError("inactive/closed/non-accepting market")
-                if not market.get("negRisk") or not market.get("negRiskMarketID"):
-                    raise ValueError("unverified negRisk group membership")
-                ids = assets(market)
+                selected = qualified_assets(market, view)
+                ids = {k: a.asset_id for k, a in selected.items()}
                 condition = str(market["conditionId"])
                 if mid in seen_markets or condition in seen_conditions or seen_assets.intersection(ids.values()):
                     raise ValueError("duplicate market/condition/asset in group")
@@ -279,24 +283,37 @@ def scan(snapshot, costs=Costs(), max_shares=D("1000"), max_age=120, max_skew=10
                     mrisk.append("placeholder_outcome")
                 group["markets"].append({"market_id": mid, "question": market.get("question", ""),
                                          "neg_risk_market_id": market["negRiskMarketID"],
+                                         "protocol_version": view.protocol_version,
+                                         "module": market.get("module") or "v1_ctf",
+                                         "asset_selection": view.model_dump(mode="json"),
+                                         "assets": {k: asset_wire(a) for k, a in selected.items()},
                                          "fee_rate": rate, "fee_source": source, "risks": mrisk,
                                          "yes": books["yes"].wire(), "no": books["no"].wire()})
                 parsed.append((market, books, rate, mrisk))
                 if not other and not placeholder:
-                    legs = [Leg(mid, k, "buy", books[k], rate) for k in ("yes", "no")]
+                    legs = [Leg(mid, k, "buy", books[k], rate,
+                                identity=asset_wire(selected[k])) for k in ("yes", "no")]
                     result = opportunity("buy_binary_merge", event_id, legs, ONE, costs.merge_usd,
                                          mrisk, max_shares, max_skew)
                     if result:
                         opportunities.append(result)
             except (ValueError, KeyError, TypeError, ArithmeticError) as exc:
-                errors.append({"event_id": event_id, "market_id": mid, "reason": str(exc)})
+                skipped = diagnostic(market, view, str(exc), event_id=event_id, stage="market")
+                errors.append(skipped)
+                group["skipped_markets"].append(skipped)
         ids = {p[0]["negRiskMarketID"] for p in parsed}
-        complete = len(parsed) == len(markets) and len(parsed) >= 2 and len(ids) == 1
+        complete = (len(parsed) == len(markets) and len(parsed) >= 2 and len(ids) == 1
+                    and not group["skipped_reasons"])
         if event.get("negRiskMarketID") and ids != {event["negRiskMarketID"]}:
             complete = False
         group["complete"] = complete
+        if complete:
+            group["conversion_ratio"] = ONE - costs.conversion_fee_bps / 10000
         if not complete:
             risks.append("incomplete_group")
+            group["skipped_reasons"] = sorted(set(group["skipped_reasons"] + ["incomplete_negrisk_group"]))
+            errors.append({"event_id": event_id, "stage": "group",
+                           "reason": ",".join(group["skipped_reasons"])})
         if any(m.get("negRiskOther") for m in markets):
             risks.append("other_outcome")
         if any(m.get("negRiskPlaceholder") for m in markets):
@@ -314,15 +331,20 @@ def scan(snapshot, costs=Costs(), max_shares=D("1000"), max_age=120, max_skew=10
         if not complete or any(r in risks for r in ("augmented_negrisk", "other_outcome", "placeholder_outcome")):
             continue
         combined_risks = risks + [r for p in parsed for r in p[3]]
-        buy_legs = [Leg(str(m["id"]), "yes", "buy", b["yes"], f) for m, b, f, _ in parsed]
+        def leg(m, outcome, side, book, fee, ratio=ONE):
+            selected = qualified_assets(m, identity(m, event_id, snapshot["as_of"]))
+            return Leg(str(m["id"]), outcome, side, book, fee, ratio,
+                       asset_wire(selected[outcome]))
+
+        buy_legs = [leg(m, "yes", "buy", b["yes"], f) for m, b, f, _ in parsed]
         result = opportunity("buy_yes_basket", event_id, buy_legs, ONE, ZERO,
                              combined_risks + ["hold_to_resolution"], max_shares, max_skew)
         if result:
             opportunities.append(result)
-        ratio = ONE - costs.conversion_fee_bps / 10000
+        ratio = group["conversion_ratio"]
         # Split one binary pair, convert its NO into the remaining YES shares.
         for anchor, (market, books, fee, _) in enumerate(parsed):
-            legs = [Leg(str(m["id"]), "yes", "sell", b["yes"], f,
+            legs = [leg(m, "yes", "sell", b["yes"], f,
                         ONE if i == anchor else ratio) for i, (m, b, f, _) in enumerate(parsed)]
             result = opportunity("split_sell_yes_basket", event_id, legs, -ONE,
                                  costs.split_usd + costs.convert_usd, combined_risks,
@@ -330,8 +352,8 @@ def scan(snapshot, costs=Costs(), max_shares=D("1000"), max_age=120, max_skew=10
             if result:
                 result["anchor_market_id"] = str(market["id"])
                 opportunities.append(result)
-            legs = [Leg(str(market["id"]), "no", "buy", books["no"], fee)] + [
-                Leg(str(m["id"]), "yes", "sell", b["yes"], f, ratio)
+            legs = [leg(market, "no", "buy", books["no"], fee)] + [
+                leg(m, "yes", "sell", b["yes"], f, ratio)
                 for i, (m, b, f, _) in enumerate(parsed) if i != anchor]
             result = opportunity("no_to_yes", event_id, legs, ZERO, costs.convert_usd,
                                  combined_risks, max_shares, max_skew)

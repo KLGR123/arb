@@ -14,7 +14,8 @@ import httpx
 
 from .compliance import ComplianceGuard, GeoblockClient, PUBLIC_API_BUDGET
 
-from .negrisk import Costs, D, assets, dumps, number, scan
+from .negrisk import Costs, D, dumps, number, scan
+from .negrisk_protocol import diagnostic, identity, qualified_assets
 
 
 class TokenBucket:
@@ -163,23 +164,26 @@ def collect(api, max_events=10, max_pages=5, event_ids=()):
             if market.get("closed") or market.get("active") is not True:
                 continue
             mid = str(market.get("id", ""))
+            view = identity(market, str(event["id"]))
             try:
-                ids = assets(market)
+                ids = {k: a.asset_id for k, a in qualified_assets(market, view).items()}
             except (ValueError, KeyError, TypeError) as exc:
-                snapshot["errors"].append({"market_id": mid, "stage": "assets", "reason": str(exc)})
+                snapshot["errors"].append(diagnostic(market, view, str(exc),
+                                                    event_id=str(event["id"]), stage="assets"))
                 continue
             try:
                 condition = str(market["conditionId"])
                 snapshot["clob_markets"][mid] = api.get("clob", "/clob-markets/" + condition)
             except (OSError, ValueError, KeyError) as exc:
-                snapshot["errors"].append({"market_id": mid, "stage": "fees", "reason": str(exc)})
+                snapshot["errors"].append(diagnostic(market, view, str(exc), stage="fees"))
             for asset_id in ids.values():
                 if asset_id in snapshot["books"]:
                     continue
                 try:
                     snapshot["books"][asset_id] = api.get("clob", "/book", {"token_id": asset_id})
                 except (OSError, ValueError) as exc:
-                    snapshot["errors"].append({"market_id": mid, "asset_id": asset_id, "stage": "book", "reason": str(exc)})
+                    snapshot["errors"].append(diagnostic(market, view, str(exc),
+                                                        asset_id=asset_id, stage="book"))
     snapshot["as_of"] = datetime.now(timezone.utc).isoformat()
     return snapshot
 
@@ -204,6 +208,11 @@ def markdown(report):
         lines.append(f"| {row['event_id']} | {row['kind']} | {row['quantity']} | {row['net_edge_per_share']:.6f} | {row['net_profit_usd']:.5f} | {', '.join(row['risks'])} |")
     if report["errors"]:
         lines += ["", "Incomplete data: inspect `errors` in the JSON report."]
+    skipped = [(g["event_id"], reason) for g in report["groups"]
+               for reason in g.get("skipped_reasons", [])]
+    if skipped:
+        lines += ["", "Skipped group strategies:"]
+        lines += [f"- Event {eid}: {reason}" for eid, reason in skipped]
     return "\n".join(lines) + "\n"
 
 

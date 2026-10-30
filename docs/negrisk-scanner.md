@@ -49,7 +49,7 @@ research/.venv/bin/python -m unittest discover \
 | 完整盘口 | `https://clob.polymarket.com/book?token_id={id}` |
 | 市场费用 | `https://clob.polymarket.com/clob-markets/{condition_id}` |
 
-这里只使用 CLOB V2 切换后仍受支持的公开读接口。不要将 CLOB API V2 与市场 `version=v2` 的仓位协议混为一谈：市场 `version=v2` 用 `positionIds`，其他 CTF 市场用 `clobTokenIds`，始终按 `outcomes` 标签匹配 YES/NO，不能假设数组第一项为 YES。
+这里只使用 CLOB V2 切换后仍受支持的公开读接口。不要将 CLOB API V2 与市场 `version=v2` 的仓位协议混为一谈：只有显式 `version=v2` 才用 `positionIds`，显式 `version=v1` 才用 `clobTokenIds`。缺失/未知版本隔离，禁止回退；ID 必须为 ASCII 十进制字符串，拒绝数值、负数、指数、十六进制及重复 ID。两类 ID 同时出现时仍只按 version 选取；大整数原样传递。始终按 `outcomes` 标签匹配 YES/NO，不能假设数组第一项为 YES。
 
 进程内所有 API 和重试首先经过本扫描器 10 req/s、突发 10 的桶，并共用 main 的 `PUBLIC_API_BUDGET`；低于通用 9,000 req/10s 及所用端点限额。429/500/502/503/504 与连接错误最多尝试 3 次，指数退避带抖动，处理至多 30 秒的 `Retry-After`；403 不重试。单请求连接/读取 timeout 默认 10 秒，系统 DNS 与多地址重试可能使总耗时更长。多进程部署需由票 2 统一限速，当前桶不跨进程。
 
@@ -117,11 +117,11 @@ Leg：`{market_id: string, asset_id: string, outcome: "yes"|"no", side: "buy"|"s
 
 ## 当前验证范围
 
-测试使用 `tests/fixtures/negrisk-contract.json` 合成边界样例和 `tests/fixtures/negrisk-live-20261029.json` 真实公共响应录制；回归时完全禁网。覆盖费用/舍入、split/merge/转换、排序与深度、缺腿/Other/增强版、时效、稳定 JSON、限速/退避、显式代理及异常脱敏、main guard 保持拒绝。
+测试使用 `tests/fixtures/negrisk-contract.json` 合成边界样例和 `tests/fixtures/negrisk-live-20261029.json` 真实公共响应录制；回归时完全禁网。ARB-28 增加 `negrisk-v2-contract.json`（合成 V2 negRisk，不是真实覆盖证据）、`negrisk-rejections.json` 和请求列表断言。覆盖费用/舍入、split/merge/转换、排序与深度、缺腿/Other/增强版、时效、稳定 JSON、限速/退避、显式代理及异常脱敏、main guard 保持拒绝。
 
 2026-10-29 16:40:44 UTC，已通过用户批准的只读客户端完成两个当前活跃组的真实扫描：Balance of Power: 2026 Midterms（event 32228）和 Fed Decision in December?（event 770450），共 10 个二元市场、20 本 YES/NO 盘口，采集/解析错误为 0。上限为 1,000 份，默认操作成本 0（见假设），没有扣费后正 edge 候选；这不代表全市场没有机会。geoblock 为 US/CA、blocked=true，main guard 的 trading_allowed=false。
 
-[原始 JSON 报告](reports/negrisk-2026-10-29.json)和[Markdown 摘要](reports/negrisk-2026-10-29.md)随代码交付，可从 PR 打开。回放命令（输出应与已提交 JSON 完全一致）：
+[原始 JSON 报告](reports/negrisk-2026-10-29.json)和[Markdown 摘要](reports/negrisk-2026-10-29.md)随代码交付，可从 PR 打开。回放命令（历史 JSON 保留当时 schema；当前输出增加身份与跳过诊断，既有估值字段保持一致）：
 
 ```bash
 research/.venv/bin/python -m arb_research.negrisk_cli \
@@ -138,3 +138,21 @@ research/.venv/bin/python -m arb_research.negrisk_cli \
 - [官方 Python SDK](https://docs.polymarket.com/getting-started/python)
 
 文档核对日期：2026-10-29 UTC。费率会变化，运行时市场参数优先于这里的类别基线。
+
+
+## 严格协议与模块资格（ARB-28）
+
+身份统一来自 ARB-27 的 `arb_research.polymarket.assets.select_assets` / `require_assets`。
+扫描器的 `assets()` 是该视图的 YES/NO 映射，不再单独解析两类 ID。`collect` 在请求 CLOB 费用和盘口前验证身份与模块；fixture 回放同样检查，预先存在盘口也不能绕过资格。
+
+本扫描器只建模普通 negRisk。V1 要求显式 v1、`negRisk=true` 和非空 `negRiskMarketID`，其有效模块记录为 `v1_ctf`；CTF 原始 module 可缺失，不能提供相冲突的模块。V2 要求显式 v2、同样的 negRisk 成员证据以及显式 `module="neg_risk"`（官方 SDK TokenModule 名称）。`combo`、`binary`、未知/缺失 V2 module 和未经资格验证的 moduleAddress 都跳过，不从 position ID、标题或 YES/NO 外形推断模块；Gamma 若未给足模块证据，报告缺口，不请求该市场盘口。V2 fixture 只证明这一输入契约与纸面算术，没有证明当前公开响应一定包含所需 module。
+
+完整组必须至少有两个有效二元市场，所有返回成员都合格，且协议、账本、chain（若有）、negRisk group 一致；市场/condition/资产不得重复。event group（若有）必须一致；增强版、Other、placeholder、缺腿/停用、身份/费用/盘口失败均禁用跨市场组合。不完整组中的独立有效二元市场仍可产生 `buy_binary_merge`，不产生 basket / split / NO→YES 组合机会。只对返回的完整 markets 列表验证，不能据此证明上游未遗漏未公开成员。
+
+只有组资格通过后才给出 `conversion_ratio=1-conversion_fee_bps/10000`，否则为 null。V1 与 V2 NegRisk 都按每份 NO 转为每个其他结果一份 YES 的公开协议模型，再扣显式配置的比例成本；`0≤bps<10000`，不把该纸面假设声称为实时链上费用。没有执行任何转换。
+
+JSON 保留 `schema_version="1.0"`，新增字段：Market 的 `asset_selection`（完整共享视图）、`protocol_version`、有效 `module` 和按 YES/NO 索引的 `assets`；机会的每条 leg 带同一完整身份。Group 增加 `skipped_markets`、`skipped_reasons`、`conversion_ratio`。拒绝记录保留原始 `version`、`protocol_version`、`asset_kind`、`module`、所选资产和 `raw_identity`，未知版本的 asset kind 为 null；不把非法原始 ID 填进合格资产字段。组跳过也写入 `errors(stage="group")`，CLI 返回 2，Markdown 显示组跳过原因；因此旧不完整扫描的错误计数可能增加。
+
+历史录制及历史报告不改写。离线回归逐字段比较既有金融数值、候选、盘口与原有错误；只允许新增身份/组诊断字段。V1/V2 合成 fixture 使用相同盘口，完整 YES basket 的 Q=20、gross=5 USD、taker fee=0.78050 USD；市场 1 的二元 merge 在固定成本 0.1 USD 时 net=3.34000 USD。转换比例 0.99 时，锚市场 3 的 NO→YES gross=1.5140 USD。
+
+模块与转换依据（核对 2026-10-30）：[官方仓位及模块说明](https://docs.polymarket.com/trading/positions/how-positions-work)、[官方 negRisk 转换与增强版说明](https://docs.polymarket.com/concepts/negative-risk)，以及锁定的 `polymarket-client==0.15.0` 的 `TokenModule` 枚举。代理、共享限速与 ARB-6 guard 沿用原实现；本票没有访问交易、签名或账户路径。
