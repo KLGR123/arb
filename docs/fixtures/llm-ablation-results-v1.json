@@ -1,0 +1,1597 @@
+{
+  "arb11_separate_crypto_cohort": {
+    "caveat": "Different cohort, low effort and prospective design; not a paired causal comparison",
+    "metrics": {
+      "bootstrap": {
+        "clusters": 5,
+        "resamples": 2000,
+        "seed": 11,
+        "unit": "expiry_block"
+      },
+      "brier": 0.24039330357142857,
+      "brier_advantage": 0.0,
+      "brier_advantage_ci95": [
+        0.0,
+        0.0
+      ],
+      "calibration": [
+        {
+          "count": 0,
+          "lower": 0.0,
+          "mean_p": null,
+          "observed_frequency": null,
+          "upper": 0.1
+        },
+        {
+          "count": 0,
+          "lower": 0.1,
+          "mean_p": null,
+          "observed_frequency": null,
+          "upper": 0.2
+        },
+        {
+          "count": 1,
+          "lower": 0.2,
+          "mean_p": 0.27,
+          "observed_frequency": 0,
+          "upper": 0.3
+        },
+        {
+          "count": 3,
+          "lower": 0.3,
+          "mean_p": 0.36833333333333335,
+          "observed_frequency": 0,
+          "upper": 0.4
+        },
+        {
+          "count": 5,
+          "lower": 0.4,
+          "mean_p": 0.471,
+          "observed_frequency": 0.2,
+          "upper": 0.5
+        },
+        {
+          "count": 46,
+          "lower": 0.5,
+          "mean_p": 0.5043478260869565,
+          "observed_frequency": 0.2608695652173913,
+          "upper": 0.6
+        },
+        {
+          "count": 1,
+          "lower": 0.6,
+          "mean_p": 0.605,
+          "observed_frequency": 1,
+          "upper": 0.7
+        },
+        {
+          "count": 0,
+          "lower": 0.7,
+          "mean_p": null,
+          "observed_frequency": null,
+          "upper": 0.8
+        },
+        {
+          "count": 0,
+          "lower": 0.8,
+          "mean_p": null,
+          "observed_frequency": null,
+          "upper": 0.9
+        },
+        {
+          "count": 0,
+          "lower": 0.9,
+          "mean_p": null,
+          "observed_frequency": null,
+          "upper": 1.0
+        }
+      ],
+      "log_loss": 0.673170327278828,
+      "market_brier": 0.24039330357142857,
+      "market_log_loss": 0.673170327278828,
+      "n": 56,
+      "paper": {
+        "allocation": "independent fixed budgets; no compounding",
+        "budget_per_market": 100,
+        "currency": "pUSD\u2248USD",
+        "fee_bps_on_entry_notional": 20,
+        "fractional_kelly": {
+          "collateral": 0.0,
+          "fees": 0.0,
+          "net_pnl": 0.0
+        },
+        "kelly_cap": 0.1,
+        "kelly_fraction": 0.25,
+        "proper": {
+          "collateral": 0.0,
+          "fees": 0.0,
+          "net_pnl": 0.0
+        },
+        "total_budget": 5600
+      }
+    },
+    "sha256": "efb9f857002ca00430f3a4419c7e9570d9ee8d9bcd38de4a34aecb907bc46609",
+    "source": "docs/fixtures/llm-forecast-real-v0.json"
+  },
+  "arms": {
+    "blind": {
+      "metrics": {
+        "bootstrap": {
+          "clusters": 22,
+          "resamples": 2000,
+          "seed": 11,
+          "unit": "sports_event"
+        },
+        "brier": 0.16467400000000001,
+        "brier_advantage": 0.02556934499999999,
+        "brier_advantage_ci95": [
+          -0.011895656919642866,
+          0.06934459667553192
+        ],
+        "calibration": [
+          {
+            "count": 0,
+            "lower": 0.0,
+            "mean_p": null,
+            "observed_frequency": null,
+            "upper": 0.1
+          },
+          {
+            "count": 3,
+            "lower": 0.1,
+            "mean_p": 0.15666666666666668,
+            "observed_frequency": 0,
+            "upper": 0.2
+          },
+          {
+            "count": 6,
+            "lower": 0.2,
+            "mean_p": 0.24166666666666667,
+            "observed_frequency": 0.16666666666666666,
+            "upper": 0.3
+          },
+          {
+            "count": 8,
+            "lower": 0.3,
+            "mean_p": 0.345,
+            "observed_frequency": 0.125,
+            "upper": 0.4
+          },
+          {
+            "count": 8,
+            "lower": 0.4,
+            "mean_p": 0.445,
+            "observed_frequency": 0.5,
+            "upper": 0.5
+          },
+          {
+            "count": 13,
+            "lower": 0.5,
+            "mean_p": 0.5215384615384615,
+            "observed_frequency": 0.5384615384615384,
+            "upper": 0.6
+          },
+          {
+            "count": 1,
+            "lower": 0.6,
+            "mean_p": 0.61,
+            "observed_frequency": 0,
+            "upper": 0.7
+          },
+          {
+            "count": 3,
+            "lower": 0.7,
+            "mean_p": 0.7333333333333333,
+            "observed_frequency": 1,
+            "upper": 0.8
+          },
+          {
+            "count": 6,
+            "lower": 0.8,
+            "mean_p": 0.8566666666666667,
+            "observed_frequency": 1,
+            "upper": 0.9
+          },
+          {
+            "count": 2,
+            "lower": 0.9,
+            "mean_p": 0.92,
+            "observed_frequency": 1,
+            "upper": 1.0
+          }
+        ],
+        "exact_market_copies": 0,
+        "log_loss": 0.49949284780198644,
+        "market_brier": 0.19024334499999998,
+        "market_log_loss": 0.5492454351795147,
+        "mean_absolute_distance_from_market": 0.12253,
+        "n": 50,
+        "paper_legacy_arb11_20bps": {
+          "allocation": "independent fixed budgets; no compounding",
+          "budget_per_market": 100,
+          "currency": "pUSD\u2248USD",
+          "fee_bps_on_entry_notional": 20,
+          "fractional_kelly": {
+            "collateral": 225.09171849639154,
+            "fees": 0.45018343699278307,
+            "net_pnl": 71.85303580227527
+          },
+          "kelly_cap": 0.1,
+          "kelly_fraction": 0.25,
+          "proper": {
+            "collateral": 479.68955,
+            "fees": 0.9593791,
+            "net_pnl": 253.3510709
+          },
+          "total_budget": 5000
+        },
+        "paper_protocol": {
+          "budget_per_market": 100,
+          "currency": "pUSD\u2248USD",
+          "fee_model": "ARB-17 negrisk.taker_fee: shares*rate*price*(1-price), 5-decimal rounding",
+          "fee_time_caveat": "Gamma fee schedule retrieved after settlement; historical schedule unverified",
+          "fractional_kelly": {
+            "collateral": 225.54190193338437,
+            "fees": 5.246620000000001,
+            "net_pnl": 67.2012056777466
+          },
+          "proper": {
+            "collateral": 479.68954999999994,
+            "fees": 9.669480000000002,
+            "net_pnl": 244.64096999999992
+          },
+          "total_budget": 5000
+        }
+      },
+      "rows": [
+        {
+          "cluster_id": "1148802",
+          "market_id": "5406599",
+          "p": 0.7,
+          "q": 0.86,
+          "y": 1
+        },
+        {
+          "cluster_id": "1148802",
+          "market_id": "5406601",
+          "p": 0.54,
+          "q": 0.665,
+          "y": 1
+        },
+        {
+          "cluster_id": "1148803",
+          "market_id": "5406610",
+          "p": 0.34,
+          "q": 0.305,
+          "y": 0
+        },
+        {
+          "cluster_id": "1148803",
+          "market_id": "5406614",
+          "p": 0.53,
+          "q": 0.555,
+          "y": 0
+        },
+        {
+          "cluster_id": "1148803",
+          "market_id": "5406616",
+          "p": 0.43,
+          "q": 0.435,
+          "y": 0
+        },
+        {
+          "cluster_id": "1148809",
+          "market_id": "5406677",
+          "p": 0.57,
+          "q": 0.545,
+          "y": 1
+        },
+        {
+          "cluster_id": "1158894",
+          "market_id": "5654004",
+          "p": 0.91,
+          "q": 0.9595,
+          "y": 1
+        },
+        {
+          "cluster_id": "1158894",
+          "market_id": "5654005",
+          "p": 0.89,
+          "q": 0.951,
+          "y": 1
+        },
+        {
+          "cluster_id": "1158894",
+          "market_id": "5654006",
+          "p": 0.86,
+          "q": 0.94,
+          "y": 1
+        },
+        {
+          "cluster_id": "1220218",
+          "market_id": "5955649",
+          "p": 0.2,
+          "q": 0.5,
+          "y": 0
+        },
+        {
+          "cluster_id": "1262495",
+          "market_id": "6280178",
+          "p": 0.43,
+          "q": 0.245,
+          "y": 1
+        },
+        {
+          "cluster_id": "1262495",
+          "market_id": "6280179",
+          "p": 0.5,
+          "q": 0.415,
+          "y": 1
+        },
+        {
+          "cluster_id": "1262495",
+          "market_id": "6280180",
+          "p": 0.29,
+          "q": 0.485,
+          "y": 0
+        },
+        {
+          "cluster_id": "1148808",
+          "market_id": "6346032",
+          "p": 0.85,
+          "q": 0.855,
+          "y": 1
+        },
+        {
+          "cluster_id": "1148807",
+          "market_id": "6346041",
+          "p": 0.93,
+          "q": 0.976,
+          "y": 1
+        },
+        {
+          "cluster_id": "1148807",
+          "market_id": "6346042",
+          "p": 0.85,
+          "q": 0.885,
+          "y": 1
+        },
+        {
+          "cluster_id": "1148806",
+          "market_id": "6346052",
+          "p": 0.85,
+          "q": 0.845,
+          "y": 1
+        },
+        {
+          "cluster_id": "1276546",
+          "market_id": "6382216",
+          "p": 0.36,
+          "q": 0.455,
+          "y": 0
+        },
+        {
+          "cluster_id": "1276467",
+          "market_id": "6382231",
+          "p": 0.15,
+          "q": 0.495,
+          "y": 0
+        },
+        {
+          "cluster_id": "1276466",
+          "market_id": "6382237",
+          "p": 0.35,
+          "q": 0.57,
+          "y": 0
+        },
+        {
+          "cluster_id": "1148801",
+          "market_id": "5406590",
+          "p": 0.4,
+          "q": 0.445,
+          "y": 1
+        },
+        {
+          "cluster_id": "1148801",
+          "market_id": "5406592",
+          "p": 0.23,
+          "q": 0.255,
+          "y": 1
+        },
+        {
+          "cluster_id": "1220227",
+          "market_id": "5955663",
+          "p": 0.43,
+          "q": 0.5,
+          "y": 1
+        },
+        {
+          "cluster_id": "1220227",
+          "market_id": "6277481",
+          "p": 0.5,
+          "q": 0.6,
+          "y": 0
+        },
+        {
+          "cluster_id": "1220227",
+          "market_id": "6277485",
+          "p": 0.5,
+          "q": 0.575,
+          "y": 0
+        },
+        {
+          "cluster_id": "1270808",
+          "market_id": "6336527",
+          "p": 0.5,
+          "q": 0.685,
+          "y": 1
+        },
+        {
+          "cluster_id": "1270808",
+          "market_id": "6336528",
+          "p": 0.5,
+          "q": 0.77,
+          "y": 1
+        },
+        {
+          "cluster_id": "1270808",
+          "market_id": "6336529",
+          "p": 0.46,
+          "q": 0.405,
+          "y": 0
+        },
+        {
+          "cluster_id": "1148802",
+          "market_id": "6346088",
+          "p": 0.84,
+          "q": 0.915,
+          "y": 1
+        },
+        {
+          "cluster_id": "1275260",
+          "market_id": "6377231",
+          "p": 0.27,
+          "q": 0.58,
+          "y": 0
+        },
+        {
+          "cluster_id": "1148809",
+          "market_id": "5406675",
+          "p": 0.72,
+          "q": 0.775,
+          "y": 1
+        },
+        {
+          "cluster_id": "1220218",
+          "market_id": "5941280",
+          "p": 0.35,
+          "q": 0.365,
+          "y": 0
+        },
+        {
+          "cluster_id": "1220218",
+          "market_id": "5941281",
+          "p": 0.49,
+          "q": 0.38,
+          "y": 0
+        },
+        {
+          "cluster_id": "1270218",
+          "market_id": "6333400",
+          "p": 0.57,
+          "q": 0.385,
+          "y": 0
+        },
+        {
+          "cluster_id": "1270218",
+          "market_id": "6333404",
+          "p": 0.37,
+          "q": 0.345,
+          "y": 1
+        },
+        {
+          "cluster_id": "1270218",
+          "market_id": "6333425",
+          "p": 0.78,
+          "q": 0.485,
+          "y": 1
+        },
+        {
+          "cluster_id": "1238116",
+          "market_id": "6381674",
+          "p": 0.5,
+          "q": 0.535,
+          "y": 0
+        },
+        {
+          "cluster_id": "1238116",
+          "market_id": "6381675",
+          "p": 0.49,
+          "q": 0.425,
+          "y": 1
+        },
+        {
+          "cluster_id": "1238116",
+          "market_id": "6381676",
+          "p": 0.52,
+          "q": 0.375,
+          "y": 0
+        },
+        {
+          "cluster_id": "1238115",
+          "market_id": "6384603",
+          "p": 0.16,
+          "q": 0.495,
+          "y": 0
+        },
+        {
+          "cluster_id": "1238115",
+          "market_id": "6384604",
+          "p": 0.2,
+          "q": 0.495,
+          "y": 0
+        },
+        {
+          "cluster_id": "1238115",
+          "market_id": "6384605",
+          "p": 0.16,
+          "q": 0.495,
+          "y": 0
+        },
+        {
+          "cluster_id": "1148801",
+          "market_id": "5406588",
+          "p": 0.55,
+          "q": 0.575,
+          "y": 1
+        },
+        {
+          "cluster_id": "1265662",
+          "market_id": "6297309",
+          "p": 0.5,
+          "q": 0.495,
+          "y": 1
+        },
+        {
+          "cluster_id": "1269996",
+          "market_id": "6331993",
+          "p": 0.26,
+          "q": 0.1,
+          "y": 0
+        },
+        {
+          "cluster_id": "1269996",
+          "market_id": "6332009",
+          "p": 0.61,
+          "q": 0.41,
+          "y": 0
+        },
+        {
+          "cluster_id": "1269996",
+          "market_id": "6332016",
+          "p": 0.39,
+          "q": 0.485,
+          "y": 0
+        },
+        {
+          "cluster_id": "1272347",
+          "market_id": "6345312",
+          "p": 0.3,
+          "q": 0.5,
+          "y": 0
+        },
+        {
+          "cluster_id": "1272347",
+          "market_id": "6345313",
+          "p": 0.3,
+          "q": 0.195,
+          "y": 0
+        },
+        {
+          "cluster_id": "1272347",
+          "market_id": "6345314",
+          "p": 0.43,
+          "q": 0.28,
+          "y": 0
+        }
+      ]
+    },
+    "market": {
+      "metrics": {
+        "bootstrap": {
+          "clusters": 22,
+          "resamples": 2000,
+          "seed": 11,
+          "unit": "sports_event"
+        },
+        "brier": 0.19024334499999998,
+        "brier_advantage": 0.0,
+        "brier_advantage_ci95": [
+          0.0,
+          0.0
+        ],
+        "calibration": [
+          {
+            "count": 0,
+            "lower": 0.0,
+            "mean_p": null,
+            "observed_frequency": null,
+            "upper": 0.1
+          },
+          {
+            "count": 2,
+            "lower": 0.1,
+            "mean_p": 0.14750000000000002,
+            "observed_frequency": 0,
+            "upper": 0.2
+          },
+          {
+            "count": 3,
+            "lower": 0.2,
+            "mean_p": 0.26,
+            "observed_frequency": 0.6666666666666666,
+            "upper": 0.3
+          },
+          {
+            "count": 6,
+            "lower": 0.3,
+            "mean_p": 0.35916666666666663,
+            "observed_frequency": 0.16666666666666666,
+            "upper": 0.4
+          },
+          {
+            "count": 15,
+            "lower": 0.4,
+            "mean_p": 0.4613333333333333,
+            "observed_frequency": 0.3333333333333333,
+            "upper": 0.5
+          },
+          {
+            "count": 10,
+            "lower": 0.5,
+            "mean_p": 0.5435,
+            "observed_frequency": 0.3,
+            "upper": 0.6
+          },
+          {
+            "count": 3,
+            "lower": 0.6,
+            "mean_p": 0.65,
+            "observed_frequency": 0.6666666666666666,
+            "upper": 0.7
+          },
+          {
+            "count": 2,
+            "lower": 0.7,
+            "mean_p": 0.7725,
+            "observed_frequency": 1,
+            "upper": 0.8
+          },
+          {
+            "count": 4,
+            "lower": 0.8,
+            "mean_p": 0.86125,
+            "observed_frequency": 1,
+            "upper": 0.9
+          },
+          {
+            "count": 5,
+            "lower": 0.9,
+            "mean_p": 0.9483,
+            "observed_frequency": 1,
+            "upper": 1.0
+          }
+        ],
+        "exact_market_copies": 50,
+        "log_loss": 0.5492454351795147,
+        "market_brier": 0.19024334499999998,
+        "market_log_loss": 0.5492454351795147,
+        "mean_absolute_distance_from_market": 0.0,
+        "n": 50,
+        "paper_legacy_arb11_20bps": {
+          "allocation": "independent fixed budgets; no compounding",
+          "budget_per_market": 100,
+          "currency": "pUSD\u2248USD",
+          "fee_bps_on_entry_notional": 20,
+          "fractional_kelly": {
+            "collateral": 0.0,
+            "fees": 0.0,
+            "net_pnl": 0.0
+          },
+          "kelly_cap": 0.1,
+          "kelly_fraction": 0.25,
+          "proper": {
+            "collateral": 0.0,
+            "fees": 0.0,
+            "net_pnl": 0.0
+          },
+          "total_budget": 5000
+        },
+        "paper_protocol": {
+          "budget_per_market": 100,
+          "currency": "pUSD\u2248USD",
+          "fee_model": "ARB-17 negrisk.taker_fee: shares*rate*price*(1-price), 5-decimal rounding",
+          "fee_time_caveat": "Gamma fee schedule retrieved after settlement; historical schedule unverified",
+          "fractional_kelly": {
+            "collateral": 0.0,
+            "fees": 0.0,
+            "net_pnl": 0.0
+          },
+          "proper": {
+            "collateral": 0.0,
+            "fees": 0.0,
+            "net_pnl": 0.0
+          },
+          "total_budget": 5000
+        }
+      },
+      "rows": [
+        {
+          "cluster_id": "1148802",
+          "market_id": "5406599",
+          "p": 0.86,
+          "q": 0.86,
+          "y": 1
+        },
+        {
+          "cluster_id": "1148802",
+          "market_id": "5406601",
+          "p": 0.665,
+          "q": 0.665,
+          "y": 1
+        },
+        {
+          "cluster_id": "1148803",
+          "market_id": "5406610",
+          "p": 0.305,
+          "q": 0.305,
+          "y": 0
+        },
+        {
+          "cluster_id": "1148803",
+          "market_id": "5406614",
+          "p": 0.555,
+          "q": 0.555,
+          "y": 0
+        },
+        {
+          "cluster_id": "1148803",
+          "market_id": "5406616",
+          "p": 0.435,
+          "q": 0.435,
+          "y": 0
+        },
+        {
+          "cluster_id": "1148809",
+          "market_id": "5406677",
+          "p": 0.545,
+          "q": 0.545,
+          "y": 1
+        },
+        {
+          "cluster_id": "1158894",
+          "market_id": "5654004",
+          "p": 0.9595,
+          "q": 0.9595,
+          "y": 1
+        },
+        {
+          "cluster_id": "1158894",
+          "market_id": "5654005",
+          "p": 0.951,
+          "q": 0.951,
+          "y": 1
+        },
+        {
+          "cluster_id": "1158894",
+          "market_id": "5654006",
+          "p": 0.94,
+          "q": 0.94,
+          "y": 1
+        },
+        {
+          "cluster_id": "1220218",
+          "market_id": "5955649",
+          "p": 0.5,
+          "q": 0.5,
+          "y": 0
+        },
+        {
+          "cluster_id": "1262495",
+          "market_id": "6280178",
+          "p": 0.245,
+          "q": 0.245,
+          "y": 1
+        },
+        {
+          "cluster_id": "1262495",
+          "market_id": "6280179",
+          "p": 0.415,
+          "q": 0.415,
+          "y": 1
+        },
+        {
+          "cluster_id": "1262495",
+          "market_id": "6280180",
+          "p": 0.485,
+          "q": 0.485,
+          "y": 0
+        },
+        {
+          "cluster_id": "1148808",
+          "market_id": "6346032",
+          "p": 0.855,
+          "q": 0.855,
+          "y": 1
+        },
+        {
+          "cluster_id": "1148807",
+          "market_id": "6346041",
+          "p": 0.976,
+          "q": 0.976,
+          "y": 1
+        },
+        {
+          "cluster_id": "1148807",
+          "market_id": "6346042",
+          "p": 0.885,
+          "q": 0.885,
+          "y": 1
+        },
+        {
+          "cluster_id": "1148806",
+          "market_id": "6346052",
+          "p": 0.845,
+          "q": 0.845,
+          "y": 1
+        },
+        {
+          "cluster_id": "1276546",
+          "market_id": "6382216",
+          "p": 0.455,
+          "q": 0.455,
+          "y": 0
+        },
+        {
+          "cluster_id": "1276467",
+          "market_id": "6382231",
+          "p": 0.495,
+          "q": 0.495,
+          "y": 0
+        },
+        {
+          "cluster_id": "1276466",
+          "market_id": "6382237",
+          "p": 0.57,
+          "q": 0.57,
+          "y": 0
+        },
+        {
+          "cluster_id": "1148801",
+          "market_id": "5406590",
+          "p": 0.445,
+          "q": 0.445,
+          "y": 1
+        },
+        {
+          "cluster_id": "1148801",
+          "market_id": "5406592",
+          "p": 0.255,
+          "q": 0.255,
+          "y": 1
+        },
+        {
+          "cluster_id": "1220227",
+          "market_id": "5955663",
+          "p": 0.5,
+          "q": 0.5,
+          "y": 1
+        },
+        {
+          "cluster_id": "1220227",
+          "market_id": "6277481",
+          "p": 0.6,
+          "q": 0.6,
+          "y": 0
+        },
+        {
+          "cluster_id": "1220227",
+          "market_id": "6277485",
+          "p": 0.575,
+          "q": 0.575,
+          "y": 0
+        },
+        {
+          "cluster_id": "1270808",
+          "market_id": "6336527",
+          "p": 0.685,
+          "q": 0.685,
+          "y": 1
+        },
+        {
+          "cluster_id": "1270808",
+          "market_id": "6336528",
+          "p": 0.77,
+          "q": 0.77,
+          "y": 1
+        },
+        {
+          "cluster_id": "1270808",
+          "market_id": "6336529",
+          "p": 0.405,
+          "q": 0.405,
+          "y": 0
+        },
+        {
+          "cluster_id": "1148802",
+          "market_id": "6346088",
+          "p": 0.915,
+          "q": 0.915,
+          "y": 1
+        },
+        {
+          "cluster_id": "1275260",
+          "market_id": "6377231",
+          "p": 0.58,
+          "q": 0.58,
+          "y": 0
+        },
+        {
+          "cluster_id": "1148809",
+          "market_id": "5406675",
+          "p": 0.775,
+          "q": 0.775,
+          "y": 1
+        },
+        {
+          "cluster_id": "1220218",
+          "market_id": "5941280",
+          "p": 0.365,
+          "q": 0.365,
+          "y": 0
+        },
+        {
+          "cluster_id": "1220218",
+          "market_id": "5941281",
+          "p": 0.38,
+          "q": 0.38,
+          "y": 0
+        },
+        {
+          "cluster_id": "1270218",
+          "market_id": "6333400",
+          "p": 0.385,
+          "q": 0.385,
+          "y": 0
+        },
+        {
+          "cluster_id": "1270218",
+          "market_id": "6333404",
+          "p": 0.345,
+          "q": 0.345,
+          "y": 1
+        },
+        {
+          "cluster_id": "1270218",
+          "market_id": "6333425",
+          "p": 0.485,
+          "q": 0.485,
+          "y": 1
+        },
+        {
+          "cluster_id": "1238116",
+          "market_id": "6381674",
+          "p": 0.535,
+          "q": 0.535,
+          "y": 0
+        },
+        {
+          "cluster_id": "1238116",
+          "market_id": "6381675",
+          "p": 0.425,
+          "q": 0.425,
+          "y": 1
+        },
+        {
+          "cluster_id": "1238116",
+          "market_id": "6381676",
+          "p": 0.375,
+          "q": 0.375,
+          "y": 0
+        },
+        {
+          "cluster_id": "1238115",
+          "market_id": "6384603",
+          "p": 0.495,
+          "q": 0.495,
+          "y": 0
+        },
+        {
+          "cluster_id": "1238115",
+          "market_id": "6384604",
+          "p": 0.495,
+          "q": 0.495,
+          "y": 0
+        },
+        {
+          "cluster_id": "1238115",
+          "market_id": "6384605",
+          "p": 0.495,
+          "q": 0.495,
+          "y": 0
+        },
+        {
+          "cluster_id": "1148801",
+          "market_id": "5406588",
+          "p": 0.575,
+          "q": 0.575,
+          "y": 1
+        },
+        {
+          "cluster_id": "1265662",
+          "market_id": "6297309",
+          "p": 0.495,
+          "q": 0.495,
+          "y": 1
+        },
+        {
+          "cluster_id": "1269996",
+          "market_id": "6331993",
+          "p": 0.1,
+          "q": 0.1,
+          "y": 0
+        },
+        {
+          "cluster_id": "1269996",
+          "market_id": "6332009",
+          "p": 0.41,
+          "q": 0.41,
+          "y": 0
+        },
+        {
+          "cluster_id": "1269996",
+          "market_id": "6332016",
+          "p": 0.485,
+          "q": 0.485,
+          "y": 0
+        },
+        {
+          "cluster_id": "1272347",
+          "market_id": "6345312",
+          "p": 0.5,
+          "q": 0.5,
+          "y": 0
+        },
+        {
+          "cluster_id": "1272347",
+          "market_id": "6345313",
+          "p": 0.195,
+          "q": 0.195,
+          "y": 0
+        },
+        {
+          "cluster_id": "1272347",
+          "market_id": "6345314",
+          "p": 0.28,
+          "q": 0.28,
+          "y": 0
+        }
+      ]
+    },
+    "with_price": {
+      "metrics": {
+        "bootstrap": {
+          "clusters": 22,
+          "resamples": 2000,
+          "seed": 11,
+          "unit": "sports_event"
+        },
+        "brier": 0.17634602,
+        "brier_advantage": 0.013897325,
+        "brier_advantage_ci95": [
+          -0.001266182796203587,
+          0.0352837962358757
+        ],
+        "calibration": [
+          {
+            "count": 0,
+            "lower": 0.0,
+            "mean_p": null,
+            "observed_frequency": null,
+            "upper": 0.1
+          },
+          {
+            "count": 3,
+            "lower": 0.1,
+            "mean_p": 0.14,
+            "observed_frequency": 0,
+            "upper": 0.2
+          },
+          {
+            "count": 4,
+            "lower": 0.2,
+            "mean_p": 0.23,
+            "observed_frequency": 0.5,
+            "upper": 0.3
+          },
+          {
+            "count": 8,
+            "lower": 0.3,
+            "mean_p": 0.35062499999999996,
+            "observed_frequency": 0.125,
+            "upper": 0.4
+          },
+          {
+            "count": 14,
+            "lower": 0.4,
+            "mean_p": 0.4567857142857143,
+            "observed_frequency": 0.42857142857142855,
+            "upper": 0.5
+          },
+          {
+            "count": 7,
+            "lower": 0.5,
+            "mean_p": 0.5621428571428572,
+            "observed_frequency": 0.2857142857142857,
+            "upper": 0.6
+          },
+          {
+            "count": 3,
+            "lower": 0.6,
+            "mean_p": 0.6483333333333333,
+            "observed_frequency": 0.6666666666666666,
+            "upper": 0.7
+          },
+          {
+            "count": 2,
+            "lower": 0.7,
+            "mean_p": 0.7725,
+            "observed_frequency": 1,
+            "upper": 0.8
+          },
+          {
+            "count": 4,
+            "lower": 0.8,
+            "mean_p": 0.85625,
+            "observed_frequency": 1,
+            "upper": 0.9
+          },
+          {
+            "count": 5,
+            "lower": 0.9,
+            "mean_p": 0.9402,
+            "observed_frequency": 1,
+            "upper": 1.0
+          }
+        ],
+        "exact_market_copies": 36,
+        "log_loss": 0.5187521438769997,
+        "market_brier": 0.19024334499999998,
+        "market_log_loss": 0.5492454351795147,
+        "mean_absolute_distance_from_market": 0.024729999999999995,
+        "n": 50,
+        "paper_legacy_arb11_20bps": {
+          "allocation": "independent fixed budgets; no compounding",
+          "budget_per_market": 100,
+          "currency": "pUSD\u2248USD",
+          "fee_bps_on_entry_notional": 20,
+          "fractional_kelly": {
+            "collateral": 42.6254391598631,
+            "fees": 0.0852508783197262,
+            "net_pnl": 32.06538779604826
+          },
+          "kelly_cap": 0.1,
+          "kelly_fraction": 0.25,
+          "proper": {
+            "collateral": 117.76274999999998,
+            "fees": 0.2355255,
+            "net_pnl": 102.10172450000002
+          },
+          "total_budget": 5000
+        },
+        "paper_protocol": {
+          "budget_per_market": 100,
+          "currency": "pUSD\u2248USD",
+          "fee_model": "ARB-17 negrisk.taker_fee: shares*rate*price*(1-price), 5-decimal rounding",
+          "fee_time_caveat": "Gamma fee schedule retrieved after settlement; historical schedule unverified",
+          "fractional_kelly": {
+            "collateral": 42.710690038182825,
+            "fees": 0.47786999999999996,
+            "net_pnl": 31.73706995171672
+          },
+          "proper": {
+            "collateral": 117.76274999999998,
+            "fees": 0.9646199999999999,
+            "net_pnl": 101.37263000000002
+          },
+          "total_budget": 5000
+        }
+      },
+      "rows": [
+        {
+          "cluster_id": "1148802",
+          "market_id": "5406599",
+          "p": 0.84,
+          "q": 0.86,
+          "y": 1
+        },
+        {
+          "cluster_id": "1148802",
+          "market_id": "5406601",
+          "p": 0.665,
+          "q": 0.665,
+          "y": 1
+        },
+        {
+          "cluster_id": "1148803",
+          "market_id": "5406610",
+          "p": 0.305,
+          "q": 0.305,
+          "y": 0
+        },
+        {
+          "cluster_id": "1148803",
+          "market_id": "5406614",
+          "p": 0.555,
+          "q": 0.555,
+          "y": 0
+        },
+        {
+          "cluster_id": "1148803",
+          "market_id": "5406616",
+          "p": 0.435,
+          "q": 0.435,
+          "y": 0
+        },
+        {
+          "cluster_id": "1148809",
+          "market_id": "5406677",
+          "p": 0.545,
+          "q": 0.545,
+          "y": 1
+        },
+        {
+          "cluster_id": "1158894",
+          "market_id": "5654004",
+          "p": 0.96,
+          "q": 0.9595,
+          "y": 1
+        },
+        {
+          "cluster_id": "1158894",
+          "market_id": "5654005",
+          "p": 0.951,
+          "q": 0.951,
+          "y": 1
+        },
+        {
+          "cluster_id": "1158894",
+          "market_id": "5654006",
+          "p": 0.92,
+          "q": 0.94,
+          "y": 1
+        },
+        {
+          "cluster_id": "1220218",
+          "market_id": "5955649",
+          "p": 0.22,
+          "q": 0.5,
+          "y": 0
+        },
+        {
+          "cluster_id": "1262495",
+          "market_id": "6280178",
+          "p": 0.245,
+          "q": 0.245,
+          "y": 1
+        },
+        {
+          "cluster_id": "1262495",
+          "market_id": "6280179",
+          "p": 0.415,
+          "q": 0.415,
+          "y": 1
+        },
+        {
+          "cluster_id": "1262495",
+          "market_id": "6280180",
+          "p": 0.485,
+          "q": 0.485,
+          "y": 0
+        },
+        {
+          "cluster_id": "1148808",
+          "market_id": "6346032",
+          "p": 0.855,
+          "q": 0.855,
+          "y": 1
+        },
+        {
+          "cluster_id": "1148807",
+          "market_id": "6346041",
+          "p": 0.96,
+          "q": 0.976,
+          "y": 1
+        },
+        {
+          "cluster_id": "1148807",
+          "market_id": "6346042",
+          "p": 0.885,
+          "q": 0.885,
+          "y": 1
+        },
+        {
+          "cluster_id": "1148806",
+          "market_id": "6346052",
+          "p": 0.845,
+          "q": 0.845,
+          "y": 1
+        },
+        {
+          "cluster_id": "1276546",
+          "market_id": "6382216",
+          "p": 0.455,
+          "q": 0.455,
+          "y": 0
+        },
+        {
+          "cluster_id": "1276467",
+          "market_id": "6382231",
+          "p": 0.495,
+          "q": 0.495,
+          "y": 0
+        },
+        {
+          "cluster_id": "1276466",
+          "market_id": "6382237",
+          "p": 0.57,
+          "q": 0.57,
+          "y": 0
+        },
+        {
+          "cluster_id": "1148801",
+          "market_id": "5406590",
+          "p": 0.445,
+          "q": 0.445,
+          "y": 1
+        },
+        {
+          "cluster_id": "1148801",
+          "market_id": "5406592",
+          "p": 0.255,
+          "q": 0.255,
+          "y": 1
+        },
+        {
+          "cluster_id": "1220227",
+          "market_id": "5955663",
+          "p": 0.46,
+          "q": 0.5,
+          "y": 1
+        },
+        {
+          "cluster_id": "1220227",
+          "market_id": "6277481",
+          "p": 0.6,
+          "q": 0.6,
+          "y": 0
+        },
+        {
+          "cluster_id": "1220227",
+          "market_id": "6277485",
+          "p": 0.575,
+          "q": 0.575,
+          "y": 0
+        },
+        {
+          "cluster_id": "1270808",
+          "market_id": "6336527",
+          "p": 0.68,
+          "q": 0.685,
+          "y": 1
+        },
+        {
+          "cluster_id": "1270808",
+          "market_id": "6336528",
+          "p": 0.77,
+          "q": 0.77,
+          "y": 1
+        },
+        {
+          "cluster_id": "1270808",
+          "market_id": "6336529",
+          "p": 0.41,
+          "q": 0.405,
+          "y": 0
+        },
+        {
+          "cluster_id": "1148802",
+          "market_id": "6346088",
+          "p": 0.91,
+          "q": 0.915,
+          "y": 1
+        },
+        {
+          "cluster_id": "1275260",
+          "market_id": "6377231",
+          "p": 0.58,
+          "q": 0.58,
+          "y": 0
+        },
+        {
+          "cluster_id": "1148809",
+          "market_id": "5406675",
+          "p": 0.775,
+          "q": 0.775,
+          "y": 1
+        },
+        {
+          "cluster_id": "1220218",
+          "market_id": "5941280",
+          "p": 0.365,
+          "q": 0.365,
+          "y": 0
+        },
+        {
+          "cluster_id": "1220218",
+          "market_id": "5941281",
+          "p": 0.38,
+          "q": 0.38,
+          "y": 0
+        },
+        {
+          "cluster_id": "1270218",
+          "market_id": "6333400",
+          "p": 0.385,
+          "q": 0.385,
+          "y": 0
+        },
+        {
+          "cluster_id": "1270218",
+          "market_id": "6333404",
+          "p": 0.345,
+          "q": 0.345,
+          "y": 1
+        },
+        {
+          "cluster_id": "1270218",
+          "market_id": "6333425",
+          "p": 0.485,
+          "q": 0.485,
+          "y": 1
+        },
+        {
+          "cluster_id": "1238116",
+          "market_id": "6381674",
+          "p": 0.535,
+          "q": 0.535,
+          "y": 0
+        },
+        {
+          "cluster_id": "1238116",
+          "market_id": "6381675",
+          "p": 0.425,
+          "q": 0.425,
+          "y": 1
+        },
+        {
+          "cluster_id": "1238116",
+          "market_id": "6381676",
+          "p": 0.375,
+          "q": 0.375,
+          "y": 0
+        },
+        {
+          "cluster_id": "1238115",
+          "market_id": "6384603",
+          "p": 0.16,
+          "q": 0.495,
+          "y": 0
+        },
+        {
+          "cluster_id": "1238115",
+          "market_id": "6384604",
+          "p": 0.16,
+          "q": 0.495,
+          "y": 0
+        },
+        {
+          "cluster_id": "1238115",
+          "market_id": "6384605",
+          "p": 0.495,
+          "q": 0.495,
+          "y": 0
+        },
+        {
+          "cluster_id": "1148801",
+          "market_id": "5406588",
+          "p": 0.575,
+          "q": 0.575,
+          "y": 1
+        },
+        {
+          "cluster_id": "1265662",
+          "market_id": "6297309",
+          "p": 0.495,
+          "q": 0.495,
+          "y": 1
+        },
+        {
+          "cluster_id": "1269996",
+          "market_id": "6331993",
+          "p": 0.1,
+          "q": 0.1,
+          "y": 0
+        },
+        {
+          "cluster_id": "1269996",
+          "market_id": "6332009",
+          "p": 0.41,
+          "q": 0.41,
+          "y": 0
+        },
+        {
+          "cluster_id": "1269996",
+          "market_id": "6332016",
+          "p": 0.485,
+          "q": 0.485,
+          "y": 0
+        },
+        {
+          "cluster_id": "1272347",
+          "market_id": "6345312",
+          "p": 0.35,
+          "q": 0.5,
+          "y": 0
+        },
+        {
+          "cluster_id": "1272347",
+          "market_id": "6345313",
+          "p": 0.2,
+          "q": 0.195,
+          "y": 0
+        },
+        {
+          "cluster_id": "1272347",
+          "market_id": "6345314",
+          "p": 0.3,
+          "q": 0.28,
+          "y": 0
+        }
+      ]
+    }
+  },
+  "cohort_sha256": "e835d175733cd79f6e35d3c4ade1aad19b137c0fdd05f7f38491627fb47a6902",
+  "config": {
+    "arms": [
+      "blind",
+      "with_price"
+    ],
+    "effort": "high",
+    "markets_sha256": "a8d8e9943c2458eab567874d9d1172d8aef8d0cab690b36ee4230a1c4ce408e4",
+    "model": "gpt-6.1-terra",
+    "samples": 1,
+    "timeout_seconds": 240,
+    "training_cutoff": "2026-06-01T00:00:00Z"
+  },
+  "limitations": [
+    "Retrospective inference after settlement; instruction cutoff does not remove model hindsight",
+    "Post-settlement question/rules wording unverified; no external historical evidence",
+    "Historical trade is not an executable book; no spread, depth, slippage or latency simulation",
+    "One sample per arm; related sports markets share event clusters; exploratory, not trading evidence"
+  ],
+  "mode": "retrospective_sports_ablation",
+  "paired_price_removal": {
+    "bootstrap_unit": "sports_event",
+    "brier_improvement": 0.01167201999999999,
+    "ci95": [
+      -0.01898817125420876,
+      0.04830426280487802
+    ],
+    "positive_means": "blind has lower Brier than with_price",
+    "resamples": 2000,
+    "seed": 11
+  },
+  "predictions_sha256": "9534ced64eb07e440f82320e60a09548ce1205bc2ff69a52370f19a61f6290d6",
+  "schema_version": 1
+}
