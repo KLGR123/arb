@@ -1,0 +1,367 @@
+{
+  "schema_version": "cross-venue-v1",
+  "as_of": "2026-10-30T01:37:51.081810+00:00",
+  "execution": "blocked",
+  "compliance": {
+    "trading_enabled": false,
+    "trading_allowed": false,
+    "allowlist_configured": false,
+    "mode": "read_only",
+    "geoblock": {
+      "blocked": true,
+      "country": "US",
+      "region": "CA",
+      "checked_at": "2026-10-30T01:37:46.224222+00:00",
+      "error": null,
+      "cached": false
+    }
+  },
+  "coverage": {
+    "pages_limit": 1,
+    "pair_limit": 3,
+    "max_close_gap_hours": 48,
+    "min_title_similarity": 0.2,
+    "selection": "explicit_events",
+    "poly_markets": 5,
+    "kalshi_markets": 11,
+    "selected_pairs": 3,
+    "exhaustive": false
+  },
+  "pairs": [
+    {
+      "poly_id": "3215005",
+      "kalshi_id": "KXFED-26DEC-T3.50",
+      "title_similarity": 0.2222222222222222,
+      "close_gap_seconds": 18240.0,
+      "poly_title": "Will the Fed decrease interest rates by 50+ bps after the December 2026 meeting?",
+      "kalshi_title": "Will the upper bound of the federal funds rate be above 3.50% following the Fed's Dec 9, 2026 meeting? Above 3.50%",
+      "risk": "critical",
+      "risks": [
+        "kalshi_fee_schedule_estimate",
+        "model_requires_human_rule_review",
+        "regional_restrictions_research_only",
+        "rules_different_or_unverified",
+        "settlement_time_gap",
+        "thin_or_missing_top_level_depth"
+      ],
+      "quotes": [],
+      "alignment": {
+        "relation": "different",
+        "alignment": 0.25,
+        "source_comparison": "Both rely on official Federal Reserve information. Kalshi specifies the published upper bound; Polymarket specifies the FOMC statement, with the Fed's open-market page also identified as publishing the level and change. No explicit source fallback hierarchy is provided.",
+        "deadline_comparison": "Kalshi expires at the first 2:05 p.m. Eastern Time following the statement's release or one week after the meeting's last day. Polymarket may resolve when the statement is issued; if none is released by the end date of the next scheduled meeting, it resolves to No change. Polymarket's listed settlement timestamp is not stated as the rule-based deadline.",
+        "boundary_comparison": "Kalshi YES requires an upper bound strictly greater than 3.50%; exactly 3.50% is not YES. Polymarket YES concerns a decrease of 50 or more basis points versus the prior level, with unlisted changes rounded up to the nearest 25 basis points. The supplied rules do not fully clarify rounding at every boundary.",
+        "differences": [
+          "Kalshi tests an absolute post-meeting rate; Polymarket tests the size and direction of the change from the prior rate.",
+          "Polymarket specifies a no-statement fallback to No change; Kalshi gives an expiration deadline but does not specify the resulting payout if no statement is released.",
+          "The contracts have different listed close and settlement times, and different rule-based deadlines.",
+          "Cancellation, ties, and 50/50 payouts are not specified in the supplied rules."
+        ],
+        "explanation": "The YES conditions are materially different and are not exact complements: their relationship depends on the prior rate and the meeting outcome. The supplied text also leaves cancellation and some fallback and boundary details unresolved."
+      },
+      "price_differences": {
+        "poly_yes_minus_kalshi_no_ask": "-0.0060",
+        "poly_no_minus_kalshi_no_ask": "0.9870"
+      },
+      "rule_cache_key": "72254a859fca28cf5384a018f62a4765d38ae8b6b81b1d056e85e2b79d736d7f",
+      "settlement_equivalent": false,
+      "settlement_gap_seconds": 17640.0,
+      "liquidity": {
+        "polymarket": {
+          "yes": {
+            "as_of": "2026-10-30T01:37:16.576000+00:00",
+            "minimum": "5",
+            "bids": {
+              "levels": 3,
+              "top_size": "167751.04",
+              "total_size": "5666472.38"
+            },
+            "asks": {
+              "levels": 98,
+              "top_size": "4113.27",
+              "total_size": "21575129.15"
+            }
+          },
+          "no": {
+            "as_of": "2026-10-30T01:37:16.576000+00:00",
+            "minimum": "5",
+            "bids": {
+              "levels": 98,
+              "top_size": "4113.27",
+              "total_size": "21575129.15"
+            },
+            "asks": {
+              "levels": 3,
+              "top_size": "167751.04",
+              "total_size": "5666472.38"
+            }
+          }
+        },
+        "kalshi": {
+          "yes": {
+            "as_of": "2026-10-30T01:37:48.330233+00:00",
+            "minimum": "1",
+            "bids": {
+              "levels": 38,
+              "top_size": "78.30",
+              "total_size": "1003966.52"
+            },
+            "asks": {
+              "levels": 0,
+              "top_size": "0",
+              "total_size": "0"
+            }
+          },
+          "no": {
+            "as_of": "2026-10-30T01:37:48.330233+00:00",
+            "minimum": "1",
+            "bids": {
+              "levels": 0,
+              "top_size": "0",
+              "total_size": "0"
+            },
+            "asks": {
+              "levels": 38,
+              "top_size": "78.30",
+              "total_size": "1003966.52"
+            }
+          }
+        }
+      },
+      "fees": {
+        "poly_rate": "0",
+        "poly_source": "clob",
+        "kalshi_rate": "0.07",
+        "kalshi_source": "series_quadratic_schedule_estimate"
+      }
+    },
+    {
+      "poly_id": "3215005",
+      "kalshi_id": "KXFED-26DEC-T4.50",
+      "title_similarity": 0.2222222222222222,
+      "close_gap_seconds": 18240.0,
+      "poly_title": "Will the Fed decrease interest rates by 50+ bps after the December 2026 meeting?",
+      "kalshi_title": "Will the upper bound of the federal funds rate be above 4.50% following the Fed's Dec 9, 2026 meeting? Above 4.50%",
+      "risk": "critical",
+      "risks": [
+        "kalshi_fee_schedule_estimate",
+        "model_requires_human_rule_review",
+        "regional_restrictions_research_only",
+        "rules_different_or_unverified",
+        "settlement_time_gap",
+        "thin_or_missing_top_level_depth"
+      ],
+      "quotes": [],
+      "alignment": {
+        "relation": "different",
+        "alignment": 0.2,
+        "source_comparison": "Both reference official Federal Reserve information. Kalshi uses the published upper bound; Polymarket primarily uses the December meeting statement and also references the Fed's open-market information. Polymarket specifies a no-statement fallback; the supplied Kalshi text does not specify an equivalent outcome.",
+        "deadline_comparison": "Kalshi expires at the first 2:05 PM ET following the statement or one week after the meeting's last day. Polymarket may resolve when the statement is issued and falls back to the No change bracket if no statement is released by the end date of the next scheduled meeting. The listed close and settlement times also differ and do not establish identical payout deadlines.",
+        "boundary_comparison": "Kalshi YES requires a final upper bound strictly greater than 4.50%; exactly 4.50% is excluded. Polymarket YES concerns a decrease of 50 or more basis points, with non-displayed changes rounded up to the nearest 25 basis points; the supplied text does not fully clarify how that rounding applies at every bracket boundary.",
+        "differences": [
+          "Kalshi tests the absolute post-meeting rate; Polymarket tests the rate change from its pre-meeting level.",
+          "Polymarket specifies rounding and a no-statement fallback; Kalshi's supplied rules do not specify matching provisions.",
+          "The expiration and fallback timing differ.",
+          "Neither supplied rule specifies cancellation, tie, or 50/50 payout treatment."
+        ],
+        "explanation": "The YES conditions are materially different and are not exact complements: whether a cut of 50 or more basis points leaves the upper bound above 4.50% depends on the prior rate. The alignment score is a qualitative estimate, not a probability."
+      },
+      "price_differences": {
+        "poly_yes_minus_kalshi_yes_ask": "-0.0060",
+        "poly_no_minus_kalshi_yes_ask": "0.9870"
+      },
+      "rule_cache_key": "fe5253e22e13f51bbc0b6b42bafe8fe3efdb9b515b6769e487cf967c8dc40ae1",
+      "settlement_equivalent": false,
+      "settlement_gap_seconds": 17640.0,
+      "liquidity": {
+        "polymarket": {
+          "yes": {
+            "as_of": "2026-10-30T01:37:16.576000+00:00",
+            "minimum": "5",
+            "bids": {
+              "levels": 3,
+              "top_size": "167751.04",
+              "total_size": "5666472.38"
+            },
+            "asks": {
+              "levels": 98,
+              "top_size": "4113.27",
+              "total_size": "21575129.15"
+            }
+          },
+          "no": {
+            "as_of": "2026-10-30T01:37:16.576000+00:00",
+            "minimum": "5",
+            "bids": {
+              "levels": 98,
+              "top_size": "4113.27",
+              "total_size": "21575129.15"
+            },
+            "asks": {
+              "levels": 3,
+              "top_size": "167751.04",
+              "total_size": "5666472.38"
+            }
+          }
+        },
+        "kalshi": {
+          "yes": {
+            "as_of": "2026-10-30T01:37:48.807884+00:00",
+            "minimum": "1",
+            "bids": {
+              "levels": 0,
+              "top_size": "0",
+              "total_size": "0"
+            },
+            "asks": {
+              "levels": 29,
+              "top_size": "5.04",
+              "total_size": "1185796.53"
+            }
+          },
+          "no": {
+            "as_of": "2026-10-30T01:37:48.807884+00:00",
+            "minimum": "1",
+            "bids": {
+              "levels": 29,
+              "top_size": "5.04",
+              "total_size": "1185796.53"
+            },
+            "asks": {
+              "levels": 0,
+              "top_size": "0",
+              "total_size": "0"
+            }
+          }
+        }
+      },
+      "fees": {
+        "poly_rate": "0",
+        "poly_source": "clob",
+        "kalshi_rate": "0.07",
+        "kalshi_source": "series_quadratic_schedule_estimate"
+      }
+    },
+    {
+      "poly_id": "3215006",
+      "kalshi_id": "KXFED-26DEC-T3.25",
+      "title_similarity": 0.2222222222222222,
+      "close_gap_seconds": 18240.0,
+      "poly_title": "Will the Fed decrease interest rates by 25 bps after the December 2026 meeting?",
+      "kalshi_title": "Will the upper bound of the federal funds rate be above 3.25% following the Fed's Dec 9, 2026 meeting? Above 3.25%",
+      "risk": "critical",
+      "risks": [
+        "kalshi_fee_schedule_estimate",
+        "model_requires_human_rule_review",
+        "regional_restrictions_research_only",
+        "rules_different_or_unverified",
+        "settlement_time_gap",
+        "thin_or_missing_top_level_depth"
+      ],
+      "quotes": [],
+      "alignment": {
+        "relation": "different",
+        "alignment": 0.3,
+        "source_comparison": "Both refer to official Federal Reserve information. Kalshi uses the upper bound published on the Fed's website. Polymarket names the December FOMC statement as its resolution source and also identifies the Fed's website as a source for the level and change. Neither supplied rule establishes a broader source fallback hierarchy.",
+        "deadline_comparison": "Kalshi expires at the first 2:05 PM ET following the meeting statement or one week after the meeting's last day. Polymarket may resolve when the statement with relevant data is issued; if no statement is released by the end date of the next scheduled meeting, it resolves to the No change bracket. The listed close and settlement timestamps differ and do not by themselves establish identical observation windows.",
+        "boundary_comparison": "Kalshi YES requires an upper bound strictly greater than 3.25%; exactly 3.25% is not YES. Polymarket YES concerns a 25-basis-point decrease relative to the pre-meeting level, with unlisted changes rounded up to the nearest 25 basis points; the supplied text does not fully specify every rounding boundary.",
+        "differences": [
+          "Kalshi tests an absolute post-meeting rate; Polymarket tests the size and direction of the change from the pre-meeting rate.",
+          "For example, a decrease from 3.50% to 3.25% would be Polymarket YES but Kalshi NO.",
+          "Polymarket specifies a no-statement fallback to No change; Kalshi specifies a one-week expiration but does not state the resulting payout in that circumstance.",
+          "Kalshi specifies 2:05 PM Eastern Time; Polymarket's rule does not specify a timezone for the next-meeting end-date fallback.",
+          "Neither supplied rule specifies cancellation, tie, or 50/50 payout treatment."
+        ],
+        "explanation": "The YES conditions have a known material mismatch and are not exact complements. Missing cancellation and exceptional-outcome rules add uncertainty, but do not change the classification of different."
+      },
+      "price_differences": {
+        "poly_yes_minus_kalshi_no_ask": "-0.0040",
+        "poly_no_minus_kalshi_no_ask": "0.9850"
+      },
+      "rule_cache_key": "7a1dc8ca87eede498bf4ed50e32302adbb91082acbc319bde41fdce3c7f0b898",
+      "settlement_equivalent": false,
+      "settlement_gap_seconds": 17640.0,
+      "liquidity": {
+        "polymarket": {
+          "yes": {
+            "as_of": "2026-10-30T01:37:50.278000+00:00",
+            "minimum": "5",
+            "bids": {
+              "levels": 5,
+              "top_size": "42157.46",
+              "total_size": "7081729.01"
+            },
+            "asks": {
+              "levels": 102,
+              "top_size": "12736.75",
+              "total_size": "21583962.67"
+            }
+          },
+          "no": {
+            "as_of": "2026-10-30T01:37:50.278000+00:00",
+            "minimum": "5",
+            "bids": {
+              "levels": 102,
+              "top_size": "12736.75",
+              "total_size": "21583962.67"
+            },
+            "asks": {
+              "levels": 5,
+              "top_size": "42157.46",
+              "total_size": "7081729.01"
+            }
+          }
+        },
+        "kalshi": {
+          "yes": {
+            "as_of": "2026-10-30T01:37:47.853054+00:00",
+            "minimum": "1",
+            "bids": {
+              "levels": 25,
+              "top_size": "7.00",
+              "total_size": "1003418.61"
+            },
+            "asks": {
+              "levels": 0,
+              "top_size": "0",
+              "total_size": "0"
+            }
+          },
+          "no": {
+            "as_of": "2026-10-30T01:37:47.853054+00:00",
+            "minimum": "1",
+            "bids": {
+              "levels": 0,
+              "top_size": "0",
+              "total_size": "0"
+            },
+            "asks": {
+              "levels": 25,
+              "top_size": "7.00",
+              "total_size": "1003418.61"
+            }
+          }
+        }
+      },
+      "fees": {
+        "poly_rate": "0",
+        "poly_source": "clob",
+        "kalshi_rate": "0.07",
+        "kalshi_source": "series_quadratic_schedule_estimate"
+      }
+    }
+  ],
+  "errors": [],
+  "assumptions": [
+    "Research only; never opens accounts or executes",
+    "No guaranteed arbitrage",
+    "No funding, withdrawal, FX or tax costs modeled",
+    "Kalshi restricts China; no eligibility inferred from proxy"
+  ],
+  "summary": {
+    "candidates": 3,
+    "valued": 0,
+    "settlement_equivalent": 0,
+    "positive_conditional_quotes": 0
+  }
+}

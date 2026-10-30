@@ -32,6 +32,7 @@
 - `docs/crypto-updown-pricing.md`：60 个已结算五分钟盘的 CEX TWAP 代理、公允概率、费用与延迟研究
 - `docs/resolution-whale-features.md`：结算争议与大户统计、真实样本、可得时间约束、Parquet schema 与离线读取
 - `docs/llm-forecast-eval-v0.md`：LLM 真实前瞻评估、时间截断、Brier 优势区间、纸面下注、实录与 mock 重放
+- `docs/cross-venue-kalshi.md`：Kalshi × Polymarket 只读配对、Codex 规则缓存、费用与风险及真实验证边界
 
 ## 规则
 
