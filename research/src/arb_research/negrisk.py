@@ -166,7 +166,8 @@ class Leg:
         return value, fee
 
 
-def opportunity(kind, event_id, legs, collateral_per_unit, fixed_cost, risks, max_shares, max_skew):
+def opportunity(kind, event_id, legs, collateral_per_unit, fixed_cost, risks, max_shares, max_skew,
+                *, include_nonpositive=False):
     """Choose maximum modeled profit among synchronized depth breakpoints."""
     if not legs or any(not leg.levels for leg in legs):
         return None
@@ -208,10 +209,11 @@ def opportunity(kind, event_id, legs, collateral_per_unit, fixed_cost, risks, ma
                     "net_profit_usd": net, "net_edge_per_share": net / quantity,
                     "risks": sorted(set(risks)), "legs": detail}
     # A snapshot estimate, never a guaranteed/executable arbitrage claim.
-    return best if best and best["net_profit_usd"] > 0 else None
+    return best if best and (include_nonpositive or best["net_profit_usd"] > 0) else None
 
 
-def scan(snapshot, costs=Costs(), max_shares=D("1000"), max_age=120, max_skew=10, near_hours=48):
+def scan(snapshot, costs=Costs(), max_shares=D("1000"), max_age=120, max_skew=10, near_hours=48,
+         *, authoritative_only=False):
     now = timestamp(snapshot["as_of"])
     if max_shares <= 0 or not max_shares.is_finite() or max_age <= 0 or max_skew < 0 or near_hours < 0:
         raise ValueError("invalid scan limits")
@@ -248,7 +250,13 @@ def scan(snapshot, costs=Costs(), max_shares=D("1000"), max_age=120, max_skew=10
                 condition = str(market["conditionId"])
                 if mid in seen_markets or condition in seen_conditions or seen_assets.intersection(ids.values()):
                     raise ValueError("duplicate market/condition/asset in group")
-                rate, source = fee_config(market, event, snapshot.get("clob_markets", {}).get(mid, {}))
+                clob = snapshot.get("clob_markets", {}).get(mid, {})
+                schedule = clob.get("fd") or market.get("feeSchedule")
+                if authoritative_only and schedule and not any(k in schedule for k in ("e", "exponent")):
+                    raise ValueError("authoritative fee exponent unavailable")
+                rate, source = fee_config(market, event, clob)
+                if authoritative_only and source == "category_estimate":
+                    raise ValueError("authoritative fee unavailable")
                 books = {k: Book.parse(v, snapshot["books"][v], now, max_age) for k, v in ids.items()}
                 if any(str(snapshot["books"][v].get("market")) != condition for v in ids.values()):
                     raise ValueError("book condition mismatch")
