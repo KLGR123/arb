@@ -130,8 +130,10 @@ async def resolve_assets(tokens, markets):
 
 class Recorder:
     def __init__(self, root, assets, *, snapshot_seconds=60, heartbeat_seconds=10,
-                 pong_seconds=10, initial_book_seconds=30, budget=NETWORK_BUDGET):
-        self.journal = Journal(root)
+                 pong_seconds=10, initial_book_seconds=30, budget=NETWORK_BUDGET,
+                 journal_options=None, health_records=False):
+        self.journal = Journal(root, **(journal_options or {}))
+        self.health_records = health_records
         self.assets = assets
         self.engine = Rebuilder()
         self.snapshot_seconds = snapshot_seconds
@@ -165,6 +167,10 @@ class Recorder:
         return self.emit({"event_type": kind, **fields}, "control")
 
     def checkpoint(self):
+        self.journal.check_space()
+        if self.health_records:
+            self.control("health", counters=dict(self.metrics),
+                         available_assets=sorted(a for a, b in self.engine.books.items() if b.available))
         for asset, book in self.engine.export().items():
             self.journal.append("snapshots", {
                 "version": 1, "session": self.journal.session, "through_seq": self.journal.seq,
