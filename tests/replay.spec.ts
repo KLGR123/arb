@@ -7,7 +7,9 @@ test('recorded run replays without future fills, keeps equity aligned and switch
   const errors: string[] = []
   const external: string[] = []
   page.on('pageerror', (error) => errors.push(error.message))
-  await page.route(/^https?:\/\/(?!127\.0\.0\.1:3000)/, (route) => {
+  await page.route(/^https?:\/\//, (route) => {
+    if (new URL(route.request().url()).origin === new URL(test.info().project.use.baseURL!).origin)
+      return route.continue()
     external.push(route.request().url())
     return route.abort()
   })

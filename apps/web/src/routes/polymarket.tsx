@@ -11,10 +11,12 @@ import { useEffect, useState } from 'react'
 import { Badge } from '@/components/ui/badge'
 import { BookView, CalibrationView, PnlView } from '@/features/polymarket/views'
 import { DataStatus } from '@/features/polymarket/data-status'
-import { dashboard } from '@/features/polymarket/model'
+import { dashboardResultSchema, type Dashboard } from '@/features/polymarket/contract'
+import { getDashboard } from '@/features/polymarket/load-dashboard'
 
 export const Route = createFileRoute('/polymarket')({
   head: () => ({ meta: [{ title: 'Polymarket 研究看板 · arb' }] }),
+  loader: async () => dashboardResultSchema.parse(JSON.parse(await getDashboard())),
   component: Polymarket,
 })
 const views = [
@@ -25,6 +27,19 @@ const views = [
 type View = (typeof views)[number]['id']
 
 function Polymarket() {
+  const result = Route.useLoaderData()
+  if (result.status !== 'ready') return (
+    <main className="mx-auto max-w-4xl p-8">
+      <h1 className="text-2xl">Polymarket 研究看板</h1>
+      <p role="status" className="mt-6">{result.message}</p>
+      <p className="mt-3">只读 / 纸面研究 · 交易保持拒绝</p>
+      <Link to="/">研究首页</Link>
+    </main>
+  )
+  return <DashboardPage data={result.data} referenceTime={result.loaded_at} />
+}
+
+function DashboardPage({ data: dashboard, referenceTime }: { data: Dashboard; referenceTime: string }) {
   const [view, setView] = useState<View>('calibration')
   const [hydrated, setHydrated] = useState(false)
   useEffect(() => setHydrated(true), [])
@@ -79,13 +94,13 @@ function Polymarket() {
           <FlaskConical size={17} className="mt-0.5 shrink-0 text-primary" />
           <p className="text-xs leading-6 text-muted-foreground">
             <span className="font-medium text-primary">
-              合成 fixture · 离线演示
+              {dashboard.source === 'synthetic-fixture' ? '合成 fixture · 离线演示' : dashboard.source === 'recorded-sync' ? '真实公共数据录制 · ARB-7 本地回放' : 'ARB-7 本地 sync · 只读快照'}
             </span>
             <span className="mx-2">/</span>
-            全部题目、盘口与损益均为演示数据。无下单功能，不代表真实市场表现。
+            {dashboard.source === 'synthetic-fixture' ? '全部题目、盘口与损益均为演示数据。' : '历史快照，非实时行情。ARB-7 未提供预测、纸面损益及 L2 盘口，对应视图保持空态。'}无下单功能。
           </p>
         </div>
-        <DataStatus data={dashboard} />
+        <DataStatus data={dashboard} referenceTime={dashboard.source === 'synthetic-fixture' ? dashboard.as_of : referenceTime} />
         <div
           role="tablist"
           aria-label="研究视图"
@@ -136,17 +151,17 @@ function Polymarket() {
           className="outline-offset-4 focus-visible:outline-2 focus-visible:outline-primary"
         >
           {view === 'calibration' ? (
-            <CalibrationView />
+            <CalibrationView data={dashboard} />
           ) : view === 'pnl' ? (
-            <PnlView />
+            <PnlView data={dashboard} />
           ) : (
-            <BookView />
+            <BookView data={dashboard} />
           )}
         </section>
       </main>
       <footer className="flex flex-wrap justify-between gap-3 border-t py-5 font-mono text-[10px] leading-5 text-muted-foreground">
         <span>
-          arb / prediction research · fixture schema v{dashboard.schema_version}
+          arb / prediction research · display schema v{dashboard.schema_version}
         </span>
         <span>
           source: {dashboard.source} · as_of: {dashboard.as_of}

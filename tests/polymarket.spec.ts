@@ -1,8 +1,8 @@
+import { dashboard } from './fixtures/polymarket'
 import { expect, test } from '@playwright/test'
 import {
   brier,
   calibration,
-  dashboard,
   depth,
   pnlLayers,
   totalPnl,
@@ -121,7 +121,9 @@ test('Polymarket SSR and three offline views render, replay stays synchronized',
   page.on('console', (message) => {
     if (message.type() === 'error') errors.push(message.text())
   })
-  await page.route(/^https?:\/\/(?!127\.0\.0\.1:3000)/, (route) => {
+  await page.route(/^https?:\/\//, (route) => {
+    if (new URL(route.request().url()).origin === new URL(test.info().project.use.baseURL!).origin)
+      return route.continue()
     external.push(route.request().url())
     return route.abort()
   })
@@ -130,6 +132,20 @@ test('Polymarket SSR and three offline views render, replay stays synchronized',
   await expect(page.getByRole('heading', { level: 1 })).toContainText(
     'Polymarket 研究看板',
   )
+  if (!process.env.SMOKE_SYNTHETIC) {
+    await expect(page.getByText('真实公共数据录制 · ARB-7 本地回放')).toBeVisible()
+    await expect(page.getByRole('region', { name: '市场与数据质量' })).toContainText('Fed decision in October?')
+    await expect(page.getByText('暂无预测评价样本', { exact: false })).toBeVisible()
+    await page.getByRole('tab', { name: /PnL 分析/ }).click()
+    await expect(page.getByText('暂无 PnL 数据', { exact: false })).toBeVisible()
+    await page.getByRole('tab', { name: /盘口回放/ }).click()
+    await expect(page.getByText('暂无盘口快照。')).toBeVisible()
+    expect(await page.getByRole('button', { name: /下单|连接钱包|充值|提现/ }).count()).toBe(0)
+    expect(errors).toEqual([])
+    expect(external).toEqual([])
+    return
+  }
+  await expect(page.getByText('合成 fixture · 离线演示')).toBeVisible()
   await expect(page.getByRole('img', { name: /校准曲线/ })).toBeVisible()
   await expect(
     page.getByRole('table', { name: /预测概率分桶/ }).locator('tbody tr'),

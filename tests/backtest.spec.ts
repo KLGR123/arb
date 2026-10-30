@@ -13,7 +13,9 @@ test('backtest SSR, frozen catalog, engines and unique offline stub runs', async
   page.on('console', (message) => {
     if (message.type() === 'error') errors.push(message.text())
   })
-  await page.route(/^https?:\/\/(?!127\.0\.0\.1:3000)/, (route) => {
+  await page.route(/^https?:\/\//, (route) => {
+    if (new URL(route.request().url()).origin === new URL(test.info().project.use.baseURL!).origin)
+      return route.continue()
     external.push(route.request().url())
     return route.abort()
   })

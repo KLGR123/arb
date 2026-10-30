@@ -13,7 +13,9 @@ test('SSR, shadcn interaction and offline Vela rendering', async ({ page, reques
     if (message.type() === 'error') errors.push(message.text())
   })
   // The offline example must work even when every external network call is denied.
-  await page.route(/^https?:\/\/(?!127\.0\.0\.1:3000)/, (route) => {
+  await page.route(/^https?:\/\//, (route) => {
+    if (new URL(route.request().url()).origin === new URL(test.info().project.use.baseURL!).origin)
+      return route.continue()
     externalRequests.push(route.request().url())
     return route.abort()
   })
