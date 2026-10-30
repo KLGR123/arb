@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 
 from .compliance import ComplianceGuard, GeoblockClient
-from .cross_venue import candidates, markdown, normalize_kalshi, normalize_poly, scan
+from .cross_venue import candidates, eligibility_rejections, markdown, normalize_kalshi, normalize_poly, rule_rejections, scan
 from .kalshi import KalshiPublicAPI, book, discover, identifier
 from .negrisk import D, dumps, fee_config, number
 from .negrisk_cli import ReadOnlyAPI
@@ -14,7 +14,7 @@ from .polymarket.client import SharedLimiter
 from .rule_alignment import RuleAligner
 
 
-def collect(poly, kalshi, *, event_ids=(), kalshi_events=(), series=None,
+def collect(poly, kalshi, *, aligner, event_ids=(), kalshi_events=(), series=None,
             pages=1, pair_limit=5, max_hours=48, min_similarity=.20):
     result = {"as_of": "", "polymarket": [], "kalshi": [], "candidates": [],
               "poly_books": {}, "poly_fees": {}, "kalshi_books": {},
@@ -56,8 +56,13 @@ def collect(poly, kalshi, *, event_ids=(), kalshi_events=(), series=None,
         for market in kmarkets:
             event = emap[market["event_ticker"]]
             result["kalshi"].append(normalize_kalshi(event, market, {}))
-        result["candidates"] = candidates(result["polymarket"], result["kalshi"],
-                                             pair_limit, max_hours, min_similarity)
+        combinations = len(result["polymarket"]) * len(result["kalshi"])
+        shortlist = candidates(result["polymarket"], result["kalshi"],
+                               max(1, combinations), max_hours, min_similarity)
+        result["candidates"] = shortlist[:pair_limit]
+        result["coverage"].update({"combinations_considered": combinations,
+                                   "shortlisted_before_limit": len(shortlist),
+                                   "shortlist_truncated": len(shortlist) > pair_limit})
         selected = {p["kalshi_id"] for p in result["candidates"]}
         series_cache = result["raw"]["series"]
         for i, k in enumerate(result["kalshi"]):
@@ -70,13 +75,32 @@ def collect(poly, kalshi, *, event_ids=(), kalshi_events=(), series=None,
                 if series_id not in series_cache:
                     series_cache[series_id] = kalshi.get("/series/" + identifier(series_id))["series"]
                 result["kalshi"][i] = normalize_kalshi(event, market, series_cache[series_id])
-                result["kalshi_books"][k["id"]] = book(kalshi, k["id"])
                 result["raw"].setdefault("kalshi_details", {})[k["id"]] = market
             except (ValueError, KeyError, OSError):
                 result["errors"].append({"stage": "kalshi_detail", "market_id": k["id"], "reason": "public_read_failed"})
     except (ValueError, KeyError, OSError):
         result["errors"].append({"stage": "kalshi_discovery", "reason": "public_read_failed"})
-    for mid in sorted({p["poly_id"] for p in result["candidates"]}):
+    survivors = []
+    pm = {p["id"]: p for p in result["polymarket"]}
+    km = {k["id"]: k for k in result["kalshi"]}
+    for pair in result["candidates"]:
+        try:
+            if not rule_rejections(pm[pair["poly_id"]], km[pair["kalshi_id"]],
+                    aligner.compare(pm[pair["poly_id"]], km[pair["kalshi_id"]])["output"]):
+                survivors.append(pair)
+        except (ValueError, OSError, KeyError):
+            # scan records an explicit rules error; do not request prices.
+            continue
+    # Model work precedes sampling so inference latency cannot age the books.
+    now = datetime.now(timezone.utc)
+    survivors = [pair for pair in survivors if not eligibility_rejections(
+        pm[pair["poly_id"]], km[pair["kalshi_id"]], now, result["coverage"])]
+    for kid in sorted({p["kalshi_id"] for p in survivors}):
+        try:
+            result["kalshi_books"][kid] = book(kalshi, kid)
+        except (ValueError, OSError, KeyError):
+            result["errors"].append({"stage": "kalshi_book", "market_id": kid, "reason": "public_read_failed"})
+    for mid in sorted({p["poly_id"] for p in survivors}):
         try:
             event, market = p_raw[mid]
             clob = poly.get("clob", "/clob-markets/" + identifier(market["conditionId"]))
@@ -128,6 +152,7 @@ def main(argv=None):
             raise ValueError("invalid scan limits")
         for value in args.poly_event_id + args.kalshi_event + ([args.kalshi_series] if args.kalshi_series else []):
             identifier(value)
+        aligner = RuleAligner(args.cache, cache_only=args.cache_only or bool(args.fixture))
         if args.fixture:
             snapshot = json.loads(args.fixture.read_text(encoding="utf-8"))
         else:
@@ -135,11 +160,11 @@ def main(argv=None):
             with ReadOnlyAPI(bucket=limiter) as poly, KalshiPublicAPI(bucket=limiter) as kalshi:
                 snapshot = collect(poly, kalshi, event_ids=args.poly_event_id, kalshi_events=args.kalshi_event,
                                    series=args.kalshi_series, pages=args.pages, pair_limit=args.max_pairs,
-                                   max_hours=args.max_close_gap_hours, min_similarity=args.min_title_similarity)
-        # Persist public input before a potentially unavailable local model call.
+                                   max_hours=args.max_close_gap_hours, min_similarity=args.min_title_similarity,
+                                   aligner=aligner)
+        # Persist collected public inputs, including rejected pairs, for replay.
         if args.record:
             write(args.record, dumps(snapshot))
-        aligner = RuleAligner(args.cache, cache_only=args.cache_only or bool(args.fixture))
         report = scan(snapshot, aligner, args.quantity, args.max_book_age, args.max_book_skew)
         if args.json:
             write(args.json, dumps(report))
@@ -149,7 +174,7 @@ def main(argv=None):
             write(args.markdown, markdown(report))
     except (ValueError, OSError, KeyError, TypeError, ArithmeticError):
         parser.error("cross_venue_scan_failed: check public connectivity, fixture schema and local Codex/cache configuration")
-    return 2 if report["errors"] or not report["pairs"] else 0
+    return 2 if report["errors"] or not report["summary"]["candidates"] else 0
 
 
 if __name__ == "__main__":
