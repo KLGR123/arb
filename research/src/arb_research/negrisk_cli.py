@@ -69,11 +69,13 @@ class ReadOnlyAPI:
         self.close()
 
     def get(self, service, path, params=None):
-        hosts = {"gamma": "gamma-api.polymarket.com", "clob": "clob.polymarket.com", "geo": "polymarket.com"}
+        hosts = {"gamma": "gamma-api.polymarket.com", "clob": "clob.polymarket.com",
+                 "geo": "polymarket.com", "data": "data-api.polymarket.com"}
         if service not in hosts:
             raise ValueError("unknown service")
         valid = ((service == "gamma" and (path == "/events" or path.startswith("/events/")))
                  or (service == "clob" and (path == "/book" or path.startswith("/clob-markets/")))
+                 or (service == "data" and path == "/v2/resolutions")
                  or (service == "geo" and path == "/api/geoblock"))
         if not valid or any(c in path for c in ("?", "#", "..", "\\")):
             raise ValueError("endpoint is outside read-only allowlist")

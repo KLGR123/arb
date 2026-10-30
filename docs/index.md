@@ -29,6 +29,7 @@
 - `docs/nautilus-data-v2-loader.md`：只读 Data API v2 历史加载、Nautilus 字段映射、真实已结算事件回放与缓存对齐
 - `docs/mm-backtest.md`：离线做市、L2 排队近似、返佣/奖励、PnL 分解与逆向选择统计
 - `docs/negrisk-scanner.md`：只读 negRisk 扫描、逐档深度、费用、JSON v1 合约与真实扫描验证边界
+- `docs/negrisk-deep-scan.md`：扩大 negRisk 样本、逐组毛/净 edge、权威费用、返佣情景与覆盖缺口
 - `docs/crypto-updown-pricing.md`：60 个已结算五分钟盘的 CEX TWAP 代理、公允概率、费用与延迟研究
 - `docs/resolution-whale-features.md`：结算争议与大户统计、真实样本、可得时间约束、Parquet schema 与离线读取
 - `docs/llm-forecast-eval-v0.md`：LLM 真实前瞻评估、时间截断、Brier 优势区间、纸面下注、实录与 mock 重放
