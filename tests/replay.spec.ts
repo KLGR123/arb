@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test'
-import recording from '../apps/web/src/features/backtest/fixtures/recorded-run.json'
+import { mockBacktest, recording } from './helpers/backtest'
 
 test('recorded run replays without future fills, keeps equity aligned and switches stages', async ({
   page,
@@ -13,7 +13,11 @@ test('recorded run replays without future fills, keeps equity aligned and switch
     external.push(route.request().url())
     return route.abort()
   })
+  await mockBacktest(page)
   await page.goto('/backtest')
+  await page.getByLabel('已发布 Dataset').selectOption('demo-synthetic-1h-v2')
+  await page.getByRole('button', { name: 'realistic', exact: true }).click()
+  await page.getByRole('button', { name: '创建回测 run' }).click()
   const chart = page.getByTestId('backtest-chart')
   await expect(chart).toHaveAttribute('data-status', 'ready')
   await expect(
@@ -90,7 +94,7 @@ test('recorded run replays without future fills, keeps equity aligned and switch
   await expect(page.getByTestId('replay-equity')).toHaveText(
     `Equity ${recording.run.stages.realistic.result.metrics.final_equity.toFixed(2)} USD`,
   )
-  await page.getByLabel('录制阶段').selectOption('fast')
+  await page.getByLabel('运行阶段').selectOption('fast')
   await expect(chart).toHaveAttribute('data-status', 'ready')
   await expect(page.getByTestId('replay-count')).toHaveText('32 / 336')
   await page.getByRole('button', { name: '显示完整 run' }).click()
@@ -141,8 +145,7 @@ test('recorded run replays without future fills, keeps equity aligned and switch
   })
   await page.getByRole('link', { name: '返回研究首页' }).click()
   await page.getByRole('link', { name: '回测工作台', exact: true }).click()
-  await expect(chart).toHaveAttribute('data-status', 'ready')
-  await expect(page.getByTestId('replay-count')).toHaveText('32 / 336')
+  await expect(page.getByTestId('chart-empty')).toBeVisible()
   expect(errors).toEqual([])
   expect(external).toEqual([])
 })

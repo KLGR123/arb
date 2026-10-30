@@ -12,7 +12,8 @@
     "build": "npm run build --workspace @arb/web",
     "preview": "npm run preview --workspace @arb/web",
     "typecheck": "npm run typecheck --workspace @arb/web",
-    "smoke:web": "playwright test"
+    "smoke:web": "playwright test",
+    "smoke:backtest": "python3 scripts/smoke-backtest.py"
   },
   "devDependencies": {
     "@playwright/test": "1.64.1"

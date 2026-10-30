@@ -16,16 +16,15 @@ import { Button } from '@/components/ui/button'
 import { Button as MotionButton } from '@/components/motion/button/base'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { useBacktest } from '@/features/backtest/use-backtest'
+import { selectedResult } from '@/features/backtest/api'
 import { BacktestChart } from '@/features/backtest/chart'
 import {
-  createStubRun,
-  datasets,
   defaultConfig,
   parsePreset,
   presetKey,
   validateConfig,
   type BacktestConfig,
-  type BacktestRun,
 } from '@/features/backtest/model'
 
 export const Route = createFileRoute('/backtest')({
@@ -48,8 +47,9 @@ function Field({ label, children }: { label: string; children: ReactNode }) {
 function Backtest() {
   // Deliberately route-local. No singleton store, live workspace, or provider.
   const [config, setConfig] = useState<BacktestConfig>({ ...defaultConfig })
-  const [run, setRun] = useState<BacktestRun>()
-  const [busy, setBusy] = useState(false)
+  const api = useBacktest()
+  const { datasets, run, snapshot, busy } = api
+  const result = run && selectedResult(run)
   const [notice, setNotice] = useState('')
   const [error, setError] = useState('')
   const [changed, setChanged] = useState(false)
@@ -57,8 +57,23 @@ function Backtest() {
   useEffect(() => {
     setHydrated(true)
   }, [])
-  const dataset = datasets.find((d) => d.id === config.datasetId)!
-  const validation = validateConfig(config)
+  useEffect(() => {
+    if (!datasets.length) return
+    setConfig((previous) =>
+      datasets.some((d) => d.id === previous.datasetId)
+        ? previous
+        : {
+            ...previous,
+            datasetId: datasets[0].id,
+            start: datasets[0].start,
+            end: datasets[0].end,
+          },
+    )
+  }, [datasets])
+  const dataset = datasets.find((d) => d.id === config.datasetId)
+  const validation = api.catalogLoading
+    ? undefined
+    : validateConfig(config, datasets)
   function update<K extends keyof BacktestConfig>(
     key: K,
     value: BacktestConfig[K],
@@ -70,7 +85,11 @@ function Backtest() {
   }
   function numberField(
     key:
-      'fastWindow' | 'slowWindow' | 'feeBps' | 'slippageBps' | 'initialCapital',
+      | 'fastWindow'
+      | 'slowWindow'
+      | 'feeBps'
+      | 'slippageBps'
+      | 'initialCapital',
     label: string,
     min: number,
     max: number,
@@ -94,18 +113,11 @@ function Backtest() {
   async function submit(event: React.SubmitEvent<HTMLFormElement>) {
     event.preventDefault()
     if (validation || busy) return
-    setBusy(true)
     setError('')
     setNotice('')
-    try {
-      setRun(await createStubRun({ ...config }))
-      setChanged(false)
-    } catch (cause) {
-      setError(cause instanceof Error ? cause.message : '创建失败，请重试。')
-    } finally {
-      setBusy(false)
-    }
+    if (await api.submit({ ...config })) setChanged(false)
   }
+
   function savePreset() {
     setNotice('')
     if (validation) {
@@ -128,12 +140,12 @@ function Backtest() {
         setError('当前浏览器还没有保存的预设。')
         return
       }
-      const loaded = parsePreset(raw)
+      const loaded = parsePreset(raw, datasets)
       setConfig(loaded)
-      setRun(undefined)
+      api.clear()
       setChanged(false)
       setError('')
-      setNotice('已加载预设；可创建新的 stub run。')
+      setNotice('已加载预设；可创建新的回测 run。')
     } catch {
       setError('预设无法加载：数据已损坏、版本不支持或 Dataset 不再有效。')
     }
@@ -189,10 +201,25 @@ function Backtest() {
               </CardTitle>
             </CardHeader>
             <CardContent className="p-5">
+              {api.catalogLoading && (
+                <p role="status" className="mb-4 text-xs">
+                  正在读取 frozen Dataset 目录…
+                </p>
+              )}
+              {api.catalogError && (
+                <div className="mb-4 text-xs">
+                  <p role="alert">{api.catalogError}</p>
+                  <Button type="button" onClick={api.reloadCatalog}>
+                    重试目录
+                  </Button>
+                </div>
+              )}
               <form onSubmit={submit} className="grid gap-6">
                 <fieldset
                   className="grid min-w-0 gap-3"
-                  disabled={!hydrated || busy}
+                  disabled={
+                    !hydrated || busy || api.catalogLoading || !datasets.length
+                  }
                 >
                   <legend className="mb-3 text-xs font-medium">
                     01 <span className="ml-2">数据快照</span>
@@ -220,7 +247,7 @@ function Backtest() {
                     >
                       {datasets.map((d) => (
                         <option key={d.id} value={d.id}>
-                          {d.name}
+                          {d.symbol} · {d.id}
                         </option>
                       ))}
                     </select>
@@ -228,23 +255,25 @@ function Backtest() {
                   <div className="rounded-md border border-dashed p-3 text-[11px] leading-5 text-muted-foreground">
                     <div className="flex items-center gap-1.5 text-primary">
                       <Database size={12} />
-                      Published · Frozen · 演示目录
+                      Published · Frozen · API 目录
                     </div>
                     <p
                       className="mt-1 break-all font-mono"
                       data-testid="dataset-id"
                     >
-                      {dataset.id}
+                      {dataset?.id ?? '等待 API 目录'}
                     </p>
-                    <p>{dataset.bars} 根合成 K 线 · UTC</p>
+                    <p>{dataset?.bar_count ?? '—'} 根合成 K 线 · UTC</p>
                     <p>
-                      {dataset.start} → {dataset.end}
+                      {dataset?.start ?? '—'} → {dataset?.end ?? '—'}
                     </p>
                   </div>
                 </fieldset>
                 <fieldset
                   className="grid min-w-0 gap-3 border-t pt-5"
-                  disabled={!hydrated || busy}
+                  disabled={
+                    !hydrated || busy || api.catalogLoading || !datasets.length
+                  }
                 >
                   <legend className="float-left mb-3 w-full text-xs font-medium">
                     02 <span className="ml-2">引擎与策略</span>
@@ -292,7 +321,9 @@ function Backtest() {
                 </fieldset>
                 <fieldset
                   className="grid min-w-0 gap-3 border-t pt-5"
-                  disabled={!hydrated || busy}
+                  disabled={
+                    !hydrated || busy || api.catalogLoading || !datasets.length
+                  }
                 >
                   <legend className="float-left mb-3 w-full text-xs font-medium">
                     03 <span className="ml-2">费用与区间</span>
@@ -302,16 +333,15 @@ function Backtest() {
                     {numberField('slippageBps', '滑点（bps）', 0, 10000, 'any')}
                   </div>
                   <p className="text-[11px] leading-5 text-muted-foreground">
-                    1 bps = 0.01%。下一根开盘价撮合；仅为 stub
-                    配置，不执行交易。
+                    1 bps = 0.01%。使用冻结数据，下一根开盘价模拟撮合。
                   </p>
                   <Field label="开始日期（UTC）">
                     <input
                       className={control}
                       type="date"
                       value={config.start}
-                      min={dataset.start}
-                      max={dataset.end}
+                      min={dataset?.start}
+                      max={dataset?.end}
                       required
                       onChange={(e) => update('start', e.target.value)}
                     />
@@ -321,8 +351,8 @@ function Backtest() {
                       className={control}
                       type="date"
                       value={config.end}
-                      min={dataset.start}
-                      max={dataset.end}
+                      min={dataset?.start}
+                      max={dataset?.end}
                       required
                       onChange={(e) => update('end', e.target.value)}
                     />
@@ -330,9 +360,9 @@ function Backtest() {
                   {numberField(
                     'initialCapital',
                     '初始资金（USD）',
-                    0,
+                    0.01,
                     1e12,
-                    'any',
+                    0.01,
                   )}
                 </fieldset>
                 {validation && (
@@ -346,18 +376,29 @@ function Backtest() {
                 <div className="grid gap-3 border-t pt-5">
                   <MotionButton
                     type="submit"
-                    disabled={!hydrated || busy || !!validation}
+                    disabled={
+                      !hydrated ||
+                      busy ||
+                      api.catalogLoading ||
+                      !datasets.length ||
+                      !!validation
+                    }
                     className="w-full rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
                   >
                     <Play size={14} />
-                    {busy ? '正在创建…' : '创建 stub run'}
+                    {busy ? '正在创建…' : '创建回测 run'}
                   </MotionButton>
                   <div className="grid grid-cols-2 gap-2">
                     <Button
                       type="button"
                       variant="outline"
                       size="sm"
-                      disabled={!hydrated || busy}
+                      disabled={
+                        !hydrated ||
+                        busy ||
+                        api.catalogLoading ||
+                        !datasets.length
+                      }
                       onClick={savePreset}
                     >
                       <Save size={13} />
@@ -367,7 +408,12 @@ function Backtest() {
                       type="button"
                       variant="ghost"
                       size="sm"
-                      disabled={!hydrated || busy}
+                      disabled={
+                        !hydrated ||
+                        busy ||
+                        api.catalogLoading ||
+                        !datasets.length
+                      }
                       onClick={loadPreset}
                     >
                       <Upload size={13} />
@@ -398,13 +444,32 @@ function Backtest() {
                 <div>
                   <CardTitle className="text-sm">价格与策略</CardTitle>
                   <p className="mt-1.5 font-mono text-[10px] text-muted-foreground">
-                    RECORDED SYNTHETIC · 1H / UTC
+                    FROZEN DATASET · 1H / UTC
                   </p>
                 </div>
                 <Badge variant="secondary">1H · 回放</Badge>
               </CardHeader>
               <CardContent className="p-0">
-                <BacktestChart />
+                {run &&
+                result &&
+                result.equity.length > 0 &&
+                snapshot &&
+                snapshot.bars.length > 0 ? (
+                  <BacktestChart
+                    key={run.run_id}
+                    run={run}
+                    snapshot={snapshot}
+                  />
+                ) : (
+                  <p
+                    className="p-8 text-sm text-muted-foreground"
+                    data-testid="chart-empty"
+                  >
+                    {run
+                      ? '等待运行结果与冻结 bars；无可回放数据。'
+                      : '创建运行后，在这里回放该 run 的冻结数据。'}
+                  </p>
+                )}
               </CardContent>
               <div className="flex flex-wrap items-center justify-between gap-2 border-t px-5 py-3 text-[10px] text-muted-foreground">
                 <span className="font-mono">FROZEN DATA ONLY</span>
@@ -422,9 +487,11 @@ function Backtest() {
             <div className="flex gap-3 rounded-lg border border-dashed p-5">
               <FlaskConical className="mt-0.5 size-5 shrink-0 text-primary" />
               <div>
-                <p className="text-sm font-medium">回看一次完整的引擎运行。</p>
+                <p className="text-sm font-medium">回放当前运行的冻结数据。</p>
                 <p className="mt-2 text-xs leading-6 text-muted-foreground">
-                  主图加载 ARB-4 双引擎录制结果，独立于左侧配置。切换录制阶段可比较同一 run 的草稿和最终结果。左侧创建 stub run 仅记录配置，不会重新计算或替换这份录制。
+                  创建后自动查询队列状态。fast 草稿与 realistic
+                  最终结果属于同一个
+                  run；主图可切换已完成阶段。离开页面停止查询，不取消服务端任务。
                 </p>
               </div>
             </div>
@@ -433,11 +500,32 @@ function Backtest() {
             <Card className="gap-0 py-0">
               <CardHeader className="border-b px-5 py-4">
                 <CardTitle className="flex items-center justify-between text-sm">
-                  配置记录
-                  <Badge variant="outline">{run ? 'STUB' : '未运行'}</Badge>
+                  运行状态
+                  <Badge variant="outline">{run ? run.status : '未运行'}</Badge>
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-5">
+                {api.error && (
+                  <div className="mb-4 text-xs">
+                    <p role="alert">{api.error}</p>
+                    {run && (
+                      <Button type="button" onClick={api.refresh}>
+                        重试查询
+                      </Button>
+                    )}
+                  </div>
+                )}
+                {run && ['failed', 'partial'].includes(run.status) && (
+                  <p role="alert" className="mb-4 text-xs text-destructive">
+                    {run.status === 'partial'
+                      ? '部分阶段失败，显示已完成阶段结果。'
+                      : '运行失败，无可用结果。'}
+                    {Object.entries(run.stages)
+                      .filter(([, stage]) => stage?.error)
+                      .map(([name, stage]) => `${name}: ${stage?.error}`)
+                      .join('；')}
+                  </p>
+                )}
                 <div aria-live="polite">
                   {run ? (
                     <>
@@ -451,18 +539,22 @@ function Backtest() {
                         {run.run_id}
                       </p>
                       <p className="mt-3 text-xs">
-                        {run.request.engine} · 配置已记录，未执行
+                        {run.requested_engine} · {run.status} ·{' '}
+                        {run.phase ?? '等待结果'}
                       </p>
                       <p className="mt-2 break-all font-mono text-[10px] leading-5 text-muted-foreground">
                         {run.request.dataset_id}
                         <br />
-                        source: {run.source}
+                        source:{' '}
+                        {typeof run.source === 'string'
+                          ? run.source
+                          : `${run.source.package} ${run.source.version}`}
                         <br />
                         as_of: {run.as_of}
                       </p>
                       {changed && (
                         <p className="mt-3 text-xs text-amber-300">
-                          配置已更改。再次创建 run 以记录新配置。
+                          配置已更改。再次创建 run 以执行新配置。
                         </p>
                       )}
                     </>
@@ -482,7 +574,7 @@ function Backtest() {
             <Card className="gap-0 py-0">
               <CardHeader className="border-b px-5 py-4">
                 <CardTitle className="text-sm">
-                  配置运行净值{' '}
+                  运行净值{' '}
                   <span className="ml-2 font-mono text-[10px] font-normal text-muted-foreground">
                     EQUITY
                   </span>
@@ -490,15 +582,42 @@ function Backtest() {
               </CardHeader>
               <CardContent className="p-5">
                 <div className="flex h-28 items-center justify-center rounded-md border border-dashed text-xs text-muted-foreground">
-                  等待回测净值
+                  {result?.equity.length
+                    ? `最终净值 ${result.metrics.final_equity.toFixed(2)} USD · ${result.equity.length} 个净值点`
+                    : run && ['succeeded', 'partial'].includes(run.status)
+                      ? '运行已结束，无净值数据'
+                      : '等待回测净值'}
                 </div>
                 <dl className="mt-5 grid grid-cols-2 gap-x-4 gap-y-5">
-                  {['总收益', '最大回撤', 'Sharpe', '成交数'].map((label) => (
+                  {[
+                    [
+                      '总收益',
+                      result
+                        ? `${(result.metrics.total_return * 100).toFixed(2)}%`
+                        : '—',
+                    ],
+                    [
+                      '最大回撤',
+                      result
+                        ? `${(result.metrics.max_drawdown * 100).toFixed(2)}%`
+                        : '—',
+                    ],
+                    [
+                      '费用（USD）',
+                      result?.metrics.fees_paid.toFixed(2) ?? '—',
+                    ],
+                    ['成交数', result?.metrics.fill_count ?? '—'],
+                  ].map(([label, value]) => (
                     <div key={label}>
                       <dt className="text-[11px] text-muted-foreground">
                         {label}
                       </dt>
-                      <dd className="mt-1.5 font-mono text-xl">—</dd>
+                      <dd
+                        className="mt-1.5 font-mono text-xl"
+                        data-testid={`metric-${label}`}
+                      >
+                        {value}
+                      </dd>
                     </div>
                   ))}
                 </dl>
@@ -506,7 +625,7 @@ function Backtest() {
             </Card>
             <Card className="gap-0 overflow-hidden py-0">
               <CardHeader className="border-b px-5 py-4">
-                <CardTitle className="text-sm">配置运行成交</CardTitle>
+                <CardTitle className="text-sm">运行成交</CardTitle>
               </CardHeader>
               <CardContent className="p-0">
                 <table className="w-full text-left text-[11px]">
@@ -519,14 +638,26 @@ function Backtest() {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td
-                        colSpan={3}
-                        className="px-4 py-7 text-center text-muted-foreground"
-                      >
-                        暂无成交数据
-                      </td>
-                    </tr>
+                    {result?.fills.length ? (
+                      result.fills.map((fill, index) => (
+                        <tr key={index} className="border-b">
+                          <td className="px-4 py-3">
+                            {fill.timestamp.slice(5, 16)}
+                          </td>
+                          <td className="px-2">{fill.side}</td>
+                          <td className="px-4">{fill.price.toFixed(2)}</td>
+                        </tr>
+                      ))
+                    ) : (
+                      <tr>
+                        <td
+                          colSpan={3}
+                          className="px-4 py-7 text-center text-muted-foreground"
+                        >
+                          {result ? '本阶段无成交' : '暂无成交数据'}
+                        </td>
+                      </tr>
+                    )}
                   </tbody>
                 </table>
               </CardContent>

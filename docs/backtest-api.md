@@ -14,7 +14,7 @@ uv run --locked python -m arb_research.worker
 uv run --locked python -m arb_research.worker --once
 ```
 
-默认数据库是当前目录的 .state/backtests.sqlite3；API 与 worker 都可用 ARB_BACKTEST_DB 指定同一个绝对路径。worker 也支持 --db。此服务尚未做身份认证、租户隔离、托管部署或远程开放；保持 loopback。TanStack 的 /backtest 配置表单仍使用 UI stub；主图消费本服务完整 run 的录制文件，见 [回放说明](backtest-replay.md)。HTTP 创建请求发向研究服务的 8000 端口。
+默认数据库是当前目录的 .state/backtests.sqlite3；API 与 worker 都可用 ARB_BACKTEST_DB 指定同一个绝对路径。worker 也支持 --db。此服务尚未做身份认证、租户隔离、托管部署或远程开放；保持 loopback。TanStack 的 `/backtest` 默认通过同源 `/api/research` 代理调用此服务，表单创建真实 job，主图回放当前 run 的冻结 bars 与阶段结果。连接环境变量与启动方式见 [回测 UI](backtest-ui.md)。
 
 ## Dataset 绑定
 
@@ -39,7 +39,7 @@ POST /backtests，Content-Type: application/json：
 }
 ```
 
-返回 HTTP 202、Location: /backtests/{run_id} 和完整 run envelope。请求校验失败为 422，且不入队。未知 run 为 404。字段严格拒绝额外属性；快慢窗口为整数 1–1000 且 fast < slow，资金为 0.01–1e12 USD 且必须是整分，费用为 0–10000 bps，滑点为 0–10000 bps 的左闭右开区间（100% 滑点没有有效卖价）。UI 当前允许不足一分的资金和 10000 bps 滑点，接入时需收紧这两项边界。币种仅 USD，策略仅 sma_cross。
+返回 HTTP 202、Location: /backtests/{run_id} 和完整 run envelope。请求校验失败为 422，且不入队。未知 run 为 404。字段严格拒绝额外属性；快慢窗口为整数 1–1000 且 fast < slow，资金为 0.01–1e12 USD 且必须是整分，费用为 0–10000 bps，滑点为 0–10000 bps 的左闭右开区间（100% 滑点没有有效卖价）。UI 同步拒绝不足一分的资金和 10000 bps 滑点，服务端仍执行最终校验。币种仅 USD，策略仅 sma_cross。
 
 GET /backtests/{run_id} 返回：
 
