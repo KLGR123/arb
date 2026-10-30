@@ -1,0 +1,16 @@
+{
+  "fixture_kind": "synthetic_contract_not_live_evidence",
+  "as_of": "2026-10-30T00:00:00+00:00",
+  "polymarket": [{"venue":"polymarket","id":"p1","event_id":"e1","title":"Will Bitcoin exceed $100000 on October 31?","event_title":"Bitcoin","close_time":"2026-10-31T16:00:00Z","settlement_time":"2026-10-31T16:00:00Z","rules":"YES iff Bitcoin CF index is strictly above $100000 at 16:00 UTC October 31, 2026. Otherwise NO; no cancellations or ties.","resolution_source":"CF Benchmarks","protocol":"v2","active":true,"tokens":{"yes":"py","no":"pn"}}],
+  "kalshi": [{"venue":"kalshi","id":"KXBTC-TEST","event_id":"KXBTC-EVENT","title":"Bitcoin above $100000 on October 31?","event_title":"Bitcoin","close_time":"2026-10-31T16:00:00Z","settlement_time":"2026-10-31T16:00:00Z","rules":"YES iff Bitcoin CF index is strictly above $100000 at 16:00 UTC October 31, 2026. Otherwise NO; no cancellations or ties.","resolution_source":[{"name":"CF Benchmarks"}],"contract_terms_url":null,"active":true,"fee_type":"quadratic","fee_multiplier":"1"}],
+  "candidates":[{"poly_id":"p1","kalshi_id":"KXBTC-TEST","title_similarity":0.8,"close_gap_seconds":0}],
+  "poly_books":{
+    "py":{"asset_id":"py","timestamp":"2026-10-30T00:00:00Z","min_order_size":"1","bids":[{"price":"0.39","size":"20"}],"asks":[{"price":"0.40","size":"20"}]},
+    "pn":{"asset_id":"pn","timestamp":"2026-10-30T00:00:00Z","min_order_size":"1","bids":[{"price":"0.59","size":"20"}],"asks":[{"price":"0.60","size":"20"}]}
+  },
+  "poly_fees":{"p1":["0.07","clob"]},
+  "kalshi_books":{"KXBTC-TEST":{"received_at":"2026-10-30T00:00:00Z","raw":{"orderbook_fp":{"yes_dollars":[["0.55","7"]],"no_dollars":[["0.43","9"]]}}}},
+  "compliance":{"mode":"read_only","trading_allowed":false,"geoblock":{"blocked":true,"country":"CN"}},
+  "coverage":{"exhaustive":false,"fixture_kind":"synthetic_contract"},
+  "errors":[]
+}
