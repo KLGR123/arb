@@ -1,17 +1,8 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "source": "synthetic-fixture",
   "as_of": "2026-06-21T00:00:00Z",
   "currency": "pUSD",
-  "market": {
-    "event_id": "fixture-event-001",
-    "market_id": "fixture-market-001",
-    "token_id": "fixture-token-yes",
-    "question": "演示市场：研究指数将在 6 月末高于 100？",
-    "outcome": "YES",
-    "protocol_version": "v2",
-    "neg_risk": false
-  },
   "forecasts": [
     {
       "market_id": "fixture-resolved-001",
@@ -1621,5 +1612,70 @@
         }
       ]
     }
-  ]
+  ],
+  "event": {
+    "id": "fixture-event-001",
+    "slug": null,
+    "title": "合成研究事件",
+    "description": null,
+    "closed": false,
+    "tags": [],
+    "markets": [
+      {
+        "id": "fixture-market-001",
+        "event_id": "fixture-event-001",
+        "condition_id": "fixture-condition-001",
+        "slug": null,
+        "question": "演示市场：研究指数将在 6 月末高于 100？",
+        "rules": null,
+        "resolution_source": null,
+        "closed": false,
+        "protocol": "v2",
+        "neg_risk": false,
+        "neg_risk_group": null,
+        "tags": [],
+        "tokens": [
+          {
+            "id": "900719925474099312345678901",
+            "outcome": "YES",
+            "outcome_index": 0,
+            "protocol": "v2"
+          },
+          {
+            "id": "900719925474099312345678902",
+            "outcome": "NO",
+            "outcome_index": 1,
+            "protocol": "v2"
+          }
+        ]
+      }
+    ]
+  },
+  "market_id": "fixture-market-001",
+  "outcome_index": 0,
+  "prices": {
+    "data": [
+      {
+        "event_id": "fixture-event-001",
+        "market_id": "fixture-market-001",
+        "token_id": "900719925474099312345678901",
+        "timestamp": 1780272000,
+        "price": 0.5,
+        "resolution_seconds": 43200
+      }
+    ],
+    "next_offset": null
+  },
+  "resolutions": {
+    "data": [],
+    "missing_market_ids": [
+      "fixture-market-001"
+    ]
+  },
+  "compliance": null,
+  "quality": {
+    "collected_at": null,
+    "stale_after_seconds": 300,
+    "expected_price_interval_seconds": 43200
+  }
 }

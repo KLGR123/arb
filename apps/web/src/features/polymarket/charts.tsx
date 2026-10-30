@@ -254,7 +254,8 @@ export function PnlStack({ points }: { points: PnlPoint[] }) {
   )
   const min = Math.min(...negative, 0) - 10,
     max = Math.max(...positive, 1) + 10
-  const x = (i: number) => left + (i / (points.length - 1)) * (right - left)
+  const x = (i: number) =>
+    left + (i / Math.max(1, points.length - 1)) * (right - left)
   const y = (v: number) => bottom - ((v - min) / (max - min)) * (bottom - top)
   return (
     <Plot label="PnL 分解堆叠图：正收益在零线上方，费用与结算损失在下方，白线为净收益">
@@ -312,7 +313,13 @@ export function PnlStack({ points }: { points: PnlPoint[] }) {
   )
 }
 
-export function DepthChart({ snapshot }: { snapshot: BookSnapshot }) {
+export function DepthChart({
+  snapshot,
+  outcome,
+}: {
+  snapshot: BookSnapshot
+  outcome: string
+}) {
   const bids = depth(snapshot.bids, 'bid'),
     asks = depth(snapshot.asks, 'ask')
   const low = Math.min(...bids.map((b) => b.price)) - 0.01
@@ -370,7 +377,7 @@ export function DepthChart({ snapshot }: { snapshot: BookSnapshot }) {
         累计数量 / 份
       </text>
       <text x={right} y="326" fill="currentColor" textAnchor="end">
-        YES 价格 / pUSD →
+        {outcome} 价格 / pUSD →
       </text>
     </Plot>
   )

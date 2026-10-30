@@ -18,6 +18,7 @@
 ## 产品
 
 - `docs/compliance.md`：只读红线、交易拒绝开关、地区检测、审计与统一 guard 接入
+- `docs/frontend-data-contract.md`：前端 v2 类型与运行时校验、协议身份、空值、新鲜度及只读状态
 - `docs/polymarket-dashboard.md`：Polymarket 三视图、合成 fixture、前端契约与后端对齐假设
 - `docs/polymarket-data.md`：Polymarket 元数据、价格与结算同步、Parquet/DuckDB、只读 API 与 CLI
 - `docs/orderbook-recorder.md`：只读 CLOB market 录制、JSONL 原始事件、历史 L2 重建、缺口报告与 NAS 运行
