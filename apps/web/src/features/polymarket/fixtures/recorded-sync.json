@@ -1,5 +1,5 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "source": "recorded-sync",
   "as_of": "2026-10-29T16:41:16+00:00",
   "currency": "pUSD",
@@ -119,7 +119,61 @@
             "outcome_index": 1,
             "protocol": "v1"
           }
-        ]
+        ],
+        "asset_selection": {
+          "schema_version": "selected-assets.v1",
+          "protocol_version": "v1",
+          "status": "selected",
+          "reason": null,
+          "assets": [
+            {
+              "protocol_version": "v1",
+              "asset_kind": "ctf_token",
+              "asset_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138",
+              "ledger": "ConditionalTokens",
+              "chain_id": null,
+              "event_id": "27824",
+              "market_id": "553810",
+              "condition_id": "0x6a8c775d3a7ab901a5c4595dbc33478d654dc3b293be2b80fd64500cabbfcc37",
+              "raw_condition_id": "0x6a8c775d3a7ab901a5c4595dbc33478d654dc3b293be2b80fd64500cabbfcc37",
+              "outcome": "Yes",
+              "outcome_index": 0,
+              "module": null,
+              "source": "gamma",
+              "api_version": null,
+              "schema_version": "selected-assets.v1",
+              "sdk_version": "0.15.0",
+              "observed_at": "2026-10-29T16:41:16+00:00",
+              "received_at": "2026-10-29T16:41:16+00:00"
+            },
+            {
+              "protocol_version": "v1",
+              "asset_kind": "ctf_token",
+              "asset_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781",
+              "ledger": "ConditionalTokens",
+              "chain_id": null,
+              "event_id": "27824",
+              "market_id": "553810",
+              "condition_id": "0x6a8c775d3a7ab901a5c4595dbc33478d654dc3b293be2b80fd64500cabbfcc37",
+              "raw_condition_id": "0x6a8c775d3a7ab901a5c4595dbc33478d654dc3b293be2b80fd64500cabbfcc37",
+              "outcome": "No",
+              "outcome_index": 1,
+              "module": null,
+              "source": "gamma",
+              "api_version": null,
+              "schema_version": "selected-assets.v1",
+              "sdk_version": "0.15.0",
+              "observed_at": "2026-10-29T16:41:16+00:00",
+              "received_at": "2026-10-29T16:41:16+00:00"
+            }
+          ],
+          "raw_identity": {
+            "version": "v1",
+            "clobTokenIds": "[\"56606480957388905488783515430819601640929432353106353680720689974997213777138\", \"53676785636700157256852250095826025029451888648974703429616395645714952970781\"]",
+            "outcomes": "[\"Yes\", \"No\"]",
+            "conditionId": "0x6a8c775d3a7ab901a5c4595dbc33478d654dc3b293be2b80fd64500cabbfcc37"
+          }
+        }
       },
       {
         "id": "553811",
@@ -188,7 +242,61 @@
             "outcome_index": 1,
             "protocol": "v1"
           }
-        ]
+        ],
+        "asset_selection": {
+          "schema_version": "selected-assets.v1",
+          "protocol_version": "v1",
+          "status": "selected",
+          "reason": null,
+          "assets": [
+            {
+              "protocol_version": "v1",
+              "asset_kind": "ctf_token",
+              "asset_id": "78970393675220813117457137074949547635027336958817818487077806376171274244367",
+              "ledger": "ConditionalTokens",
+              "chain_id": null,
+              "event_id": "27824",
+              "market_id": "553811",
+              "condition_id": "0x53f82bd52566e30ae3f8131cb92095dd92ecdf2b0204af0edc226ee194e923fe",
+              "raw_condition_id": "0x53f82bd52566e30ae3f8131cb92095dd92ecdf2b0204af0edc226ee194e923fe",
+              "outcome": "Yes",
+              "outcome_index": 0,
+              "module": null,
+              "source": "gamma",
+              "api_version": null,
+              "schema_version": "selected-assets.v1",
+              "sdk_version": "0.15.0",
+              "observed_at": "2026-10-29T16:41:16+00:00",
+              "received_at": "2026-10-29T16:41:16+00:00"
+            },
+            {
+              "protocol_version": "v1",
+              "asset_kind": "ctf_token",
+              "asset_id": "39843382223032680172636234017143696377311711066819162700626001781924811983436",
+              "ledger": "ConditionalTokens",
+              "chain_id": null,
+              "event_id": "27824",
+              "market_id": "553811",
+              "condition_id": "0x53f82bd52566e30ae3f8131cb92095dd92ecdf2b0204af0edc226ee194e923fe",
+              "raw_condition_id": "0x53f82bd52566e30ae3f8131cb92095dd92ecdf2b0204af0edc226ee194e923fe",
+              "outcome": "No",
+              "outcome_index": 1,
+              "module": null,
+              "source": "gamma",
+              "api_version": null,
+              "schema_version": "selected-assets.v1",
+              "sdk_version": "0.15.0",
+              "observed_at": "2026-10-29T16:41:16+00:00",
+              "received_at": "2026-10-29T16:41:16+00:00"
+            }
+          ],
+          "raw_identity": {
+            "version": "v1",
+            "clobTokenIds": "[\"78970393675220813117457137074949547635027336958817818487077806376171274244367\", \"39843382223032680172636234017143696377311711066819162700626001781924811983436\"]",
+            "outcomes": "[\"Yes\", \"No\"]",
+            "conditionId": "0x53f82bd52566e30ae3f8131cb92095dd92ecdf2b0204af0edc226ee194e923fe"
+          }
+        }
       },
       {
         "id": "553812",
@@ -257,7 +365,61 @@
             "outcome_index": 1,
             "protocol": "v1"
           }
-        ]
+        ],
+        "asset_selection": {
+          "schema_version": "selected-assets.v1",
+          "protocol_version": "v1",
+          "status": "selected",
+          "reason": null,
+          "assets": [
+            {
+              "protocol_version": "v1",
+              "asset_kind": "ctf_token",
+              "asset_id": "93649474745035786731233919003082633017639813911207879453624389467235918905276",
+              "ledger": "ConditionalTokens",
+              "chain_id": null,
+              "event_id": "27824",
+              "market_id": "553812",
+              "condition_id": "0x6ef34d5c7937cb8a1eb22234ddce8fe3eb1595e1f35c7d4f2101c58f3506e580",
+              "raw_condition_id": "0x6ef34d5c7937cb8a1eb22234ddce8fe3eb1595e1f35c7d4f2101c58f3506e580",
+              "outcome": "Yes",
+              "outcome_index": 0,
+              "module": null,
+              "source": "gamma",
+              "api_version": null,
+              "schema_version": "selected-assets.v1",
+              "sdk_version": "0.15.0",
+              "observed_at": "2026-10-29T16:41:16+00:00",
+              "received_at": "2026-10-29T16:41:16+00:00"
+            },
+            {
+              "protocol_version": "v1",
+              "asset_kind": "ctf_token",
+              "asset_id": "20248532312255939043525932145429175719961770380347060601058184144030320732306",
+              "ledger": "ConditionalTokens",
+              "chain_id": null,
+              "event_id": "27824",
+              "market_id": "553812",
+              "condition_id": "0x6ef34d5c7937cb8a1eb22234ddce8fe3eb1595e1f35c7d4f2101c58f3506e580",
+              "raw_condition_id": "0x6ef34d5c7937cb8a1eb22234ddce8fe3eb1595e1f35c7d4f2101c58f3506e580",
+              "outcome": "No",
+              "outcome_index": 1,
+              "module": null,
+              "source": "gamma",
+              "api_version": null,
+              "schema_version": "selected-assets.v1",
+              "sdk_version": "0.15.0",
+              "observed_at": "2026-10-29T16:41:16+00:00",
+              "received_at": "2026-10-29T16:41:16+00:00"
+            }
+          ],
+          "raw_identity": {
+            "version": "v1",
+            "clobTokenIds": "[\"93649474745035786731233919003082633017639813911207879453624389467235918905276\", \"20248532312255939043525932145429175719961770380347060601058184144030320732306\"]",
+            "outcomes": "[\"Yes\", \"No\"]",
+            "conditionId": "0x6ef34d5c7937cb8a1eb22234ddce8fe3eb1595e1f35c7d4f2101c58f3506e580"
+          }
+        }
       },
       {
         "id": "553813",
@@ -326,7 +488,61 @@
             "outcome_index": 1,
             "protocol": "v1"
           }
-        ]
+        ],
+        "asset_selection": {
+          "schema_version": "selected-assets.v1",
+          "protocol_version": "v1",
+          "status": "selected",
+          "reason": null,
+          "assets": [
+            {
+              "protocol_version": "v1",
+              "asset_kind": "ctf_token",
+              "asset_id": "60156625646569576964584621291475860303247825215466310280401996727843189574431",
+              "ledger": "ConditionalTokens",
+              "chain_id": null,
+              "event_id": "27824",
+              "market_id": "553813",
+              "condition_id": "0xd6e0317cee513cc3afdc1954ac576b241ad2287536e88b17fd3a77b4c3d0976e",
+              "raw_condition_id": "0xd6e0317cee513cc3afdc1954ac576b241ad2287536e88b17fd3a77b4c3d0976e",
+              "outcome": "Yes",
+              "outcome_index": 0,
+              "module": null,
+              "source": "gamma",
+              "api_version": null,
+              "schema_version": "selected-assets.v1",
+              "sdk_version": "0.15.0",
+              "observed_at": "2026-10-29T16:41:16+00:00",
+              "received_at": "2026-10-29T16:41:16+00:00"
+            },
+            {
+              "protocol_version": "v1",
+              "asset_kind": "ctf_token",
+              "asset_id": "75662380910516595836713877605277832183886163391379455962356909608435996726535",
+              "ledger": "ConditionalTokens",
+              "chain_id": null,
+              "event_id": "27824",
+              "market_id": "553813",
+              "condition_id": "0xd6e0317cee513cc3afdc1954ac576b241ad2287536e88b17fd3a77b4c3d0976e",
+              "raw_condition_id": "0xd6e0317cee513cc3afdc1954ac576b241ad2287536e88b17fd3a77b4c3d0976e",
+              "outcome": "No",
+              "outcome_index": 1,
+              "module": null,
+              "source": "gamma",
+              "api_version": null,
+              "schema_version": "selected-assets.v1",
+              "sdk_version": "0.15.0",
+              "observed_at": "2026-10-29T16:41:16+00:00",
+              "received_at": "2026-10-29T16:41:16+00:00"
+            }
+          ],
+          "raw_identity": {
+            "version": "v1",
+            "clobTokenIds": "[\"60156625646569576964584621291475860303247825215466310280401996727843189574431\", \"75662380910516595836713877605277832183886163391379455962356909608435996726535\"]",
+            "outcomes": "[\"Yes\", \"No\"]",
+            "conditionId": "0xd6e0317cee513cc3afdc1954ac576b241ad2287536e88b17fd3a77b4c3d0976e"
+          }
+        }
       }
     ]
   },

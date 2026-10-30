@@ -1,5 +1,5 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "source": "synthetic-fixture",
   "as_of": "2026-06-21T00:00:00Z",
   "currency": "pUSD",
@@ -1647,7 +1647,67 @@
             "outcome_index": 1,
             "protocol": "v2"
           }
-        ]
+        ],
+        "asset_selection": {
+          "schema_version": "selected-assets.v1",
+          "protocol_version": "v2",
+          "status": "selected",
+          "reason": null,
+          "assets": [
+            {
+              "protocol_version": "v2",
+              "asset_kind": "position",
+              "asset_id": "900719925474099312345678901",
+              "ledger": "PositionManager",
+              "chain_id": null,
+              "event_id": "fixture-event-001",
+              "market_id": "fixture-market-001",
+              "condition_id": "fixture-condition-001",
+              "raw_condition_id": "fixture-condition-001",
+              "outcome": "YES",
+              "outcome_index": 0,
+              "module": null,
+              "source": "gamma",
+              "api_version": null,
+              "schema_version": "selected-assets.v1",
+              "sdk_version": "0.15.0",
+              "observed_at": null,
+              "received_at": null
+            },
+            {
+              "protocol_version": "v2",
+              "asset_kind": "position",
+              "asset_id": "900719925474099312345678902",
+              "ledger": "PositionManager",
+              "chain_id": null,
+              "event_id": "fixture-event-001",
+              "market_id": "fixture-market-001",
+              "condition_id": "fixture-condition-001",
+              "raw_condition_id": "fixture-condition-001",
+              "outcome": "NO",
+              "outcome_index": 1,
+              "module": null,
+              "source": "gamma",
+              "api_version": null,
+              "schema_version": "selected-assets.v1",
+              "sdk_version": "0.15.0",
+              "observed_at": null,
+              "received_at": null
+            }
+          ],
+          "raw_identity": {
+            "version": "v2",
+            "positionIds": [
+              "900719925474099312345678901",
+              "900719925474099312345678902"
+            ],
+            "outcomes": [
+              "YES",
+              "NO"
+            ],
+            "conditionId": "fixture-condition-001"
+          }
+        }
       }
     ]
   },

@@ -1,13 +1,13 @@
 # 前端数据契约（ARB-24 / ARB-26）
 
-展示契约 **schema_version=2**，基于 ARB-7 `research/src/arb_research/polymarket/models.py`、`polymarket/api.py`、ARB-6 `compliance.py` 与 [ARB-18 协议评估](polymarket-protocol-v2.md)（2026-10-30）。实现：`apps/web/src/features/polymarket/contract.ts`，zod 运行时校验并推导 TS 类型。这里只消费仓库已有本地契约；没有新增上游请求、认证或交易入口。
+展示契约 **schema_version=3**，基于 ARB-7 `research/src/arb_research/polymarket/models.py`、`polymarket/api.py`、ARB-6 `compliance.py` 与 [ARB-18 协议评估](polymarket-protocol-v2.md)（2026-10-30）。实现：`apps/web/src/features/polymarket/contract.ts`，zod 运行时校验并推导 TS 类型。这里只消费仓库已有本地契约；没有新增上游请求、认证或交易入口。
 
 ## 来源与命名
 
 | 展示字段 / schema | 来源与语义 |
 | --- | --- |
-| `event` / eventSchema、marketSchema、tokenSchema | ARB-7 本地事件/市场响应。`id/event_id/condition_id/protocol/tokens` 原样保留。nullable 标签、规则、closed、neg_risk 不补默认真假值 |
-| `market_id/outcome_index` | UI 选择器；必须引用 event 内的市场。按市场显式 protocol 匹配 tokens，再按 outcome_index 选资产 |
+| `event` / eventSchema、marketSchema、tokenSchema | ARB-7 本地事件/市场响应。`id/event_id/condition_id/protocol/tokens/asset_selection` 原样保留。nullable 标签、规则、closed、neg_risk 不补默认真假值 |
+| `market_id/outcome_index` | UI 选择器；必须引用 event 内的市场。读取 market.asset_selection 的合格 assets，再按 outcome_index 选资产 |
 | `prices` / historySchema | ARB-7 本地 prices 响应。`next_offset` 是本地分页，不是上游 `/v2` envelope 的 cursor；非 null 表示尚未读完 |
 | `prices.data[].token_id` | 后端通用资产键，V1 为 CTF token，V2 为 position。十进制字符串，禁止 JS Number 中转。UI 按协议显示 token_id / position_id |
 | `timestamp/price/resolution_seconds` | Unix **秒**、pUSD/share 的 [0,1] 展示浮点、桶精度秒数（0 为精确点）。渲染图表时才转换为毫秒；不声称精确会计或可成交报价 |
@@ -18,7 +18,7 @@
 | `forecasts/pnl/book` | ARB-7 未提供，真实包必须为空。仅 synthetic-fixture 可包含 ARB-13 合成研究序列；禁止混入真实来源 |
 | `source/provenance` | local-sync 为本地存储导出；recorded-sync 为真实生产响应经 ARB-7 离线重放，附录制时间和原文件 SHA-256；synthetic-fixture 仅离线测试显式启用 |
 
-Protocol V1/V2、CLOB V2、Data API v2 和本展示 schema v2 是不同版本轴。CTF 与 V2 position 可同时存在；`selectedAsset` 只选市场协议对应账本，不在缺失时退回另一种 ID。未知协议、重复 ID/outcome/index 或缺失匹配资产会被隔离，价格显示 —。schema 拒绝非字符串 ID、非法概率、非有限数、错误时间、关联冲突、旧字段和未知展示包络字段。
+Protocol V1/V2、CLOB V2、Data API v2 和本展示 schema v3 是不同版本轴。CTF 与 V2 position 可同时存在；共享解析器只选市场协议对应账本；`selectedAsset` 校验并读取后端 asset_selection，不从 tokens 重建或回退。未知协议、重复 ID/outcome/index 或缺失匹配资产会被隔离，价格显示 —。schema 拒绝非字符串 ID、非法概率、非有限数、错误时间、关联冲突、旧字段和未知展示包络字段。
 
 ## 数据质量与边界
 
@@ -29,6 +29,8 @@ Protocol V1/V2、CLOB V2、Data API v2 和本展示 schema v2 是不同版本轴
 geoblock blocked=true 只允许继续展示公共只读数据；error 或没有检查结果保持拒绝。地区未受限也不会开放交易。所有真实交易权限仍由现有 `arb_research.compliance` 决定，前端不替代 guard。本票未修改该 guard。
 
 ## 迁移与验证
+
+展示 schema 2 → 3：market 新增必需的 asset_selection（selected-assets.v1），asset_id 在整个 JSON/TS/SSR 路径保持字符串。旧展示包络需重新组合，旧 ARB-7 本地 metadata 应先重新 sync，不能在前端从 tokens 自动补视图。隔离视图保留 reason，资产与盘口不显示可消费数据。共享实现和字段语义见 [只读数据层](polymarket-data.md#共享所选资产视图arb-27)。
 
 旧展示 v1 的 `market.protocol_version`、统一 `market.token_id` 与非十进制 fixture-token 已移除；改用 ARB-7 `event.markets[].protocol/tokens`。不提供自动猜测 v1→v2 的迁移；旧持久化包络应重新生成。ARB-26 已扩展 source，真实包先验证本地响应再组合展示包络。上游 Gamma 的 clobTokenIds/positionIds 与 Data envelope 必须先经 ARB-7 适配，不能直接传给本 schema。
 

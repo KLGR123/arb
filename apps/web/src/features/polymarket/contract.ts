@@ -21,6 +21,34 @@ export const tokenSchema = z.strictObject({
   outcome_index: z.number().int().nonnegative(),
   protocol,
 })
+export const selectedAssetSchema = z.strictObject({
+  protocol_version: z.enum(['v1', 'v2']),
+  asset_kind: z.enum(['ctf_token', 'position']),
+  asset_id: decimalId,
+  ledger: z.enum(['ConditionalTokens', 'PositionManager']),
+  chain_id: text.nullable(),
+  event_id: text,
+  market_id: text,
+  condition_id: text,
+  raw_condition_id: text,
+  outcome: text,
+  outcome_index: z.number().int().nonnegative(),
+  module: text.nullable(),
+  source: text,
+  api_version: text.nullable(),
+  schema_version: z.literal('selected-assets.v1'),
+  sdk_version: text,
+  observed_at: time.nullable(),
+  received_at: time.nullable(),
+})
+export const assetSelectionSchema = z.strictObject({
+  schema_version: z.literal('selected-assets.v1'),
+  protocol_version: protocol,
+  status: z.enum(['selected', 'quarantined']),
+  reason: text.nullable(),
+  assets: z.array(selectedAssetSchema),
+  raw_identity: z.record(z.string(), z.unknown()),
+})
 export const marketSchema = z.strictObject({
   id: text,
   event_id: text,
@@ -35,6 +63,7 @@ export const marketSchema = z.strictObject({
   neg_risk_group: z.string().nullable(),
   tags: z.array(tag),
   tokens: z.array(tokenSchema),
+  asset_selection: assetSelectionSchema,
 })
 export const eventSchema = z
   .strictObject({
@@ -157,11 +186,11 @@ const bookSchema = z
       ctx.addIssue({ code: 'custom', message: 'Crossed book snapshot' })
   })
 
-// Display contract v2 composes backend objects without renaming their fields.
+// Display contract v3 composes backend objects without renaming their fields.
 // Freshness metadata is UI-owned: ARB-7 does not yet expose collection times.
 export const dashboardSchema = z
   .strictObject({
-    schema_version: z.literal(2),
+    schema_version: z.literal(3),
     source: z.enum(['synthetic-fixture', 'local-sync', 'recorded-sync']),
     as_of: time,
     currency: z.literal('pUSD'),
@@ -205,7 +234,7 @@ export const dashboardSchema = z
         (p) =>
           p.event_id !== data.event.id ||
           p.market_id !== market.id ||
-          !market.tokens.some((t) => t.id === p.token_id),
+          !market.asset_selection.assets.some((a) => a.asset_id === p.token_id),
       )
     )
       ctx.addIssue({
@@ -259,17 +288,26 @@ export const dashboardResultSchema = z.discriminatedUnion('status', [
 ])
 
 export function selectedAsset(market: Market, outcomeIndex: number) {
-  if (market.protocol === 'unknown') return null
-  const tokens = market.tokens.filter((t) => t.protocol === market.protocol)
-  // Historical CTF IDs may coexist with positions. Never fall back across ledgers.
-  if (
-    !tokens.length ||
-    new Set(tokens.map((t) => t.id)).size !== tokens.length ||
-    new Set(tokens.map((t) => t.outcome_index)).size !== tokens.length ||
-    new Set(tokens.map((t) => t.outcome.toLowerCase())).size !== tokens.length
-  )
-    return null
-  return tokens.find((t) => t.outcome_index === outcomeIndex) ?? null
+  const view = market.asset_selection
+  if (market.protocol === 'unknown' || view.protocol_version !== market.protocol ||
+      view.status !== 'selected' || view.reason !== null) return null
+  const assets = view.assets
+  // Validate the published view; never reconstruct it from historical tokens.
+  if (assets.length !== 2 ||
+      new Set(assets.map((a) => a.asset_id.replace(/^0+/, '') || '0')).size !== 2 ||
+      new Set(assets.map((a) => a.outcome_index)).size !== 2 ||
+      new Set(assets.map((a) => a.outcome.trim().toLowerCase())).size !== 2 ||
+      assets.some((a) =>
+        !/^[0-9]+$/.test(a.asset_id) || !a.outcome.trim() ||
+        ![0, 1].includes(a.outcome_index) ||
+        a.protocol_version !== market.protocol ||
+        a.market_id !== market.id || a.event_id !== market.event_id ||
+        a.raw_condition_id !== market.condition_id ||
+        a.condition_id !== market.condition_id.toLowerCase() ||
+        a.asset_kind !== (market.protocol === 'v1' ? 'ctf_token' : 'position') ||
+        a.ledger !== (market.protocol === 'v1' ? 'ConditionalTokens' : 'PositionManager')
+      )) return null
+  return assets.find((a) => a.outcome_index === outcomeIndex) ?? null
 }
 
 export function marketFor(data: Dashboard) {
@@ -280,7 +318,7 @@ export function latestPrice(data: Dashboard) {
   const asset = selectedAsset(marketFor(data), data.outcome_index)
   if (!asset) return null
   return data.prices.data
-    .filter((p) => p.token_id === asset.id)
+    .filter((p) => p.token_id === asset.asset_id)
     .reduce<PriceRow | null>(
       (latest, p) => (!latest || p.timestamp > latest.timestamp ? p : latest),
       null,
@@ -316,7 +354,7 @@ export function qualityMessages(data: Dashboard, referenceTime = data.as_of) {
   else if (data.source !== 'synthetic-fixture' && data.quality.sync_incomplete == null)
     messages.push('同步完成状态未知，ARB-7 未持久化完成回执；当前数据可能不完整。')
   const asset = selectedAsset(marketFor(data), data.outcome_index)
-  const rows = data.prices.data.filter((p) => p.token_id === asset?.id)
+  const rows = data.prices.data.filter((p) => p.token_id === asset?.asset_id)
     .sort((a, b) => a.timestamp - b.timestamp)
   if (rows.some((row, i) => i > 0 && rows[i - 1].resolution_seconds > 0 &&
     row.timestamp - rows[i - 1].timestamp > rows[i - 1].resolution_seconds +

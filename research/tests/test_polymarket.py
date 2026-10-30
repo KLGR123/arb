@@ -76,7 +76,7 @@ def test_metadata_protocol_tokens_rules_tags_split_settlement(tmp_path):
         assert market.neg_risk_group == replay.fixture["event"]["negRiskMarketID"]
         assert market.protocol == "v2" and market.rules.startswith("Resolve according")
         assert [(t.id, t.protocol) for t in market.tokens] == [
-            ("300", "v1"), ("400", "v2"), ("301", "v1"), ("401", "v2")]
+            ("300", "v1"), ("301", "v1"), ("400", "v2"), ("401", "v2")]
         resolution = api.resolutions(event)[0]
         assert resolution.payouts == [0.5, 0.5] and resolution.split_50_50
         assert resolution.was_disputed and resolution.status == "resolved"
@@ -86,11 +86,11 @@ def test_metadata_protocol_tokens_rules_tags_split_settlement(tmp_path):
 
 def test_sync_resume_idempotence_incremental_and_offline_queries(tmp_path, capsys):
     replay, store = Replay(), DataStore(tmp_path / "data")
-    replay.fail_token, replay.fail_cursor = "300", "opaque-page-2"
+    replay.fail_token, replay.fail_cursor = "400", "opaque-page-2"
     with client(tmp_path, replay) as api:
         with pytest.raises(UpstreamError):
             sync_event(api, store, "100", now=NOW)
-        assert store.checkpoint("300")["pending"]["cursor"] == "opaque-page-2"
+        assert store.checkpoint("unknown:PositionManager:400")["pending"]["cursor"] == "opaque-page-2"
         assert len(store.history(store.event("100")).data) == 1
         replay.fail_token = None
         replay.requests.clear()
@@ -100,23 +100,23 @@ def test_sync_resume_idempotence_incremental_and_offline_queries(tmp_path, capsy
         prices = [r for r in replay.requests if r.url.path == "/v2/prices-history"]
         assert prices[0].url.params["cursor"] == "opaque-page-2"
         assert result.empty_token_ids == [] and result.missing_resolution_market_ids == []
-        assert len(store.history(store.event("100")).data) == 8
+        assert len(store.history(store.event("100")).data) == 4
         replay.requests.clear()
         sync_event(api, store, "100", now=NOW)
         assert not any(r.url.path == "/v2/prices-history" for r in replay.requests)
-        assert len(store.history(store.event("100")).data) == 8
+        assert len(store.history(store.event("100")).data) == 4
         sync_event(api, store, "100", now=NOW+WINDOW*2)
         windows = [r.url.params for r in replay.requests if "start" in r.url.params]
         assert windows and all(int(p["end"])-int(p["start"]) <= WINDOW for p in windows)
-        assert store.checkpoint("300")["through"] == NOW+WINDOW*2
-        assert len(store.history(store.event("100")).data) == 8
+        assert store.checkpoint("unknown:PositionManager:400")["through"] == NOW+WINDOW*2
+        assert len(store.history(store.event("100")).data) == 4
     with TestClient(create_app(str(store.root))) as app:
         assert app.get("/events/contract-event").json()["id"] == "100"
         assert app.get("/markets/200").json()["tokens"][0]["id"] == "300"
         first = app.get("/events/100/prices", params={"limit": 3}).json()
         second = app.get("/events/100/prices", params={"limit": 10, "offset": first["next_offset"]}).json()
-        assert len(first["data"])+len(second["data"]) == 8
-        assert app.get("/markets/200/prices?token_id=300").json()["data"][0]["price"] == 0.25
+        assert len(first["data"])+len(second["data"]) == 4
+        assert app.get("/markets/200/prices?token_id=400").json()["data"][0]["price"] == 0.25
         assert app.get("/events/100/resolutions").json()["data"][0]["split_50_50"]
         assert app.get("/markets/200/resolutions").status_code == 200
         assert app.get("/events/100/prices?start=4&end=3").status_code == 422
@@ -136,22 +136,23 @@ def test_failed_manifest_commit_orphan_is_invisible_and_replay_safe(tmp_path):
     with client(tmp_path, replay) as api:
         event = api.event("100")
     store.put_event(event)
+    asset = event.markets[0].asset_selection.assets[0]
     with store.connect() as db:
         db.execute("""CREATE TRIGGER fail_checkpoint BEFORE INSERT ON checkpoints
                       BEGIN SELECT RAISE(ABORT, 'injected crash'); END""")
     page = PricePage(data=[PricePoint(timestamp=1793000000, price=0.25, resolution_seconds=43200)])
     with pytest.raises(sqlite3.IntegrityError):
-        store.commit_page("200", "300", page, {"through": NOW, "pending": None})
+        store.commit_page("200", "400", page, {"through": NOW, "pending": None}, asset=asset)
     assert list(store.root.rglob("*.parquet"))
     assert store.history(event).data == []
-    assert store.checkpoint("300")["through"] == 0
+    assert store.checkpoint("unknown:PositionManager:400")["through"] == 0
     with store.connect() as db:
         db.execute("DROP TRIGGER fail_checkpoint")
-    store.commit_page("200", "300", page, {"through": NOW, "pending": None})
+    store.commit_page("200", "400", page, {"through": NOW, "pending": None}, asset=asset)
     assert len(store.history(event).data) == 1
     # Latest overlapping correction wins without returning duplicate points.
     page.data[0].price = 0.3
-    store.commit_page("200", "300", page, {"through": NOW, "pending": None})
+    store.commit_page("200", "400", page, {"through": NOW, "pending": None}, asset=asset)
     assert [p.price for p in store.history(event).data] == [0.3]
 
 
@@ -186,7 +187,7 @@ def test_missing_data_and_resolution_refresh_never_infer_settled_from_closed(tmp
     replay.fixture["resolutions"] = {"data": []}
     with client(tmp_path, replay) as api:
         result = sync_event(api, store, "100", now=NOW)
-        assert len(result.empty_token_ids) == 4
+        assert len(result.empty_token_ids) == 2
         assert result.missing_resolution_market_ids == ["200"]
         assert store.resolutions(store.event("100")).data == []
         replay.fixture["resolutions"] = copy.deepcopy(FIXTURE["resolutions"])
@@ -214,12 +215,12 @@ def test_pagination_cycles_and_malformed_points_do_not_advance_checkpoint(tmp_pa
     with client(tmp_path, replay) as api:
         with pytest.raises(UpstreamError, match="Repeated"):
             sync_event(api, store, "100", now=NOW)
-        assert store.checkpoint("300")["pending"]["cursor"] == "opaque-page-2"
+        assert store.checkpoint("unknown:PositionManager:400")["pending"]["cursor"] == "opaque-page-2"
         replay.fixture["prices"][1] = copy.deepcopy(FIXTURE["prices"][1])
         replay.fixture["prices"][1]["data"][0]["price"] = float("inf")
         with pytest.raises(ValueError):
             sync_event(api, store, "100", now=NOW)
-        assert store.checkpoint("300")["through"] == 0
+        assert store.checkpoint("unknown:PositionManager:400")["through"] == 0
 
 
 def test_writer_exclusion(tmp_path):

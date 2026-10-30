@@ -63,7 +63,7 @@ test('empty views render safely and an empty book side retains replay controls',
 })
 
 test('runtime validation rejects old envelopes, lossy IDs, invalid numbers and times', () => {
-  expect(dashboard.schema_version).toBe(2)
+  expect(dashboard.schema_version).toBe(3)
   for (const mutate of [
     (d: any) => {
       d.schema_version = 1
@@ -109,20 +109,16 @@ test('runtime validation rejects old envelopes, lossy IDs, invalid numbers and t
   expect(historySchema.parse({ data: [], next_offset: null }).data).toEqual([])
 })
 
-test('asset selection uses explicit protocol and quarantines unknown or ambiguous identity', () => {
+test('asset selection consumes the shared view and never falls back to historical tokens', () => {
   const market = structuredClone(marketFor(dashboard))
-  const position = market.tokens[0]
-  const ctf = { ...position, id: '42', protocol: 'v1' as const }
-  market.tokens.unshift(ctf)
-  expect(selectedAsset(market, 0)?.id).toBe('900719925474099312345678901')
-  market.protocol = 'v1'
-  expect(selectedAsset(market, 0)?.id).toBe('42')
+  market.tokens = []
+  expect(selectedAsset(market, 0)?.asset_id).toBe('900719925474099312345678901')
   market.protocol = 'unknown'
   expect(selectedAsset(market, 0)).toBeNull()
-  market.protocol = 'v2'
-  market.tokens = [ctf]
+  market.protocol = 'v1'
   expect(selectedAsset(market, 0)).toBeNull()
-  market.tokens = [position, { ...position, id: '43' }]
+  market.protocol = 'v2'
+  market.asset_selection.assets.push(market.asset_selection.assets[0])
   expect(selectedAsset(market, 0)).toBeNull()
 })
 

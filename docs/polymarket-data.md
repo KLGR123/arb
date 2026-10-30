@@ -46,11 +46,25 @@ npx openapi-typescript http://127.0.0.1:8001/openapi.json -o .state/polymarket-a
 
 结算 `status` 保留上游生命周期，如 proposed、challenged、disputed、arbitration、resolved。Gamma `closed` 不能推断已结算。`payouts` 经官方 SDK 从微单位转换为 pUSD/share；UMA 行可能只有原始 `price`（1e18 刻度）而无 payouts，这时保留 payouts=null。`split_50_50` 仅在 resolved 且两个 payout 都为 0.5、或 UMA 最终 price 为 5e17 时为 true。`price/proposed_price/reproposed_price` 保留上游数值字符串，不与 pUSD 单价混用；69 unset 经 SDK 转为 null。`raw` 保留公共结算原始行，包括来源、争议和最终性字段。缺失数值保持 `null`，不转成零；pUSD 近似 USD。
 
+## 共享所选资产视图（ARB-27）
+
+`polymarket/assets.py:select_assets` 是 Gamma 身份的唯一选择入口。扫描器与 ARB-7 同步均调用它；本地 market 响应发布 `asset_selection`，看板展示 schema 3 直接消费该视图。历史 `tokens` 仅作追溯，不能用来重选资产。
+
+`asset_selection` 的 schema 为 `selected-assets.v1`，含 `protocol_version`、`status`、`reason`、`assets` 和 `raw_identity`。只有显式字符串 `version="v1"` 选择 `clobTokenIds`，`version="v2"` 选择 `positionIds`。两类同时存在也只验证/消费所选一类；无版本或未知值整市场隔离，assets 为空。原始 version、outcomes 和两类 ID 保留在 raw_identity；数值型 ID 即使在 Python 中精确也拒绝，不能转成字符串掩盖上游类型错误。
+
+每个所选资产包含十进制字符串 `asset_id`、`asset_kind`（ctf_token/position）、`ledger`（ConditionalTokens/PositionManager，逻辑账本名称，非合约地址）、chain_id（缺失为 null）、event/market、原始和小写 condition、outcome 及其原数组索引、module、source、API/schema/SDK version、observed_at/received_at。Gamma 无显式 API 版本时 api_version=null；module 缺失保持 null，不从 ID 推断。现场读取的 observed_at/received_at 是本机接收时间，不是上游事件时间；离线扫描只知道快照 as_of，received_at 保持 null。费用、tick 及其有效期仍由各消费者的独立数据契约提供，本身份视图不证明交易资格。
+
+二元 outcome 必须恰好两个非空且不重复，ID 数量必须匹配，ID 必须为 ASCII 十进制字符串且不重复；乱序按原始索引配对，不把第一项当成 YES。失败原因如 missing_protocol_version、unknown_protocol_version、invalid_binary_outcomes、invalid_decimal_asset_id_string 会写入视图；同步输出 `quarantined_markets`，这些市场不请求价格。扫描器在请求盘口前拒绝隔离资产，报告 schema 1.1 的每个已分析市场附同一 asset_selection。V2 negRisk 估值沿用 ARB-28 的资格规则：要求显式 `module="neg_risk"`，缺失/未知模块输出 `unsupported_or_missing_negrisk_module`，Combo 输出 `unsupported_combo_module`；数字模块、其他模块及未验证 moduleAddress 均拒绝，不推断转换资格。
+
+价格断点按 chain/ledger/asset 区分；新 Parquet 行保存 chain/ledger，查询在分页和去重前过滤当前所选账本和资产。旧数据不会删除，但旧裸 ID 断点和没有账本字段的历史行不会被猜测复用。旧 metadata 没有 asset_selection 时默认隔离，reason=identity_view_missing_resync_required；重新执行上述 sync 命令生成合格视图并从新的账本断点抓取。记录的历史报告保持原版本；新结果不宣称与旧 schema 字节相同。
+
+跨语言 fixture：`research/tests/fixtures/selected-assets.json` 同时由 pytest 与 Playwright 的 TypeScript 契约测试读取，覆盖 v1/v2、双 ID、缺失/未知版本、outcome 乱序/缺失/重复、非法/数值 ID 和大于 53-bit 的字符串。离线 HTTP→同步→存储→FastAPI 测试验证同一所选资产与隔离路径；不使用网络。
+
 ## 同步与存储
 
 - Gamma 按事件 ID/slug 读取，再逐市场补全详情及 tags。保留规则原文，不执行规则文本。negRisk 市场关联上游组 ID。`version` 缺失记为 `unknown`，不根据创建时间推断。历史 CTF token 与 V2 position token 分别标为 `v1`/`v2`；所有 Data 请求仍走 `/v2/`，不使用废弃接口。
 - 首次每个 token 请求 `interval=max&bucket_seconds=43200` 并跟随全部游标。完整历史指官方可提供的全生命周期 **12 小时桶** 序列及终点，不代表逐笔、分钟、盘口或每桶均有数据。每个点的 `resolution_seconds` 为实际精度，0 表示精确时间点。
-- 后续按完成时间水位增量同步，回看 24 小时刷新末端桶，显式窗口最多 15 天。上游窗口 `end` 不包含在内。按 `(market_id, token_id, timestamp, resolution_seconds)` 去重，修订取后写入值。同一完成水位重复执行不再请求价格，元数据和结算仍刷新。
+- 后续按完成时间水位增量同步，回看 24 小时刷新末端桶，显式窗口最多 15 天。上游窗口 `end` 不包含在内。在所选 chain/ledger 内按 `(market_id, token_id, timestamp, resolution_seconds)` 去重，修订取后写入值。同一完成水位重复执行不再请求价格，元数据和结算仍刷新。
 - 每页持久保存请求参数、下一游标、目标水位。中断后从已提交游标恢复；上游拒绝游标时报错并保留进度，不默默跳过。未提供强制清空/全量重抓命令，先诊断游标失效原因。
 - 空价格序列会记录完成水位，但同步结果列出 `empty_token_ids`；缺失结算列出 `missing_resolution_market_ids`。这些缺口不能作为完整数据验收成功；后续同步重新查询最近窗口和结算。
 - 价格文件为 `prices/market=<id>/date=<UTC-date>/*.parquet`（Zstd）。SQLite 保存元数据、结算、文件清单和水位，DuckDB 查询已提交的 Parquet。文件落盘后，在同一 SQLite 事务中发布清单和水位。崩溃后未入清单的孤立文件不参与查询；重复/重叠页不在查询结果产生重复行。物理压缩及孤立文件清理尚未实现。

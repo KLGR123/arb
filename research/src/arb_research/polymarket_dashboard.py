@@ -16,6 +16,7 @@ from pathlib import Path
 from urllib.parse import parse_qsl, urlsplit
 
 from .polymarket.store import DataStore
+from .polymarket.assets import stream_key
 
 
 class ReadOnlyStore(DataStore):
@@ -70,11 +71,13 @@ def _export_dashboard(store, event_id, market_id, *, limit, collected_at, compli
     market = next((m for m in event.markets if m.id == market_id), None) if market_id else next(iter(event.markets), None)
     if market is None:
         raise ValueError("Selected market is absent from the synced event")
-    checkpoints = [store.checkpoint(t.id) for m in event.markets for t in m.tokens]
-    incomplete = (not checkpoints or any(s["pending"] or not s["through"] for s in checkpoints)
+    checkpoints = [store.checkpoint(stream_key(a)) for m in event.markets
+                   if m.asset_selection.status == "selected" for a in m.asset_selection.assets]
+    incomplete = (any(m.asset_selection.status != "selected" for m in event.markets)
+                  or not checkpoints or any(s["pending"] or not s["through"] for s in checkpoints)
                   or len({s["through"] for s in checkpoints}) != 1)
     return {
-        "schema_version": 2,
+        "schema_version": 3,
         "source": "recorded-sync" if recorded else "local-sync",
         "as_of": recorded["recorded_at"] if recorded else datetime.now(UTC).isoformat(),
         "currency": "pUSD",
@@ -133,7 +136,8 @@ def replay_recording(path: Path, data_dir: Path, event_id: str):
             pass
 
     store = DataStore(data_dir)
-    with PublicDataClient(transport=httpx.MockTransport(transport), limiter=OfflineLimiter()) as client:
+    with PublicDataClient(transport=httpx.MockTransport(transport), limiter=OfflineLimiter(),
+                          clock=lambda: target) as client:
         sync_event(client, store, event_id, now=target)
     return at, recorded["compliance"], {
         "recorded_at": at, "input_sha256": hashlib.sha256(raw).hexdigest(),

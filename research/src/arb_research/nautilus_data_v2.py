@@ -28,6 +28,7 @@ from nautilus_trader.model.identifiers import InstrumentId, Symbol, TradeId, Ven
 from nautilus_trader.model.instruments import BinaryOption
 from nautilus_trader.model.objects import Currency, Price, Quantity
 
+from .polymarket.assets import select_assets, stream_key
 from .polymarket.client import PublicDataClient, UpstreamError
 
 
@@ -176,12 +177,22 @@ def _stored_prices_locked(store, event_id, market, instruments):
     cached = next((m for m in event.markets if m.id == str(market["id"])), None)
     if cached is None or cached.condition_id != market["conditionId"]:
         raise DataError("ARB-7 cached market/condition mismatch; sync metadata first")
+    current = select_assets(market, event_id=event_id)
+    if (cached.asset_selection.status != "selected" or current.status != "selected"
+            or cached.asset_selection.protocol_version != current.protocol_version):
+        raise DataError("ARB-7 asset identity quarantined or changed; sync metadata first")
+    selected = {a.asset_id: a for a in cached.asset_selection.assets}
+    def identity(a):
+        return (a.chain_id, a.ledger, a.asset_id, a.condition_id,
+                a.outcome.strip().casefold(), a.outcome_index, a.module)
+    if {identity(a) for a in selected.values()} != {identity(a) for a in current.assets}:
+        raise DataError("ARB-7 asset identity mismatch; sync metadata first")
     prices = {}
     for instrument in instruments:
         token = str(instrument.raw_symbol)
-        if token not in {t.id for t in cached.tokens}:
+        if token not in selected:
             raise DataError("Token absent from ARB-7 cached metadata")
-        checkpoint = store.checkpoint(token)
+        checkpoint = store.checkpoint(stream_key(selected[token]))
         if not checkpoint["through"] or checkpoint["pending"]:
             raise DataError("Incomplete ARB-7 price checkpoint; finish polymarket-data sync first")
         offset, rows = 0, []

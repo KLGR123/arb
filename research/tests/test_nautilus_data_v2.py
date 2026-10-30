@@ -30,6 +30,7 @@ def snapshot(name="btc"):
 def make_store(raw, root):
     from arb_research.polymarket.models import Event, Market, Token, PricePage, Resolution
     from arb_research.polymarket.store import DataStore
+    from arb_research.polymarket.assets import select_assets
     store = DataStore(root)
     markets = []
     for item in raw["markets"]:
@@ -37,11 +38,13 @@ def make_store(raw, root):
         instruments = instruments_from_market(gamma)
         markets.append(Market(id=str(gamma["id"]), event_id=str(raw["event"]["id"]),
                               condition_id=gamma["conditionId"], protocol=gamma["version"],
+                              asset_selection=select_assets(gamma, event_id=str(raw["event"]["id"])),
                               tokens=[Token(id=str(i.raw_symbol), outcome=i.outcome, outcome_index=n,
                                             protocol=gamma["version"]) for n, i in enumerate(instruments)]))
         for token, points in item["prices"].items():
             store.commit_page(str(gamma["id"]), token, PricePage(data=points),
-                              {"through": raw["recorded_at"], "pending": None})
+                              {"through": raw["recorded_at"], "pending": None},
+                              asset=next(a for a in markets[-1].asset_selection.assets if a.asset_id == token))
     event = Event(id=str(raw["event"]["id"]), markets=markets)
     store.put_event(event)
     rows = [Resolution(market_id=str(item["market"]["id"]), condition_id=r["condition_id"],
@@ -119,13 +122,14 @@ def test_arb7_store_reads_all_history_pages_and_rejects_pending_checkpoint(tmp_p
     cached = load_snapshot(raw, price_store=store)
     assert [[str(t) for t in v.quotes] for v in cached] == [[str(t) for t in v.quotes] for v in baseline]
     token = str(cached[0].instrument.raw_symbol)
+    asset = next(a for a in store.event(str(raw["event"]["id"])).markets[0].asset_selection.assets if a.asset_id == token)
     rows = [{"timestamp": 1000+i, "price": 0.2, "resolution_seconds": 60} for i in range(1005)]
     store.commit_page(cached[0].instrument.info["market_id"], token, PricePage(data=rows),
-                      {"through": raw["recorded_at"], "pending": None})
+                      {"through": raw["recorded_at"], "pending": None}, asset=asset)
     loaded = load_snapshot(raw, token_id=token, start=1000, end=2004, price_store=store)
     assert len(loaded[0].quotes) == 1005
     store.commit_page(cached[0].instrument.info["market_id"], token, PricePage(data=[]),
-                      {"through": raw["recorded_at"], "pending": {"cursor": "unfinished"}})
+                      {"through": raw["recorded_at"], "pending": {"cursor": "unfinished"}}, asset=asset)
     with pytest.raises(DataError, match="checkpoint"):
         load_snapshot(raw, price_store=store)
 
@@ -302,3 +306,18 @@ def test_real_settled_event_backtest(name):
     assert actual == expected
     assert len(actual["fills"]) == 2 and actual["settled"] is True
     assert Decimal(actual["total_commission"]) > 0
+
+
+@pytest.mark.parametrize("change", ["chain", "outcome", "module"])
+def test_cached_asset_context_must_match_current_market(tmp_path, change):
+    raw = snapshot()
+    store = make_store(raw, tmp_path)
+    market = raw["markets"][0]["market"]
+    if change == "chain":
+        market["chainId"] = "999"
+    elif change == "outcome":
+        market["outcomes"] = '["No", "Yes"]'
+    else:
+        market["module"] = "2"
+    with pytest.raises(DataError, match="asset identity mismatch"):
+        load_snapshot(raw, price_store=store)

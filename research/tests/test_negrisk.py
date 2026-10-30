@@ -174,7 +174,7 @@ class ScannerTests(unittest.TestCase):
             self.assertEqual(main(["--fixture", str(FIXTURE), "--json", str(out)]), 0)
             self.assertEqual(first, out.read_bytes())
             report = json.loads(first)
-            self.assertEqual(report["schema_version"], "1.0")
+            self.assertEqual(report["schema_version"], "1.1")
             self.assertIsInstance(report["opportunities"][0]["quantity"], str)
             self.assertIn("execution is always blocked", md.read_text())
         self.assertEqual(dumps(scan(self.snapshot)), dumps(scan(self.snapshot)))
@@ -184,7 +184,9 @@ class ScannerTests(unittest.TestCase):
         expected = Path(__file__).resolve().parents[2] / "docs/reports/negrisk-2026-10-29.json"
         with patch("socket.socket", side_effect=AssertionError("network forbidden")):
             report = scan(json.loads(source.read_text()))
-        self.assertEqual(legacy_report(json.loads(dumps(report)), json.loads(expected.read_text())), json.loads(expected.read_text()))
+        historical = json.loads(expected.read_text())
+        historical["schema_version"] = "1.1"
+        self.assertEqual(legacy_report(json.loads(dumps(report)), historical), historical)
         self.assertEqual(report["summary"], {"groups_scanned": 2, "opportunities": 0, "errors": 0})
         self.assertEqual(sum(len(g["markets"]) for g in report["groups"]), 10)
         self.assertEqual(report["groups"][1]["yes_ask_sum"], D("1.019"))

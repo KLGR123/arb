@@ -115,9 +115,9 @@ def test_missing_invalid_data_suppresses_edges(snapshot, tmp_path, failure):
     elif failure == "stale":
         snapshot["kalshi_books"]["KXBTC-TEST"]["received_at"] = "2026-10-29T00:00:00Z"
     elif failure == "asset":
-        snapshot["poly_books"]["py"]["asset_id"] = "wrong"
+        snapshot["poly_books"]["701"]["asset_id"] = "wrong"
     elif failure == "missing":
-        del snapshot["poly_books"]["py"]
+        del snapshot["poly_books"]["701"]
     elif failure == "nan":
         snapshot["kalshi"][0]["fee_multiplier"] = "NaN"
     else:
@@ -128,8 +128,8 @@ def test_missing_invalid_data_suppresses_edges(snapshot, tmp_path, failure):
 
 
 def test_skew_and_insufficient_depth_are_explicit(snapshot, tmp_path):
-    snapshot["poly_books"]["py"]["timestamp"] = "2026-10-29T23:59:40Z"
-    snapshot["poly_books"]["pn"]["timestamp"] = "2026-10-29T23:59:40Z"
+    snapshot["poly_books"]["701"]["timestamp"] = "2026-10-29T23:59:40Z"
+    snapshot["poly_books"]["702"]["timestamp"] = "2026-10-29T23:59:40Z"
     report = scan(snapshot, aligner(tmp_path))
     row = report["pairs"][0]
     assert not row["quotes"]
@@ -232,9 +232,9 @@ def test_explicit_event_prefers_populated_nested_markets():
 
 
 def test_poly_v2_asset_ids_preserved():
-    p = normalize_poly({"id": "e"}, {"id": "p", "question": "Test", "version": "v2",
-        "conditionId": "condition-1", "positionIds": '["901", "902"]', "clobTokenIds": '["801", "802"]', "outcomes": '["Yes","No"]'})
-    assert p["tokens"] == {"yes":"901", "no":"902"}
+    p = normalize_poly({"id": "e"}, {"id": "p", "conditionId": "condition-1", "question": "Test", "version": "v2",
+        "positionIds": '["900719925474099312345678901", "900719925474099312345678902"]', "clobTokenIds": '["801", "802"]', "outcomes": '["Yes","No"]'})
+    assert p["tokens"] == {"yes":"900719925474099312345678901", "no":"900719925474099312345678902"}
 
 
 @pytest.mark.parametrize("quantity", [D("NaN"), D(0), D("1.5")])
@@ -270,13 +270,8 @@ def test_collector_contract_and_guard_use(snapshot, tmp_path, monkeypatch, relat
     monkeypatch.setattr("arb_research.cross_venue_cli.datetime", FixedDatetime)
     price_allowed = relation == "same" and refresh is None
     p, k = snapshot["polymarket"][0], snapshot["kalshi"][0]
-    # Raw Gamma inputs now use the shared strict identity contract.
-    for old, new in (("py", "101"), ("pn", "102")):
-        book = snapshot["poly_books"].pop(old)
-        book["asset_id"] = new
-        snapshot["poly_books"][new] = book
-    pmarket = {"id": "p1", "version": "v1", "question": p["title"], "description": p["rules"],
-               "outcomes": ["Yes", "No"], "clobTokenIds": ["101", "102"],
+    pmarket = {"id": "p1", "question": p["title"], "description": p["rules"],
+               "version": "v2", "outcomes": ["Yes", "No"], "positionIds": ["701", "702"],
                "active": True, "closed": False, "endDate": p["close_time"], "conditionId": "condition-1"}
     pevent = {"id":"e1", "title":"Bitcoin", "markets": [pmarket]}
     kmarket = {"ticker": k["id"], "event_ticker": k["event_id"], "title": k["title"],

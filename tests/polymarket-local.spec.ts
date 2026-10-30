@@ -5,7 +5,7 @@ import { join } from 'node:path'
 import { createElement } from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { loadDashboard } from '../apps/web/src/features/polymarket/load-dashboard.server'
-import { dashboardSchema, qualityMessages } from '../apps/web/src/features/polymarket/contract'
+import { dashboardSchema, qualityMessages, selectedAsset } from '../apps/web/src/features/polymarket/contract'
 import { DataStatus } from '../apps/web/src/features/polymarket/data-status'
 import recorded from '../apps/web/src/features/polymarket/fixtures/recorded-sync.json'
 import { dashboard } from './fixtures/polymarket'
@@ -52,9 +52,9 @@ test('local loader rereads atomic packages and fails visibly without fixture fal
 test('real empty, partial, stale, gap and geoblock metadata drive rendered notices', () => {
   const data = dashboardSchema.parse(recorded)
   data.source = 'local-sync'
-  const asset = data.event.markets.find((m) => m.id === data.market_id)!.tokens[0]
+  const asset = selectedAsset(data.event.markets.find((m) => m.id === data.market_id)!, data.outcome_index)!
   data.prices.data = [100, 300].map((timestamp) => ({
-    event_id: data.event.id, market_id: data.market_id, token_id: asset.id,
+    event_id: data.event.id, market_id: data.market_id, token_id: asset.asset_id,
     timestamp, price: 0.5, resolution_seconds: 100,
   }))
   data.prices.next_offset = 2
