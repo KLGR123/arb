@@ -1,3 +1,4 @@
+import { dashboard } from './fixtures/polymarket'
 import { expect, test } from '@playwright/test'
 import { createElement } from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
@@ -8,7 +9,6 @@ import {
 } from '../apps/web/src/features/polymarket/views'
 import { DataStatus } from '../apps/web/src/features/polymarket/data-status'
 import {
-  dashboard,
   dashboardSchema,
   historySchema,
   latestPrice,
@@ -26,7 +26,7 @@ test('empty views render safely and an empty book side retains replay controls',
   expect(dashboardSchema.safeParse(data).success).toBe(true)
   expect(
     renderToStaticMarkup(createElement(CalibrationView, { data })),
-  ).toContain('—')
+  ).toContain('暂无预测评价样本')
   expect(renderToStaticMarkup(createElement(PnlView, { data }))).toContain(
     '暂无 PnL',
   )
@@ -198,6 +198,16 @@ test('SSR and browser show protocol identity, missing settlement and read-only q
 }) => {
   const response = await request.get('/polymarket')
   expect(response.status()).toBe(200)
+  if (!process.env.SMOKE_SYNTHETIC) {
+    expect(await response.text()).toContain('token_id')
+    await page.goto('/polymarket')
+    const status = page.getByRole('region', { name: '市场与数据质量' })
+    await expect(status).toContainText('Protocol v1')
+    await expect(status).toContainText('结算状态：resolved')
+    await expect(status).toContainText('地区限制')
+    await expect(status).toContainText('交易保持拒绝')
+    return
+  }
   expect(await response.text()).toContain('position_id')
   await page.goto('/polymarket')
   const status = page.getByRole('region', { name: '市场与数据质量' })

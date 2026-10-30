@@ -1,5 +1,3 @@
-import fixture from './fixtures/dashboard.json'
-import { dashboardSchema } from './contract'
 import {
   components,
   type Component,
@@ -8,9 +6,6 @@ import {
   type Level,
 } from './contract'
 export * from './contract'
-
-// Validate the actual JSON; never overwrite invalid literals to satisfy TS.
-export const dashboard = dashboardSchema.parse(fixture)
 
 export const labels: Record<Component, string> = {
   trading: '交易',

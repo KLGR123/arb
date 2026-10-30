@@ -162,7 +162,7 @@ const bookSchema = z
 export const dashboardSchema = z
   .strictObject({
     schema_version: z.literal(2),
-    source: z.literal('synthetic-fixture'),
+    source: z.enum(['synthetic-fixture', 'local-sync', 'recorded-sync']),
     as_of: time,
     currency: z.literal('pUSD'),
     event: eventSchema,
@@ -175,12 +175,23 @@ export const dashboardSchema = z
       collected_at: time.nullable(),
       stale_after_seconds: z.number().int().positive(),
       expected_price_interval_seconds: z.number().int().positive().nullable(),
+      sync_incomplete: z.boolean().nullable().optional(),
     }),
     forecasts: z.array(forecastSchema),
     pnl: z.array(pnlSchema),
     book: z.array(bookSchema),
+    provenance: z.strictObject({
+      recorded_at: time.nullable(),
+      input_sha256: z.string().regex(/^[a-f0-9]{64}$/).nullable(),
+    }).optional(),
   })
   .superRefine((data, ctx) => {
+    if (data.source !== 'synthetic-fixture' &&
+      (data.forecasts.length || data.pnl.length || data.book.length))
+      ctx.addIssue({ code: 'custom', message: 'ARB-7 does not supply forecasts, PnL or L2 books' })
+    if (data.source === 'recorded-sync' &&
+      (!data.provenance?.recorded_at || !data.provenance.input_sha256))
+      ctx.addIssue({ code: 'custom', message: 'Recorded sync requires recording provenance' })
     const market = data.event.markets.find((m) => m.id === data.market_id)
     if (!market) {
       ctx.addIssue({
@@ -242,6 +253,11 @@ export type Level = z.infer<typeof levelSchema>
 export type BookSnapshot = z.infer<typeof bookSchema>
 export type Dashboard = z.infer<typeof dashboardSchema>
 
+export const dashboardResultSchema = z.discriminatedUnion('status', [
+  z.strictObject({ status: z.literal('ready'), data: dashboardSchema, loaded_at: time }),
+  z.strictObject({ status: z.enum(['empty', 'invalid', 'unavailable']), message: text }),
+])
+
 export function selectedAsset(market: Market, outcomeIndex: number) {
   if (market.protocol === 'unknown') return null
   const tokens = market.tokens.filter((t) => t.protocol === market.protocol)
@@ -295,6 +311,17 @@ export function qualityMessages(data: Dashboard, referenceTime = data.as_of) {
     messages.push('价格更新延迟；历史价格桶不是实时可执行报价。')
   if (data.prices.next_offset !== null)
     messages.push('价格分页未读完，当前数据不完整。')
+  if (data.quality.sync_incomplete)
+    messages.push('同步尚未完成（partial），当前快照可能只有部分历史。')
+  else if (data.source !== 'synthetic-fixture' && data.quality.sync_incomplete == null)
+    messages.push('同步完成状态未知，ARB-7 未持久化完成回执；当前数据可能不完整。')
+  const asset = selectedAsset(marketFor(data), data.outcome_index)
+  const rows = data.prices.data.filter((p) => p.token_id === asset?.id)
+    .sort((a, b) => a.timestamp - b.timestamp)
+  if (rows.some((row, i) => i > 0 && rows[i - 1].resolution_seconds > 0 &&
+    row.timestamp - rows[i - 1].timestamp > rows[i - 1].resolution_seconds +
+      (data.quality.expected_price_interval_seconds ?? 0)))
+    messages.push('价格历史存在桶间缺口（gap），不插值或补零。')
   if (!data.resolutions.data.length)
     messages.push('结算数据缺失；closed 不代表已结算。')
   const geo = data.compliance?.geoblock

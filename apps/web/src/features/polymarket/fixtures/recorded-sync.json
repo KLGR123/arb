@@ -1,0 +1,4624 @@
+{
+  "schema_version": 2,
+  "source": "recorded-sync",
+  "as_of": "2026-10-29T16:41:16+00:00",
+  "currency": "pUSD",
+  "event": {
+    "id": "27824",
+    "slug": "fed-decision-in-october",
+    "title": "Fed decision in October?",
+    "description": "The FED interest rates are defined in this market by the upper bound of the target federal funds range. The decisions on the target federal fund range are made by the Federal Open Market Committee (FOMC) meetings.\n\nThis market will resolve to the amount of basis points the upper bound of the target federal funds rate is changed by versus the level it was prior to the Federal Reserve's October 2025 meeting.\n\nIf the target federal funds rate is changed to a level not expressed in the displayed options, the change will be rounded up to the nearest 25 and will resolve to the relevant bracket. (e.g. if there's a cut/increase of 12.5 bps it will be considered to be 25 bps)\n\nThe resolution source for this market is the FOMC’s statement after its meeting scheduled for October 28 - 29, 2025 according to the official calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm.\n\nThe level and change of the target federal funds rate is also published at the official website of the Federal Reserve at https://www.federalreserve.gov/monetarypolicy/openmarket.htm.\n\nThis market may resolve as soon as the FOMC’s statement for their October meeting with relevant data is issued. If no statement is released by the end date of the next scheduled meeting, this market will resolve to the \"No change\" bracket.\n",
+    "closed": true,
+    "tags": [
+      {
+        "id": "100478",
+        "label": "fomc",
+        "slug": "fomc"
+      },
+      {
+        "id": "100215",
+        "label": "All",
+        "slug": "all"
+      },
+      {
+        "id": "100328",
+        "label": "Economy",
+        "slug": "economy"
+      },
+      {
+        "id": "100196",
+        "label": "Fed Rates",
+        "slug": "fed-rates"
+      },
+      {
+        "id": "2",
+        "label": "Politics",
+        "slug": "politics"
+      },
+      {
+        "id": "100477",
+        "label": "powell",
+        "slug": "powell"
+      },
+      {
+        "id": "159",
+        "label": "Fed",
+        "slug": "fed"
+      },
+      {
+        "id": "101550",
+        "label": "Jerome Powell",
+        "slug": "jerome-powell"
+      }
+    ],
+    "markets": [
+      {
+        "id": "553810",
+        "event_id": "27824",
+        "condition_id": "0x6a8c775d3a7ab901a5c4595dbc33478d654dc3b293be2b80fd64500cabbfcc37",
+        "slug": "fed-decreases-interest-rates-by-50-bps-after-october-2025-meeting",
+        "question": "Fed decreases interest rates by 50+ bps after October 2025 meeting?",
+        "rules": "The FED interest rates are defined in this market by the upper bound of the target federal funds range. The decisions on the target federal fund range are made by the Federal Open Market Committee (FOMC) meetings.\n\nThis market will resolve to the amount of basis points the upper bound of the target federal funds rate is changed by versus the level it was prior to the Federal Reserve's October 2025 meeting.\n\nIf the target federal funds rate is changed to a level not expressed in the displayed options, the change will be rounded up to the nearest 25 and will resolve to the relevant bracket. (e.g. if there's a cut/increase of 12.5 bps it will be considered to be 25 bps)\n\nThe resolution source for this market is the FOMC’s statement after its meeting scheduled for October 28 - 29, 2025 according to the official calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm.\n\nThe level and change of the target federal funds rate is also published at the official website of the Federal Reserve at https://www.federalreserve.gov/monetarypolicy/openmarket.htm.\n\nThis market may resolve as soon as the FOMC’s statement for their October meeting with relevant data is issued. If no statement is released by the end date of the next scheduled meeting, this market will resolve to the \"No change\" bracket.",
+        "resolution_source": "",
+        "closed": true,
+        "protocol": "v1",
+        "neg_risk": true,
+        "neg_risk_group": "0x7ececd30ae105590c0076c8197e9255a0095f7c3aa2e07fd8bd02fd50dc68400",
+        "tags": [
+          {
+            "id": "100478",
+            "label": "fomc",
+            "slug": "fomc"
+          },
+          {
+            "id": "2",
+            "label": "Politics",
+            "slug": "politics"
+          },
+          {
+            "id": "100196",
+            "label": "Fed Rates",
+            "slug": "fed-rates"
+          },
+          {
+            "id": "100215",
+            "label": "All",
+            "slug": "all"
+          },
+          {
+            "id": "100328",
+            "label": "Economy",
+            "slug": "economy"
+          },
+          {
+            "id": "100477",
+            "label": "powell",
+            "slug": "powell"
+          },
+          {
+            "id": "159",
+            "label": "Fed",
+            "slug": "fed"
+          },
+          {
+            "id": "101550",
+            "label": "Jerome Powell",
+            "slug": "jerome-powell"
+          }
+        ],
+        "tokens": [
+          {
+            "id": "56606480957388905488783515430819601640929432353106353680720689974997213777138",
+            "outcome": "Yes",
+            "outcome_index": 0,
+            "protocol": "v1"
+          },
+          {
+            "id": "53676785636700157256852250095826025029451888648974703429616395645714952970781",
+            "outcome": "No",
+            "outcome_index": 1,
+            "protocol": "v1"
+          }
+        ]
+      },
+      {
+        "id": "553811",
+        "event_id": "27824",
+        "condition_id": "0x53f82bd52566e30ae3f8131cb92095dd92ecdf2b0204af0edc226ee194e923fe",
+        "slug": "fed-decreases-interest-rates-by-25-bps-after-october-2025-meeting",
+        "question": "Fed decreases interest rates by 25 bps after October 2025 meeting?",
+        "rules": "The FED interest rates are defined in this market by the upper bound of the target federal funds range. The decisions on the target federal fund range are made by the Federal Open Market Committee (FOMC) meetings.\n\nThis market will resolve to the amount of basis points the upper bound of the target federal funds rate is changed by versus the level it was prior to the Federal Reserve's October 2025 meeting.\n\nIf the target federal funds rate is changed to a level not expressed in the displayed options, the change will be rounded up to the nearest 25 and will resolve to the relevant bracket. (e.g. if there's a cut/increase of 12.5 bps it will be considered to be 25 bps)\n\nThe resolution source for this market is the FOMC’s statement after its meeting scheduled for October 28 - 29, 2025 according to the official calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm.\n\nThe level and change of the target federal funds rate is also published at the official website of the Federal Reserve at https://www.federalreserve.gov/monetarypolicy/openmarket.htm.\n\nThis market may resolve as soon as the FOMC’s statement for their October meeting with relevant data is issued. If no statement is released by the end date of the next scheduled meeting, this market will resolve to the \"No change\" bracket.",
+        "resolution_source": "",
+        "closed": true,
+        "protocol": "v1",
+        "neg_risk": true,
+        "neg_risk_group": "0x7ececd30ae105590c0076c8197e9255a0095f7c3aa2e07fd8bd02fd50dc68400",
+        "tags": [
+          {
+            "id": "100478",
+            "label": "fomc",
+            "slug": "fomc"
+          },
+          {
+            "id": "2",
+            "label": "Politics",
+            "slug": "politics"
+          },
+          {
+            "id": "100196",
+            "label": "Fed Rates",
+            "slug": "fed-rates"
+          },
+          {
+            "id": "100215",
+            "label": "All",
+            "slug": "all"
+          },
+          {
+            "id": "100328",
+            "label": "Economy",
+            "slug": "economy"
+          },
+          {
+            "id": "100477",
+            "label": "powell",
+            "slug": "powell"
+          },
+          {
+            "id": "159",
+            "label": "Fed",
+            "slug": "fed"
+          },
+          {
+            "id": "101550",
+            "label": "Jerome Powell",
+            "slug": "jerome-powell"
+          }
+        ],
+        "tokens": [
+          {
+            "id": "78970393675220813117457137074949547635027336958817818487077806376171274244367",
+            "outcome": "Yes",
+            "outcome_index": 0,
+            "protocol": "v1"
+          },
+          {
+            "id": "39843382223032680172636234017143696377311711066819162700626001781924811983436",
+            "outcome": "No",
+            "outcome_index": 1,
+            "protocol": "v1"
+          }
+        ]
+      },
+      {
+        "id": "553812",
+        "event_id": "27824",
+        "condition_id": "0x6ef34d5c7937cb8a1eb22234ddce8fe3eb1595e1f35c7d4f2101c58f3506e580",
+        "slug": "no-change-in-fed-interest-rates-after-october-2025-meeting",
+        "question": "No change in Fed interest rates after October 2025 meeting?",
+        "rules": "The FED interest rates are defined in this market by the upper bound of the target federal funds range. The decisions on the target federal fund range are made by the Federal Open Market Committee (FOMC) meetings.\n\nThis market will resolve to the amount of basis points the upper bound of the target federal funds rate is changed by versus the level it was prior to the Federal Reserve's October 2025 meeting.\n\nIf the target federal funds rate is changed to a level not expressed in the displayed options, the change will be rounded up to the nearest 25 and will resolve to the relevant bracket. (e.g. if there's a cut/increase of 12.5 bps it will be considered to be 25 bps)\n\nThe resolution source for this market is the FOMC’s statement after its meeting scheduled for October 28 - 29, 2025 according to the official calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm.\n\nThe level and change of the target federal funds rate is also published at the official website of the Federal Reserve at https://www.federalreserve.gov/monetarypolicy/openmarket.htm.\n\nThis market may resolve as soon as the FOMC’s statement for their October meeting with relevant data is issued. If no statement is released by the end date of the next scheduled meeting, this market will resolve to the \"No change\" bracket.",
+        "resolution_source": "",
+        "closed": true,
+        "protocol": "v1",
+        "neg_risk": true,
+        "neg_risk_group": "0x7ececd30ae105590c0076c8197e9255a0095f7c3aa2e07fd8bd02fd50dc68400",
+        "tags": [
+          {
+            "id": "100478",
+            "label": "fomc",
+            "slug": "fomc"
+          },
+          {
+            "id": "2",
+            "label": "Politics",
+            "slug": "politics"
+          },
+          {
+            "id": "100196",
+            "label": "Fed Rates",
+            "slug": "fed-rates"
+          },
+          {
+            "id": "100215",
+            "label": "All",
+            "slug": "all"
+          },
+          {
+            "id": "100328",
+            "label": "Economy",
+            "slug": "economy"
+          },
+          {
+            "id": "100477",
+            "label": "powell",
+            "slug": "powell"
+          },
+          {
+            "id": "159",
+            "label": "Fed",
+            "slug": "fed"
+          },
+          {
+            "id": "101550",
+            "label": "Jerome Powell",
+            "slug": "jerome-powell"
+          }
+        ],
+        "tokens": [
+          {
+            "id": "93649474745035786731233919003082633017639813911207879453624389467235918905276",
+            "outcome": "Yes",
+            "outcome_index": 0,
+            "protocol": "v1"
+          },
+          {
+            "id": "20248532312255939043525932145429175719961770380347060601058184144030320732306",
+            "outcome": "No",
+            "outcome_index": 1,
+            "protocol": "v1"
+          }
+        ]
+      },
+      {
+        "id": "553813",
+        "event_id": "27824",
+        "condition_id": "0xd6e0317cee513cc3afdc1954ac576b241ad2287536e88b17fd3a77b4c3d0976e",
+        "slug": "fed-increases-interest-rates-by-25-bps-after-october-2025-meeting",
+        "question": "Fed increases interest rates by 25+ bps after October 2025 meeting?",
+        "rules": "The FED interest rates are defined in this market by the upper bound of the target federal funds range. The decisions on the target federal fund range are made by the Federal Open Market Committee (FOMC) meetings.\n\nThis market will resolve to the amount of basis points the upper bound of the target federal funds rate is changed by versus the level it was prior to the Federal Reserve's October 2025 meeting.\n\nIf the target federal funds rate is changed to a level not expressed in the displayed options, the change will be rounded up to the nearest 25 and will resolve to the relevant bracket. (e.g. if there's a cut/increase of 12.5 bps it will be considered to be 25 bps)\n\nThe resolution source for this market is the FOMC’s statement after its meeting scheduled for October 28 - 29, 2025 according to the official calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm.\n\nThe level and change of the target federal funds rate is also published at the official website of the Federal Reserve at https://www.federalreserve.gov/monetarypolicy/openmarket.htm.\n\nThis market may resolve as soon as the FOMC’s statement for their October meeting with relevant data is issued. If no statement is released by the end date of the next scheduled meeting, this market will resolve to the \"No change\" bracket.",
+        "resolution_source": "",
+        "closed": true,
+        "protocol": "v1",
+        "neg_risk": true,
+        "neg_risk_group": "0x7ececd30ae105590c0076c8197e9255a0095f7c3aa2e07fd8bd02fd50dc68400",
+        "tags": [
+          {
+            "id": "100478",
+            "label": "fomc",
+            "slug": "fomc"
+          },
+          {
+            "id": "2",
+            "label": "Politics",
+            "slug": "politics"
+          },
+          {
+            "id": "100196",
+            "label": "Fed Rates",
+            "slug": "fed-rates"
+          },
+          {
+            "id": "100215",
+            "label": "All",
+            "slug": "all"
+          },
+          {
+            "id": "100328",
+            "label": "Economy",
+            "slug": "economy"
+          },
+          {
+            "id": "100477",
+            "label": "powell",
+            "slug": "powell"
+          },
+          {
+            "id": "159",
+            "label": "Fed",
+            "slug": "fed"
+          },
+          {
+            "id": "101550",
+            "label": "Jerome Powell",
+            "slug": "jerome-powell"
+          }
+        ],
+        "tokens": [
+          {
+            "id": "60156625646569576964584621291475860303247825215466310280401996727843189574431",
+            "outcome": "Yes",
+            "outcome_index": 0,
+            "protocol": "v1"
+          },
+          {
+            "id": "75662380910516595836713877605277832183886163391379455962356909608435996726535",
+            "outcome": "No",
+            "outcome_index": 1,
+            "protocol": "v1"
+          }
+        ]
+      }
+    ]
+  },
+  "market_id": "553810",
+  "outcome_index": 0,
+  "prices": {
+    "data": [
+      {
+        "timestamp": 1750377600,
+        "price": 0.94,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1750377600,
+        "price": 0.06,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1750420800,
+        "price": 0.933,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1750420800,
+        "price": 0.067,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1750464000,
+        "price": 0.9365,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1750464000,
+        "price": 0.0635,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1750507200,
+        "price": 0.946,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1750507200,
+        "price": 0.054,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1750550400,
+        "price": 0.9375,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1750550400,
+        "price": 0.0625,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1750593600,
+        "price": 0.937,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1750593600,
+        "price": 0.063,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1750636800,
+        "price": 0.9345,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1750636800,
+        "price": 0.0655,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1750680000,
+        "price": 0.9315,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1750680000,
+        "price": 0.0685,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1750723200,
+        "price": 0.9325,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1750723200,
+        "price": 0.0675,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1750766400,
+        "price": 0.931,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1750766400,
+        "price": 0.069,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1750809600,
+        "price": 0.92,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1750809600,
+        "price": 0.08,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1750852800,
+        "price": 0.919,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1750852800,
+        "price": 0.081,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1750896000,
+        "price": 0.9175,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1750896000,
+        "price": 0.0825,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1750939200,
+        "price": 0.9175,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1750939200,
+        "price": 0.0825,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1750982400,
+        "price": 0.916,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1750982400,
+        "price": 0.084,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1751025600,
+        "price": 0.913,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1751025600,
+        "price": 0.087,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1751068800,
+        "price": 0.9105,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1751068800,
+        "price": 0.0895,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1751112000,
+        "price": 0.915,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1751112000,
+        "price": 0.085,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1751155200,
+        "price": 0.9145,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1751155200,
+        "price": 0.0855,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1751198400,
+        "price": 0.9145,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1751198400,
+        "price": 0.0855,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1751241600,
+        "price": 0.9145,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1751241600,
+        "price": 0.0855,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1751284800,
+        "price": 0.915,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1751284800,
+        "price": 0.085,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1751328000,
+        "price": 0.9155,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1751328000,
+        "price": 0.0845,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1751371200,
+        "price": 0.917,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1751371200,
+        "price": 0.083,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1751414400,
+        "price": 0.928,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1751414400,
+        "price": 0.072,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1751457600,
+        "price": 0.924,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1751457600,
+        "price": 0.076,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1751500800,
+        "price": 0.926,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1751500800,
+        "price": 0.074,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1751544000,
+        "price": 0.923,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1751544000,
+        "price": 0.077,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1751587200,
+        "price": 0.944,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1751587200,
+        "price": 0.056,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1751630400,
+        "price": 0.9365,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1751630400,
+        "price": 0.0635,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1751673600,
+        "price": 0.9375,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1751673600,
+        "price": 0.0625,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1751716800,
+        "price": 0.9345,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1751716800,
+        "price": 0.0655,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1751760000,
+        "price": 0.9345,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1751760000,
+        "price": 0.0655,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1751803200,
+        "price": 0.934,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1751803200,
+        "price": 0.066,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1751846400,
+        "price": 0.93,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1751846400,
+        "price": 0.07,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1751889600,
+        "price": 0.9295,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1751889600,
+        "price": 0.0705,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1751932800,
+        "price": 0.9275,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1751932800,
+        "price": 0.0725,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1751976000,
+        "price": 0.927,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1751976000,
+        "price": 0.073,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1752019200,
+        "price": 0.9225,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1752019200,
+        "price": 0.0775,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1752062400,
+        "price": 0.928,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1752062400,
+        "price": 0.072,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1752105600,
+        "price": 0.9305,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1752105600,
+        "price": 0.0695,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1752148800,
+        "price": 0.9305,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1752148800,
+        "price": 0.0695,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1752192000,
+        "price": 0.9315,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1752192000,
+        "price": 0.0685,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1752235200,
+        "price": 0.9315,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1752235200,
+        "price": 0.0685,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1752278400,
+        "price": 0.9285,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1752278400,
+        "price": 0.0715,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1752321600,
+        "price": 0.925,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1752321600,
+        "price": 0.075,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1752364800,
+        "price": 0.947,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1752364800,
+        "price": 0.053,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1752408000,
+        "price": 0.93,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1752408000,
+        "price": 0.07,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1752451200,
+        "price": 0.9245,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1752451200,
+        "price": 0.0755,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1752494400,
+        "price": 0.924,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1752494400,
+        "price": 0.076,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1752537600,
+        "price": 0.922,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1752537600,
+        "price": 0.078,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1752580800,
+        "price": 0.9215,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1752580800,
+        "price": 0.0785,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1752624000,
+        "price": 0.9335,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1752624000,
+        "price": 0.0665,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1752667200,
+        "price": 0.9315,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1752667200,
+        "price": 0.0685,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1752710400,
+        "price": 0.9245,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1752710400,
+        "price": 0.0755,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1752753600,
+        "price": 0.924,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1752753600,
+        "price": 0.076,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1752796800,
+        "price": 0.9215,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1752796800,
+        "price": 0.0785,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1752840000,
+        "price": 0.919,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1752840000,
+        "price": 0.081,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1752883200,
+        "price": 0.9235,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1752883200,
+        "price": 0.0765,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1752926400,
+        "price": 0.9275,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1752926400,
+        "price": 0.0725,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1752969600,
+        "price": 0.9355,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1752969600,
+        "price": 0.0645,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1753012800,
+        "price": 0.9355,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1753012800,
+        "price": 0.0645,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1753056000,
+        "price": 0.932,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1753056000,
+        "price": 0.068,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1753099200,
+        "price": 0.9265,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1753099200,
+        "price": 0.0735,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1753142400,
+        "price": 0.924,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1753142400,
+        "price": 0.076,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1753185600,
+        "price": 0.924,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1753185600,
+        "price": 0.076,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1753228800,
+        "price": 0.924,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1753228800,
+        "price": 0.076,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1753272000,
+        "price": 0.924,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1753272000,
+        "price": 0.076,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1753315200,
+        "price": 0.9345,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1753315200,
+        "price": 0.0655,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1753358400,
+        "price": 0.935,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1753358400,
+        "price": 0.065,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1753401600,
+        "price": 0.9365,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1753401600,
+        "price": 0.0635,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1753444800,
+        "price": 0.9325,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1753444800,
+        "price": 0.0675,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1753488000,
+        "price": 0.924,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1753488000,
+        "price": 0.076,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1753531200,
+        "price": 0.924,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1753531200,
+        "price": 0.076,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1753574400,
+        "price": 0.923,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1753574400,
+        "price": 0.077,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1753617600,
+        "price": 0.9225,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1753617600,
+        "price": 0.0775,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1753660800,
+        "price": 0.9225,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1753660800,
+        "price": 0.0775,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1753704000,
+        "price": 0.923,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1753704000,
+        "price": 0.077,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1753747200,
+        "price": 0.9275,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1753747200,
+        "price": 0.0725,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1753790400,
+        "price": 0.9275,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1753790400,
+        "price": 0.0725,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1753833600,
+        "price": 0.927,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1753833600,
+        "price": 0.073,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1753876800,
+        "price": 0.9285,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1753876800,
+        "price": 0.0715,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1753920000,
+        "price": 0.94,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1753920000,
+        "price": 0.06,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1753963200,
+        "price": 0.942,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1753963200,
+        "price": 0.058,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1754006400,
+        "price": 0.943,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1754006400,
+        "price": 0.057,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1754049600,
+        "price": 0.9445,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1754049600,
+        "price": 0.0555,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1754092800,
+        "price": 0.9465,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1754092800,
+        "price": 0.0535,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1754136000,
+        "price": 0.9435,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1754136000,
+        "price": 0.0565,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1754179200,
+        "price": 0.943,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1754179200,
+        "price": 0.057,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1754222400,
+        "price": 0.943,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1754222400,
+        "price": 0.057,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1754265600,
+        "price": 0.9425,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1754265600,
+        "price": 0.0575,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1754308800,
+        "price": 0.947,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1754308800,
+        "price": 0.053,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1754352000,
+        "price": 0.946,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1754352000,
+        "price": 0.054,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1754395200,
+        "price": 0.946,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1754395200,
+        "price": 0.054,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1754438400,
+        "price": 0.9445,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1754438400,
+        "price": 0.0555,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1754481600,
+        "price": 0.9435,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1754481600,
+        "price": 0.0565,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1754524800,
+        "price": 0.943,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1754524800,
+        "price": 0.057,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1754568000,
+        "price": 0.9435,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1754568000,
+        "price": 0.0565,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1754611200,
+        "price": 0.942,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1754611200,
+        "price": 0.058,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1754654400,
+        "price": 0.9415,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1754654400,
+        "price": 0.0585,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1754697600,
+        "price": 0.942,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1754697600,
+        "price": 0.058,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1754740800,
+        "price": 0.942,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1754740800,
+        "price": 0.058,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1754784000,
+        "price": 0.9415,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1754784000,
+        "price": 0.0585,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1754827200,
+        "price": 0.9415,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1754827200,
+        "price": 0.0585,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1754870400,
+        "price": 0.9425,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1754870400,
+        "price": 0.0575,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1754913600,
+        "price": 0.9345,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1754913600,
+        "price": 0.0655,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1754956800,
+        "price": 0.9325,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1754956800,
+        "price": 0.0675,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1755000000,
+        "price": 0.933,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1755000000,
+        "price": 0.067,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1755043200,
+        "price": 0.9335,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1755043200,
+        "price": 0.0665,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1755086400,
+        "price": 0.933,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1755086400,
+        "price": 0.067,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1755129600,
+        "price": 0.932,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1755129600,
+        "price": 0.068,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1755172800,
+        "price": 0.942,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1755172800,
+        "price": 0.058,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1755216000,
+        "price": 0.944,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1755216000,
+        "price": 0.056,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1755259200,
+        "price": 0.942,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1755259200,
+        "price": 0.058,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1755302400,
+        "price": 0.942,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1755302400,
+        "price": 0.058,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1755345600,
+        "price": 0.9415,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1755345600,
+        "price": 0.0585,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1755388800,
+        "price": 0.942,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1755388800,
+        "price": 0.058,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1755432000,
+        "price": 0.942,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1755432000,
+        "price": 0.058,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1755475200,
+        "price": 0.9435,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1755475200,
+        "price": 0.0565,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1755518400,
+        "price": 0.9435,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1755518400,
+        "price": 0.0565,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1755561600,
+        "price": 0.943,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1755561600,
+        "price": 0.057,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1755604800,
+        "price": 0.943,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1755604800,
+        "price": 0.057,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1755648000,
+        "price": 0.942,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1755648000,
+        "price": 0.058,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1755691200,
+        "price": 0.943,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1755691200,
+        "price": 0.057,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1755734400,
+        "price": 0.941,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1755734400,
+        "price": 0.059,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1755777600,
+        "price": 0.9435,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1755777600,
+        "price": 0.0565,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1755820800,
+        "price": 0.945,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1755820800,
+        "price": 0.055,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1755864000,
+        "price": 0.944,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1755864000,
+        "price": 0.056,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1755907200,
+        "price": 0.9475,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1755907200,
+        "price": 0.0525,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1755950400,
+        "price": 0.954,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1755950400,
+        "price": 0.046,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1755993600,
+        "price": 0.953,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1755993600,
+        "price": 0.047,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1756036800,
+        "price": 0.951,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1756036800,
+        "price": 0.049,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1756080000,
+        "price": 0.9585,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1756080000,
+        "price": 0.0415,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1756123200,
+        "price": 0.958,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1756123200,
+        "price": 0.042,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1756166400,
+        "price": 0.9675,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1756166400,
+        "price": 0.0325,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1756209600,
+        "price": 0.966,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1756209600,
+        "price": 0.034,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1756252800,
+        "price": 0.9635,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1756252800,
+        "price": 0.0365,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1756296000,
+        "price": 0.9635,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1756296000,
+        "price": 0.0365,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1756339200,
+        "price": 0.9455,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1756339200,
+        "price": 0.0545,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1756382400,
+        "price": 0.945,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1756382400,
+        "price": 0.055,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1756425600,
+        "price": 0.943,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1756425600,
+        "price": 0.057,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1756468800,
+        "price": 0.942,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1756468800,
+        "price": 0.058,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1756512000,
+        "price": 0.9335,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1756512000,
+        "price": 0.0665,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1756555200,
+        "price": 0.9355,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1756555200,
+        "price": 0.0645,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1756598400,
+        "price": 0.9335,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1756598400,
+        "price": 0.0665,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1756641600,
+        "price": 0.937,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1756641600,
+        "price": 0.063,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1756684800,
+        "price": 0.9325,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1756684800,
+        "price": 0.0675,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1756728000,
+        "price": 0.934,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1756728000,
+        "price": 0.066,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1756771200,
+        "price": 0.9335,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1756771200,
+        "price": 0.0665,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1756814400,
+        "price": 0.9335,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1756814400,
+        "price": 0.0665,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1756857600,
+        "price": 0.9325,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1756857600,
+        "price": 0.0675,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1756900800,
+        "price": 0.9325,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1756900800,
+        "price": 0.0675,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1756944000,
+        "price": 0.932,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1756944000,
+        "price": 0.068,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1756987200,
+        "price": 0.929,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1756987200,
+        "price": 0.071,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1757030400,
+        "price": 0.932,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1757030400,
+        "price": 0.068,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1757073600,
+        "price": 0.9245,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1757073600,
+        "price": 0.0755,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1757116800,
+        "price": 0.935,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1757116800,
+        "price": 0.065,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1757160000,
+        "price": 0.939,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1757160000,
+        "price": 0.061,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1757203200,
+        "price": 0.9405,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1757203200,
+        "price": 0.0595,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1757246400,
+        "price": 0.948,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1757246400,
+        "price": 0.052,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1757289600,
+        "price": 0.9465,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1757289600,
+        "price": 0.0535,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1757332800,
+        "price": 0.9435,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1757332800,
+        "price": 0.0565,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1757376000,
+        "price": 0.9465,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1757376000,
+        "price": 0.0535,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1757419200,
+        "price": 0.944,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1757419200,
+        "price": 0.056,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1757462400,
+        "price": 0.9355,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1757462400,
+        "price": 0.0645,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1757505600,
+        "price": 0.9335,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1757505600,
+        "price": 0.0665,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1757548800,
+        "price": 0.9345,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1757548800,
+        "price": 0.0655,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1757592000,
+        "price": 0.8945,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1757592000,
+        "price": 0.1055,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1757635200,
+        "price": 0.881,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1757635200,
+        "price": 0.119,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1757678400,
+        "price": 0.877,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1757678400,
+        "price": 0.123,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1757721600,
+        "price": 0.8805,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1757721600,
+        "price": 0.1195,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1757764800,
+        "price": 0.913,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1757764800,
+        "price": 0.087,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1757808000,
+        "price": 0.91,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1757808000,
+        "price": 0.09,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1757851200,
+        "price": 0.9155,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1757851200,
+        "price": 0.0845,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1757894400,
+        "price": 0.9125,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1757894400,
+        "price": 0.0875,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1757937600,
+        "price": 0.8985,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1757937600,
+        "price": 0.1015,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1757980800,
+        "price": 0.905,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1757980800,
+        "price": 0.095,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1758024000,
+        "price": 0.902,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1758024000,
+        "price": 0.098,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1758067200,
+        "price": 0.9085,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1758067200,
+        "price": 0.0915,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1758110400,
+        "price": 0.8895,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1758110400,
+        "price": 0.1105,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1758153600,
+        "price": 0.9265,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1758153600,
+        "price": 0.0735,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1758196800,
+        "price": 0.943,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1758196800,
+        "price": 0.057,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1758240000,
+        "price": 0.956,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1758240000,
+        "price": 0.044,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1758283200,
+        "price": 0.957,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1758283200,
+        "price": 0.043,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1758326400,
+        "price": 0.9565,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1758326400,
+        "price": 0.0435,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1758369600,
+        "price": 0.9525,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1758369600,
+        "price": 0.0475,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1758412800,
+        "price": 0.956,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1758412800,
+        "price": 0.044,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1758456000,
+        "price": 0.9575,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1758456000,
+        "price": 0.0425,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1758499200,
+        "price": 0.959,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1758499200,
+        "price": 0.041,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1758542400,
+        "price": 0.9515,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1758542400,
+        "price": 0.0485,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1758585600,
+        "price": 0.959,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1758585600,
+        "price": 0.041,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1758628800,
+        "price": 0.9565,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1758628800,
+        "price": 0.0435,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1758672000,
+        "price": 0.9605,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1758672000,
+        "price": 0.0395,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1758715200,
+        "price": 0.9575,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1758715200,
+        "price": 0.0425,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1758758400,
+        "price": 0.9585,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1758758400,
+        "price": 0.0415,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1758801600,
+        "price": 0.9575,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1758801600,
+        "price": 0.0425,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1758844800,
+        "price": 0.964,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1758844800,
+        "price": 0.036,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1758888000,
+        "price": 0.966,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1758888000,
+        "price": 0.034,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1758931200,
+        "price": 0.9625,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1758931200,
+        "price": 0.0375,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1758974400,
+        "price": 0.9635,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1758974400,
+        "price": 0.0365,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1759017600,
+        "price": 0.9645,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1759017600,
+        "price": 0.0355,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1759060800,
+        "price": 0.9645,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1759060800,
+        "price": 0.0355,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1759104000,
+        "price": 0.965,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1759104000,
+        "price": 0.035,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1759147200,
+        "price": 0.9645,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1759147200,
+        "price": 0.0355,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1759190400,
+        "price": 0.9675,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1759190400,
+        "price": 0.0325,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1759233600,
+        "price": 0.9675,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1759233600,
+        "price": 0.0325,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1759276800,
+        "price": 0.964,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1759276800,
+        "price": 0.036,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1759320000,
+        "price": 0.9645,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1759320000,
+        "price": 0.0355,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1759363200,
+        "price": 0.963,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1759363200,
+        "price": 0.037,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1759406400,
+        "price": 0.964,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1759406400,
+        "price": 0.036,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1759449600,
+        "price": 0.962,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1759449600,
+        "price": 0.038,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1759492800,
+        "price": 0.963,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1759492800,
+        "price": 0.037,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1759536000,
+        "price": 0.9665,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1759536000,
+        "price": 0.0335,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1759579200,
+        "price": 0.9645,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1759579200,
+        "price": 0.0355,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1759622400,
+        "price": 0.964,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1759622400,
+        "price": 0.036,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1759665600,
+        "price": 0.966,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1759665600,
+        "price": 0.034,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1759708800,
+        "price": 0.9675,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1759708800,
+        "price": 0.0325,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1759752000,
+        "price": 0.9685,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1759752000,
+        "price": 0.0315,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1759795200,
+        "price": 0.9715,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1759795200,
+        "price": 0.0285,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1759838400,
+        "price": 0.968,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1759838400,
+        "price": 0.032,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1759881600,
+        "price": 0.9715,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1759881600,
+        "price": 0.0285,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1759924800,
+        "price": 0.973,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1759924800,
+        "price": 0.027,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1759968000,
+        "price": 0.9765,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1759968000,
+        "price": 0.0235,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1760011200,
+        "price": 0.9775,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1760011200,
+        "price": 0.0225,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1760054400,
+        "price": 0.978,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1760054400,
+        "price": 0.022,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1760097600,
+        "price": 0.9775,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1760097600,
+        "price": 0.0225,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1760140800,
+        "price": 0.969,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1760140800,
+        "price": 0.031,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1760184000,
+        "price": 0.963,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1760184000,
+        "price": 0.037,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1760227200,
+        "price": 0.9615,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1760227200,
+        "price": 0.0385,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1760270400,
+        "price": 0.9585,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1760270400,
+        "price": 0.0415,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1760313600,
+        "price": 0.969,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1760313600,
+        "price": 0.031,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1760356800,
+        "price": 0.969,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1760356800,
+        "price": 0.031,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1760400000,
+        "price": 0.9705,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1760400000,
+        "price": 0.0295,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1760443200,
+        "price": 0.9715,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1760443200,
+        "price": 0.0285,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1760486400,
+        "price": 0.976,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1760486400,
+        "price": 0.024,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1760529600,
+        "price": 0.9805,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1760529600,
+        "price": 0.0195,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1760572800,
+        "price": 0.98,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1760572800,
+        "price": 0.02,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1760616000,
+        "price": 0.9795,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1760616000,
+        "price": 0.0205,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1760659200,
+        "price": 0.962,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1760659200,
+        "price": 0.038,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1760702400,
+        "price": 0.9655,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1760702400,
+        "price": 0.0345,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1760745600,
+        "price": 0.9705,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1760745600,
+        "price": 0.0295,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1760788800,
+        "price": 0.9715,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1760788800,
+        "price": 0.0285,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1760832000,
+        "price": 0.973,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1760832000,
+        "price": 0.027,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1760875200,
+        "price": 0.9705,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1760875200,
+        "price": 0.0295,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1760918400,
+        "price": 0.9745,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1760918400,
+        "price": 0.0255,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1760961600,
+        "price": 0.981,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1760961600,
+        "price": 0.019,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1761004800,
+        "price": 0.981,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1761004800,
+        "price": 0.019,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1761048000,
+        "price": 0.9845,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1761048000,
+        "price": 0.0155,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1761091200,
+        "price": 0.983,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1761091200,
+        "price": 0.017,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1761134400,
+        "price": 0.982,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1761134400,
+        "price": 0.018,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1761177600,
+        "price": 0.9855,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1761177600,
+        "price": 0.0145,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1761220800,
+        "price": 0.983,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1761220800,
+        "price": 0.017,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1761264000,
+        "price": 0.985,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1761264000,
+        "price": 0.015,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1761307200,
+        "price": 0.9855,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1761307200,
+        "price": 0.0145,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1761350400,
+        "price": 0.9905,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1761350400,
+        "price": 0.0095,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1761393600,
+        "price": 0.9915,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1761393600,
+        "price": 0.0085,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1761436800,
+        "price": 0.9935,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1761436800,
+        "price": 0.0065,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1761480000,
+        "price": 0.9925,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1761480000,
+        "price": 0.0075,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1761523200,
+        "price": 0.9935,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1761523200,
+        "price": 0.0065,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1761566400,
+        "price": 0.9925,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1761566400,
+        "price": 0.0075,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1761609600,
+        "price": 0.9955,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1761609600,
+        "price": 0.0045,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1761652800,
+        "price": 0.9915,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1761652800,
+        "price": 0.0085,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1761696000,
+        "price": 0.991,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1761696000,
+        "price": 0.009,
+        "resolution_seconds": 43200,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      },
+      {
+        "timestamp": 1761739200,
+        "price": 1.0,
+        "resolution_seconds": 0,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "53676785636700157256852250095826025029451888648974703429616395645714952970781"
+      },
+      {
+        "timestamp": 1761739200,
+        "price": 0.0,
+        "resolution_seconds": 0,
+        "event_id": "27824",
+        "market_id": "553810",
+        "token_id": "56606480957388905488783515430819601640929432353106353680720689974997213777138"
+      }
+    ],
+    "next_offset": null
+  },
+  "resolutions": {
+    "data": [
+      {
+        "market_id": "553810",
+        "condition_id": "0x6a8c775d3a7ab901a5c4595dbc33478d654dc3b293be2b80fd64500cabbfcc37",
+        "status": "resolved",
+        "payouts": null,
+        "split_50_50": false,
+        "was_disputed": false,
+        "extended_review": false,
+        "proposed_price": "0",
+        "reproposed_price": null,
+        "price": "0",
+        "resolved_at": null,
+        "last_updated_at": "2025-10-29T20:09:37+00:00",
+        "raw": {
+          "question_id": "0x4e12f823cbec9308b0820d773932ebd48de347891bb080618810955866f824ba",
+          "condition_id": "0x6a8c775d3a7ab901a5c4595dbc33478d654dc3b293be2b80fd64500cabbfcc37",
+          "status": "resolved",
+          "extended_review": false,
+          "was_disputed": false,
+          "new_version_q": true,
+          "proposed_price": "0",
+          "reproposed_price": "69",
+          "price": "0",
+          "transaction_hash": "0xd82974d55300f48b6e1506ee1cdefee0ba626afa7cf4305677d89ecbadc051c2",
+          "log_index": "19",
+          "last_update_timestamp": "1761768577"
+        }
+      }
+    ],
+    "missing_market_ids": []
+  },
+  "compliance": {
+    "trading_enabled": false,
+    "trading_allowed": false,
+    "allowlist_configured": false,
+    "mode": "read_only",
+    "geoblock": {
+      "blocked": true,
+      "country": "US",
+      "region": "CA",
+      "checked_at": "2026-10-29T16:41:15.975339+00:00",
+      "error": null,
+      "cached": false
+    }
+  },
+  "quality": {
+    "collected_at": "2026-10-29T16:41:16+00:00",
+    "stale_after_seconds": 3600,
+    "expected_price_interval_seconds": null,
+    "sync_incomplete": false
+  },
+  "provenance": {
+    "recorded_at": "2026-10-29T16:41:16+00:00",
+    "input_sha256": "8ac7499659c5fff72ece584bb1c7f56de74917b5bd03d49ce6c4bcea760c7373"
+  },
+  "forecasts": [],
+  "pnl": [],
+  "book": []
+}

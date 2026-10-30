@@ -9,7 +9,7 @@ import {
   calibration,
   colors,
   components,
-  dashboard,
+  type Dashboard,
   depth,
   labels,
   marketFor,
@@ -69,11 +69,12 @@ export function Stat({
   )
 }
 export function CalibrationView({
-  data = dashboard,
+  data,
 }: {
-  data?: typeof dashboard
+  data: Dashboard
 }) {
   const { forecasts } = data
+  if (!forecasts.length) return <p role="status">暂无预测评价样本，无法计算校准或 Brier 分数。</p>
   const modelScore = brier(forecasts),
     marketScore = brier(forecasts, 'q')
   const bins = calibration(forecasts)
@@ -159,7 +160,7 @@ export function CalibrationView({
   )
 }
 
-export function PnlView({ data = dashboard }: { data?: typeof dashboard }) {
+export function PnlView({ data }: { data: Dashboard }) {
   const [stacked, setStacked] = useState(false)
   const points = data.pnl,
     last = points[points.length - 1],
@@ -310,7 +311,7 @@ function Heatmap({
 }: {
   index: number
   seek: (n: number) => void
-  snapshots: typeof dashboard.book
+  snapshots: Dashboard['book']
 }) {
   const prices = [
     ...new Set(
@@ -384,7 +385,7 @@ function Heatmap({
   )
 }
 
-export function BookView({ data = dashboard }: { data?: typeof dashboard }) {
+export function BookView({ data }: { data: Dashboard }) {
   const [index, setIndex] = useState(0)
   const [playing, setPlaying] = useState(false)
   const [speed, setSpeed] = useState(1)
