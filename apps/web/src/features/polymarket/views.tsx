@@ -12,6 +12,8 @@ import {
   dashboard,
   depth,
   labels,
+  marketFor,
+  selectedAsset,
   money,
   percent,
   totalPnl,
@@ -66,28 +68,36 @@ export function Stat({
     </Card>
   )
 }
-export function CalibrationView() {
-  const { forecasts } = dashboard
-  const modelScore = brier(forecasts)!,
-    marketScore = brier(forecasts, 'q')!
+export function CalibrationView({
+  data = dashboard,
+}: {
+  data?: typeof dashboard
+}) {
+  const { forecasts } = data
+  const modelScore = brier(forecasts),
+    marketScore = brier(forecasts, 'q')
   const bins = calibration(forecasts)
   return (
     <div className="grid gap-5">
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
         <Stat
           label="模型 Brier"
-          value={modelScore.toFixed(4)}
+          value={modelScore?.toFixed(4) ?? '—'}
           detail="越低越好 · 二元结算值 0 / 1"
           accent
         />
         <Stat
           label="市场 Brier"
-          value={marketScore.toFixed(4)}
+          value={marketScore?.toFixed(4) ?? '—'}
           detail="预测时点市场价 q · 同一批题目"
         />
         <Stat
           label="相对市场优势"
-          value={money(marketScore - modelScore, 4)}
+          value={
+            marketScore === null || modelScore === null
+              ? '—'
+              : money(marketScore - modelScore, 4)
+          }
           detail="市场 Brier − 模型 Brier · 未估计置信区间"
         />
         <Stat
@@ -149,11 +159,13 @@ export function CalibrationView() {
   )
 }
 
-export function PnlView() {
+export function PnlView({ data = dashboard }: { data?: typeof dashboard }) {
   const [stacked, setStacked] = useState(false)
-  const points = dashboard.pnl,
+  const points = data.pnl,
     last = points[points.length - 1],
-    net = totalPnl(last)
+    net = last ? totalPnl(last) : null
+  if (!last || net === null)
+    return <p role="status">暂无 PnL 数据，未按零收益处理。</p>
   return (
     <div className="grid gap-5">
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
@@ -176,7 +188,7 @@ export function PnlView() {
         <Stat
           label="研究区间"
           value={`${points.length} 天`}
-          detail="2026-06-01 → 06-16 · UTC 每日累计值"
+          detail={`${points[0].timestamp.slice(0, 10)} → ${last.timestamp.slice(0, 10)} · UTC 每日累计值`}
         />
       </div>
       <Panel title="收益轨迹" note="CUMULATIVE / pUSD">
@@ -294,11 +306,12 @@ export function PnlView() {
 function Heatmap({
   index,
   seek,
+  snapshots,
 }: {
   index: number
   seek: (n: number) => void
+  snapshots: typeof dashboard.book
 }) {
-  const snapshots = dashboard.book
   const prices = [
     ...new Set(
       snapshots.flatMap((s) => [...s.bids, ...s.asks].map((l) => l.price)),
@@ -358,9 +371,9 @@ function Heatmap({
         </div>
       </div>
       <div className="ml-11 mt-3 flex justify-between font-mono text-[10px] text-muted-foreground">
-        <span>00:00</span>
-        <span>2026-06-01 / UTC →</span>
-        <span>00:11</span>
+        <span>{utcTime(snapshots[0].timestamp)}</span>
+        <span>{snapshots[0].timestamp.slice(0, 10)} / UTC →</span>
+        <span>{utcTime(snapshots[snapshots.length - 1].timestamp)}</span>
       </div>
       <p className="mt-4 text-[11px] text-muted-foreground">
         <span className="text-emerald-400">● 买盘</span>
@@ -371,15 +384,13 @@ function Heatmap({
   )
 }
 
-export function BookView() {
+export function BookView({ data = dashboard }: { data?: typeof dashboard }) {
   const [index, setIndex] = useState(0)
   const [playing, setPlaying] = useState(false)
   const [speed, setSpeed] = useState(1)
-  const snapshots = dashboard.book,
+  const snapshots = data.book,
     lastIndex = snapshots.length - 1
   const snapshot = snapshots[index]
-  const bids = depth(snapshot.bids, 'bid'),
-    asks = depth(snapshot.asks, 'ask')
   useEffect(() => {
     if (!playing) return
     if (index >= lastIndex) {
@@ -392,6 +403,12 @@ export function BookView() {
     )
     return () => window.clearTimeout(timer)
   }, [playing, speed, index, lastIndex])
+  if (!snapshot) return <p role="status">暂无盘口快照。</p>
+  const asset = selectedAsset(marketFor(data), data.outcome_index)
+  if (!asset) return <p role="status">协议或 outcome 身份不完整，盘口已隔离。</p>
+  const outcome = asset.outcome
+  const bids = depth(snapshot.bids, 'bid'),
+    asks = depth(snapshot.asks, 'ask')
   function seek(next: number) {
     setPlaying(false)
     setIndex(next)
@@ -400,28 +417,32 @@ export function BookView() {
     <div className="grid gap-5">
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
         <Stat
-          label="最优买价 / YES"
-          value={bids[0].price.toFixed(2)}
+          label={`最优买价 / ${outcome}`}
+          value={bids[0]?.price.toFixed(2) ?? '—'}
           detail="pUSD / 份 · 合成 L2 快照"
           accent
         />
         <Stat
-          label="最优卖价 / YES"
-          value={asks[0].price.toFixed(2)}
+          label={`最优卖价 / ${outcome}`}
+          value={asks[0]?.price.toFixed(2) ?? '—'}
           detail="pUSD / 份 · 非可执行报价"
         />
         <Stat
           label="买卖价差"
-          value={(asks[0].price - bids[0].price).toFixed(2)}
+          value={
+            asks.length && bids.length
+              ? (asks[0].price - bids[0].price).toFixed(2)
+              : '—'
+          }
           detail="pUSD / 份 · ask − bid"
         />
         <Stat
           label="快照时间 / UTC"
           value={utcTime(snapshot.timestamp)}
-          detail={`2026-06-01 · ${index + 1} / ${snapshots.length} 帧`}
+          detail={`${snapshot.timestamp.slice(0, 10)} · ${index + 1} / ${snapshots.length} 帧`}
         />
       </div>
-      <Panel title="盘口回放" note="FROZEN / YES / L2">
+      <Panel title="盘口回放" note={`FROZEN / ${outcome} / L2`}>
         <div className="flex flex-wrap items-center gap-3 p-4">
           <MotionButton
             size="sm"
@@ -486,11 +507,15 @@ export function BookView() {
             note={utcTime(snapshot.timestamp) + ' UTC'}
           >
             <div className="p-3">
-              <DepthChart snapshot={snapshot} />
+              {snapshot.bids.length && snapshot.asks.length ? (
+                <DepthChart snapshot={snapshot} outcome={outcome} />
+              ) : (
+                <p role="status">盘口单侧或双侧为空，无法计算价差与深度。</p>
+              )}
             </div>
           </Panel>
           <Panel title="流动性热力图" note="PRICE × TIME">
-            <Heatmap index={index} seek={seek} />
+            <Heatmap index={index} seek={seek} snapshots={snapshots} />
           </Panel>
         </div>
         <Panel title="逐档盘口" note="SIZE / SHARES">

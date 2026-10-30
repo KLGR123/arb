@@ -10,21 +10,13 @@ ARB-13 提供独立 `/polymarket` 路由：首页的「Polymarket 看板」进�
 
 概率和深度的横轴不是时间，使用原生 SVG；PnL 时间图使用 `@luxalgo/vela`。SVG 带描述，数据同时提供表格；页签支持左右键、Home、End，原生 range 与按钮支持键盘操作。桌面图表加侧栏，移动端纵向排列，长表在容器内横向滚动。
 
-## 前端契约草案与适配假设
+## 前端契约与适配
 
-类型位于 `apps/web/src/features/polymarket/model.ts`，仓库内 JSON 位于 `fixtures/dashboard.json`。这是独立的展示契约 v1，**不是任何上游 API 已承诺的响应**；数据全部为合成 fixture，无真实市场数据或 LLM 评估结果。后端替换时应写 adapter 并校验外部 JSON，不能把网络响应直接断言为 `Dashboard`。
+ARB-24 将展示包络升级为 v2，运行时 schema、后端响应类型与身份选择器位于 `apps/web/src/features/polymarket/contract.ts`。JSON fixture 在 `model.ts` 中用 zod 校验后才进入组件。完整字段映射、版本边界和破坏性变更规则见 [前端数据契约](frontend-data-contract.md)。
 
-Issue 内「票 2 / 6 / 7」指本批序号，对应实际 ARB-7（数据层）、ARB-11（预测评估）、ARB-12（做市回测）；盘口来源另对齐 ARB-8。
+页面仍使用合成 fixture，未连接真实 API。事件/市场、历史价格与结算沿用 ARB-7 本地字段；V2 资产显示为 position_id，原有 protocol_version 和统一 token_id 展示已移除。地区状态未提供时明确提示不可用，不能当成未受限。缺失价格/结算保留为空，数据质量按快照 as_of 判断。
 
-| 模块 | 当前 TS / JSON 字段 | 后续对齐与假设 |
-| --- | --- | --- |
-| 包络 | `schema_version=1`, `source=synthetic-fixture`, `as_of`, `currency=pUSD` | 时间均为 RFC 3339 UTC；`as_of` 为快照生成时间；未来来源应在 adapter 中扩展为真实来源，不能复用 synthetic 标签 |
-| 市场（ARB-7） | `market.event_id`, `market_id`, `token_id`, `question`, `outcome`, `protocol_version=v2`, `neg_risk` | event → market → token；fixture id 不可用于请求；outcome 为 YES 标签，协议单独标识。未来由数据层映射 token 标识、精度及 negRisk |
-| 校准（ARB-11） | `forecasts[].market_id`, `predicted_at`, `resolved_at`, `p`, `q`, `outcome` | `p,q∈[0,1]`，`outcome∈{0,1}`；预测时点早于结算；q 必须与预测时点一致；当前题库和盘口市场相互独立。未接模型、检索、bootstrap CI 或投注模拟 |
-| PnL（ARB-12） | `pnl[].timestamp`, `trading`, `rebates`, `rewards`, `settlement`, `fees`, `benchmark` | 金额为 pUSD 的**累计**数值。费用为负；净收益为五项代数和，返佣与奖励不能再计入交易项。结算单列以兼容做市框架；若上游给每步增量需先累计，若只有最终分解不能伪造历史曲线 |
-| 盘口（ARB-8） | `book[].timestamp`, `bids/asks[].price`, `size` | 单 token 完整快照；价格为每份 pUSD，数量为份；按价格排序后累计；增量事件须在 adapter 中先重建、处理删除及缺口，不能直接作为完整快照 |
-
-不依赖尚未合入的数据层 / 评估 / 做市模块；本路由没有敏感写路径，无须伪造 geoblock 或 guard 状态。未来接真实只读 API 时，应复用统一限流与退避，并保持测试离线。
+校准、PnL 和盘口继续是独立展示序列；未来接 ARB-11/12/8 必须经过对应 adapter，不把 Data API 价格桶当作 L2。空序列显示空态，单侧空盘口不计算价差/深度；不伪造历史点、零价格或零收益。
 
 ## 验证与截图
 

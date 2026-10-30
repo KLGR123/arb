@@ -238,7 +238,8 @@ def test_missing_pong_forces_reconnect_even_with_book_traffic(tmp_path):
     connector = Connector([socket])
     recorder = Recorder(tmp_path, ["123"], heartbeat_seconds=.002, pong_seconds=.004,
                         budget=TokenBucket(10000, 10000))
-    asyncio.run(recorder.run(duration=.02, connect=connector))
+    # Leave scheduling headroom to actually send PING and observe its timeout.
+    asyncio.run(recorder.run(duration=1, connect=connector))
     assert recorder.metrics["gap_heartbeat_timeout"] >= 1
     assert recorder.metrics["reconnects"] >= 1
 
@@ -246,7 +247,9 @@ def test_missing_pong_forces_reconnect_even_with_book_traffic(tmp_path):
 def test_writer_lock_and_disk_failure_stop(tmp_path, monkeypatch):
     import fcntl
 
-    recorder = Recorder(tmp_path, ["123"])
+    # The injected write failure must be reached independently of other tests'
+    # process-wide rate budget and filesystem/thread scheduling on the NAS.
+    recorder = Recorder(tmp_path, ["123"], budget=TokenBucket(10000, 10000))
     with (tmp_path / ".record.lock").open("a") as lock:
         fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
         with pytest.raises(ValueError, match="another recorder"):
@@ -260,7 +263,7 @@ def test_writer_lock_and_disk_failure_stop(tmp_path, monkeypatch):
 
     monkeypatch.setattr(recorder.journal, "write", disk_full)
     with pytest.raises(OSError, match="disk full"):
-        asyncio.run(recorder.run(duration=.01, connect=Connector([FakeSocket([json.dumps(BOOK)])])))
+        asyncio.run(recorder.run(duration=1, connect=Connector([FakeSocket([json.dumps(BOOK)])])))
     assert not recorder.metrics["reconnects"]
 
 

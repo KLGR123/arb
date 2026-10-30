@@ -1,66 +1,16 @@
 import fixture from './fixtures/dashboard.json'
+import { dashboardSchema } from './contract'
+import {
+  components,
+  type Component,
+  type Forecast,
+  type PnlPoint,
+  type Level,
+} from './contract'
+export * from './contract'
 
-// Frontend draft contract; adapters for ARB-7/8/11/12 are documented separately.
-export interface Forecast {
-  market_id: string
-  predicted_at: string
-  resolved_at: string
-  p: number
-  q: number
-  outcome: 0 | 1
-}
-export const components = [
-  'trading',
-  'rebates',
-  'rewards',
-  'settlement',
-  'fees',
-] as const
-export type Component = (typeof components)[number]
-export type PnlPoint = Record<Component, number> & {
-  timestamp: string
-  benchmark: number
-}
-export interface Level {
-  price: number
-  size: number
-}
-export interface BookSnapshot {
-  timestamp: string
-  bids: Level[]
-  asks: Level[]
-}
-export interface Dashboard {
-  schema_version: 1
-  source: 'synthetic-fixture'
-  as_of: string
-  currency: 'pUSD'
-  market: {
-    event_id: string
-    market_id: string
-    token_id: string
-    question: string
-    outcome: string
-    protocol_version: 'v2'
-    neg_risk: boolean
-  }
-  forecasts: Forecast[]
-  pnl: PnlPoint[]
-  book: BookSnapshot[]
-}
-// JSON imports widen literals; keeping the contract check explicit avoids a cast.
-export const dashboard: Dashboard = {
-  ...fixture,
-  schema_version: 1,
-  source: 'synthetic-fixture',
-  currency: 'pUSD',
-  market: { ...fixture.market, protocol_version: 'v2' },
-  forecasts: fixture.forecasts.map((f) => {
-    if (f.outcome !== 0 && f.outcome !== 1)
-      throw new Error('Expected binary outcome')
-    return { ...f, outcome: f.outcome }
-  }),
-}
+// Validate the actual JSON; never overwrite invalid literals to satisfy TS.
+export const dashboard = dashboardSchema.parse(fixture)
 
 export const labels: Record<Component, string> = {
   trading: '交易',

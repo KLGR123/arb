@@ -1,6 +1,5 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import {
-  Activity,
   ArrowLeft,
   ChartCandlestick,
   ChartNoAxesCombined,
@@ -11,6 +10,7 @@ import {
 import { useEffect, useState } from 'react'
 import { Badge } from '@/components/ui/badge'
 import { BookView, CalibrationView, PnlView } from '@/features/polymarket/views'
+import { DataStatus } from '@/features/polymarket/data-status'
 import { dashboard } from '@/features/polymarket/model'
 
 export const Route = createFileRoute('/polymarket')({
@@ -85,21 +85,7 @@ function Polymarket() {
             全部题目、盘口与损益均为演示数据。无下单功能，不代表真实市场表现。
           </p>
         </div>
-        <div className="mt-6 flex flex-wrap items-center justify-between gap-4 rounded-lg border bg-card px-4 py-4 sm:px-5">
-          <div className="flex min-w-0 items-start gap-3">
-            <Activity size={16} className="mt-0.5 shrink-0 text-primary" />
-            <div>
-              <p className="text-xs leading-5">{dashboard.market.question}</p>
-              <p className="mt-1.5 font-mono text-[10px] text-muted-foreground">
-                SYNTHETIC / YES / CLOB V2 / pUSD
-              </p>
-            </div>
-          </div>
-          <span className="text-[11px] text-muted-foreground">
-            校准：100 题<span className="mx-2">·</span>收益：16 天
-            <span className="mx-2">·</span>盘口：12 帧
-          </span>
-        </div>
+        <DataStatus data={dashboard} />
         <div
           role="tablist"
           aria-label="研究视图"
