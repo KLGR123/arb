@@ -1,9 +1,12 @@
 """Binary cross-venue paper valuation; no execution dependencies."""
 
 from decimal import ROUND_CEILING
+from collections import Counter
+import json
 import re
 
 from .negrisk import Book, D, assets, number, taker_fee, timestamp
+from .rule_alignment import DIMENSIONS, validate
 
 STOP = set("will the a an be is of in on at to by for and or before after above below than over under yes no what how when price reach end this market".split())
 STOP.update("january february march april may june july august september october november december monday tuesday wednesday thursday friday saturday sunday today tomorrow exceed hit more less between".split())
@@ -138,30 +141,65 @@ def edge(pbook, kbook, prate, krate, quantity, kind, max_skew=10):
             "assumption": "equivalent binary payouts; top-level snapshot; pUSD approximately USD"}
 
 
+def rule_rejections(poly, kalshi, alignment):
+    """Fail closed on every settlement dimension, independently of model score."""
+    reasons = []
+    for venue, market in (("poly", poly), ("kalshi", kalshi)):
+        if not isinstance(market.get("rules"), str) or not market["rules"].strip():
+            reasons.append(f"{venue}_rules_missing")
+    try:
+        validate(alignment)
+    except (ValueError, TypeError):
+        return reasons + ["rule_comparison_unverified"]
+    if alignment["relation"] not in ("same", "inverse"):
+        reasons.append("relation_" + alignment["relation"])
+    if alignment["alignment"] < .95:
+        reasons.append("alignment_below_0.95")
+    if alignment["differences"]:
+        reasons.append("material_rule_differences")
+    for dimension in DIMENSIONS:
+        check = alignment["checks"][dimension]
+        if check["verdict"] != "equivalent":
+            reasons.append(dimension + "_" + check["verdict"])
+        # Evidence must be present in supplied settlement text, not just in a
+        # model explanation or titles. This checks provenance, not semantics.
+        for venue, market in (("poly", poly), ("kalshi", kalshi)):
+            evidence = " ".join(check[venue + "_evidence"].casefold().split())
+            material = " ".join((str(market.get("rules", "")) + " " + json.dumps(
+                market.get("resolution_source", ""), ensure_ascii=False)).casefold().split())
+            if evidence == "not supplied" or evidence not in material:
+                reasons.append(f"{dimension}_{venue}_evidence_unverified")
+    return sorted(set(reasons))
+
+
+def eligibility_rejections(poly, kalshi, now, coverage):
+    reasons = []
+    try:
+        if not (poly["active"] is True and kalshi["active"] is True
+                and timestamp(poly["close_time"]) > now and timestamp(kalshi["close_time"]) > now):
+            reasons.append("market_inactive_closed_or_close_time_unknown")
+    except (ValueError, TypeError, KeyError):
+        reasons.append("market_inactive_closed_or_close_time_unknown")
+    if not candidates([poly], [kalshi], 1, coverage.get("max_close_gap_hours", 48),
+                      coverage.get("min_title_similarity", .20)):
+        reasons.append("candidate_changed_since_discovery")
+    return reasons
+
+
 def scan(snapshot, aligner, quantity=D(10), max_age=120, max_skew=10):
     if not quantity.is_finite() or quantity < 1 or quantity != quantity.to_integral_value() or max_age <= 0 or max_skew < 0:
         raise ValueError("positive integral quantity, age and nonnegative skew required")
     now = timestamp(snapshot["as_of"])
     pm = {x["id"]: x for x in snapshot["polymarket"]}
     km = {x["id"]: x for x in snapshot["kalshi"]}
-    rows, errors = [], list(snapshot.get("errors", []))
+    rows, rejected, errors = [], [], list(snapshot.get("errors", []))
     for candidate in snapshot["candidates"]:
         p, k = pm[candidate["poly_id"]], km[candidate["kalshi_id"]]
         row = {**candidate, "poly_title": p["title"], "kalshi_title": k["title"],
                "risk": "high", "risks": ["regional_restrictions_research_only", "model_requires_human_rule_review"],
                "quotes": [], "alignment": None, "price_differences": {}}
-        try:
-            lifecycle_ok = (p["active"] is True and k["active"] is True
-                            and timestamp(p["close_time"]) > now and timestamp(k["close_time"]) > now)
-        except (ValueError, TypeError, KeyError):
-            lifecycle_ok = False
-        if not lifecycle_ok:
-            row["risks"].append("market_inactive_closed_or_close_time_unknown")
-        coverage = snapshot.get("coverage", {})
-        shortlist_ok = bool(candidates([p], [k], 1, coverage.get("max_close_gap_hours", 48),
-                                       coverage.get("min_title_similarity", .20)))
-        if not shortlist_ok:
-            row["risks"].append("candidate_changed_since_discovery")
+        eligibility = eligibility_rejections(p, k, now, snapshot.get("coverage", {}))
+        row["risks"].extend(eligibility)
         try:
             record = aligner.compare(p, k)
             row["alignment"] = record["output"]
@@ -171,12 +209,20 @@ def scan(snapshot, aligner, quantity=D(10), max_age=120, max_skew=10):
             errors.append({"pair": [p["id"], k["id"]], "stage": "rules", "reason": "rule_comparison_unavailable"})
         alignment = row["alignment"] or {}
         relation = alignment.get("relation", "uncertain")
-        rules_ok = (lifecycle_ok and shortlist_ok and relation in ("same", "inverse") and alignment.get("alignment", 0) >= .95
-                    and not alignment.get("differences") and bool(p["rules"].strip()) and bool(k["rules"].strip()))
+        reasons = rule_rejections(p, k, alignment) + eligibility
+        rules_ok = not reasons
         row["settlement_equivalent"] = rules_ok
         if not rules_ok:
             row["risks"].append("rules_different_or_unverified")
             row["risk"] = "critical"
+            row["rejection_reasons"] = sorted(set(reasons))
+            row["difference_fields"] = [key for key in DIMENSIONS if any(
+                reason.startswith(key + "_") for reason in reasons)]
+            row["risks"] = sorted(set(row["risks"]))
+            rejected.append(row)
+            # Hard filter: rejected propositions never enter book/fee parsing
+            # or any valuation, even when prices and depth look attractive.
+            continue
         try:
             settlement_gap = abs((timestamp(p["settlement_time"]) - timestamp(k["settlement_time"])).total_seconds())
             row["settlement_gap_seconds"] = settlement_gap
@@ -233,27 +279,42 @@ def scan(snapshot, aligner, quantity=D(10), max_age=120, max_skew=10):
             errors.append({"pair": [p["id"], k["id"]], "stage": "valuation", "reason": type(exc).__name__})
         row["risks"] = sorted(set(row["risks"]))
         rows.append(row)
-    return {"schema_version": "cross-venue-v1", "as_of": snapshot["as_of"],
+    valued = sum(bool(x["quotes"]) for x in rows)
+    positive = sum(q["net_edge_per_share"] > 0 for x in rows for q in x["quotes"])
+    return {"schema_version": "cross-venue-v2", "as_of": snapshot["as_of"],
             "execution": "blocked", "compliance": snapshot.get("compliance", {}),
-            "coverage": snapshot.get("coverage", {}), "pairs": rows, "errors": errors,
+            "coverage": snapshot.get("coverage", {}), "pairs": rows, "rejected_pairs": rejected, "errors": errors,
             "assumptions": ["Research only; never opens accounts or executes", "No guaranteed arbitrage",
                             "No funding, withdrawal, FX or tax costs modeled", "Kalshi restricts China; no eligibility inferred from proxy"],
-            "summary": {"candidates": len(rows), "valued": sum(bool(x["quotes"]) for x in rows),
-                        "settlement_equivalent": sum(x["settlement_equivalent"] for x in rows),
-                        "positive_conditional_quotes": sum(q["net_edge_per_share"] > 0 for x in rows for q in x["quotes"])}}
+            "summary": {"candidates": len(rows) + len(rejected), "rejected": len(rejected), "valued": valued,
+                        "settlement_equivalent": len(rows), "positive_conditional_quotes": positive,
+                        "rejection_counts": dict(sorted(Counter(
+                            reason for row in rejected for reason in row["rejection_reasons"]).items())),
+                        "no_positive_edge_reason": (None if positive else
+                            "no_candidates" if not rows and not rejected else
+                            "no_equivalent_pairs" if not rows else
+                            "no_valid_book_or_fee_data" if not valued else "fees_and_prices_leave_no_positive_edge")}}
 
 
 def markdown(report):
     def clean(value):
         return str(value).replace("|", "\\|").replace("\n", " ").replace("\r", " ")
     lines = ["# Cross-venue paper research", "", f"As of: {report['as_of']}. Execution: blocked.",
-             "All edges are conditional estimates, subject to human settlement-rule review.", "",
+             "All edges are conditional estimates, subject to human settlement-rule review.",
+             f"Summary: {report['summary']}", "",
              "| Polymarket / Kalshi | Rule relation | Risk | Differences / risks |",
              "| --- | --- | --- | --- |"]
     for row in report["pairs"]:
         rule = row["alignment"] or {}
         differences = rule.get("differences", []) + row["risks"]
         lines.append(f"| {clean(row['poly_title'])} / {clean(row['kalshi_title'])} | {rule.get('relation', 'unavailable')} | {row['risk']} | {clean('; '.join(differences))} |")
+    lines += ["", "Rejected before valuation:", "",
+              "| Pair | Alignment | Difference fields | Rejection reasons |", "| --- | ---: | --- | --- |"]
+    for row in report["rejected_pairs"]:
+        rule = row["alignment"] or {}
+        lines.append(f"| {row['poly_id']} / {row['kalshi_id']} | {rule.get('alignment', 'unavailable')} | "
+                     f"{clean(', '.join(row['difference_fields']))} | "
+                     f"{clean('; '.join(row['rejection_reasons'] + rule.get('differences', [])))} |")
     lines += ["", "Ask-price differences (Polymarket minus Kalshi, USD/share; not payout equivalence):", "",
               "| Pair | YES/YES | YES/NO | NO/YES | NO/NO |", "| --- | ---: | ---: | ---: | ---: |"]
     for row in report["pairs"]:

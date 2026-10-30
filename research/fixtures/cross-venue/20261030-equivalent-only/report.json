@@ -1,0 +1,452 @@
+{
+  "schema_version": "cross-venue-v2",
+  "as_of": "2026-10-30T02:04:54.147296+00:00",
+  "execution": "blocked",
+  "compliance": {
+    "trading_enabled": false,
+    "trading_allowed": false,
+    "allowlist_configured": false,
+    "mode": "read_only",
+    "geoblock": {
+      "blocked": true,
+      "country": "US",
+      "region": "CA",
+      "checked_at": "2026-10-30T02:04:51.817799+00:00",
+      "error": null,
+      "cached": false
+    }
+  },
+  "coverage": {
+    "pages_limit": 1,
+    "pair_limit": 5,
+    "max_close_gap_hours": 48,
+    "min_title_similarity": 0.2,
+    "selection": "explicit_events",
+    "combinations_considered": 55,
+    "shortlisted_before_limit": 10,
+    "shortlist_truncated": true,
+    "poly_markets": 5,
+    "kalshi_markets": 11,
+    "selected_pairs": 5,
+    "exhaustive": false
+  },
+  "pairs": [],
+  "rejected_pairs": [
+    {
+      "poly_id": "3215005",
+      "kalshi_id": "KXFED-26DEC-T3.50",
+      "title_similarity": 0.2222222222222222,
+      "close_gap_seconds": 18240.0,
+      "poly_title": "Will the Fed decrease interest rates by 50+ bps after the December 2026 meeting?",
+      "kalshi_title": "Will the upper bound of the federal funds rate be above 3.50% following the Fed's Dec 9, 2026 meeting? Above 3.50%",
+      "risk": "critical",
+      "risks": [
+        "model_requires_human_rule_review",
+        "regional_restrictions_research_only",
+        "rules_different_or_unverified"
+      ],
+      "quotes": [],
+      "alignment": {
+        "relation": "different",
+        "alignment": 0.2,
+        "source_comparison": "Both reference the Federal Reserve, but Polymarket specifies the FOMC statement and a no-statement fallback; Kalshi specifies the official website without a supplied fallback hierarchy.",
+        "deadline_comparison": "Both concern the December 2026 meeting, but their specified resolution timing and no-statement handling differ. The supplied rules do not establish identical observation cutoffs or timezones.",
+        "boundary_comparison": "Kalshi uses a strict absolute-rate threshold; Polymarket uses a rounded change bracket. Cancellation, ties and 50/50 payout rules are not supplied.",
+        "checks": {
+          "source": {
+            "verdict": "mismatch",
+            "poly_evidence": "The resolution source for this market is the FOMC’s statement after its meeting scheduled for December 8-9, 2026 according to the official calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm. ... The level and change of the target federal funds rate is also published at the official website of the Federal Reserve at https://www.federalreserve.gov/monetarypolicy/openmarket.htm. ... If no statement is released by the end date of the next scheduled meeting, this market will resolve to the \"No change\" bracket.",
+            "kalshi_evidence": "If the upper bound of the target federal funds rate published on the Federal Reserve's official website is greater than 3.50% following the Federal Reserve's Dec 9, 2026 meeting, then the market resolves to Yes.",
+            "explanation": "The sources are related but not identically specified. Polymarket identifies the statement and a no-statement fallback; no equivalent fallback is supplied for Kalshi."
+          },
+          "deadline": {
+            "verdict": "mismatch",
+            "poly_evidence": "The resolution source for this market is the FOMC’s statement after its meeting scheduled for December 8-9, 2026 according to the official calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm. ... This market may resolve as soon as the FOMC’s statement for their December meeting with relevant data is issued. If no statement is released by the end date of the next scheduled meeting, this market will resolve to the \"No change\" bracket.",
+            "kalshi_evidence": "This market will expire the first 2:05 PM ET following the release of a Federal Reserve statement for their Dec 9, 2026 meeting or one week following the last day of that meeting.",
+            "explanation": "The venues specify different timing and no-statement provisions. Polymarket supplies no exact timezone or clock-time cutoff for its fallback; Kalshi's expiration time does not by itself establish an identical observation cutoff."
+          },
+          "boundary": {
+            "verdict": "mismatch",
+            "poly_evidence": "Will the Fed decrease interest rates by 50+ bps after the December 2026 meeting? ... If the target federal funds rate is changed to a level not expressed in the displayed options, the change will be rounded up to the nearest 25 and will resolve to the relevant bracket. (e.g. if there's a cut/increase of 12.5 bps it will be considered to be 25 bps) ... If no statement is released by the end date of the next scheduled meeting, this market will resolve to the \"No change\" bracket.",
+            "kalshi_evidence": "If the upper bound of the target federal funds rate published on the Federal Reserve's official website is greater than 3.50% following the Federal Reserve's Dec 9, 2026 meeting, then the market resolves to Yes.",
+            "explanation": "Kalshi excludes equality at 3.50%, while Polymarket applies rounding to a change bracket and specifies a no-statement outcome. Cancellation, ties and 50/50 payout rules are not supplied for either venue."
+          },
+          "underlying": {
+            "verdict": "mismatch",
+            "poly_evidence": "The FED interest rates are defined in this market by the upper bound of the target federal funds range. ... This market will resolve to the amount of basis points the upper bound of the target federal funds rate is changed by versus the level it was prior to the Federal Reserve's December 2026 meeting. ... Will the Fed decrease interest rates by 50+ bps after the December 2026 meeting?",
+            "kalshi_evidence": "If the upper bound of the target federal funds rate published on the Federal Reserve's official website is greater than 3.50% following the Federal Reserve's Dec 9, 2026 meeting, then the market resolves to Yes.",
+            "explanation": "Both reference the target range's upper bound, but Kalshi tests an absolute percentage level and Polymarket tests a decrease in basis points from the prior level. They are neither identical nor necessarily complementary."
+          }
+        },
+        "differences": [
+          "Kalshi YES requires an upper bound strictly greater than 3.50%; Polymarket YES concerns a decrease of 50+ basis points from the prior level, subject to its rounding rule.",
+          "Polymarket specifies the FOMC statement and a no-statement fallback to the No change bracket; an equivalent Kalshi fallback is not supplied.",
+          "Kalshi specifies expiration at the first 2:05 PM ET after the statement or one week after the meeting's last day; Polymarket permits resolution on the statement and specifies a fallback by the next scheduled meeting's end date.",
+          "The precise observation cutoff and timezone for Polymarket's fallback are not supplied; identical observation windows cannot be established.",
+          "Cancellation, tie and 50/50 payout rules are not supplied for either venue."
+        ],
+        "explanation": "The underlying YES propositions have a material mismatch: an absolute post-meeting level is not the same as, or the exact inverse of, a change from the prior level. Differences in source fallback and timing, plus missing boundary rules, further prevent equivalence."
+      },
+      "price_differences": {},
+      "rule_cache_key": "7e4ab58aa6ac6336dce82a81ff54173cf1369eb5732be9d79393937129b9a3c0",
+      "settlement_equivalent": false,
+      "rejection_reasons": [
+        "alignment_below_0.95",
+        "boundary_mismatch",
+        "boundary_poly_evidence_unverified",
+        "deadline_mismatch",
+        "deadline_poly_evidence_unverified",
+        "material_rule_differences",
+        "relation_different",
+        "source_mismatch",
+        "source_poly_evidence_unverified",
+        "underlying_mismatch",
+        "underlying_poly_evidence_unverified"
+      ],
+      "difference_fields": [
+        "source",
+        "deadline",
+        "boundary",
+        "underlying"
+      ]
+    },
+    {
+      "poly_id": "3215005",
+      "kalshi_id": "KXFED-26DEC-T4.50",
+      "title_similarity": 0.2222222222222222,
+      "close_gap_seconds": 18240.0,
+      "poly_title": "Will the Fed decrease interest rates by 50+ bps after the December 2026 meeting?",
+      "kalshi_title": "Will the upper bound of the federal funds rate be above 4.50% following the Fed's Dec 9, 2026 meeting? Above 4.50%",
+      "risk": "critical",
+      "risks": [
+        "model_requires_human_rule_review",
+        "regional_restrictions_research_only",
+        "rules_different_or_unverified"
+      ],
+      "quotes": [],
+      "alignment": {
+        "relation": "different",
+        "alignment": 0.2,
+        "source_comparison": "Both refer to Federal Reserve publications, but Polymarket specifies the FOMC statement and a no-statement fallback; Kalshi specifies the Federal Reserve website without a supplied fallback hierarchy.",
+        "deadline_comparison": "Both concern the December 2026 meeting, but their resolution timing and fallback provisions differ. The precise observation cutoff and timezone are not fully specified for Polymarket.",
+        "boundary_comparison": "Kalshi uses a strict greater-than threshold; Polymarket uses a rounded change bracket. Cancellation, tie and nonbinary payout rules are not supplied.",
+        "checks": {
+          "source": {
+            "verdict": "mismatch",
+            "poly_evidence": "The resolution source for this market is the FOMC’s statement after its meeting scheduled for December 8-9, 2026 according to the official calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm. ... The level and change of the target federal funds rate is also published at the official website of the Federal Reserve at https://www.federalreserve.gov/monetarypolicy/openmarket.htm. ... If no statement is released by the end date of the next scheduled meeting, this market will resolve to the \"No change\" bracket.",
+            "kalshi_evidence": "If the upper bound of the target federal funds rate published on the Federal Reserve's official website is greater than 4.50% following the Federal Reserve's Dec 9, 2026 meeting, then the market resolves to Yes.",
+            "explanation": "Both use Federal Reserve information, but Polymarket identifies the statement as its resolution source and specifies a no-statement outcome. Kalshi supplies no corresponding fallback hierarchy."
+          },
+          "deadline": {
+            "verdict": "mismatch",
+            "poly_evidence": "The resolution source for this market is the FOMC’s statement after its meeting scheduled for December 8-9, 2026 ... This market may resolve as soon as the FOMC’s statement for their December meeting with relevant data is issued. If no statement is released by the end date of the next scheduled meeting, this market will resolve to the \"No change\" bracket.",
+            "kalshi_evidence": "This market will expire the first 2:05 PM ET following the release of a Federal Reserve statement for their Dec 9, 2026 meeting or one week following the last day of that meeting.",
+            "explanation": "The stated timing and no-statement provisions differ. Polymarket does not specify a precise time or timezone for the next-meeting end-date cutoff, and neither supplied rule fully defines an observation cutoff for every scenario. Listed close and settlement times do not establish equivalent observation windows."
+          },
+          "boundary": {
+            "verdict": "mismatch",
+            "poly_evidence": "If the target federal funds rate is changed to a level not expressed in the displayed options, the change will be rounded up to the nearest 25 and will resolve to the relevant bracket. (e.g. if there's a cut/increase of 12.5 bps it will be considered to be 25 bps)",
+            "kalshi_evidence": "greater than 4.50%",
+            "explanation": "Kalshi excludes equality at 4.50%, while Polymarket applies rounding to changes before bracket selection. Cancellation, ties and 50/50 or other nonbinary payout rules are not supplied for either venue."
+          },
+          "underlying": {
+            "verdict": "mismatch",
+            "poly_evidence": "Will the Fed decrease interest rates by 50+ bps after the December 2026 meeting? ... The FED interest rates are defined in this market by the upper bound of the target federal funds range. ... This market will resolve to the amount of basis points the upper bound of the target federal funds rate is changed by versus the level it was prior to the Federal Reserve's December 2026 meeting.",
+            "kalshi_evidence": "If the upper bound of the target federal funds rate published on the Federal Reserve's official website is greater than 4.50% following the Federal Reserve's Dec 9, 2026 meeting, then the market resolves to Yes.",
+            "explanation": "The underlying rate component is the same, but Polymarket asks about a decrease in basis points relative to the prior level, while Kalshi asks whether the resulting absolute level exceeds 4.50%. These are neither identical nor guaranteed complements."
+          }
+        },
+        "differences": [
+          "Polymarket tests a rounded decrease of 50 or more basis points relative to the pre-meeting level; Kalshi tests an absolute post-meeting upper bound strictly above 4.50%.",
+          "Polymarket identifies the FOMC statement as its resolution source and specifies a No change outcome if no statement appears by the end date of the next scheduled meeting; Kalshi's supplied rules do not specify an equivalent source fallback.",
+          "Kalshi states an expiration time of the first 2:05 PM ET after the statement or one week after the meeting's last day; Polymarket permits resolution upon the statement and specifies a later no-statement fallback.",
+          "Polymarket does not supply a precise time or timezone for its next-meeting cutoff; the complete observation cutoff is not fully specified for both markets.",
+          "Polymarket specifies rounding changes to the nearest 25-basis-point bracket; Kalshi explicitly excludes equality at 4.50%.",
+          "Cancellation, tie and 50/50 or other nonbinary payout rules are not supplied for either venue."
+        ],
+        "explanation": "The YES propositions have a material underlying mismatch, so the markets are different rather than identical or exact inverses. Additional source, timing and boundary differences or omissions prevent treating their payouts as equivalent in all conditions."
+      },
+      "price_differences": {},
+      "rule_cache_key": "ef916b36e4830a5c0fd68bb1643c99729ec8e3beae5409de0479fbaee29fc234",
+      "settlement_equivalent": false,
+      "rejection_reasons": [
+        "alignment_below_0.95",
+        "boundary_mismatch",
+        "deadline_mismatch",
+        "deadline_poly_evidence_unverified",
+        "material_rule_differences",
+        "relation_different",
+        "source_mismatch",
+        "source_poly_evidence_unverified",
+        "underlying_mismatch",
+        "underlying_poly_evidence_unverified"
+      ],
+      "difference_fields": [
+        "source",
+        "deadline",
+        "boundary",
+        "underlying"
+      ]
+    },
+    {
+      "poly_id": "3215006",
+      "kalshi_id": "KXFED-26DEC-T3.25",
+      "title_similarity": 0.2222222222222222,
+      "close_gap_seconds": 18240.0,
+      "poly_title": "Will the Fed decrease interest rates by 25 bps after the December 2026 meeting?",
+      "kalshi_title": "Will the upper bound of the federal funds rate be above 3.25% following the Fed's Dec 9, 2026 meeting? Above 3.25%",
+      "risk": "critical",
+      "risks": [
+        "model_requires_human_rule_review",
+        "regional_restrictions_research_only",
+        "rules_different_or_unverified"
+      ],
+      "quotes": [],
+      "alignment": {
+        "relation": "different",
+        "alignment": 0.25,
+        "source_comparison": "Both reference Federal Reserve material, but Polymarket specifies the FOMC statement and a no-statement fallback; Kalshi specifies the Federal Reserve's official website and does not supply a resolution fallback.",
+        "deadline_comparison": "Both concern the December 2026 meeting, but Polymarket allows resolution when the statement is issued and specifies a next-meeting fallback; Kalshi specifies an expiration tied to 2:05 PM ET or one week after the meeting. The supplied text does not establish identical observation cutoffs.",
+        "boundary_comparison": "Kalshi uses a strict greater-than threshold; Polymarket rounds unlisted changes up to a 25-basis-point bracket. Cancellation, ties, and nonbinary payout rules are not supplied.",
+        "checks": {
+          "source": {
+            "verdict": "mismatch",
+            "poly_evidence": "The resolution source for this market is the FOMC’s statement after its meeting scheduled for December 8-9, 2026 according to the official calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm. ... If no statement is released by the end date of the next scheduled meeting, this market will resolve to the \"No change\" bracket.",
+            "kalshi_evidence": "the upper bound of the target federal funds rate published on the Federal Reserve's official website",
+            "explanation": "Polymarket names a specific statement and a no-statement outcome; Kalshi names the Federal Reserve website but supplies no equivalent fallback hierarchy."
+          },
+          "deadline": {
+            "verdict": "unknown",
+            "poly_evidence": "This market may resolve as soon as the FOMC’s statement for their December meeting with relevant data is issued. If no statement is released by the end date of the next scheduled meeting, this market will resolve to the \"No change\" bracket.",
+            "kalshi_evidence": "This market will expire the first 2:05 PM ET following the release of a Federal Reserve statement for their Dec 9, 2026 meeting or one week following the last day of that meeting.",
+            "explanation": "The December meeting is common, but the actual observation cutoffs and Polymarket's timezone are not fully specified. Kalshi's expiration is not necessarily an observation cutoff, and the next scheduled meeting's date is not supplied."
+          },
+          "boundary": {
+            "verdict": "mismatch",
+            "poly_evidence": "if there's a cut/increase of 12.5 bps it will be considered to be 25 bps",
+            "kalshi_evidence": "greater than 3.25%",
+            "explanation": "Kalshi excludes equality at 3.25%; Polymarket applies rounding to its change brackets. Cancellation, ties and 50/50 or other nonbinary payouts are not supplied for either venue."
+          },
+          "underlying": {
+            "verdict": "mismatch",
+            "poly_evidence": "Will the Fed decrease interest rates by 25 bps after the December 2026 meeting? ... the upper bound of the target federal funds rate is changed by versus the level it was prior to the Federal Reserve's December 2026 meeting.",
+            "kalshi_evidence": "If the upper bound of the target federal funds rate published on the Federal Reserve's official website is greater than 3.25% following the Federal Reserve's Dec 9, 2026 meeting, then the market resolves to Yes.",
+            "explanation": "Both reference the target range's upper bound, but Polymarket asks for a 25-basis-point decrease from the prior level, while Kalshi asks whether the absolute post-meeting level exceeds 3.25%."
+          }
+        },
+        "differences": [
+          "The YES propositions test a rounded change versus an absolute level, so they are neither identical nor exact complements.",
+          "Polymarket specifies a no-statement fallback to No change; Kalshi's resolution fallback is not supplied.",
+          "Polymarket specifies the FOMC statement as its resolution source; Kalshi specifies the Federal Reserve's official website without an equivalent source hierarchy.",
+          "Polymarket's actual observation cutoff and timezone, and the next scheduled meeting's date, are not supplied; Kalshi's expiration time does not establish an observation cutoff.",
+          "Kalshi excludes equality at 3.25%, while Polymarket rounds unlisted changes to a 25-basis-point bracket.",
+          "Cancellation, ties, and 50/50 or other nonbinary payout rules are not supplied for either market."
+        ],
+        "explanation": "The shared Fed meeting and rate definition do not make the payouts equivalent: a decrease of 25 basis points can coincide with different absolute post-meeting levels. Source, fallback, timing and boundary details also differ or remain unresolved."
+      },
+      "price_differences": {},
+      "rule_cache_key": "2de3fb202d2a98228c2151c1bbfc1923ca87fb69622296d4a807eb0a7417b75c",
+      "settlement_equivalent": false,
+      "rejection_reasons": [
+        "alignment_below_0.95",
+        "boundary_mismatch",
+        "deadline_unknown",
+        "material_rule_differences",
+        "relation_different",
+        "source_mismatch",
+        "source_poly_evidence_unverified",
+        "underlying_mismatch",
+        "underlying_poly_evidence_unverified"
+      ],
+      "difference_fields": [
+        "source",
+        "deadline",
+        "boundary",
+        "underlying"
+      ]
+    },
+    {
+      "poly_id": "3215006",
+      "kalshi_id": "KXFED-26DEC-T4.25",
+      "title_similarity": 0.2222222222222222,
+      "close_gap_seconds": 18240.0,
+      "poly_title": "Will the Fed decrease interest rates by 25 bps after the December 2026 meeting?",
+      "kalshi_title": "Will the upper bound of the federal funds rate be above 4.25% following the Fed's Dec 9, 2026 meeting? Above 4.25%",
+      "risk": "critical",
+      "risks": [
+        "model_requires_human_rule_review",
+        "regional_restrictions_research_only",
+        "rules_different_or_unverified"
+      ],
+      "quotes": [],
+      "alignment": {
+        "relation": "different",
+        "alignment": 0.3,
+        "source_comparison": "Both refer to Federal Reserve material, but Polymarket specifies the FOMC statement and a no-statement fallback; Kalshi specifies the official website without a supplied fallback.",
+        "deadline_comparison": "Both concern the December 2026 meeting, but their specified expiration and fallback deadlines differ, and the exact observation cutoffs are not fully specified.",
+        "boundary_comparison": "Kalshi uses a strict greater-than threshold; Polymarket rounds changes up to a 25-basis-point bracket. Cancellation, ties, and nonbinary payouts are not specified for either market.",
+        "checks": {
+          "source": {
+            "verdict": "mismatch",
+            "poly_evidence": "The resolution source for this market is the FOMC’s statement after its meeting scheduled for December 8-9, 2026 according to the official calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm. ... If no statement is released by the end date of the next scheduled meeting, this market will resolve to the \"No change\" bracket.",
+            "kalshi_evidence": "If the upper bound of the target federal funds rate published on the Federal Reserve's official website is greater than 4.25% following the Federal Reserve's Dec 9, 2026 meeting, then the market resolves to Yes.",
+            "explanation": "The primary descriptions differ, and Polymarket specifies a no-statement fallback absent from the supplied Kalshi rules. No additional source hierarchy is supplied."
+          },
+          "deadline": {
+            "verdict": "mismatch",
+            "poly_evidence": "This market may resolve as soon as the FOMC’s statement for their December meeting with relevant data is issued. If no statement is released by the end date of the next scheduled meeting, this market will resolve to the \"No change\" bracket.",
+            "kalshi_evidence": "This market will expire the first 2:05 PM ET following the release of a Federal Reserve statement for their Dec 9, 2026 meeting or one week following the last day of that meeting.",
+            "explanation": "Polymarket uses the next scheduled meeting's end date for its fallback, while Kalshi specifies expiration at 2:05 PM ET after release or one week after the meeting. Polymarket's fallback date and timezone, and the exact rate-observation cutoffs for both, are not supplied."
+          },
+          "boundary": {
+            "verdict": "mismatch",
+            "poly_evidence": "If the target federal funds rate is changed to a level not expressed in the displayed options, the change will be rounded up to the nearest 25 and will resolve to the relevant bracket. (e.g. if there's a cut/increase of 12.5 bps it will be considered to be 25 bps)",
+            "kalshi_evidence": "If the upper bound of the target federal funds rate published on the Federal Reserve's official website is greater than 4.25% following the Federal Reserve's Dec 9, 2026 meeting, then the market resolves to Yes.",
+            "explanation": "Kalshi excludes equality at 4.25%; Polymarket applies rounding to changes. Cancellation, tie and 50/50 or other nonbinary payout rules are not supplied for either venue."
+          },
+          "underlying": {
+            "verdict": "mismatch",
+            "poly_evidence": "This market will resolve to the amount of basis points the upper bound of the target federal funds rate is changed by versus the level it was prior to the Federal Reserve's December 2026 meeting.",
+            "kalshi_evidence": "If the upper bound of the target federal funds rate published on the Federal Reserve's official website is greater than 4.25% following the Federal Reserve's Dec 9, 2026 meeting, then the market resolves to Yes.",
+            "explanation": "Both use the target range's upper bound, but Polymarket YES concerns a 25-basis-point decrease from the prior level, while Kalshi YES concerns an absolute level above 4.25%."
+          }
+        },
+        "differences": [
+          "The YES propositions measure a rounded change versus an absolute threshold; they are neither identical nor necessarily complementary.",
+          "Polymarket identifies the FOMC statement as its resolution source and provides a no-statement fallback; a corresponding Kalshi fallback is not supplied.",
+          "Polymarket's no-statement fallback runs to the next scheduled meeting's end date; Kalshi specifies expiration at 2:05 PM ET following a statement or one week after the meeting.",
+          "The next meeting's exact end date and timezone and both markets' precise rate-observation cutoffs are not supplied.",
+          "Kalshi excludes equality at 4.25%, whereas Polymarket rounds qualifying changes to 25-basis-point brackets.",
+          "Cancellation, ties, 50/50 outcomes and other nonbinary payout rules are not supplied for either market.",
+          "Any additional terms in Kalshi's linked contract PDF are not supplied and have not been inferred."
+        ],
+        "explanation": "The shared Federal Reserve rate definition and meeting do not make the payout conditions equivalent. Known underlying, deadline, source-fallback and boundary differences establish a different relation; missing terms create additional unresolved cases."
+      },
+      "price_differences": {},
+      "rule_cache_key": "bba8c07acb13899408f8701ba8c2216074f55f33ede304f6bd078fcd3d677eb4",
+      "settlement_equivalent": false,
+      "rejection_reasons": [
+        "alignment_below_0.95",
+        "boundary_mismatch",
+        "deadline_mismatch",
+        "material_rule_differences",
+        "relation_different",
+        "source_mismatch",
+        "source_poly_evidence_unverified",
+        "underlying_mismatch"
+      ],
+      "difference_fields": [
+        "source",
+        "deadline",
+        "boundary",
+        "underlying"
+      ]
+    },
+    {
+      "poly_id": "3215006",
+      "kalshi_id": "KXFED-26DEC-T5.25",
+      "title_similarity": 0.2222222222222222,
+      "close_gap_seconds": 18240.0,
+      "poly_title": "Will the Fed decrease interest rates by 25 bps after the December 2026 meeting?",
+      "kalshi_title": "Will the upper bound of the federal funds rate be above 5.25% following the Fed's Dec 9, 2026 meeting? Above 5.25%",
+      "risk": "critical",
+      "risks": [
+        "model_requires_human_rule_review",
+        "regional_restrictions_research_only",
+        "rules_different_or_unverified"
+      ],
+      "quotes": [],
+      "alignment": {
+        "relation": "different",
+        "alignment": 0.2,
+        "source_comparison": "Both reference Federal Reserve information, but Polymarket specifies the FOMC statement and a no-statement fallback; Kalshi specifies the published upper bound and an expiration limit without a supplied resolution fallback.",
+        "deadline_comparison": "Both concern the December 2026 meeting, but their stated expiration and no-statement provisions differ. The supplied rules do not establish identical observation cutoffs.",
+        "boundary_comparison": "Kalshi requires strictly greater than 5.25%; Polymarket uses a rounded 25-basis-point decrease bracket. Cancellation, ties and 50/50 outcomes are not fully specified.",
+        "checks": {
+          "source": {
+            "verdict": "mismatch",
+            "poly_evidence": "The resolution source for this market is the FOMC’s statement after its meeting scheduled for December 8-9, 2026 according to the official calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm.\n\nThe level and change of the target federal funds rate is also published at the official website of the Federal Reserve at https://www.federalreserve.gov/monetarypolicy/openmarket.htm.\n\nThis market may resolve as soon as the FOMC’s statement for their December meeting with relevant data is issued. If no statement is released by the end date of the next scheduled meeting, this market will resolve to the \"No change\" bracket.",
+            "kalshi_evidence": "If the upper bound of the target federal funds rate published on the Federal Reserve's official website is greater than 5.25% following the Federal Reserve's Dec 9, 2026 meeting, then the market resolves to Yes.\nThis market will expire the first 2:05 PM ET following the release of a Federal Reserve statement for their Dec 9, 2026 meeting or one week following the last day of that meeting.",
+            "explanation": "Polymarket identifies the statement and specifies a no-statement fallback. Kalshi references the published upper bound and gives an expiration limit, but the supplied text does not specify how it resolves if no statement is released."
+          },
+          "deadline": {
+            "verdict": "mismatch",
+            "poly_evidence": "The resolution source for this market is the FOMC’s statement after its meeting scheduled for December 8-9, 2026 according to the official calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm.\n\nThis market may resolve as soon as the FOMC’s statement for their December meeting with relevant data is issued. If no statement is released by the end date of the next scheduled meeting, this market will resolve to the \"No change\" bracket.",
+            "kalshi_evidence": "This market will expire the first 2:05 PM ET following the release of a Federal Reserve statement for their Dec 9, 2026 meeting or one week following the last day of that meeting.",
+            "explanation": "Kalshi states an ET expiration provision; Polymarket specifies a fallback at the end of the next scheduled meeting. An exact observation cutoff and timezone for Polymarket are not supplied, and Kalshi's expiration time does not by itself establish its observation cutoff."
+          },
+          "boundary": {
+            "verdict": "mismatch",
+            "poly_evidence": "If the target federal funds rate is changed to a level not expressed in the displayed options, the change will be rounded up to the nearest 25 and will resolve to the relevant bracket. (e.g. if there's a cut/increase of 12.5 bps it will be considered to be 25 bps)\n\nIf no statement is released by the end date of the next scheduled meeting, this market will resolve to the \"No change\" bracket.",
+            "kalshi_evidence": "If the upper bound of the target federal funds rate published on the Federal Reserve's official website is greater than 5.25% following the Federal Reserve's Dec 9, 2026 meeting, then the market resolves to Yes.",
+            "explanation": "Kalshi's threshold is strict, so equality at 5.25% does not satisfy YES. Polymarket rounds otherwise undisplayed changes and has a no-statement fallback. Cancellation, tie and 50/50 payout rules are not supplied for either market."
+          },
+          "underlying": {
+            "verdict": "mismatch",
+            "poly_evidence": "The FED interest rates are defined in this market by the upper bound of the target federal funds range.\n\nThis market will resolve to the amount of basis points the upper bound of the target federal funds rate is changed by versus the level it was prior to the Federal Reserve's December 2026 meeting.\n\nWill the Fed decrease interest rates by 25 bps after the December 2026 meeting?",
+            "kalshi_evidence": "If the upper bound of the target federal funds rate published on the Federal Reserve's official website is greater than 5.25% following the Federal Reserve's Dec 9, 2026 meeting, then the market resolves to Yes.",
+            "explanation": "Both reference the upper bound of the target federal funds range, but Polymarket's YES concerns a 25-basis-point decrease from the prior level, subject to rounding; Kalshi's YES concerns an absolute level above 5.25%. They are neither identical nor exactly complementary."
+          }
+        },
+        "differences": [
+          "Polymarket tests a rounded change from the prior rate; Kalshi tests an absolute rate level strictly above 5.25%.",
+          "Polymarket specifies a no-statement fallback to the No change bracket; Kalshi's supplied rules specify an expiration limit but no corresponding resolution fallback.",
+          "The stated timing provisions differ, and the exact observation cutoff and timezone are not fully established for both markets.",
+          "Cancellation, tie and 50/50 payout treatment is not supplied for either market.",
+          "The supplied Kalshi text does not state whether its threshold is subject to rounding."
+        ],
+        "explanation": "The absolute-level versus change-based YES propositions are a known material mismatch, so the markets are different rather than inverse. The supplied text also leaves several settlement conditions unresolved; the linked contract terms are not assumed."
+      },
+      "price_differences": {},
+      "rule_cache_key": "cc351011f697dd0a703af0024b3ef69d588a4730e1e5982570d36503f422843a",
+      "settlement_equivalent": false,
+      "rejection_reasons": [
+        "alignment_below_0.95",
+        "boundary_mismatch",
+        "boundary_poly_evidence_unverified",
+        "deadline_mismatch",
+        "deadline_poly_evidence_unverified",
+        "material_rule_differences",
+        "relation_different",
+        "source_mismatch",
+        "underlying_mismatch",
+        "underlying_poly_evidence_unverified"
+      ],
+      "difference_fields": [
+        "source",
+        "deadline",
+        "boundary",
+        "underlying"
+      ]
+    }
+  ],
+  "errors": [],
+  "assumptions": [
+    "Research only; never opens accounts or executes",
+    "No guaranteed arbitrage",
+    "No funding, withdrawal, FX or tax costs modeled",
+    "Kalshi restricts China; no eligibility inferred from proxy"
+  ],
+  "summary": {
+    "candidates": 5,
+    "rejected": 5,
+    "valued": 0,
+    "settlement_equivalent": 0,
+    "positive_conditional_quotes": 0,
+    "rejection_counts": {
+      "alignment_below_0.95": 5,
+      "boundary_mismatch": 5,
+      "boundary_poly_evidence_unverified": 2,
+      "deadline_mismatch": 4,
+      "deadline_poly_evidence_unverified": 3,
+      "deadline_unknown": 1,
+      "material_rule_differences": 5,
+      "relation_different": 5,
+      "source_mismatch": 5,
+      "source_poly_evidence_unverified": 4,
+      "underlying_mismatch": 5,
+      "underlying_poly_evidence_unverified": 4
+    },
+    "no_positive_edge_reason": "no_equivalent_pairs"
+  }
+}

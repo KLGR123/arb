@@ -21,6 +21,11 @@ def snapshot():
 def alignment(relation="same", differences=None):
     return {"relation": relation, "alignment": 1.0, "source_comparison": "Same CF index",
             "deadline_comparison": "Same observation instant", "boundary_comparison": "Strictly greater",
+            "checks": {key: {"verdict": "equivalent", "poly_evidence": evidence,
+                              "kalshi_evidence": evidence, "explanation": "Same explicit contract term"}
+                       for key, evidence in {"source": "Bitcoin CF index",
+                           "deadline": "16:00 UTC October 31, 2026", "boundary": "strictly above $100000",
+                           "underlying": "Bitcoin CF index"}.items()},
             "differences": differences or [], "explanation": "All specified binary payout conditions match"}
 
 
@@ -71,12 +76,15 @@ def test_fee_rounding_depth_and_complementary_scenarios(snapshot, tmp_path):
 
 @pytest.mark.parametrize("relation,differences", [("different", []), ("uncertain", []), ("same", ["different fallback"] )])
 def test_rule_mismatch_never_produces_edge(snapshot, tmp_path, relation, differences):
-    row = scan(snapshot, aligner(tmp_path, relation, differences))["pairs"][0]
+    report = scan(snapshot, aligner(tmp_path, relation, differences))
+    assert not report["pairs"]
+    row = report["rejected_pairs"][0]
     assert row["risk"] == "critical"
     assert row["settlement_equivalent"] is False
     assert not row["quotes"]
-    assert row["price_differences"]  # Price differences can be observed without payout equivalence.
-    assert "Ask-price differences" in markdown(scan(snapshot, aligner(tmp_path, relation, differences)))
+    assert not row["price_differences"]
+    assert report["summary"]["no_positive_edge_reason"] == "no_equivalent_pairs"
+    assert "Rejected before valuation" in markdown(report)
 
 
 def test_inverse_maps_to_opposite_kalshi_outcome(snapshot, tmp_path):
@@ -94,7 +102,7 @@ def test_market_closed_after_discovery_suppresses_edges(snapshot, tmp_path, fail
         snapshot["kalshi"][0]["close_time"] = "2027-10-29T00:00:00Z"
     else:
         snapshot["kalshi"][0]["title"] = "Ethereum October 31"
-    row = scan(snapshot, aligner(tmp_path))["pairs"][0]
+    row = scan(snapshot, aligner(tmp_path))["rejected_pairs"][0]
     assert not row["quotes"]
     assert ("market_inactive_closed_or_close_time_unknown" in row["risks"]
             or "candidate_changed_since_discovery" in row["risks"])
@@ -252,7 +260,15 @@ def test_local_model_command_and_environment_boundary(monkeypatch):
     assert run_codex("public rules only", {}) == alignment()
 
 
-def test_collector_contract_and_guard_use(snapshot):
+@pytest.mark.parametrize("relation", ["same", "different"])
+@pytest.mark.parametrize("refresh", [None, "closed", "expired", "underlying", "close_gap"])
+def test_collector_contract_and_guard_use(snapshot, tmp_path, monkeypatch, relation, refresh):
+    class FixedDatetime(datetime):
+        @classmethod
+        def now(cls, tz=None):
+            return datetime(2026, 10, 30, tzinfo=timezone.utc)
+    monkeypatch.setattr("arb_research.cross_venue_cli.datetime", FixedDatetime)
+    price_allowed = relation == "same" and refresh is None
     p, k = snapshot["polymarket"][0], snapshot["kalshi"][0]
     pmarket = {"id": "p1", "question": p["title"], "description": p["rules"],
                "outcomes": ["Yes", "No"], "clobTokenIds": ["py", "pn"],
@@ -268,6 +284,7 @@ def test_collector_contract_and_guard_use(snapshot):
                 return {"blocked":True,"country":"CN","region":""}
             if service == "gamma":
                 return pevent
+            assert price_allowed, "rejected pair requested a price or fee"
             if path.startswith("/clob-markets/"):
                 return {"fd":{"r":"0.07","e":1}}
             return snapshot["poly_books"][params["token_id"]]
@@ -278,17 +295,94 @@ def test_collector_contract_and_guard_use(snapshot):
             if path.startswith("/series/"):
                 return {"series":{"fee_type":"quadratic","fee_multiplier":1,"settlement_sources":[]}}
             if path.endswith("/orderbook"):
+                assert price_allowed, "rejected pair requested a book"
                 return snapshot["kalshi_books"][k["id"]]["raw"]
-            return {"market": kmarket}
-    result = collect(Poly(), Kalshi(), event_ids=["e1"], kalshi_events=[k["event_id"]])
+            updated = deepcopy(kmarket)
+            if refresh == "closed":
+                updated["status"] = "closed"
+            elif refresh == "expired":
+                updated["close_time"] = "2026-10-29T00:00:00Z"
+            elif refresh == "underlying":
+                updated["title"] = "Ethereum October 31"
+            elif refresh == "close_gap":
+                updated["close_time"] = "2027-10-31T00:00:00Z"
+            return {"market": updated}
+    result = collect(Poly(), Kalshi(), event_ids=["e1"], kalshi_events=[k["event_id"]],
+                     aligner=aligner(tmp_path, relation))
     assert len(result["candidates"]) == 1 and not result["errors"]
     assert result["compliance"]["geoblock"]["blocked"] is True
     assert result["compliance"]["trading_allowed"] is False
-    assert result["poly_fees"]["p1"] == [D(".07"), "clob"]
+    if price_allowed:
+        assert result["poly_fees"]["p1"] == [D(".07"), "clob"]
+    else:
+        assert result["poly_fees"] == result["poly_books"] == result["kalshi_books"] == {}
 
 
-def test_recorded_real_pairing_replays_without_network_or_model(monkeypatch):
+def test_legacy_cache_cannot_bypass_new_gate(monkeypatch):
     root = Path(__file__).parent.parent / "fixtures/cross-venue/20261030"
+    snapshot = json.loads((root / "snapshot.json").read_text())
+    def forbidden(*_, **__):
+        raise AssertionError("recorded replay must not call network or model")
+    monkeypatch.setattr(httpx.Client, "get", forbidden)
+    monkeypatch.setattr("subprocess.run", forbidden)
+    report = scan(snapshot, RuleAligner(root / "rules", cache_only=True))
+    assert report["coverage"]["poly_markets"] == 5
+    assert report["coverage"]["kalshi_markets"] == 11
+    assert not report["pairs"] and len(report["rejected_pairs"]) == 3
+    assert len(report["errors"]) == 3  # Versioned prompt/schema require a new comparison.
+    assert report["summary"]["settlement_equivalent"] == 0
+    assert all(p["risk"] == "critical" and not p["quotes"] for p in report["rejected_pairs"])
+
+
+@pytest.mark.parametrize("dimension", [None, "source", "deadline", "boundary", "underlying"])
+def test_settlement_fixtures_hard_filter_before_valuation(snapshot, tmp_path, monkeypatch, dimension):
+    cases = json.loads((Path(__file__).parent / "fixtures/settlement-gate-cases.json").read_text())
+    output = cases["equivalent"]
+    if dimension:
+        mismatch = next(x for x in cases["mismatches"] if x["field"] == dimension)
+        k = snapshot["kalshi"][0]
+        k["rules"] = k["rules"].replace(mismatch["before"], mismatch["after"])
+        output["checks"][dimension].update(verdict="mismatch", kalshi_evidence=mismatch["after"])
+        # High score, same relation and an empty differences list cannot override
+        # a critical field verdict. Even malformed books must never be parsed.
+        snapshot["poly_books"] = snapshot["kalshi_books"] = None
+        def forbidden(*_, **__):
+            raise AssertionError("rejected rules reached valuation")
+        monkeypatch.setattr("arb_research.cross_venue.poly_books", forbidden)
+        monkeypatch.setattr("arb_research.cross_venue.kalshi_books", forbidden)
+    report = scan(snapshot, RuleAligner(tmp_path, runner=lambda *_: output))
+    assert not report["errors"]
+    if dimension:
+        assert not report["pairs"] and len(report["rejected_pairs"]) == 1
+        row = report["rejected_pairs"][0]
+        assert dimension in row["difference_fields"]
+        assert dimension + "_mismatch" in row["rejection_reasons"]
+        assert report["summary"]["rejection_counts"][dimension + "_mismatch"] == 1
+    else:
+        assert len(report["pairs"]) == 1 and not report["rejected_pairs"]
+        assert report["summary"]["positive_conditional_quotes"] > 0
+
+
+@pytest.mark.parametrize("failure", ["unknown", "invented_evidence", "blank_rules", "low_score", "missing_dimension"])
+def test_unverified_rules_fail_closed(snapshot, tmp_path, failure):
+    output = alignment()
+    if failure == "unknown":
+        output["checks"]["boundary"]["verdict"] = "unknown"
+    elif failure == "invented_evidence":
+        output["checks"]["source"]["kalshi_evidence"] = "fabricated oracle"
+    elif failure == "blank_rules":
+        snapshot["polymarket"][0]["rules"] = " "
+    elif failure == "low_score":
+        output["alignment"] = .94
+    else:
+        del output["checks"]["underlying"]
+    report = scan(snapshot, RuleAligner(tmp_path, runner=lambda *_: output))
+    assert not report["pairs"] and len(report["rejected_pairs"]) == 1
+    assert not report["rejected_pairs"][0]["quotes"]
+
+
+def test_real_v2_replays_exactly_without_network_or_model(monkeypatch):
+    root = Path(__file__).parent.parent / "fixtures/cross-venue/20261030-equivalent-only"
     snapshot = json.loads((root / "snapshot.json").read_text())
     expected = json.loads((root / "report.json").read_text())
     def forbidden(*_, **__):
@@ -297,8 +391,22 @@ def test_recorded_real_pairing_replays_without_network_or_model(monkeypatch):
     monkeypatch.setattr("subprocess.run", forbidden)
     report = scan(snapshot, RuleAligner(root / "rules", cache_only=True))
     assert json.loads(dumps(report)) == expected
-    assert report["coverage"]["poly_markets"] == 5
-    assert report["coverage"]["kalshi_markets"] == 11
-    assert len(report["pairs"]) == 3 and not report["errors"]
-    assert report["summary"]["settlement_equivalent"] == 0
-    assert all(p["risk"] == "critical" and not p["quotes"] for p in report["pairs"])
+    assert not report["errors"]
+    assert report["summary"]["candidates"] > 0
+
+
+def test_equivalent_pairs_can_have_no_positive_edge_after_fees(snapshot, tmp_path):
+    snapshot["kalshi"][0]["fee_multiplier"] = "100"
+    report = scan(snapshot, aligner(tmp_path))
+    assert report["summary"]["settlement_equivalent"] == 1
+    assert report["summary"]["valued"] == 1
+    assert report["summary"]["positive_conditional_quotes"] == 0
+    assert report["summary"]["no_positive_edge_reason"] == "fees_and_prices_leave_no_positive_edge"
+
+
+def test_all_rejected_is_successful_bounded_scan(snapshot, tmp_path):
+    rules = tmp_path / "rules"
+    aligner(rules, "different").compare(snapshot["polymarket"][0], snapshot["kalshi"][0])
+    path = tmp_path / "snapshot.json"
+    path.write_text(dumps(snapshot))
+    assert main(["--fixture", str(path), "--cache", str(rules), "--json", str(tmp_path / "out.json")]) == 0

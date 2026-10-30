@@ -1,0 +1,22 @@
+{
+  "fixture_kind": "synthetic_settlement_contracts_not_live_evidence",
+  "equivalent": {
+    "relation": "same", "alignment": 1.0,
+    "source_comparison": "Both explicitly use Bitcoin CF index",
+    "deadline_comparison": "Both observe at 16:00 UTC October 31, 2026",
+    "boundary_comparison": "Both require strictly above, otherwise NO, no cancellations or ties",
+    "checks": {
+      "source": {"verdict": "equivalent", "poly_evidence": "Bitcoin CF index", "kalshi_evidence": "Bitcoin CF index", "explanation": "Same named index"},
+      "deadline": {"verdict": "equivalent", "poly_evidence": "16:00 UTC October 31, 2026", "kalshi_evidence": "16:00 UTC October 31, 2026", "explanation": "Same explicit observation instant"},
+      "boundary": {"verdict": "equivalent", "poly_evidence": "Otherwise NO; no cancellations or ties.", "kalshi_evidence": "Otherwise NO; no cancellations or ties.", "explanation": "Same fallback and strict comparison"},
+      "underlying": {"verdict": "equivalent", "poly_evidence": "Bitcoin CF index is strictly above $100000", "kalshi_evidence": "Bitcoin CF index is strictly above $100000", "explanation": "Same asset, index, units and level"}
+    },
+    "differences": [], "explanation": "All supplied synthetic contract terms match"
+  },
+  "mismatches": [
+    {"field": "source", "before": "CF index", "after": "Coinbase last trade"},
+    {"field": "deadline", "before": "16:00 UTC", "after": "16:01 UTC"},
+    {"field": "boundary", "before": "strictly above", "after": "at or above"},
+    {"field": "underlying", "before": "is strictly above $100000", "after": "increases by more than $100000"}
+  ]
+}
