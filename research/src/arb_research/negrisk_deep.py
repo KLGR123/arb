@@ -169,21 +169,24 @@ def deep_scan(raw, costs=Costs(), max_shares=D(1000), max_age=120, max_skew=10, 
 
             for m, books, rate in parsed:
                 if not any(r in m["risks"] for r in ("other_outcome", "placeholder_outcome")):
-                    add("buy_binary_merge", [Leg(m["market_id"], k, "buy", books[k], rate) for k in ("yes", "no")],
+                    add("buy_binary_merge", [Leg(m["market_id"], k, "buy", books[k], rate,
+                        identity=m["assets"][k]) for k in ("yes", "no")],
                         ONE, costs.merge_usd, m["risks"], m["market_id"])
             blockers = sorted(set(group["risks"]) & {
                 "incomplete_group", "augmented_negrisk", "other_outcome", "placeholder_outcome"})
             if group["complete"]:
                 risks = sorted(set(group["risks"] + [r for m, _, _ in parsed for r in m["risks"]]))
-                add("buy_yes_basket", [Leg(m["market_id"], "yes", "buy", b["yes"], f) for m, b, f in parsed],
+                add("buy_yes_basket", [Leg(m["market_id"], "yes", "buy", b["yes"], f,
+                    identity=m["assets"]["yes"]) for m, b, f in parsed],
                     ONE, ZERO, risks + ["hold_to_resolution"])
-                ratio = ONE - costs.conversion_fee_bps / 10000
+                ratio = group["conversion_ratio"]
                 for anchor, (m, b, f) in enumerate(parsed):
                     add("split_sell_yes_basket", [Leg(x["market_id"], "yes", "sell", y["yes"], fee,
-                        ONE if i == anchor else ratio) for i, (x, y, fee) in enumerate(parsed)],
+                        ONE if i == anchor else ratio, x["assets"]["yes"]) for i, (x, y, fee) in enumerate(parsed)],
                         -ONE, costs.split_usd + costs.convert_usd, risks, m["market_id"])
-                    add("no_to_yes", [Leg(m["market_id"], "no", "buy", b["no"], f)] + [
-                        Leg(x["market_id"], "yes", "sell", y["yes"], fee, ratio)
+                    add("no_to_yes", [Leg(m["market_id"], "no", "buy", b["no"], f,
+                        identity=m["assets"]["no"])] + [
+                        Leg(x["market_id"], "yes", "sell", y["yes"], fee, ratio, x["assets"]["yes"])
                         for i, (x, y, fee) in enumerate(parsed) if i != anchor],
                         ZERO, costs.convert_usd, risks, m["market_id"])
             valued = [c for c in candidates if c["net_edge_per_share"] is not None]
@@ -198,7 +201,10 @@ def deep_scan(raw, costs=Costs(), max_shares=D(1000), max_age=120, max_skew=10, 
             groups.append(dict(event_id=event_id, title=group["title"], as_of=snapshot["as_of"],
                 resolution_checked_at=snapshot.get("resolution_checked_at"), complete=group["complete"],
                 market_count=len(event.get("markets", [])), valued_market_count=len(parsed),
-                markets=[{k: m[k] for k in ("market_id", "fee_rate", "fee_source", "risks")} for m, _, _ in parsed],
+                markets=[{k: m[k] for k in ("market_id", "fee_rate", "fee_source", "risks",
+                    "protocol_version", "module", "asset_selection", "assets")} for m, _, _ in parsed],
+                skipped_reasons=group["skipped_reasons"], skipped_markets=group["skipped_markets"],
+                conversion_ratio=group["conversion_ratio"],
                 yes_ask_sum=group["yes_ask_sum"], yes_bid_sum=group["yes_bid_sum"],
                 candidates=candidates, best=best, blockers=sorted(set(blockers)), resolution_blocks=resolution_blocks,
                 compliance=base["compliance"], geoblock=base["geoblock"]))

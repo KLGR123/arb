@@ -1,0 +1,210 @@
+{
+  "fixture_kind": "synthetic_v2_negrisk_not_live_recording",
+  "as_of": "2026-10-30T00:00:00Z",
+  "events": [
+    {
+      "id": "1",
+      "title": "Synthetic mutually exclusive event",
+      "active": true,
+      "closed": false,
+      "negRisk": true,
+      "negRiskAugmented": false,
+      "markets": [
+        {
+          "id": "1",
+          "conditionId": "0xcondition1",
+          "question": "Named outcome 1?",
+          "active": true,
+          "closed": false,
+          "acceptingOrders": true,
+          "enableOrderBook": true,
+          "negRisk": true,
+          "negRiskMarketID": "0xgroup",
+          "outcomes": "[\"Yes\", \"No\"]",
+          "clobTokenIds": "[\"101\", \"102\"]",
+          "feesEnabled": true,
+          "feeSchedule": {
+            "rate": ".07",
+            "exponent": 1
+          },
+          "endDate": "2026-12-01T00:00:00Z",
+          "version": "v2",
+          "module": "neg_risk",
+          "positionIds": [
+            "904625697166532776746648320380374280103671755200316906558262375061821325568",
+            "904625697166532776746648320380374280103671755200316906558262375061821325569"
+          ]
+        },
+        {
+          "id": "2",
+          "conditionId": "0xcondition2",
+          "question": "Named outcome 2?",
+          "active": true,
+          "closed": false,
+          "acceptingOrders": true,
+          "enableOrderBook": true,
+          "negRisk": true,
+          "negRiskMarketID": "0xgroup",
+          "outcomes": "[\"Yes\", \"No\"]",
+          "clobTokenIds": "[\"201\", \"202\"]",
+          "feesEnabled": true,
+          "feeSchedule": {
+            "rate": ".07",
+            "exponent": 1
+          },
+          "endDate": "2026-12-01T00:00:00Z",
+          "version": "v2",
+          "module": "neg_risk",
+          "positionIds": [
+            "904625697166532776746648320380374280103671755200316906558262375061821325824",
+            "904625697166532776746648320380374280103671755200316906558262375061821325825"
+          ]
+        },
+        {
+          "id": "3",
+          "conditionId": "0xcondition3",
+          "question": "Named outcome 3?",
+          "active": true,
+          "closed": false,
+          "acceptingOrders": true,
+          "enableOrderBook": true,
+          "negRisk": true,
+          "negRiskMarketID": "0xgroup",
+          "outcomes": "[\"Yes\", \"No\"]",
+          "clobTokenIds": "[\"301\", \"302\"]",
+          "feesEnabled": true,
+          "feeSchedule": {
+            "rate": ".07",
+            "exponent": 1
+          },
+          "endDate": "2026-12-01T00:00:00Z",
+          "version": "v2",
+          "module": "neg_risk",
+          "positionIds": [
+            "904625697166532776746648320380374280103671755200316906558262375061821326080",
+            "904625697166532776746648320380374280103671755200316906558262375061821326081"
+          ]
+        }
+      ]
+    }
+  ],
+  "books": {
+    "904625697166532776746648320380374280103671755200316906558262375061821325568": {
+      "asset_id": "904625697166532776746648320380374280103671755200316906558262375061821325568",
+      "market": "0xcondition1",
+      "timestamp": "2026-10-30T00:00:00Z",
+      "min_order_size": "5",
+      "bids": [
+        {
+          "price": "0.19",
+          "size": "20"
+        }
+      ],
+      "asks": [
+        {
+          "price": ".20",
+          "size": "20"
+        }
+      ]
+    },
+    "904625697166532776746648320380374280103671755200316906558262375061821325569": {
+      "asset_id": "904625697166532776746648320380374280103671755200316906558262375061821325569",
+      "market": "0xcondition1",
+      "timestamp": "2026-10-30T00:00:00Z",
+      "min_order_size": "5",
+      "bids": [
+        {
+          "price": "0.59",
+          "size": "20"
+        }
+      ],
+      "asks": [
+        {
+          "price": ".60",
+          "size": "20"
+        }
+      ]
+    },
+    "904625697166532776746648320380374280103671755200316906558262375061821325824": {
+      "asset_id": "904625697166532776746648320380374280103671755200316906558262375061821325824",
+      "market": "0xcondition2",
+      "timestamp": "2026-10-30T00:00:00Z",
+      "min_order_size": "5",
+      "bids": [
+        {
+          "price": "0.24",
+          "size": "20"
+        }
+      ],
+      "asks": [
+        {
+          "price": ".25",
+          "size": "20"
+        }
+      ]
+    },
+    "904625697166532776746648320380374280103671755200316906558262375061821325825": {
+      "asset_id": "904625697166532776746648320380374280103671755200316906558262375061821325825",
+      "market": "0xcondition2",
+      "timestamp": "2026-10-30T00:00:00Z",
+      "min_order_size": "5",
+      "bids": [
+        {
+          "price": "0.49",
+          "size": "20"
+        }
+      ],
+      "asks": [
+        {
+          "price": ".50",
+          "size": "20"
+        }
+      ]
+    },
+    "904625697166532776746648320380374280103671755200316906558262375061821326080": {
+      "asset_id": "904625697166532776746648320380374280103671755200316906558262375061821326080",
+      "market": "0xcondition3",
+      "timestamp": "2026-10-30T00:00:00Z",
+      "min_order_size": "5",
+      "bids": [
+        {
+          "price": "0.29",
+          "size": "20"
+        }
+      ],
+      "asks": [
+        {
+          "price": ".30",
+          "size": "20"
+        }
+      ]
+    },
+    "904625697166532776746648320380374280103671755200316906558262375061821326081": {
+      "asset_id": "904625697166532776746648320380374280103671755200316906558262375061821326081",
+      "market": "0xcondition3",
+      "timestamp": "2026-10-30T00:00:00Z",
+      "min_order_size": "5",
+      "bids": [
+        {
+          "price": ".34",
+          "size": "20"
+        }
+      ],
+      "asks": [
+        {
+          "price": ".35",
+          "size": "20"
+        }
+      ]
+    }
+  },
+  "clob_markets": {},
+  "errors": [],
+  "geoblock": {
+    "status": "fixture",
+    "execution": "blocked"
+  },
+  "coverage": {
+    "selection": "synthetic_contract"
+  }
+}

@@ -1,6 +1,8 @@
 """Offline financial invariants and API boundary tests; never calls the network."""
 
 import copy
+
+from negrisk_legacy import legacy_report
 import json
 from pathlib import Path
 import tempfile
@@ -41,11 +43,11 @@ class ScannerTests(unittest.TestCase):
                 fee_config(m, {}, c)
 
     def test_outcome_mapping_and_protocol_version(self):
-        self.assertEqual(assets({"outcomes": '["No", "Yes"]', "clobTokenIds": '["9", "8"]'}), {"no": "9", "yes": "8"})
-        market = {"version": "v2", "outcomes": '["Yes", "No"]', "positionIds": ["1", "2"], "clobTokenIds": '["9", "8"]'}
+        self.assertEqual(assets({"version": "v1", "conditionId": "0xcondition", "outcomes": '["No", "Yes"]', "clobTokenIds": '["9", "8"]'}), {"no": "9", "yes": "8"})
+        market = {"version": "v2", "conditionId": "0xcondition", "outcomes": '["Yes", "No"]', "positionIds": ["1", "2"], "clobTokenIds": '["9", "8"]'}
         self.assertEqual(assets(market), {"yes": "1", "no": "2"})
         with self.assertRaises(ValueError):
-            assets({"outcomes": '["Yes", "No"]', "clobTokenIds": '["1", "1"]'})
+            assets({"version": "v1", "conditionId": "0xcondition", "outcomes": '["Yes", "No"]', "clobTokenIds": '["1", "1"]'})
 
     def test_book_ordering_and_depth(self):
         raw = copy.deepcopy(self.snapshot["books"]["101"])
@@ -182,7 +184,7 @@ class ScannerTests(unittest.TestCase):
         expected = Path(__file__).resolve().parents[2] / "docs/reports/negrisk-2026-10-29.json"
         with patch("socket.socket", side_effect=AssertionError("network forbidden")):
             report = scan(json.loads(source.read_text()))
-        self.assertEqual(json.loads(dumps(report)), json.loads(expected.read_text()))
+        self.assertEqual(legacy_report(json.loads(dumps(report)), json.loads(expected.read_text())), json.loads(expected.read_text()))
         self.assertEqual(report["summary"], {"groups_scanned": 2, "opportunities": 0, "errors": 0})
         self.assertEqual(sum(len(g["markets"]) for g in report["groups"]), 10)
         self.assertEqual(report["groups"][1]["yes_ask_sum"], D("1.019"))

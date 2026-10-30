@@ -1,6 +1,8 @@
 """Offline depth/fee/exclusion contracts; synthetic and recorded data separated."""
 
 import copy
+
+from negrisk_legacy import legacy_report
 import json
 from pathlib import Path
 from unittest.mock import patch
@@ -216,6 +218,6 @@ def test_recorded_live_report_replays_offline():
     expected = ROOT / "docs/reports/negrisk-deep-2026-10-30.json"
     with patch("socket.socket", side_effect=AssertionError("network forbidden")):
         report = deep_scan(load(source), Costs(D(".01"), D(".01"), D(".01")))
-    assert json.loads(dumps(report)) == json.loads(expected.read_text())
+    assert legacy_report(json.loads(dumps(report)), json.loads(expected.read_text())) == json.loads(expected.read_text())
     assert report["summary"]["groups_scanned"] >= 20
     assert report["execution"] == "blocked"

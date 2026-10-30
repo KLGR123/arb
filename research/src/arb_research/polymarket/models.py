@@ -1,6 +1,6 @@
 """Stable local contracts; upstream SDK models are converted at the boundary."""
 
-from typing import Literal
+from typing import Annotated, Literal
 
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -22,6 +22,36 @@ class Token(Model):
     protocol: Literal["v1", "v2", "unknown"]
 
 
+class SelectedAsset(Model):
+    protocol_version: Literal["v1", "v2"]
+    asset_kind: Literal["ctf_token", "position"]
+    asset_id: Annotated[str, Field(strict=True, pattern=r"^[0-9]+$")]
+    ledger: Literal["ConditionalTokens", "PositionManager"]
+    chain_id: str | None = None
+    event_id: str
+    market_id: str
+    condition_id: str
+    raw_condition_id: str
+    outcome: str
+    outcome_index: int = Field(ge=0)
+    module: str | None = None
+    source: str = "gamma"
+    api_version: str | None = None
+    schema_version: Literal["selected-assets.v1"] = "selected-assets.v1"
+    sdk_version: str
+    observed_at: str | None = None
+    received_at: str | None = None
+
+
+class AssetSelection(Model):
+    schema_version: Literal["selected-assets.v1"] = "selected-assets.v1"
+    protocol_version: Literal["v1", "v2", "unknown"] = "unknown"
+    status: Literal["selected", "quarantined"] = "quarantined"
+    reason: str | None = "identity_view_missing_resync_required"
+    assets: list[SelectedAsset] = Field(default_factory=list)
+    raw_identity: dict = Field(default_factory=dict)
+
+
 class Market(Model):
     id: str
     event_id: str
@@ -36,6 +66,7 @@ class Market(Model):
     neg_risk_group: str | None = None
     tags: list[Tag] = Field(default_factory=list)
     tokens: list[Token]
+    asset_selection: AssetSelection = Field(default_factory=AssetSelection)
 
 
 class Event(Model):
@@ -101,3 +132,4 @@ class SyncResult(Model):
     resolutions: int
     missing_resolution_market_ids: list[str]
     empty_token_ids: list[str]
+    quarantined_markets: list[dict] = Field(default_factory=list)
