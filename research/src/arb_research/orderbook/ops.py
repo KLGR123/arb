@@ -58,6 +58,7 @@ def daily_report(root, start, days=7):
         kind = event["event_type"]
         if kind == "health":
             health[session] = {"received_ns": ns, "counters": event.get("counters", {}),
+                               "elapsed_seconds": event.get("elapsed_seconds"),
                                "available_assets": event.get("available_assets", [])}
         if previous is not None:
             add_interval(previous, ns, "unavailable_asset_seconds", len(unavailable))
@@ -117,6 +118,7 @@ def daily_report(root, start, days=7):
                 unavailable.setdefault(asset, ns)
         if kind == "stopped":
             state["stopped"] = True
+            state["stop_reason"] = event.get("stop_reason", "unknown_legacy_capture")
 
     # Merge session windows to avoid double-counting accidentally overlapping runs.
     windows = sorted((s["first_ns"], s["last_ns"]) for s in sessions.values() if s["started"])

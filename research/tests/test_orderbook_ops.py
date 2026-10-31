@@ -156,6 +156,22 @@ def test_report_real_fixture_matches_independent_capture():
     assert report["summary"]["unresolved_hash_assets"] == []
 
 
+def test_health_elapsed_survives_wall_clock_regression(tmp_path, monkeypatch):
+    from arb_research.orderbook import recorder as module
+    monkeypatch.delenv("ARB_POLYMARKET_PROXY", raising=False)
+    monkeypatch.setattr(module.time, "monotonic", lambda: 100)
+    recorder = module.Recorder(tmp_path, ["123"], health_records=True)
+    recorder.control("started", assets_ids=["123"])
+    prior = recorder.last_received_ns
+    monkeypatch.setattr(module.time, "monotonic", lambda: 3700)
+    monkeypatch.setattr(module.time, "time_ns", lambda: prior - 1800 * SECOND)
+    recorder.checkpoint()
+    recorder.journal.close()
+    health = list(records(tmp_path))[-1]
+    assert health["payload"]["elapsed_seconds"] == 3600
+    assert health["received_ns"] == prior + 1
+
+
 def test_ops_lock_rejects_second_writer_before_network(tmp_path, monkeypatch):
     import fcntl
     from arb_research.orderbook import ops

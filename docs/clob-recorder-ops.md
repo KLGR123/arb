@@ -1,5 +1,17 @@
 # CLOB 多日录制运维
 
+首段实证见 [JSON 报告与文件校验清单](evidence/arb23-clob-observation.json)。
+UTC 2026-10-30 02:11:05 至 2026-10-31 01:39:59，单段 **23h28m54s**，
+未达 ≥24h 验收。212,596 条事件日志的本地 SHA-256 全部通过，未见本地序号缺口；
+884 次重连、1,737 次 hash 内容冲突均保留，其中 hash 冲突均经完整 book 恢复，
+最长恢复等待 34.63 秒。PING/PONG 为 7,026/6,996，原始 JSONL 共 214,502,280 字节。
+停止记录正常，但旧格式未持久化停止原因和单调时钟耗时，且当前用户无权读取
+system journal，不能断言提前结束原因。此段仅作为部分实证，不与后续短段拼接验收。
+
+后续健康行增加 `elapsed_seconds`（单调时钟秒数），停止行增加 `stop_reason`
+（`duration_elapsed` / `cancelled` / `error`），用于区分墙钟变化和退出路径；
+报告兼容旧录制，缺失信息保持未知。重新观察使用独立根目录与 26 小时上限，PR 保持 draft。
+
 `arb_research.orderbook.ops` 在 ARB-8 的只读 recorder 上增加长运行监管、分段轮转、
 磁盘预算和离线按日统计。原始事件格式、接收时间语义与重建规则见
 [录制器说明](orderbook-recorder.md)。只访问公开 Gamma、geoblock、market WS，

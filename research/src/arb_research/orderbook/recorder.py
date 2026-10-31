@@ -134,6 +134,7 @@ class Recorder:
                  journal_options=None, health_records=False):
         self.journal = Journal(root, **(journal_options or {}))
         self.health_records = health_records
+        self.started_monotonic = time.monotonic()
         self.assets = assets
         self.engine = Rebuilder()
         self.snapshot_seconds = snapshot_seconds
@@ -170,6 +171,7 @@ class Recorder:
         self.journal.check_space()
         if self.health_records:
             self.control("health", counters=dict(self.metrics),
+                         elapsed_seconds=time.monotonic() - self.started_monotonic,
                          available_assets=sorted(a for a, b in self.engine.books.items() if b.available))
         for asset, book in self.engine.export().items():
             self.journal.append("snapshots", {
@@ -256,6 +258,7 @@ class Recorder:
             from websockets.asyncio.client import connect
         deadline = time.monotonic() + duration if duration is not None else float("inf")
         attempt = 0
+        stop_reason = "duration_elapsed"
         self.control("started", assets_ids=self.assets)
         try:
             while time.monotonic() < deadline:
@@ -277,9 +280,12 @@ class Recorder:
                     delay = min(30, 2 ** min(attempt, 5)) + random.random()
                     attempt += 1
                     await sleep(min(delay, max(0, deadline - time.monotonic())))
+        except BaseException as exc:
+            stop_reason = "cancelled" if isinstance(exc, asyncio.CancelledError) else "error"
+            raise
         finally:
             try:
-                self.control("stopped")
+                self.control("stopped", **({"stop_reason": stop_reason} if self.health_records else {}))
                 self.checkpoint()
             finally:
                 self.journal.close()
