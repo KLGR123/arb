@@ -1,0 +1,287 @@
+{
+  "version": 1,
+  "acceptance": "pending",
+  "attempts": [
+    {
+      "session": "5aba4b0829af4bc5a74615e3c464b728",
+      "start_utc": "2026-10-30T02:11:05.756903+00:00",
+      "end_utc": "2026-10-31T01:39:59.997763+00:00",
+      "meets_24h": false,
+      "rejection_reason": "Single-session receive-time span 84534.24 seconds and market-event span 84530.34 seconds are below 86400. Normal stop recorded, original cause unknown; monotonic elapsed and stop reason were not persisted in this legacy capture.",
+      "question": "Will JD Vance win the 2028 US Presidential Election?",
+      "condition_id": "0x7ad403c3508f8e3912940fd1a913f227591145ca0614074208e0b962d5fcc422",
+      "source_commit": "5e8ce7f",
+      "report": {
+        "version": 1,
+        "utc_start": "2026-10-30",
+        "days": [
+          {
+            "date": "2026-10-30",
+            "events": 198763,
+            "gaps": {
+              "server_hash_conflict": 1559,
+              "disconnected": 795,
+              "heartbeat_timeout": 2,
+              "best_price_mismatch": 18
+            },
+            "connections": 794,
+            "reconnects": 795,
+            "recoveries": 1588,
+            "hash_conflict_recoveries": 1559,
+            "max_recovery_seconds": 34.626943226,
+            "unavailable_asset_seconds": 17757.96125076703,
+            "observed_seconds": 78534.243096931,
+            "sessions": [
+              "5aba4b0829af4bc5a74615e3c464b728"
+            ],
+            "unobserved_seconds": 7865.7569030690065,
+            "status": "observed"
+          },
+          {
+            "date": "2026-10-31",
+            "events": 13833,
+            "gaps": {
+              "server_hash_conflict": 178,
+              "disconnected": 89
+            },
+            "connections": 89,
+            "reconnects": 89,
+            "recoveries": 178,
+            "hash_conflict_recoveries": 178,
+            "max_recovery_seconds": 33.608352526,
+            "unavailable_asset_seconds": 2525.7048416120006,
+            "observed_seconds": 5999.997763045,
+            "sessions": [
+              "5aba4b0829af4bc5a74615e3c464b728"
+            ],
+            "unobserved_seconds": 80400.002236955,
+            "status": "observed"
+          },
+          {
+            "date": "2026-11-01",
+            "events": 0,
+            "gaps": {},
+            "connections": 0,
+            "reconnects": 0,
+            "recoveries": 0,
+            "hash_conflict_recoveries": 0,
+            "max_recovery_seconds": 0,
+            "unavailable_asset_seconds": 0,
+            "observed_seconds": 0,
+            "sessions": [],
+            "unobserved_seconds": 86400,
+            "status": "missing"
+          },
+          {
+            "date": "2026-11-02",
+            "events": 0,
+            "gaps": {},
+            "connections": 0,
+            "reconnects": 0,
+            "recoveries": 0,
+            "hash_conflict_recoveries": 0,
+            "max_recovery_seconds": 0,
+            "unavailable_asset_seconds": 0,
+            "observed_seconds": 0,
+            "sessions": [],
+            "unobserved_seconds": 86400,
+            "status": "missing"
+          },
+          {
+            "date": "2026-11-03",
+            "events": 0,
+            "gaps": {},
+            "connections": 0,
+            "reconnects": 0,
+            "recoveries": 0,
+            "hash_conflict_recoveries": 0,
+            "max_recovery_seconds": 0,
+            "unavailable_asset_seconds": 0,
+            "observed_seconds": 0,
+            "sessions": [],
+            "unobserved_seconds": 86400,
+            "status": "missing"
+          },
+          {
+            "date": "2026-11-04",
+            "events": 0,
+            "gaps": {},
+            "connections": 0,
+            "reconnects": 0,
+            "recoveries": 0,
+            "hash_conflict_recoveries": 0,
+            "max_recovery_seconds": 0,
+            "unavailable_asset_seconds": 0,
+            "observed_seconds": 0,
+            "sessions": [],
+            "unobserved_seconds": 86400,
+            "status": "missing"
+          },
+          {
+            "date": "2026-11-05",
+            "events": 0,
+            "gaps": {},
+            "connections": 0,
+            "reconnects": 0,
+            "recoveries": 0,
+            "hash_conflict_recoveries": 0,
+            "max_recovery_seconds": 0,
+            "unavailable_asset_seconds": 0,
+            "observed_seconds": 0,
+            "sessions": [],
+            "unobserved_seconds": 86400,
+            "status": "missing"
+          }
+        ],
+        "summary": {
+          "validated_records": 212596,
+          "events": {
+            "started": 1,
+            "connected": 883,
+            "book": 1852,
+            "price_change": 206114,
+            "health": 2817,
+            "disconnected": 884,
+            "heartbeat_timeout": 2,
+            "last_trade_price": 42,
+            "stopped": 1
+          },
+          "gaps": {
+            "server_hash_conflict": 1737,
+            "disconnected": 884,
+            "heartbeat_timeout": 2,
+            "best_price_mismatch": 18
+          },
+          "sessions": [
+            {
+              "session": "5aba4b0829af4bc5a74615e3c464b728",
+              "first_ns": 1793326265756903069,
+              "last_ns": 1793410799997763045,
+              "started": true,
+              "stopped": true,
+              "assets": [
+                "16040015440196279900485035793550429453516625694844857319147506590755961451627",
+                "94476829201604408463453426454480212459887267917122244941405244686637914508323"
+              ],
+              "seeded_assets": [
+                "16040015440196279900485035793550429453516625694844857319147506590755961451627",
+                "94476829201604408463453426454480212459887267917122244941405244686637914508323"
+              ],
+              "first_market_ns": 1793326267520348051,
+              "last_market_ns": 1793410797857296276,
+              "seconds": 84534.240859976,
+              "market_span_seconds": 84530.336948225
+            }
+          ],
+          "longest_session_seconds": 84534.240859976,
+          "recoveries_including_initial_seed": 1766,
+          "hash_conflict_recoveries": 1737,
+          "max_recovery_seconds": 34.626943226,
+          "last_health_by_session": {
+            "5aba4b0829af4bc5a74615e3c464b728": {
+              "received_ns": 1793410799997763045,
+              "counters": {
+                "event_book": 1852,
+                "event_connected": 883,
+                "event_disconnected": 884,
+                "event_health": 2816,
+                "event_heartbeat_timeout": 2,
+                "event_last_trade_price": 42,
+                "event_price_change": 206114,
+                "event_started": 1,
+                "event_stopped": 1,
+                "gap_best_price_mismatch": 18,
+                "gap_disconnected": 884,
+                "gap_heartbeat_timeout": 2,
+                "gap_server_hash_conflict": 1737,
+                "gaps_total": 2641,
+                "geoblock_blocked": 1,
+                "geoblock_check_failed": 0,
+                "pings": 7026,
+                "pongs": 6996,
+                "public_read_only": 1,
+                "reconnects": 884,
+                "records": 212595
+              },
+              "available_assets": []
+            }
+          },
+          "unresolved_hash_assets": [],
+          "last_received_ns": 1793410799997763045,
+          "selected_assets": [
+            "16040015440196279900485035793550429453516625694844857319147506590755961451627",
+            "94476829201604408463453426454480212459887267917122244941405244686637914508323"
+          ]
+        },
+        "integrity": "all event row SHA-256 and local sequence recomputed; sequence gaps are reported",
+        "limitations": [
+          "Observed discontinuities only; no guaranteed upstream sequence or cryptographic server hash validation.",
+          "Session duration includes reconnects; observed_seconds does not mean gap-free data.",
+          "Final incomplete crash tail ends at last durable event; no coverage extrapolation.",
+          "Unavailability includes initial seeding and time between sessions; summed over assets.",
+          "Summary scans all supplied history; daily rows cover only the requested UTC calendar window."
+        ]
+      },
+      "raw_manifest": [
+        {
+          "path": "date=2026-10-30/market=0x7ad403c3508f8e3912940fd1a913f227591145ca0614074208e0b962d5fcc422/events.5aba4b0829af4bc5a74615e3c464b728.000000.jsonl",
+          "bytes": 67108393,
+          "sha256": "bd5d83a24e8b7d4e35181fca6c94d66c9f465b423a43ff7004c9fdcc20482690"
+        },
+        {
+          "path": "date=2026-10-30/market=0x7ad403c3508f8e3912940fd1a913f227591145ca0614074208e0b962d5fcc422/events.5aba4b0829af4bc5a74615e3c464b728.000001.jsonl",
+          "bytes": 67108832,
+          "sha256": "7e2f810a1756154f652ba768a7f8a7bc5d9c222bf78c06d4df32dd291aa49c8d"
+        },
+        {
+          "path": "date=2026-10-30/market=0x7ad403c3508f8e3912940fd1a913f227591145ca0614074208e0b962d5fcc422/events.5aba4b0829af4bc5a74615e3c464b728.000002.jsonl",
+          "bytes": 33397305,
+          "sha256": "76a06fb87dc7dae7e9e9760fa51d31cd9f375eda809e5d357b12b487c2a7b563"
+        },
+        {
+          "path": "date=2026-10-30/market=0x7ad403c3508f8e3912940fd1a913f227591145ca0614074208e0b962d5fcc422/snapshots.5aba4b0829af4bc5a74615e3c464b728.000000.jsonl",
+          "bytes": 29638556,
+          "sha256": "cacc47ed318a644ee1ab9dcf7761d6fefdad0a03d9430f2a314320e3019899e3"
+        },
+        {
+          "path": "date=2026-10-30/market=_control/events.5aba4b0829af4bc5a74615e3c464b728.000000.jsonl",
+          "bytes": 2732122,
+          "sha256": "b52bf01c411f9d400d45f0a5b7790038b7e72100a26a1460824f3e86e51ab488"
+        },
+        {
+          "path": "date=2026-10-30/market=_control/gaps.5aba4b0829af4bc5a74615e3c464b728.000000.jsonl",
+          "bytes": 443415,
+          "sha256": "485e40aff231a2d8ffb612809092b61070a2d8144f1aedbda9665faabab7173c"
+        },
+        {
+          "path": "date=2026-10-31/market=0x7ad403c3508f8e3912940fd1a913f227591145ca0614074208e0b962d5fcc422/events.5aba4b0829af4bc5a74615e3c464b728.000000.jsonl",
+          "bytes": 11872192,
+          "sha256": "721e97ea8202285180978fab083ea6d4f4cf3e8cfd99681dc058b4a37bded910"
+        },
+        {
+          "path": "date=2026-10-31/market=0x7ad403c3508f8e3912940fd1a913f227591145ca0614074208e0b962d5fcc422/snapshots.5aba4b0829af4bc5a74615e3c464b728.000000.jsonl",
+          "bytes": 1922642,
+          "sha256": "81f5eb2d16cdb666b97258ef98a5d2ade2d1a2dca604ef05ca5eb5a24189fc55"
+        },
+        {
+          "path": "date=2026-10-31/market=_control/events.5aba4b0829af4bc5a74615e3c464b728.000000.jsonl",
+          "bytes": 228805,
+          "sha256": "07c173aa0f3bf7b2a802ef3b951037fce4dc29b80bc0579916bdb22dc552e89c"
+        },
+        {
+          "path": "date=2026-10-31/market=_control/gaps.5aba4b0829af4bc5a74615e3c464b728.000000.jsonl",
+          "bytes": 50018,
+          "sha256": "3fe9749ac57896edddd289d18ace6d0f23892b44797b2f8213ce2ad937f6a41e"
+        }
+      ],
+      "disconnect_causes": {
+        "ResyncRequired": 880,
+        "TimeoutError": 2,
+        "NetworkFailure": 2
+      },
+      "integrity_result": "212596 event row SHA-256 validated; no journal_sequence gaps; all 1737 observed hash conflicts recovered via full books. Server hash is not cryptographically verified.",
+      "storage_bytes": 214502280,
+      "raw_data_delivery": "Retained on NAS; raw data and secrets excluded from Git."
+    }
+  ]
+}
