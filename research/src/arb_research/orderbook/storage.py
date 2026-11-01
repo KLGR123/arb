@@ -7,9 +7,14 @@ import json
 import os
 from pathlib import Path
 import re
+import shutil
 import uuid
 
 from .core import Rebuilder, canonical, digest
+
+
+class StorageLimit(OSError):
+    """Stop without deleting evidence when the configured storage budget is spent."""
 
 
 def partition(market):
@@ -19,12 +24,22 @@ def partition(market):
 
 
 class Journal:
-    def __init__(self, root):
+    def __init__(self, root, *, segment_bytes=None, quota_bytes=None, min_free_bytes=0):
         self.root = Path(root)
         self.root.mkdir(parents=True, exist_ok=True)
         self.session = uuid.uuid4().hex
         self.seq = 0
         self.handles = OrderedDict()
+        self.segment_bytes = segment_bytes
+        self.quota_bytes = quota_bytes
+        self.min_free_bytes = min_free_bytes
+        self.used_bytes = sum(p.stat().st_size for p in self.root.glob("date=*/market=*/*.jsonl"))
+        self.segments = {}
+        self.sizes = {}
+
+    def check_space(self):
+        if shutil.disk_usage(self.root).free < self.min_free_bytes:
+            raise StorageLimit("disk reserve reached; archive evidence before restarting")
 
     def write(self, payload, received_ns, kind="event"):
         self.seq += 1
@@ -36,7 +51,26 @@ class Journal:
 
     def append(self, stream, row, market="_control"):
         date = datetime.fromtimestamp(row["received_ns"] // 10 ** 9, timezone.utc).date()
-        path = self.root / f"date={date}" / f"market={partition(market)}" / f"{stream}.{self.session}.jsonl"
+        directory = self.root / f"date={date}" / f"market={partition(market)}"
+        data = canonical(row) + "\n"
+        size = len(data.encode("utf-8"))
+        if self.quota_bytes is not None and self.used_bytes + size > self.quota_bytes:
+            raise StorageLimit("journal quota reached; evidence retained")
+        if self.segment_bytes is not None and size > self.segment_bytes:
+            raise StorageLimit("single record exceeds segment budget")
+        key = (directory, stream)
+        segment = self.segments.get(key, 0)
+        suffix = f".{segment:06d}" if self.segment_bytes is not None else ""
+        path = directory / f"{stream}.{self.session}{suffix}.jsonl"
+        if (self.segment_bytes is not None and self.sizes.get(path, 0) + size > self.segment_bytes):
+            old = self.handles.pop(path, None)
+            if old is not None:
+                old.flush()
+                os.fsync(old.fileno())
+                old.close()
+            segment += 1
+            self.segments[key] = segment
+            path = directory / f"{stream}.{self.session}.{segment:06d}.jsonl"
         if path not in self.handles:
             path.parent.mkdir(parents=True, exist_ok=True)
             if len(self.handles) >= 64:
@@ -47,8 +81,10 @@ class Journal:
             self.handles[path] = path.open("a", encoding="utf-8")
         handle = self.handles[path]
         self.handles.move_to_end(path)
-        handle.write(canonical(row) + "\n")
+        handle.write(data)
         handle.flush()
+        self.used_bytes += size
+        self.sizes[path] = self.sizes.get(path, 0) + size
 
     def sync(self):
         for handle in self.handles.values():
